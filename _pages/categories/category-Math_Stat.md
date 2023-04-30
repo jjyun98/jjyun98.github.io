@@ -8,4 +8,4 @@ sidebar_main:
 
 
 {% assign posts = site.categories.['Mathematical Statistics'] %}
-{% for post in posts %} {% include archive-single2.html type=page.entries_layout %} {% endfor %}
+{% for post in posts %} {% include archive-single.html type=page.entries_layout %} {% endfor %}
