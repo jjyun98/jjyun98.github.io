@@ -19,7 +19,7 @@ locale                   : "ko-KR"
 title                    : "YN LAB"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
-name                     : "YN"
+name                     : "YunHo"
 description              : "An amazing website."
 url                      : "https://jjyun98.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
@@ -103,11 +103,11 @@ analytics:
 
 
 # Site Author
-author:
-  name             : "YN"
+# author:
+  name             : # "YunHo"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "통계학 전공자입니다.<br>아직 부족함이 많습니다"
-  location         : "Jeonju"
+  bio              : # "통계학 전공자입니다.<br>아직 부족함이 많습니다"
+  location         : # "Jeonju"
   email            :
   links:
     - label: "Email"
