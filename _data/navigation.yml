@@ -6,5 +6,3 @@ main:
     url: /about/
   - title: "Category"
     url: "/categories/"
-  - title: "Search"
-    url: /search/
