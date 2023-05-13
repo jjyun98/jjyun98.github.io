@@ -1,10 +1,11 @@
 ---
-layout: single
-title:  "Data Handling a"
-categories:
-    - R Syntax
-tags: 
-    - R
+# layout: post
+title: "Data Handling a"
+subtitle: 
+categories: 
+  - R Syntax
+tags:
+  - R
 toc: true
 toc_sticky: true
 use_math: true
