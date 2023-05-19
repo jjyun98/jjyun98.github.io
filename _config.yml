@@ -207,6 +207,12 @@ plugins:
   - jekyll-gist
   - jekyll-feed
   - jekyll-include-cache
+  - jekyll-mermaid  # 추가한 부분
+
+
+mermaid:
+  custom: true
+  src: "https://cdn.jsdelivr.net/npm/mermaid@8.14.0/dist/mermaid.min.js"
 
 # mimic GitHub Pages with --safe
 whitelist:
@@ -215,6 +221,7 @@ whitelist:
   - jekyll-gist
   - jekyll-feed
   - jekyll-include-cache
+  - jekyll-mermaid  # 추가한 부분
 
 
 # Archives
