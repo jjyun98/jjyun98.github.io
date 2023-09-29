@@ -132,6 +132,10 @@ Sys.setenv(R_LIBS = new_paths)<br>
 
 여기서 따옴표 안이 원하는 주소)<br>
 
+또는 .libPaths("/opt/homebrew/Cellar/r/4.2.3/lib/R/library")<br>
+
+다만 이 방법들의 문제는 세션 껐다가 키면 설정 초기화됨
+
 
 5) jupyter lab<br>
 
