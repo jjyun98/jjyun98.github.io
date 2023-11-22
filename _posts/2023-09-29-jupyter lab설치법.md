@@ -110,3 +110,34 @@ install.packages("textshaping", dependencies = TRUE)
 
 이 상황에서는 에러나는 패키지 이름이 textshaping였음.
 
+
+
+## conda로 설치하는 방법
+
+
+### conda 설치
+
+```
+brew install --cask miniconda
+```
+
+### python과 가상환경 설치
+R은 별도로 설치함.<br>
+
+```
+conda create -n lab1 -c conda-forge r-base python=3.8
+```
+
+
+```
+conda install -n lab1 -c conda-forge jupyterlab
+```
+
+
+### 실행
+
+
+```
+conda activate lab1
+```
+
