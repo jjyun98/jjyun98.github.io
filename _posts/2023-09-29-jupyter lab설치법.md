@@ -15,10 +15,12 @@ toc: true
 ### step 1
 R, python 설치(이는 가상환경 밖에 설치되는거임)
 
+수정 : 가상환경 밖에 설치하면 python 패키지 종속성 문제 발생할 가능성 다분함. 고로 개별 가상환경 내에 설치하길 권장
 ```
+
 brew install r
 
-brew install python3
+~~brew install python3~~
 ```
 
 ### step 2
@@ -140,4 +142,19 @@ conda install -n lab1 -c conda-forge jupyterlab
 ```
 conda activate lab1
 ```
+
+
+# 돌아가는 python 위치 확인
+
+패키지를 설치했는데 존재하지 않는다고 나오면, 보통 파이썬이나 패키지 실행 위치가 다른 것이다. 2개 이상 설치되어 서로 다른 것으로 연결 되어있어서 그러하다.
+
+확인 
+```
+import sys # jupyter code
+sys.executable # 가상환경 code
+```
+
+이렇게 하고 서로 상이한지 확인
+(같아야 함)
+보통 2개 설치되어있는 경우 많으며, 여기서는 아래와 같다.
 
