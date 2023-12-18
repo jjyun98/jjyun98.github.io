@@ -114,6 +114,19 @@ install.packages("textshaping", dependencies = TRUE)
 
 
 
+devtools 가 0 에러 뜨는 경우 종속성 패키지는 아래를 설치하면 된다.
+
+```
+brew install libgit2
+```
+
+이거 하고 다시 
+
+```
+install.packages("devtools")
+```
+
+
 ## conda로 설치하는 방법
 
 
