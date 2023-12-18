@@ -1,9 +1,7 @@
 ---
-
 title:  "jupyter lab 설치법"
-
 toc: true
-
+tag: mac
 ---
 
 # mac에서 jupyter lab 설치법
@@ -12,23 +10,20 @@ toc: true
 
 먼저 homebrew설치하고 온다.(인터넷 참고)
 
+가상환경 밖에서 R, python 설치시 가상환경내에서 패키지 위치가 필히 2개 생김.<br>
+따라서 내부에서 설치하는 것을 권장
+
+
+## 설치 과정
+
 ### step 1
-R, python 설치(이는 가상환경 밖에 설치되는거임)
-
-수정 : 가상환경 밖에 설치하면 python 패키지 종속성 문제 발생할 가능성 다분함. 고로 개별 가상환경 내에 설치하길 권장
-```
-
-brew install r
-
-~~brew install python3~~
-```
-
-### step 2
 가상환경 설치 도구
 
 ```
 brew install pyenv
 ```
+
+가상환경 구조에 대해서는 _posts/jupyter/2023-12-18-가상환경.md 참고 바람.
 
 ### step 3
 가상환경 제작
@@ -126,6 +121,9 @@ brew install libgit2
 install.packages("devtools")
 ```
 
+
+R역시 irkernel 사용권장<br>
+이유는 모르겠지만 에러 덜나는 기분(검증 필요함)
 
 ## conda로 설치하는 방법
 
