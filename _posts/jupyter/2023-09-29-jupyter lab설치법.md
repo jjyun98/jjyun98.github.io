@@ -122,6 +122,10 @@ install.packages("devtools")
 ```
 
 
+brew upgrade llvm
+
+
+
 R역시 irkernel 사용권장<br>
 이유는 모르겠지만 에러 덜나는 기분(검증 필요함)
 
