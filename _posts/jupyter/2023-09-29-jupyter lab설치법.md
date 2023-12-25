@@ -214,3 +214,13 @@ conda install -c conda-forge r-glmnet=4.1_2
 ```
 
 이러면 해결된다.
+
+
+
+# 추가
+
+arm mac에서 R 패키지 설치시 필수로 봐야할 사이트(사전 설치 필요)
+
+https://cran.r-project.org/bin/macosx/tools/
+https://mac.r-project.org/tools/
+
