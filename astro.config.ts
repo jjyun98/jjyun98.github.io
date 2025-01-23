@@ -5,6 +5,8 @@ import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
 import sitemap from "@astrojs/sitemap";
 import { SITE } from "./src/config";
+import { defineConfig } from 'astro/config'; //추가
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -43,4 +45,7 @@ export default defineConfig({
   experimental: {
     contentLayer: true,
   },
+  
+  site: 'https://jjyun98.github.io', //추가
+  base: 'jjyun98.github.io', //추가
 });
