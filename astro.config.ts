@@ -9,6 +9,7 @@ import { SITE } from "./src/config";
 // https://astro.build/config
 export default defineConfig({
   site: "https://jjyun98.github.io", // GitHub Pages URL
+  base: "jjyun98.github.io",
   integrations: [
     tailwind({
       applyBaseStyles: false,
