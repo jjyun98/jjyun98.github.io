@@ -12,7 +12,7 @@
     "format:check": "prettier --check . --plugin=prettier-plugin-astro",
     "format": "prettier --write . --plugin=prettier-plugin-astro",
     "lint": "eslint .",
-    "deploy": "npm run build && gh-pages -d dist" 
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
