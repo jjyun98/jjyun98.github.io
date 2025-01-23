@@ -3,6 +3,7 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 import astroParser from "astro-eslint-parser";
 import eslintPluginAstro from "eslint-plugin-astro";
+import { defineConfig } from 'astro/config' //추가
 
 export default [
   js.configs.recommended,
@@ -42,3 +43,7 @@ export default [
     ignores: ["dist/**", ".astro"],
   },
 ];
+defineConfig({
+  site: 'https://jjyun98.github.io',
+  base: 'jjyun98.github.io',
+}) //추가
