@@ -5,12 +5,10 @@ import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
 import sitemap from "@astrojs/sitemap";
 import { SITE } from "./src/config";
-import { defineConfig } from 'astro/config'; //추가
-
 
 // https://astro.build/config
 export default defineConfig({
-  site: SITE.website,
+  site: "https://jjyun98.github.io", // GitHub Pages URL
   integrations: [
     tailwind({
       applyBaseStyles: false,
@@ -45,7 +43,4 @@ export default defineConfig({
   experimental: {
     contentLayer: true,
   },
-  
-  site: 'https://jjyun98.github.io', //추가
-  base: 'jjyun98.github.io', //추가
 });
