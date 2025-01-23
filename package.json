@@ -11,7 +11,8 @@
     "astro": "astro",
     "format:check": "prettier --check . --plugin=prettier-plugin-astro",
     "format": "prettier --write . --plugin=prettier-plugin-astro",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "deploy": "npm run build && gh-pages -d dist"  // 추가된 부분
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
