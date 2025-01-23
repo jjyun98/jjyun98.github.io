@@ -3,7 +3,7 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 import astroParser from "astro-eslint-parser";
 import eslintPluginAstro from "eslint-plugin-astro";
-import { defineConfig } from 'astro/config' //추가
+import { defineConfig } from 'eslint/config' //추가
 
 export default [
   js.configs.recommended,
