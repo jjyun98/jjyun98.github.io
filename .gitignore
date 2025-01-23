@@ -1,29 +1,32 @@
-# Vim
-*~
-*.sw[p_]
+# build output
+dist/
+.output/
 
-# Sublime Text
-*.sublime-project
-*.sublime-workspace
+# dependencies
+node_modules/
 
-# Ruby Gem
-*.gem
-.bundle
-Gemfile.lock
-**/vendor/bundle
-
-# Node.js and NPM
-node_modules
+# logs
 npm-debug.log*
-package-lock.json
-codekit-config.json
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# macOS
+
+# environment variables
+.env
+.env.production
+
+# macOS-specific files
 .DS_Store
 
-# Jekyll generated files
-.jekyll-cache
-.jekyll-metadata
-.sass-cache
-_asset_bundler_cache
-_site
+# ignore .astro directory
+.astro
+
+# yarn
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
