@@ -4,7 +4,7 @@ pubDatetime: 2025-01-31T09:22:00Z
 modDatetime: 2025-01-31T10:12:47Z
 title: 웹 크롤링을 위한 HTML 기초
 slug: webcrawling-1
-featured: True
+featured: false
 draft: false
 tags:
   - Web Crawling
