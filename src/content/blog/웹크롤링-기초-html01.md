@@ -13,11 +13,10 @@ tags:
 description: "웹 크롤링을 위한 HTML기초 개념을 정리한 글입니다."
 ---
 
-## Table of contents
-
-
 > 📌 참고 영상:  
 > [웹크롤링 비법 대공개! 데이터 수집 기초부터 돈버는 전략까지 한번에 배우기!](https://www.youtube.com/watch?v=Uf21RUo3KNc&list=PLNO7MWpu0eeUFdGMirV8_EkiLETqj8xA4)
+
+## Table of contents
 
 ## 1. 웹 개발의 3요소
 
