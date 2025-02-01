@@ -4,7 +4,7 @@ pubDatetime: 2022-09-23T15:22:00Z
 modDatetime: 2023-12-21T09:12:47.400Z
 title: Adding new posts in AstroPaper theme
 slug: adding-new-posts-in-astropaper-theme
-featured: true
+featured: false
 draft: false
 tags:
   - docs
@@ -70,7 +70,7 @@ title: The title of the post
 author: your name
 pubDatetime: 2022-09-21T05:17:19Z
 slug: the-title-of-the-post
-featured: true
+featured: false
 draft: false
 tags:
   - some
