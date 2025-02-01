@@ -10,7 +10,7 @@ tags:
   - Web Crawling
   - html
   - css
-description: "웹 크롤링을 위한 HTML기초 개념을 정리한 글입니다."
+description: "웹 크롤링을 위한 HTML기초 개념 정리"
 ---
 
 > 📌 참고 영상:  

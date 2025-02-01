@@ -10,7 +10,7 @@ tags:
   - Web Crawling
   - html
   - css
-description: "CSS 기본 문법과 선택자에 대한 정리입니다."
+description: "CSS 기본 문법과 선택자에 대한 정리"
 ---
 
 > 📌 참고 영상:  
