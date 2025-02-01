@@ -34,7 +34,7 @@ export default defineConfig({
     rehypePlugins: [rehypeKatex], // LaTeX 수식 렌더링 추가
     shikiConfig: {
       // For more themes, visit https://shiki.style/themes
-      themes: { light: "min-light", dark: "night-owl" },
+      themes: { light: "github-light", dark: "dracula" }, // 기본 light: "min-light", dark: "night-owl"
       wrap: true,
     },
   },
