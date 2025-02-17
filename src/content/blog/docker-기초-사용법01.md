@@ -14,128 +14,134 @@ description: "Docker 기초 사용법"
 > 📌 참고 영상:  
 > [Dockerfile 명령어 & 이미지 만들기](https://codingapple.com/unit/docker-3-custom-image/?id=131613)
 
-## 1. 시작하기
-먼저 Node.js와 Express 라이브러리를 설치하여 서버를 실행하는 방법을 배웠다. 그 후, Docker를 사용하여 서버를 이미지로 만들고 배포하는 과정을 설명하겠습니다.
+## Table of contents
 
-## 2. Node.js와 Express 서버 실행
+이번 포스팅에서는 **Docker**를 이용해 간단하게 Node.js 서버를 배포하는 방법을 다뤄보겠습니다. Docker를 사용하면 **어떤 환경에서도 동일한 서버**를 실행할 수 있게 됩니다.
 
-#### npm init -y로 package.json 생성
+## 1. Node.js + Express 서버 만들기
+
+우선 Node.js와 Express를 사용해 간단한 서버를 만들어보겠습니다.
 
 ```bash
 npm init -y
-```
-
-이 명령어로 package.json 파일이 생성된다. 이 파일은 프로젝트에 필요한 라이브러리와 설정을 기록합니다.
-
-#### Express 설치
-```bash
 npm install express
 ```
 
-**Express**는 웹 서버를 쉽게 만들 수 있도록 도와주는 라이브러리입니다. 실제 라이브러리 파일은 node_modules 폴더에 설치됩니다.
+위 명령어로 package.json을 생성하고, Express 라이브러리를 설치합니다. 그다음, server.js 파일을 만들어 서버 코드를 작성합니다.
+학습을 위해 아래 내용을 똑같이 파일에 복사하면 됩니다.
 
-#### 서버 코드 작성
-
-```javascript
+```js
 const express = require('express');
 const app = express();
 
 app.listen(8080, () => {
-    console.log('서버 실행중 http://localhost:8080');
+  console.log('서버 실행중 http://localhost:8080');
 });
 
 app.get('/', (req, res) => {
-    res.send('안녕');
+  res.send('안녕');
 });
 ```
 
-위 코드를 작성하고 **server.js**라는 파일로 저장합니다. 이 코드는 http://localhost:8080에서 서버를 실행하고, 메인 페이지에 안녕 메시지를 출력합니다.
+이제 서버가 실행되고, 웹 브라우저에서 http://localhost:8080에 접속하면 안녕이라는 메시지를 확인할 수 있습니다. 이제 이 서버를 **Docker**를 이용해 쉽게 배포할 수 있는 방법을 알아봅니다.
 
-#### 서버 실행
+## 2. Dockerfile 작성하기
 
-```bash
-node server.js
-```
+Docker를 사용하려면 Dockerfile이라는 파일을 작성해야 합니다. 이 파일은 우리가 만든 애플리케이션을 **어떤 환경에서 실행할지** 정의하는 레시피입니다. 이곳에 애플리케이션을 실행하기 위한 환경과 필요한 명령어들을 적습니다.
 
-이 명령어로 서버를 실행할 수 있습니다. 수정한 사항이 반영되지 않으면 서버를 종료하고 다시 실행해야 합니다.
+#### ✅ Dockerfile 작성 예시
 
-#### 자동 반영을 위해 nodemon 설치
-
-```bash
-npm install -g nodemon
-```
-
-이후 nodemon을 사용하여, 파일을 저장할 때마다 자동으로 서버가 반영되게 할 수 있습니다.
-
-```bash
-nodemon server.js
-```
-
-## 3. Docker 사용하여 서버 배포하기
-
-#### Dockerfile 작성
-
-프로젝트 파일이 있는 폴더에 **Dockerfile**을 생성하여, 서버 환경을 설정합니다. Dockerfile에는 어떤 이미지를 기반으로 사용할지, 필요한 프로그램은 무엇인지 등을 설정합니다.
-
-#### Dockerfile 예시
-
-```Dockerfile
+```dockerfile
+# 1. 기본 이미지 설정 (Node.js 20버전, 슬림 리눅스)
 FROM node:20-slim
 
+# 2. 작업 디렉토리 설정
 WORKDIR /app
 
+# 3. 로컬 파일 복사 (현재 디렉토리의 모든 파일을 /app 디렉토리로 복사)
 COPY . .
 
-RUN ["npm", "install"]
+# 4. 의존성 설치
+RUN npm install
 
+# 5. 애플리케이션 포트 공개 (8080 포트를 사용)
 EXPOSE 8080
 
+# 6. 서버 실행 명령어
 CMD ["node", "server.js"]
 ```
 
-FROM node:20-slim: node:20-slim 이미지를 기반으로 사용합니다. 이 이미지는 최소한의 Node.js 환경을 제공합니다.
-WORKDIR /app: 작업 디렉토리를 /app으로 설정합니다.
+- FROM : 다른 이미지로 시작가능. 보통 OS정도 설치된 이미지 기입한다. 리눅스가 저렴하니까 리눅스 많이 사용함. 참고로 이미지들은 Docker hub에서 찾아볼 수 있음. 검색해서 하나 고르면 된다. 참고로 해당 이미지가 로컬에 없으면 자동으로 Docker가 해당 이미지를 pull함. 여기서는 Node.js 20버전과 슬림한 리눅스 이미지를 기반으로 설정
 
-- COPY . .: 현재 디렉토리의 모든 파일을 컨테이너의 /app 디렉토리로 복사합니다.
-- RUN ["npm", "install"]: 프로젝트의 의존성을 설치합니다.
-- EXPOSE 8080: 8080 포트를 열어 외부에서 접근할 수 있도록 설정합니다.
-- CMD ["node", "server.js"]: 서버를 실행할 명령어를 설정합니다.
+![img](/assets/images/docker_0217_1.png)
 
-#### Docker 이미지 빌드
+- WORKDIR : 컨테이너 내부에서 작업할 디렉토리를 설정. 여기서는 /app으로 설정함.
 
-```bash
-docker build -t nodeserver:1 .
-```
+- COPY : 현재 로컬 디렉토리의 모든 파일을 컨테이너의 /app 디렉토리로 복사.
 
-이 명령어로 Docker 이미지를 빌드합니다. nodeserver는 이미지의 이름이고, 1은 태그입니다.
+package.json 파일을 보면 내가 쓰는 라이브러리 버전이 기록되어 있다. 이 파일을 활용하면 내가 사용하던 라이브러리들의 버전을 쉽게 설정 가능. 따라서 복사해서 사용하기로 했다.
 
-#### Docker 컨테이너 실행
+![img](/assets/images/docker_0217_2.png)
 
-```
-docker run -p 8080:8080 nodeserver:1
-```
+- RUN npm install: package.json에 정의된 의존성을 설치.
 
-이 명령어로 Docker에서 만든 이미지를 실행하고, **포트 8080**을 외부와 연결합니다. 이후 http://localhost:8080에서 서버에 접속할 수 있습니다.
+- EXPOSE : 해당 컨테이너에서 어떤 포트를 사용할 것인지에 대한 정보를 명시. 메모역할! 기능은 없음.
 
-## 4. Docker 이미지 다른 컴퓨터에서 사용하기
+- CMD : 서버를 실행할 명령어를 설정합니다.
 
-Docker 이미지를 다른 컴퓨터로 전송하면, 동일한 과정을 재현할 수 있습니다.
+## 3. .dockerignore 설정
 
-1. package.json 파일을 포함한 프로젝트 파일을 복사합니다.
-2. 해당 컴퓨터에서 docker build 명령어로 이미지를 빌드하고 실행합니다.
+docker build 명령어를 실행하면 모든 파일이 Docker 이미지에 포함됩니다. 하지만 node_modules와 같은 불필요한 파일은 포함하지 않아야 합니다. 이를 위해 .dockerignore 파일을 생성하여 제외할 파일을 지정합니다.
 
-## 5. .dockerignore 사용
+**.dockerignore**
 
-Docker 이미지를 빌드할 때 불필요한 파일들이 복사되지 않도록 .dockerignore 파일을 사용합니다. 예를 들어, node_modules 폴더를 제외하려면 .dockerignore 파일에 다음과 같이 작성합니다.
-
-```bash
+```dockerfile
 node_modules
 Dockerfile
 .git
 ```
 
+이렇게 하면 Docker 이미지를 만들 때 node_modules나 Git 관련 파일이 포함되지 않도록 설정할 수 있습니다.
+
+## 4. Docker 이미지 빌드
+
+이제 모든 준비가 끝났습니다. Dockerfile과 package.json을 기준으로 Docker 이미지를 빌드할 수 있습니다. 터미널에 아래 명령어를 사용하여 이미지를 빌드합니다.
+
+```bash
+docker build -t nodeserver:1 .
+```
+
+이 명령어에서 nodeserver:1은 이미지 이름과 태그입니다. .은 현재 디렉토리를 의미하며, Docker가 이 디렉토리에서 Dockerfile을 찾아 이미지를 빌드하도록 합니다.
+
+## 5. Docker Desktop에서 이미지 확인
+
+이미지가 빌드되면 Docker Desktop을 통해 확인할 수 있습니다. Images 탭에서 nodeserver:1 이미지를 확인할 수 있습니다.
+
+
+## 6. Docker 컨테이너 실행
+
+이제 Docker 컨테이너를 실행할 준비가 되었습니다. docker run 명령어를 사용하여 이미지를 실행합니다.
+
+```bash
+docker run -p 8080:8080 nodeserver:1
+```
+
+위 명령어는 호스트의 8080 포트를 컨테이너의 8080 포트에 연결하여, 외부에서 해당 포트로 접근할 수 있도록 합니다. 서버가 실행되면 아래와 같은 메시지가 출력됩니다.
+
+```
+서버 실행중 http://localhost:8080
+```
+
+브라우저에서 http://localhost:8080을 입력하면 “안녕”이라는 메시지가 출력되는 것을 확인할 수 있다.
+
+#### 📌 다른 시스템에서 실행
+
+Docker의 가장 큰 장점은 환경을 동일하게 재현할 수 있다는 것입니다. Docker 이미지가 생성되었으면, 해당 이미지를 다른 시스템에 전달하고 동일한 과정을 거쳐 서버를 실행할 수 있습니다. 이 때, docker save와 docker load 명령어를 사용하여 이미지를 전송할 수 있습니다.
+
 ## 마무리
 
-Docker를 사용하면 서버 배포가 훨씬 간편해지고, **환경 차이로 인한 문제**를 최소화할 수 있습니다. 특히 AWS와 같은 서버 환경에서 Docker 이미지를 사용하여 손쉽게 배포할 수 있습니다. 이제 Docker를 통해 **개발 환경을 컨테이너화**하고, **배포 과정의 자동화**를 실현할 수 있습니다.
+지금까지 Node.js와 Express 서버를 Docker 이미지를 통해 실행하는 방법을 알아보았습니다. Docker를 활용하면 **개발 환경을 표준화**하고, **서버 배포가 용이**해지며, 다양한 시스템에서 동일한 환경을 재현할 수 있다는 장점이 있습니다.
 
+또한, Docker를 사용하면 AWS나 다른 클라우드 서버로 쉽게 배포할 수 있으며, **개발 환경을 설정하는 시간을 단축**시킬 수 있습니다.
 
+이 포스팅에서는 Docker를 사용한 기본적인 서버 구축 방법을 다루었지만, Docker를 보다 심화적으로 사용하려면 추가적인 설정과 최적화 방법이 필요합니다. 예를 들어, **멀티스테이지 빌드**, **Docker Compose** 등을 활용한 다중 컨테이너 환경 설정도 가능합니다.
