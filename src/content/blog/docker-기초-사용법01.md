@@ -1,14 +1,15 @@
 ---
 author: Jo YunHo
 pubDatetime: 2025-02-14T09:22:00Z
-modDatetime: 2025-02-17T10:12:47Z
+modDatetime: 2025-02-17T10:12:00Z
 title: Docker를 이용한 Node.js 서버 배포
-slug: "Docker-1-basic"
+slug: "docker-nodejs-deployment"
 featured: false
 draft: false
 tags:
   - Docker
-description: "Docker 기초 사용법"
+  - Node.js
+description: "Docker를 활용하여 Node.js 애플리케이션을 쉽게 배포하는 방법을 소개합니다. Dockerfile 작성부터 컨테이너 실행까지 단계별로 설명합니다."
 ---
 
 > 📌 참고 영상:  
@@ -103,9 +104,24 @@ Dockerfile
 
 이렇게 하면 Docker 이미지를 만들 때 node_modules나 Git 관련 파일이 포함되지 않도록 설정할 수 있습니다.
 
+#### ✅ 폴더 구조
+
+정리하면, **폴더 구조**는 다음과 같이 될 것입니다.
+
+```
+my-node-app/
+│
+├── node_modules/         # (빌드 후 생성됨)
+├── .dockerignore         # (작성)
+├── Dockerfile            # (작성)
+├── package-lock.json     # (생성)
+├── package.json          # (생성)
+└── server.js             # (작성)
+```
+
 ## 4. Docker 이미지 빌드
 
-이제 모든 준비가 끝났습니다. Dockerfile과 package.json을 기준으로 Docker 이미지를 빌드할 수 있습니다. 터미널에 아래 명령어를 사용하여 이미지를 빌드합니다.
+이제 모든 준비가 끝났다. Dockerfile과 package.json을 기준으로 Docker 이미지를 빌드할 수 있습니다. 터미널에 아래 명령어를 사용하여 이미지를 빌드합니다.
 
 ```bash
 docker build -t nodeserver:1 .
