@@ -18,11 +18,12 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [
       remarkMath, // LaTeX 수식 지원
-      remarkToc, [remarkCollapse, { test: "Table of contents" }]],
-      rehypePlugins: [rehypeKatex], // LaTeX 수식 렌더링 추가
+      remarkToc, [remarkCollapse, { test: "Table of contents" }]
+    ],
+    rehypePlugins: [rehypeKatex], // LaTeX 수식 렌더링 추가
     shikiConfig: {
       // For more themes, visit https://shiki.style/themes
-      themes: { light: "min-light", dark: "night-owl" },
+      themes: { light: "dracula-soft", dark: "dracula-soft" }, // 기본 light: "min-light", dark: "night-owl"
       wrap: true,
     },
   },
