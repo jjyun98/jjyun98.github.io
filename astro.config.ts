@@ -7,7 +7,7 @@ import { SITE } from "./src/config";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://jjyun98.github.io', // 사이트 주소 //
+  site: 'https://jjyun98.github.io', // 사이트 주소 // 
   integrations: [
     sitemap({
       filter: page => SITE.showArchives || !page.endsWith("/archives"),
