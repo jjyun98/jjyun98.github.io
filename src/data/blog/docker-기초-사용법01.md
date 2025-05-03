@@ -74,7 +74,7 @@ CMD ["node", "server.js"]
 
 - FROM : 다른 이미지로 시작가능. 보통 OS정도 설치된 이미지 기입한다. 리눅스가 저렴하니까 리눅스 많이 사용함. 참고로 이미지들은 Docker hub에서 찾아볼 수 있음. 검색해서 하나 고르면 된다. 참고로 해당 이미지가 로컬에 없으면 자동으로 Docker가 해당 이미지를 pull함. 여기서는 Node.js 20버전과 슬림한 리눅스 이미지를 기반으로 설정
 
-![img](/assets/images/docker_0217_1.png)
+![img](@/assets/images/docker_0217_1.png)
 
 - WORKDIR : 컨테이너 내부에서 작업할 디렉토리를 설정. 여기서는 /app으로 설정함.
 
@@ -82,7 +82,7 @@ CMD ["node", "server.js"]
 
 package.json 파일을 보면 내가 쓰는 라이브러리 버전이 기록되어 있다. 이 파일을 활용하면 내가 사용하던 라이브러리들의 버전을 쉽게 설정 가능. 따라서 복사해서 사용하기로 했다.
 
-![img](/assets/images/docker_0217_2.png)
+![img](@/assets/images/docker_0217_2.png)
 
 - RUN npm install: package.json에 정의된 의존성을 설치.
 
