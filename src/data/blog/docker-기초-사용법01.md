@@ -82,7 +82,21 @@ CMD ["node", "server.js"]
 
 package.json 파일을 보면 내가 쓰는 라이브러리 버전이 기록되어 있다. 이 파일을 활용하면 내가 사용하던 라이브러리들의 버전을 쉽게 설정 가능. 따라서 복사해서 사용하기로 했다.
 
-![img](@/assets/images/docker_0217_2.png)
+```json
+"version": "1.0.0",
+"main": "server.js",
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "start": "node server-js"
+},
+"keywords": [],
+"author": "",
+"license": "ISC",
+"description": "",
+"dependencies": {
+  "express": "^4.21.2"
+  }
+```
 
 - RUN npm install: package.json에 정의된 의존성을 설치.
 
@@ -108,7 +122,7 @@ Dockerfile
 
 정리하면, **폴더 구조**는 다음과 같이 될 것입니다.
 
-```
+```dockerfile
 my-node-app/
 │
 ├── node_modules/         # (빌드 후 생성됨)
@@ -144,7 +158,7 @@ docker run -p 8080:8080 nodeserver:1
 
 위 명령어는 호스트의 8080 포트를 컨테이너의 8080 포트에 연결하여, 외부에서 해당 포트로 접근할 수 있도록 합니다. 서버가 실행되면 아래와 같은 메시지가 출력됩니다.
 
-```
+```dockerfile
 서버 실행중 http://localhost:8080
 ```
 
