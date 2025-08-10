@@ -14,6 +14,10 @@ tags:
 description: "Store Sales 시계열 예측 대회 데이터 탐색적 분석 - 매장별 판매 데이터 분석"
 ---
 
+## Table of contents
+
+## 개요
+
 ```python
 import pandas as pd
 import numpy as np
