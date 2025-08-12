@@ -237,16 +237,12 @@ Fashion_Lifestyle           516240
 Education_Entertainment     387180
 Name: count, dtype: int64
 </pre>
+
 > Food_Fresh: 신선식품 (냉장/냉동 필요)  
-
 > Food_Packaged: 가공식품 (상온 보관 가능)  
-
 > Personal_Care: 개인위생용품  
-
 > Home_Essentials: 생활필수품  
-
 > Special_Occasion: 특별한 날/취미 관련
-
 
 
 ```python
