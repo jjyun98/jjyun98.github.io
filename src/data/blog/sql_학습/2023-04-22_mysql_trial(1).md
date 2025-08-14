@@ -23,11 +23,22 @@ tags:
 **mysql 실행**  
 먼저 terminal을 실행한다.
 
+서버 상태 확인
 ```sql
-mysql -u root -p
+brew services list | grep mysql
 ```
 
-비밀번호를 입력하면 접속
+서버가 실행중이면 바로 접속
+```sql
+mysql -u root # 비밀번호 사용안한다면
+```
+
+서버가 중지되어 있으면 시작
+
+```sql
+brew services start mysql # 서버 시작
+mysql -u root # 접속
+```
 
 **종료하기**
 
