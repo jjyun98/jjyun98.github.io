@@ -4,7 +4,7 @@ pubDatetime: 2025-06-04T14:00:00Z
 modDatetime: 2025-06-05T14:00:00Z
 title: 이커머스 고객 데이터 분석 (1) - 데이터 정제 및 탐색적 데이터 분석(EDA)
 slug: "ecommerce-customer-analysis-part1-eda"
-featured: true
+featured: false
 draft: false
 tags:
   - Python
