@@ -1,38 +1,39 @@
 ---
-# layout: post
-title: "[MYSQL] step.1"
-categories: sql
-toc: true
-toc_sticky: true
-use_math: true
-tag: [mysql, terminal]
+title: MYSQL begining (1)
+description: "MySQL 기본 사용법과 주요 SQL 쿼리문 학습 노트입니다. SELECT, WHERE, JOIN, 서브쿼리 등 데이터베이스 조작의 핵심 개념들을 다룹니다."
+pubDatetime: 2023-04-22T00:00:00Z
+modDatetime: 2025-08-10T00:00:00Z
+author: "Jo YunHo"
+slug: "mysql-step-1"
+featured: false
+draft: false
+tags:
+  - mysql
+  - sql
+  - database
+  - terminal
 ---
+
 `terminal`에서 `mysql`이용하기
+
+## Table of contents
 
 ## 기본조작
 
-**mysql 실행**<br>
+**mysql 실행**  
 먼저 terminal을 실행한다.
 
 ```sql
 mysql -u root -p
 ```
 
-<br>
-
 비밀번호를 입력하면 접속
-
-![mysql_0422_1.png](/assets/images/mysql_0422_1.png){: width="70%" height="70%"}{: .align-center}
-
-<br>
 
 **종료하기**
 
 ```sql
 EXIT
 ```
-
-<br>
 
 **DB사용**
 
@@ -42,8 +43,6 @@ EXIT
 SHOW DATABASES;
 ```
 
-<br>
-
 ## Book Table 
 
 이 중에서 madang DB를 사용하기
@@ -51,8 +50,6 @@ SHOW DATABASES;
 ```sql
 USE madang;
 ```
-
-<br>
 
 madang DB에서 테이블을 보기
 
@@ -66,9 +63,7 @@ SHOW TABLES;
 DESCRIBE Book;
 ```
 
-<br>
-
-### SELCET 
+### SELECT 
 
 테이블에서 필요로 하는 열만 가져올 때 사용
 
@@ -79,6 +74,7 @@ SELECT * FROM Book;
 ```
 
 이 중에서 bookname과 price가 동시에 보고 싶다.
+
 ```sql
 SELECT bookname, price FROM Book;
 ```
@@ -92,11 +88,11 @@ FROM Book;
 ```
 
 ### WHERE
-- 조회하는 결과에 특정한 조건으로 원하는 데이터만 보고 싶을 때 사용<br>
+- 조회하는 결과에 특정한 조건으로 원하는 데이터만 보고 싶을 때 사용
 
-> SELECT 필드이름<br>
-FROM 테이블이름<br>
-WHERE 조건식;
+> SELECT 필드이름  
+> FROM 테이블이름  
+> WHERE 조건식;
 
 ```sql
 SELECT *
@@ -105,6 +101,7 @@ WHERE price > 10000;
 ```
 
 - 응용1
+
 ```sql
 SELECT *
 FROM Book
@@ -113,6 +110,7 @@ AND price < 15000;
 ```
 
 - 응용2
+
 ```sql
 SELECT *
 FROM Book
@@ -121,6 +119,7 @@ AND publisher = '대한미디어';
 ```
 
 #### BETWEEN
+
 ```sql
 SELECT *
 FROM Book
@@ -128,6 +127,7 @@ WHERE price BETWEEN 15000 AND 30000 ;
 ```
 
 #### IN
+
 ```sql
 SELECT *
 FROM Book
@@ -135,9 +135,8 @@ WHERE publisher IN('굿스포츠', '나무수', '대한미디어');
 ```
 
 ### LIKE
-- 테이블의 열에서 패턴을 검색하는데 사용<br>
+- 테이블의 열에서 패턴을 검색하는데 사용  
 `SELECT`문과 함께 사용시 패턴 일치에 따라 데이터를 검색
-
 
 - "축구"라는 단어를 포함한 bookname을 검색
 
@@ -156,7 +155,7 @@ FROM Book
 ORDER BY bookname;
 ```
 
-- 응용1<br>
+- 응용1  
 1순위 2순위 이런 식의 기준으로 검색하기
 
 ```sql
@@ -165,7 +164,7 @@ FROM Book
 ORDER BY price, bookname;
 ```
 
-- 응용2<br>
+- 응용2  
 1순위 가격을 기준으로 내림차순 만약 가격이 같을 시 출판사를 기준으로 오름차순하기
 
 ```sql
@@ -202,8 +201,6 @@ FROM Orders
 WHERE custid = 2;
 ```
 
-- 도서 주문 건
-
 #### GROUP BY
 
 #### HAVING
@@ -219,6 +216,7 @@ FROM Customer, Orders;
 - 응용
 
 Customer Table의 custid와 Orders Table의 custid가 동일한 조건이 달린 경우
+
 ```sql
 SELECT *
 FROM Customer, Orders
@@ -229,7 +227,7 @@ WHERE Customer.custid = Orders.custid;
 LEFT OUTER JOIN
 
 ### 서브쿼리
-- 쿼리안의 쿼리 꼴
+- 쿼리안의 쿼리 꼴  
 안에 들어가는 쿼리의 결과를 모를 때 사용(두번 질문 안하기 위해서), 당연하게도 첫 번째 쿼리문으로 답을 얻고 두 번째 쿼리문안에 그 답을 넣어도 똑같은 결과 나온다.
 
 ```sql
@@ -240,13 +238,13 @@ FROM Book);
 ```
 
 여기서 
+
 ```sql
 SELECT MAX(price)
 FROM Book;
 ```
-결과는 다음과 같다.
 
-![mysql_0424_1.png](/assets/images/mysql_0424_1.png){: width="15%" height="15%"}
+결과는 35000이 나온다.
 
 따라서 아래와 같은 결과가 나온다.
 
@@ -272,19 +270,11 @@ SELECT custid
 FROM Orders;
 ```
 
-![mysql_0424_2.png](/assets/images/mysql_0424_2.png){: width="10%" height="10%"}
-
-결과를 보면 {1, 2, 3, 4}가 있는지를 알아보지만 IN연산자가 중복을 제거하는 것은 아니기에 <br>
+결과를 보면 {1, 2, 3, 4}가 있는지를 알아보지만 IN연산자가 중복을 제거하는 것은 아니기에  
 처리 과정속에서는 1이 있나? 3번 확인하고, 2가 있나? 2번 확인하고 이런 식으로 작동된다.
 
-어쩌면 process는 다음과 같을지도 모른다.
-
-![mysql_0424_3.png](/assets/images/mysql_0424_3.png){: width="45%" height="45%"}
-
-- 응용2<br>
+- 응용2  
 3개 이상의 중첩도 가능하다.
-<br>
-<br>
 
 Q) 대한미디어에서 출판한 도서를 구매한 고객의 이름을 보이시오.
 
@@ -292,42 +282,4 @@ Q) 대한미디어에서 출판한 도서를 구매한 고객의 이름을 보�
 SELECT name
 FROM Customer
 WHERE custid IN(SELECT custid
-                FROM Orders
-                WHERE bookid IN(SELECT bookid
-                                FROM Book
-                                WHERE publisher = '대한미디어'));
-```
-
-### correlated subquery
-- 한 개의 테이블이 SQL문에 두 번 사용될 때 혼란을 피하고자 테이블 이름을 별칭으로 바꿔 사용
-<br>
-<br>
-
-Q) 출판사별로 출판사의 평균 도서 가격보다 비싼 도서를 구하시오.<br>
-이 때의 문제는 WHERE절에서 두 개의 querry를 비교해야 하는데 지금까지의 비교는 모두 다른 table에 있는 같은 이름의 column을 비교하는 것이였다. 하지만 이번에는 같은 table에서 비교해야 하기에 조건문이 이상해지는데 이를 방지하고자 같은 table을 별칭으로 두 개의 다른 table로 `이름만` 지정해준다. 
-
-```sql
-SELECT b1.bookname
-FROM Book b1 # 여기서의 Book을 b1으로 별칭 지정
-WHERE b1.price > (SELECT avg(b2.price)
-                  FROM Book b2
-                  WHERE b2.publisher = b1.publisher);
-```
-
-### 집합연산
-UNION, EXCEPT, INTERSECT
-
-### EXISTS
-subquerry의 조건이 True인 데이터가 존재하는지 여부를 검사한다.<br>
-이때 조건이 True인 항목이 존재하면 해당 항목들은 mainquerry의 조건에 맞는 결과로 표출된다.
-
-
-```sql
-SELECT name, address
-FROM Customer cs
-WHERE EXISTS(SELECT *
-FROM Orders od
-WHERE cs.custid = od.custid);
-```
-
-### CREATE TABLE
+         
