@@ -2,7 +2,7 @@
 author: Jo YunHo
 pubDatetime: 2022-08-01T10:00:00Z
 modDatetime: 2025-01-17T16:00:00Z
-title: Data Handling with tidyverse - 데이터 조작의 핵심
+title: Data Handling with tidyverse - 데이터 조작의 핵심 (3)
 slug: "data-handling-tidyverse-core"
 featured: true
 draft: false
