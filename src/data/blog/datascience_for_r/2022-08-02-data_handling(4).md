@@ -4,7 +4,7 @@ pubDatetime: 2022-08-02T10:00:00Z
 modDatetime: 2025-01-17T17:00:00Z
 title: R 데이터 탐색과 시각화 - 변동과 공변동 분석 완전정복 (4)
 slug: "r-data-exploration-variation-covariation"
-featured: true
+featured: false
 draft: false
 tags:
   - R
@@ -21,7 +21,7 @@ description: "R을 활용한 탐색적 데이터 분석(EDA)의 핵심 개념을
 ## Table of contents
 
 ## 개요
- 
+
 **탐색적 데이터 분석(EDA)**은 데이터 사이언스의 핵심 단계입니다. 이번 포스팅에서는 R의 tidyverse를 활용하여 **변동(Variation)**과 **공변동(Covariation)** 분석을 통해 데이터의 숨겨진 패턴을 발견하는 방법을 다룹니다.
 
 **시각화 기법**, **결측값 처리**, **이상값 탐지**, **패턴 분석**까지 - 실무에서 바로 활용할 수 있는 체계적인 데이터 탐색 기법을 배워보세요!
