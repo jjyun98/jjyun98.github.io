@@ -5,7 +5,7 @@
 
 :root,
 html[data-theme="light"] {
-  --background: #fbfefb;  /* 기본 #fdfdfd */
+  --background: #fdfffd;  /* 기본 #fdfdfd 민트 #fbfefb*/ 
   --foreground: #282728; /* 기본 #282728 */
   --accent: #006cac;
   --muted: #e6e6e6; /* 기본 #e6e6e6 */
