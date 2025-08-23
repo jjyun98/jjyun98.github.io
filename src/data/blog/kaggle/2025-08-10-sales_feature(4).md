@@ -1,7 +1,7 @@
 ---
 author: Jo YunHo
-pubDatetime: 2025-08-9T16:22:00Z
-modDatetime: 2025-08-6T10:12:47Z
+pubDatetime: 2025-08-6T16:22:00Z
+modDatetime: 2025-08-9T10:12:47Z
 title: Store Sales - Feature Engineering (4)
 slug: "store_sales-feature-4"
 featured: true

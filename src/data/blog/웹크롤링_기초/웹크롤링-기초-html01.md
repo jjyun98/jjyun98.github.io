@@ -1,8 +1,8 @@
 ---
 author: Jo YunHo
 pubDatetime: 2025-01-26T09:22:00Z
-modDatetime: 2025-01-28T10:12:47Z
-title: 웹 크롤링을 위한 HTML 기초
+modDatetime: 2025-01-28T10:12:47Z 
+title: 웹 크롤링을 위한 HTML 기초 (1)
 slug: "webcrawling-1-html"
 featured: true
 draft: false

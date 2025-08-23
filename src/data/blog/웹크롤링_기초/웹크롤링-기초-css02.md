@@ -2,7 +2,7 @@
 author: Jo YunHo
 pubDatetime: 2025-01-29T09:22:00Z
 modDatetime: 2025-01-31T10:12:47Z
-title: 웹 크롤링을 위한 CSS 기초
+title: 웹 크롤링을 위한 CSS 기초 (2)
 slug: "webcrawling-2-html"
 featured: false
 draft: false
