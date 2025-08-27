@@ -13,6 +13,7 @@ tags:
   - database
   - terminal
 ---
+참고: MYSQL로 배우는 데이터베이스 개론
 
 `terminal`에서 `mysql`이용하기
 
