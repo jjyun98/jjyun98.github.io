@@ -44,6 +44,20 @@
     white-space: pre;
   }
 
+  /* Apply Light Theme - Dracula 유지하되 글자 보이게 */
+  html[data-theme="light"] pre:has(code),
+  html[data-theme="light"] pre:has(code) span,
+  :root pre:has(code),
+  :root pre:has(code) span {
+    background-color: var(--shiki-dark-bg, #282A36) !important;
+    color: var(--shiki-dark, #f8f8f2) !important;
+    font-style: var(--shiki-dark-font-style, normal) !important;
+    font-weight: var(--shiki-dark-font-weight, normal) !important;
+    text-decoration: var(--shiki-dark-text-decoration, none) !important;
+  }
+
+
+
   /* Apply Dark Theme (if multi-theme specified) */
   html[data-theme="dark"] pre:has(code),
   html[data-theme="dark"] pre:has(code) span {
