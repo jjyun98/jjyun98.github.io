@@ -1,6 +1,6 @@
 ---
 author: Jo YunHo
-pubDatetime: 2022-10-12T00:00:00Z
+pubDatetime: 2022-11-10T00:00:00Z
 modDatetime: 2022-10-12T00:00:00Z
 title: 시계열 자료분석 - ACF, PACF, 백색잡음의 이해 (4)
 slug: "timeseries-acf-pacf-analysis"

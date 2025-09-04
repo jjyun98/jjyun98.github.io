@@ -1,6 +1,6 @@
 ---
 author: Jo YunHo
-pubDatetime: 2022-10-16T00:00:00Z
+pubDatetime: 2022-11-30T00:00:00Z
 modDatetime: 2022-10-16T00:00:00Z
 title: 시계열 자료분석 - 불규칙, 추세성분, 주기성분의 이해 (6)
 slug: "timeseries-components-transformation"

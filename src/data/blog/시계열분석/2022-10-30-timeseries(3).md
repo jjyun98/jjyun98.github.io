@@ -1,6 +1,6 @@
 ---
 author: Jo YunHo
-pubDatetime: 2022-10-08T00:00:00Z
+pubDatetime: 2022-10-30T00:00:00Z
 modDatetime: 2025-09-03T00:00:00Z
 title: 시계열 분석 - 분해법과 이동평균 (3)
 slug: "timeseries-decomposition"

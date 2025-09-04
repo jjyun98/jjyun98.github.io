@@ -1,6 +1,6 @@
 ---
 author: Jo YunHo
-pubDatetime: 2022-10-05T00:00:00Z
+pubDatetime: 2022-10-15T00:00:00Z
 modDatetime: 2025-01-17T00:00:00Z
 title: 시계열 자료분석 - 평활법과 지수평활법 (2)
 slug: "timeseries-smoothing-methods"

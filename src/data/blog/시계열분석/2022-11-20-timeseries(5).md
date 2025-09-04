@@ -1,6 +1,6 @@
 ---
 author: Jo YunHo
-pubDatetime: 2022-10-14T00:00:00Z
+pubDatetime: 2022-11-20T00:00:00Z
 modDatetime: 2022-10-14T00:00:00Z
 title: 시계열 자료분석 - AR, MA, ARMA 모델의 시뮬레이션과 식별 (5)
 slug: "timeseries-ar-ma-arma-models"
