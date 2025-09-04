@@ -7,9 +7,8 @@ slug: "timeseries-smoothing-methods"
 featured: false
 draft: false
 tags:
-  - Time Series
-  - Smoothing
   - R
+  - 시계열분석
 description: "R을 활용한 이동평균, 단순지수평활, 이중지수평활, Holt-Winters 방법론의 이해와 실습"
 ---
 

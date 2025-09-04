@@ -9,7 +9,6 @@ draft: false
 tags:
   - R
   - 시계열분석
-  - Statistics
 description: "시계열 자료의 불규칙성분, 추세성분, 주기성분에 대한 기본 개념과 R을 활용한 분석 방법을 학습합니다."
 ---
 
