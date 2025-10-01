@@ -7,10 +7,6 @@ title: "About"
 
 데이터 분석과 통계를 공부하며 배운 내용을 정리하고 공유하는 공간입니다.
 
-<div>
-  <img src="/dev.svg" class="sm:w-1/2 mx-auto" alt="coding dev illustration">
-</div>
-
 ## 관심 분야
 
 - **통계학**: 수리통계학, 선형대수
