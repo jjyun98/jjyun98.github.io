@@ -41,6 +41,7 @@ html[data-theme="dark"] {
     @apply flex min-h-svh flex-col bg-background text-foreground selection:bg-accent/75 selection:text-background; /* 기본 @apply flex min-h-svh flex-col bg-background font-mono text-foreground selection:bg-accent/75 selection:text-background;
  */
     font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    font-size: 18.24px;
   }
   a,
   button {
