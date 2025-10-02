@@ -7,9 +7,7 @@ slug: "webcrawling-2-html"
 featured: false
 draft: false
 tags:
-  - Web Crawling
-  - html
-  - css
+  - 웹 스크래핑
 description: "CSS 기본 문법과 선택자에 대한 정리"
 ---
 

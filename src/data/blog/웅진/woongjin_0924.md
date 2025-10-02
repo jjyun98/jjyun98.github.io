@@ -8,6 +8,7 @@ featured: true
 draft: false
 tags:
   - Python
+  - 프로젝트
 description: "웅진 부트캠프 1일차 학습 내용 정리"
 ---
 

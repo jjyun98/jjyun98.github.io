@@ -8,7 +8,7 @@ featured: false
 draft: false
 tags:
   - R
-  - Data Analysis
+  - 데이터 분석
 description: "R을 활용한 탐색적 데이터 분석(EDA)의 핵심 개념을 다룹니다. 변동과 공변동 분석을 통해 데이터의 패턴을 발견하고, 결측값 처리와 이상값 탐지까지 체계적으로 학습합니다."
 ---
 

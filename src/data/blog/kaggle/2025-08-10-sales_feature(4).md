@@ -7,10 +7,10 @@ slug: "store_sales-feature-4"
 featured: true
 draft: false
 tags:
-  - EDA
-  - Time Series
   - Kaggle
-  - Data Analysis
+  - 데이터 분석
+  - 시계열 분석
+  - 데이터 전처리
 description: "Store Sales 시계열 예측 대회 데이터 탐색적 분석 - 매장별 판매 데이터 분석"
 ---
 

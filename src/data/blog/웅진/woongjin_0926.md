@@ -8,8 +8,7 @@ featured: false
 draft: false
 tags:
   - Python
-  - Web Scraping
-  - Data Collection
+  - 웹 스크래핑
 description: "Python의 requests 라이브러리를 활용한 웹 데이터 수집 기초부터 실무 활용까지. GET, POST 요청과 에러 처리 방법을 실습과 함께 학습합니다."
 ---
 

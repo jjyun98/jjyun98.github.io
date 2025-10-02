@@ -8,10 +8,7 @@ slug: "mysql-step-1"
 featured: false
 draft: false
 tags:
-  - mysql
-  - sql
-  - database
-  - terminal
+  - SQL
 ---
 참고: MYSQL로 배우는 데이터베이스 개론
 

@@ -8,7 +8,7 @@ featured: false
 draft: false
 tags:
   - Docker
-  - Node.js
+  - 프로젝트
 description: "Docker를 활용하여 Node.js 애플리케이션을 쉽게 배포하는 방법을 소개합니다. Dockerfile 작성부터 컨테이너 실행까지 단계별로 설명합니다."
 ---
 

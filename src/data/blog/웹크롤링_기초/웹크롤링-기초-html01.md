@@ -7,9 +7,7 @@ slug: "webcrawling-1-html"
 featured: true
 draft: false
 tags:
-  - Web Crawling
-  - html
-  - css
+  - 웹 스크래핑
 description: "웹 크롤링을 위한 HTML기초 개념 정리"
 ---
 

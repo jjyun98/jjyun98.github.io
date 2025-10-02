@@ -8,7 +8,7 @@ featured: false
 draft: false
 tags:
   - R
-  - Data Analysis
+  - 데이터 분석
 description: "tidyverse를 활용한 데이터 조작의 핵심 기법을 마스터해보세요. filter, arrange, select, mutate, summarize 등 실무에서 가장 많이 사용되는 데이터 핸들링 기법을 체계적으로 학습합니다."
 ---
 
