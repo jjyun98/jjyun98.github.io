@@ -9,7 +9,7 @@ draft: false
 tags:
   - Python
   - 데이터 분석
-  - description: "온라인 리테일 데이터셋을 활용하여 Pandas를 이용한 데이터 정제, 전처리 및 시각화를 통한 탐색적 데이터 분석(EDA) 과정을 상세히 다룹니다."
+description: "온라인 리테일 데이터셋을 활용하여 Pandas를 이용한 데이터 정제, 전처리 및 시각화를 통한 탐색적 데이터 분석(EDA) 과정을 상세히 다룹니다."
 ---
 
 ## Table of contents
