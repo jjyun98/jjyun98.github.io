@@ -5,6 +5,7 @@ import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
 import remarkMath from "remark-math";  // LaTeX 수식 지원 추가
 import rehypeKatex from "rehype-katex"; // LaTeX 렌더링 추가
+import remarkMermaid from "remark-mermaidjs"; // Mermaid 다이어그램 지원
 import { SITE } from "./src/config";
 
 // https://astro.build/config
@@ -18,6 +19,7 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [
       remarkMath, // LaTeX 수식 지원
+      remarkMermaid, // Mermaid 다이어그램 지원
       remarkToc, [remarkCollapse, { test: "Table of contents" }]
     ],
     rehypePlugins: [rehypeKatex], // LaTeX 수식 렌더링 추가
