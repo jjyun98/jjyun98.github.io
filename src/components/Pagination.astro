@@ -1,39 +1,43 @@
 ---
-import type { Page } from "astro";
-import type { CollectionEntry } from "astro:content";
-import IconArrowLeft from "@/assets/icons/IconArrowLeft.svg";
-import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
-import LinkButton from "./LinkButton.astro";
+import IconChevronsLeft from '~/icons/chevrons-left.svg'
+import IconChevronsRight from '~/icons/chevrons-right.svg'
 
-export interface Props {
-  page: Page<CollectionEntry<"blog">>;
+interface Props {
+  prevLink?: string
+  prevText?: string
+  nextLink?: string
+  nextText?: string
 }
 
-const { page } = Astro.props;
+const { prevLink, prevText, nextLink, nextText } = Astro.props
 ---
 
-{
-  page.lastPage > 1 && (
-    <nav class="mt-auto mb-8 flex justify-center" aria-label="Pagination">
-      <LinkButton
-        disabled={!page.url.prev}
-        href={page.url.prev as string}
-        class:list={["mr-4 select-none", { "opacity-50": !page.url.prev }]}
-        ariaLabel="Previous"
+<div class="my-5 flex flex-row flex-wrap gap-3 justify-center">
+  {
+    prevLink && (
+      <a
+        href={prevLink}
+        aria-label="Previous Page"
+        class="button flex-row items-center justify-center w-full !pr-3.5 sm:w-min"
       >
-        <IconArrowLeft class="inline-block" />
-        Prev
-      </LinkButton>
-      {page.currentPage} / {page.lastPage}
-      <LinkButton
-        disabled={!page.url.next}
-        href={page.url.next as string}
-        class:list={["ml-4 select-none", { "opacity-50": !page.url.next }]}
-        ariaLabel="Next"
+        <IconChevronsLeft class="mr-2 text-xl size-5" />
+        {prevText || 'Previous'}
+      </a>
+    )
+  }
+  {
+    nextLink && (
+      <a
+        href={nextLink}
+        aria-label="Next Page"
+        class:list={[
+          'button flex-row items-center justify-center w-full !pl-3.5 sm:w-min',
+          prevLink && 'ml-auto',
+        ]}
       >
-        Next
-        <IconArrowRight class="inline-block" />
-      </LinkButton>
-    </nav>
-  )
-}
+        {nextText || 'Next'}
+        <IconChevronsRight class="ml-2 text-xl size-5" />
+      </a>
+    )
+  }
+</div>

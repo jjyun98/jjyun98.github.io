@@ -1,122 +1,76 @@
 ---
-import { getCollection } from "astro:content";
-import Layout from "@/layouts/Layout.astro";
-import Header from "@/components/Header.astro";
-import Footer from "@/components/Footer.astro";
-import Socials from "@/components/Socials.astro";
-import LinkButton from "@/components/LinkButton.astro";
-import Card from "@/components/Card.astro";
-import Hr from "@/components/Hr.astro";
-import getSortedPosts from "@/utils/getSortedPosts";
-import IconRss from "@/assets/icons/IconRss.svg";
-import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
-import { SITE } from "@/config";
-import { SOCIALS } from "@/constants";
+import Layout from '~/layouts/Layout.astro'
+import { getSortedPosts } from '~/utils'
+import { getCollection, render } from 'astro:content'
+import PostPreview from '~/components/PostPreview.astro'
+import Pagination from '~/components/Pagination.astro'
+import BlockHeader from '~/components/BlockHeader.astro'
+import HomeBanner from '~/components/HomeBanner.astro'
+import siteConfig from '~/site.config'
+import TagsSection from '~/components/TagsSection.astro'
+import SeriesSection from '~/components/SeriesSection.astro'
 
-const posts = await getCollection("blog");
+const home = await getCollection('home')
+let HomeContent
+let homeAvatarImage
+let homeGithubCalendar
+if (home.length > 0) {
+  const homeEntry = home[0]
+  const { Content } = await render(homeEntry)
+  HomeContent = Content
+  homeAvatarImage = homeEntry.data.avatarImage
+  homeGithubCalendar = homeEntry.data.githubCalendar
+}
+const sortedPosts = await getSortedPosts()
+const postsHaveTags = sortedPosts.some(
+  (post) => post.data.tags && post.data.tags.length > 0,
+)
 
-const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
+const postsHaveSeries = sortedPosts.some((post) => post.data.series)
 ---
 
 <Layout>
-  <Header />
-  <main id="main-content" data-layout="index">
-    <section id="hero" class="pt-8 pb-6">
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        안녕하세요
-      </h1>
-      <a
-        target="_blank"
-        href="/rss.xml"
-        class="inline-block"
-        aria-label="rss feed"
-        title="RSS Feed"
-      >
-        <IconRss
-          width={20}
-          height={20}
-          class="scale-125 stroke-accent stroke-3"
-        />
-        <span class="sr-only">RSS Feed</span>
-      </a>
-
-      <p>
-        이 블로그는 제가 공부한 내용과 진행한 프로젝트 및 구상중인 아이디어가 담겨 있습니다.
-        학업 포스팅은 통계학, 데이터분석, 머신러닝, 인공지능에 관한 내용을 다룹니다.<br>
-        프로젝트는 주로 사이클 분석(헬스), 주식 투자(금융), 검색 & 관심사 분석(SNS)를 다룹니다.<br>
-        떠오르는 아이디어가 있다면 생각을 정리하고 의견을 나누고자 공유할 수 있습니다.<br>
-        관심있는 내용에 대해서는 아래 메일 아이콘을 통해 연락을 주시면 감사하겠습니다!
-      </p>
-      <p class="mt-2">
-        Read the blog posts or check
-        <LinkButton
-          class="underline decoration-dashed underline-offset-4 hover:text-accent"
-          href="https://github.com/jjyun98/jjyun98.github.io#readme"
-        >
-          README
-        </LinkButton> for more info.
-      </p>
-      {
-        // only display if at least one social link is enabled
-        SOCIALS.length > 0 && (
-          <div class="mt-4 flex flex-col sm:flex-row sm:items-center">
-            <div class="mr-2 mb-1 whitespace-nowrap sm:mb-0">Social Links:</div>
-            <Socials />
-          </div>
-        )
-      }
-    </section>
-
-    <Hr />
-
-    {
-      featuredPosts.length > 0 && (
-        <>
-          <section id="featured" class="pt-12 pb-6">
-            <h2 class="text-2xl font-semibold tracking-wide">Featured</h2>
-            <ul>
-              {featuredPosts.map(data => (
-                <Card variant="h3" {...data} />
-              ))}
-            </ul>
-          </section>
-          {recentPosts.length > 0 && <Hr />}
-        </>
-      )
-    }
-
-    {
-      recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">Recent Posts</h2>
-          <ul>
-            {recentPosts.map(
-              (data, index) =>
-                index < SITE.postPerIndex && <Card variant="h3" {...data} />
-            )}
-          </ul>
-        </section>
-      )
-    }
-
-    <div class="my-8 text-center">
-      <LinkButton href="/posts/">
-        All Posts
-        <IconArrowRight class="inline-block" />
-      </LinkButton>
-    </div>
-  </main>
-  <Footer />
+  {
+    HomeContent && (
+      <HomeBanner avatarImage={homeAvatarImage} githubCalendar={homeGithubCalendar}>
+        <HomeContent />
+      </HomeBanner>
+    )
+  }
+  {
+    postsHaveSeries && (
+      <section>
+        <BlockHeader>Series</BlockHeader>
+        <SeriesSection posts={sortedPosts} />
+      </section>
+    )
+  }
+  {
+    postsHaveTags && (
+      <section>
+        <BlockHeader>Tags</BlockHeader>
+        <TagsSection posts={sortedPosts} />
+      </section>
+    )
+  }
+  {
+    sortedPosts.length > 0 && (
+      <section>
+        <BlockHeader>Latest Posts</BlockHeader>
+        {sortedPosts
+          .reverse()
+          .slice(0, Math.floor(siteConfig.pageSize / 2))
+          .map((post) => (
+            <PostPreview post={post} />
+          ))}
+        <Pagination nextLink="/posts" nextText="Archive" />
+      </section>
+    )
+  }
 </Layout>
 
-<script>
-  document.addEventListener("astro:page-load", () => {
-    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
-      ?.dataset?.layout;
-    if (indexLayout) {
-      sessionStorage.setItem("backUrl", "/");
-    }
-  });
-</script>
+<style is:global>
+  a.heading-anchor {
+    display: none !important;
+  }
+</style>
