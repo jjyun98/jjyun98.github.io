@@ -3,6 +3,7 @@ import { defineConfig } from 'astro/config'
 import tailwindcss from '@tailwindcss/vite'
 import sitemap from '@astrojs/sitemap'
 import mdx from '@astrojs/mdx'
+import mermaid from 'astro-mermaid' // 1. Mermaid 임포트 추가
 import { rehypeHeadingIds } from '@astrojs/markdown-remark'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 import expressiveCode from 'astro-expressive-code'
@@ -64,6 +65,9 @@ export default defineConfig({
     plugins: [tailwindcss()],
   },
   integrations: [
+    mermaid({ 
+      theme: 'dark' // 테마 컨셉에 맞춰 다크 테마 권장
+    }), // 2. Mermaid 인테그레이션 추가
     sitemap(),
     expressiveCode({
       themes: siteConfig.themes.include,
