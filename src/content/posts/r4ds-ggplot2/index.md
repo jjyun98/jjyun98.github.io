@@ -4,7 +4,7 @@ published: 2022-07-01
 draft: false
 description: "R의 ggplot2 패키지를 활용한 데이터 시각화 기초부터 고급 기법까지. aes, facet, geom, mapping, filter 등 핵심 개념을 실습 예제와 함께 체계적으로 학습하고, 라벨과 주석 추가, 스케일 커스터마이징, 테마 설정 등 전문적인 시각화 기술을 마스터합니다."
 series: 'R for Data Science'
-tags: ['R', 'ggplot2', 'Data Visualization', 'Advanced']
+tags: ['R', 'ggplot2']
 ---
 
 >  참고 자료:  
@@ -13,8 +13,6 @@ tags: ['R', 'ggplot2', 'Data Visualization', 'Advanced']
 ## 개요
 
 **ggplot2**는 R에서 가장 강력하고 널리 사용되는 데이터 시각화 패키지입니다. 이번 포스팅에서는 ggplot2의 핵심 개념인 **aes(aesthetic mapping)**, **facet**, **geom**, **mapping**, **filter** 등을 실습 예제와 함께 체계적으로 알아보겠습니다.
-
-Grammar of Graphics 철학을 바탕으로 한 ggplot2의 레이어 시스템을 이해하고, 다양한 시각화 기법을 마스터해보세요!
 
 ## 1. 환경 설정 및 라이브러리 로드
 
@@ -60,8 +58,7 @@ ggplot(data = mpg) +
 
 ![size mapping example](./images/2022-07-01-ggplot1_8_1.png)
 
-####  주의사항
-이산형 변수에 size 매핑을 사용하면 경고가 발생합니다. 연속형 변수에 사용하는 것이 좋습니다.
+**주의**: 이산형 변수에 size 매핑을 사용하면 경고가 발생합니다. 연속형 변수에 사용하는 것이 좋습니다.
 
 ### 투명도 매핑 (alpha)
 
@@ -81,8 +78,7 @@ ggplot(data = mpg) +
 
 ![shape mapping example](./images/2022-07-01-ggplot1_12_1.png)
 
-####  중요 팁
-shape는 최대 6개의 그룹까지만 구분 가능합니다. 그 이상은 일부 데이터가 표시되지 않습니다.
+**팁**: shape는 최대 6개의 그룹까지만 구분 가능합니다. 그 이상은 일부 데이터가 표시되지 않습니다.
 
 ### 고정 속성 설정
 
@@ -447,9 +443,7 @@ bar + coord_polar()
 >  참고 자료:  
 > [ggplot2 공식 문서](https://ggplot2.tidyverse.org/) | [R Graphics Cookbook](https://r-graphics.org/)
 
-## Table of contents
-
-## 개요
+---
 
 ggplot2의 **기초 문법**을 익혔다면, 이제 **고급 기법**으로 시각화의 완성도를 높일 차례입니다! 이번 포스팅에서는 **라벨과 주석 추가**, **스케일 커스터마이징**, **축과 범례 조정**, **확대/축소**, **테마 설정** 등 전문적인 데이터 시각화를 위한 핵심 기술들을 다룹니다.
 
@@ -525,8 +519,7 @@ ggplot(df, aes(x, y)) +
 
 ![math expressions example](./images/2022-07-02-ggplot2_8_0.png)
 
-####  수학 표현식 참고
-더 많은 수학 표현식은 `?plotmath`를 참조하세요.
+**참고**: 더 많은 수학 표현식은 `?plotmath`를 참조하세요.
 
 ## 3. 주석 (Annotations) 마스터하기
 
@@ -576,8 +569,7 @@ ggplot(mpg, aes(displ, hwy)) +
 
 ![ggrepel example](./images/2022-07-02-ggplot2_14_0.png)
 
-####  중요 팁
-`ggrepel` 패키지는 라벨 겹침을 자동으로 방지하여 깔끔한 시각화를 만들어줍니다.
+**팁**: `ggrepel` 패키지는 라벨 겹침을 자동으로 방지하여 깔끔한 시각화를 만들어줍니다.
 
 ### 범례 대신 직접 라벨링
 
@@ -681,8 +673,7 @@ ggplot(mpg, aes(displ, hwy)) +
 
 ![basic scales comparison](./images/2022-07-02-ggplot2_27_0.png)
 
-####  스케일 명명 규칙
-`scale_` + `심미성이름` + `_` + `스케일타입`
+**스케일 명명 규칙**: `scale_` + `심미성이름` + `_` + `스케일타입`
 
 ## 5. 축, 눈금, 범례 키 조정
 
@@ -762,7 +753,7 @@ ggplot(mpg, aes(displ, hwy)) +
 
 ### 로그 변환의 두 가지 방법
 
-#### 기본 플롯 (변환 전)
+**기본 플롯 (변환 전)**
 
 ```r
 ggplot(diamonds, aes(carat, price)) +
@@ -771,7 +762,7 @@ ggplot(diamonds, aes(carat, price)) +
 
 ![basic diamond plot](./images/2022-07-02-ggplot2_46_0.png)
 
-#### 방법 1: 데이터 직접 변환 (권장하지 않음)
+**방법 1: 데이터 직접 변환** (권장하지 않음)
 
 ```r
 ggplot(diamonds, aes(log10(carat), log10(price))) +
@@ -780,7 +771,7 @@ ggplot(diamonds, aes(log10(carat), log10(price))) +
 
 ![log transform data](./images/2022-07-02-ggplot2_47_0.png)
 
-#### 방법 2: 스케일 변환 (권장)
+**방법 2: 스케일 변환** (권장)
 
 ```r
 ggplot(diamonds, aes(carat, price)) +
@@ -793,7 +784,7 @@ ggplot(diamonds, aes(carat, price)) +
 
 ### 색상 스케일 커스터마이징
 
-#### ColorBrewer 팔레트 사용
+**ColorBrewer 팔레트 사용**
 
 ```r
 # 기본 색상
@@ -808,7 +799,7 @@ ggplot(mpg, aes(displ, hwy)) +
 
 ![colorbrewer example](./images/2022-07-02-ggplot2_51_0.png)
 
-#### 색상 + 모양 중복 매핑
+**색상 + 모양 중복 매핑**
 
 ```r
 ggplot(mpg, aes(displ, hwy)) +
@@ -818,8 +809,7 @@ ggplot(mpg, aes(displ, hwy)) +
 
 ![color shape mapping](./images/2022-07-02-ggplot2_53_0.png)
 
-####  접근성 팁
-색상과 모양을 함께 사용하면 색맹이 있는 사람도 구분할 수 있습니다.
+**접근성 팁**: 색상과 모양을 함께 사용하면 색맹이 있는 사람도 구분할 수 있습니다.
 
 ### 수동 색상 설정
 
