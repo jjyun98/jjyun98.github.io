@@ -1,10 +1,10 @@
 ---
-title: 'R Factor 활용 가이드 - 범주형 데이터 완전정복'
+title: 'Factor 정리'
 published: 2022-08-06
 draft: false
-description: "R의 factor를 활용한 범주형 데이터 처리법. fct_reorder, fct_collapse, fct_recode 등 forcats 패키지 함수들을 실습 예제와 함께 체계적으로 학습합니다."
+description: "R Factor 패키지 문법 정리. fct_reorder, fct_collapse, fct_recode 등 forcats 패키지 함수들을 예제와 함께 다룹니다."
 series: 'R for Data Science'
-tags: ['R', 'Factor', 'Categorical Data', 'ggplot2', 'tidyverse']
+tags: ['R', 'Factor']
 ---
 
 > 참고 자료:
@@ -12,15 +12,9 @@ tags: ['R', 'Factor', 'Categorical Data', 'ggplot2', 'tidyverse']
 
 ## 개요
 
-**Factor(팩터)**는 R에서 범주형 변수를 다루는 핵심 데이터 타입입니다. 가질 수 있는 값이 미리 정해진 범주형 데이터를 효율적으로 처리하고, 문자형 벡터를 원하는 순서로 정렬할 때 필수적으로 사용됩니다.
+**Factor(팩터)**는 R에서 범주형 변수를 다루는 핵심 데이터 타입입니다. 가질 수 있는 값이 미리 정해진 범주형 데이터를 효율적으로 처리하고, 문자형 벡터를 원하는 순서로 정렬할 때 사용됩니다.
 
-이번 포스팅에서는 **forcats 패키지**의 다양한 함수들을 활용하여 factor를 조작하는 방법과 **ggplot2**에서의 실전 활용법을 실습 예제와 함께 알아보겠습니다!
-
-## 1. 환경 설정 및 라이브러리 로드
-
-### 필수 패키지 설치 및 로드
-
-```r
+```r title="환경 설정"
 # 패키지 로드
 library('tidyverse')  # forcats 패키지 포함
 
@@ -35,17 +29,17 @@ options(
 theme_set(theme_minimal(base_size = 10))
 ```
 
-## 2. Factor 기초 개념
+## 1. Factor 기초 개념
 
-### 팩터형이란?
+**팩터형이란?**
 
-**팩터형**은 범주형 변수에 사용되는 데이터 타입으로, 다음과 같은 특징을 가집니다:
+팩터형은 범주형 변수에 사용되는 데이터 타입으로, 다음과 같은 특징을 가집니다:
 
 - 가질 수 있는 값이 **미리 고정되고 알려진** 변수
 - 문자형 벡터를 **알파벳순이 아닌 원하는 순서**로 표시
 - **메모리 효율성**과 **데이터 무결성** 보장
 
-### 문자형 vs 팩터형 비교
+**문자형 vs 팩터형 비교**
 
 ```r
 # 월 데이터 예시
@@ -58,7 +52,7 @@ sort(x1)
 # [1] "Apr" "Dec" "Jan" "Mar"  # 원하는 순서가 아님!
 ```
 
-### 팩터형 생성과 레벨 설정
+**팩터형 생성과 레벨 설정**
 
 ```r
 # 올바른 월 순서 정의
@@ -78,7 +72,7 @@ sort(y1)
 # [1] Jan Mar Apr Dec
 ```
 
-### 오타 감지 기능
+**오타 감지 기능**
 
 ```r
 # 오타가 포함된 데이터
@@ -94,9 +88,9 @@ y2 <- parse_factor(x2, levels = month_levels)
 #   3  -- value in level set Jam
 ```
 
-## 3. ggplot2에서 Factor 활용
+## 2. ggplot2에서 Factor 활용
 
-### GSS 데이터셋 소개
+**GSS 데이터셋**
 
 ```r
 # General Social Survey 데이터
@@ -104,9 +98,9 @@ gss_cat %>% head()
 # 설문조사 데이터로 다양한 팩터형 변수 포함
 ```
 
-### 팩터 레벨 확인 방법
+**팩터 레벨 확인 방법**
 
-#### 방법 1: count() 함수
+방법 1: count() 함수
 
 ```r
 gss_cat %>% count(race)
@@ -116,14 +110,14 @@ gss_cat %>% count(race)
 # 3  White 16395
 ```
 
-#### 방법 2: 막대 그래프
+방법 2: 막대 그래프
 
 ```r
 ggplot(gss_cat, aes(race)) +
   geom_bar()
 ```
 
-### 빈 레벨 표시하기
+**빈 레벨 표시하기**
 
 ```r
 # 빈 레벨도 x축에 표시
@@ -132,11 +126,9 @@ ggplot(gss_cat, aes(race)) +
   scale_x_discrete(drop = FALSE)
 ```
 
-## 4. 팩터 재정렬 기법
+## 3. 팩터 재정렬
 
-### fct_reorder(): 다른 변수 기준 정렬
-
-#### 종교별 TV 시청시간 분석
+### fct_reorder() : 다른 변수 기준 정렬
 
 ```r
 # 종교별 평균 계산
@@ -159,7 +151,7 @@ ggplot(relig_summary, aes(tvhours, fct_reorder(relig, tvhours))) +
   geom_point()
 ```
 
-#### tibble 자체를 재정렬하는 방법
+tibble 자체를 재정렬하는 방법:
 
 ```r
 relig_summary %>%
@@ -168,7 +160,7 @@ relig_summary %>%
   geom_point()
 ```
 
-### fct_relevel(): 특정 레벨을 앞으로 이동
+### fct_relevel() : 특정 레벨을 앞으로 이동
 
 ```r
 # 소득별 평균 나이 분석
@@ -185,7 +177,7 @@ ggplot(rincome_summary, aes(age, fct_relevel(rincome, "Not applicable"))) +
   geom_point()
 ```
 
-### fct_reorder2(): 선 그래프 최적화
+### fct_reorder2() : 선 그래프 최적화
 
 ```r
 # 나이별 결혼 상태 비율
@@ -207,7 +199,7 @@ ggplot(by_age, aes(age, prop, color = fct_reorder2(marital, age, prop))) +
   labs(color = "marital")
 ```
 
-### fct_infreq(): 빈도 기준 정렬
+### fct_infreq() : 빈도 기준 정렬
 
 ```r
 # 빈도 기준 내림차순 정렬
@@ -217,9 +209,9 @@ gss_cat %>%
   geom_bar()
 ```
 
-## 5. 팩터 레벨 수정하기
+## 4. 팩터 레벨 수정
 
-### fct_recode(): 레벨 이름 변경
+### fct_recode() : 레벨 이름 변경
 
 ```r
 # 정당 성향 데이터 확인
@@ -240,7 +232,7 @@ gss_cat %>%
   count(partyid)
 ```
 
-### 여러 레벨을 하나로 통합
+**여러 레벨을 하나로 통합**
 
 ```r
 # 기타 항목들을 "Other"로 통합
@@ -259,12 +251,13 @@ gss_cat %>%
   count(partyid)
 ```
 
-#### 주의사항
+:::caution
 서로 다른 성격의 범주들을 무분별하게 통합하면 잘못된 분석 결과를 초래할 수 있습니다.
+:::
 
-## 6. 고급 팩터 조작 기법
+## 5. 고급 팩터 조작
 
-### fct_collapse(): 효율적인 그룹화
+### fct_collapse() : 효율적인 그룹화
 
 ```r
 # 여러 레벨을 한 번에 그룹화
@@ -278,9 +271,9 @@ gss_cat %>%
   count(partyid)
 ```
 
-### fct_lump(): 자동 그룹화
+### fct_lump() : 자동 그룹화
 
-#### 상위 1개만 남기고 나머지는 Other로
+**상위 1개만 남기고 나머지는 Other로**
 
 ```r
 gss_cat %>%
@@ -291,7 +284,7 @@ gss_cat %>%
 # 2     Other 10637
 ```
 
-#### 상위 n개만 남기고 나머지는 Other로
+**상위 n개만 남기고 나머지는 Other로**
 
 ```r
 # 상위 4개 종교만 남기기
@@ -306,9 +299,9 @@ gss_cat %>%
 # 5       Other  1301
 ```
 
-## 7. 실전 활용 사례
+## 6. 실전 활용
 
-### 범주형 변수 시각화 최적화
+**범주형 변수 시각화 최적화**
 
 ```r
 # Before: 읽기 어려운 차트
@@ -325,7 +318,7 @@ gss_cat %>%
   coord_flip()  # 수평 막대로 더 읽기 쉽게
 ```
 
-### 다변량 분석에서 팩터 활용
+**다변량 분석에서 팩터 활용**
 
 ```r
 # 소득-나이-결혼상태 관계 분석
@@ -340,34 +333,15 @@ gss_cat %>%
   facet_wrap(~marital)
 ```
 
-## Factor 활용 팁
+## 주요 함수 요약
 
-### 효율적인 팩터 관리
-1. **레벨 순서**: 의미 있는 순서로 정렬 (시간순, 크기순 등)
-2. **일관성 유지**: 프로젝트 전체에서 동일한 레벨 이름 사용
-3. **메모리 효율**: 반복되는 문자열은 팩터로 변환
+**재정렬**
+- `fct_reorder()`: 다른 변수 기준 정렬
+- `fct_infreq()`: 빈도 기준 정렬
+- `fct_relevel()`: 특정 레벨을 앞으로 이동
+- `fct_reorder2()`: 선 그래프 최적화
 
-### 시각화에서 팩터 활용법
-- **fct_reorder()**: 값에 따른 정렬로 패턴 파악 용이
-- **fct_infreq()**: 빈도 기준 정렬로 중요도 강조
-- **fct_rev()**: 역순 정렬로 시각적 효과 향상
-- **fct_lump()**: 소수 범주 통합으로 차트 단순화
-
-### 데이터 전처리 전략
-- **fct_recode()**: 명확한 레벨명으로 가독성 향상
-- **fct_collapse()**: 유사 범주 통합으로 분석 단순화
-- **parse_factor()**: 데이터 검증과 오류 탐지
-
-## 마무리
-
-**Factor**는 R에서 범주형 데이터를 효과적으로 다루는 핵심 도구입니다. 특히 **forcats 패키지**의 함수들을 활용하면:
-
-- **데이터 시각화**: 의미 있는 순서로 정렬된 깔끔한 차트 생성
-- **분석 효율성**: 범주 통합과 재분류로 분석 초점 명확화
-- **데이터 품질**: 오타 감지와 일관성 유지로 신뢰성 향상
-
-**실무에서는 원시 데이터의 범주형 변수를 그대로 사용하기보다는, 분석 목적에 맞게 팩터로 변환하고 적절히 가공하는 것이 중요**합니다.
-
-특히 **ggplot2와 결합**했을 때 팩터의 진가가 발휘됩니다. 단순히 데이터를 그리는 것을 넘어서, **스토리를 전달하는 시각화**를 만들 수 있습니다!
-
-다음 포스팅에서는 **날짜/시간 데이터 처리**와 **문자열 조작 기법**에 대해 다뤄보겠습니다.
+**레벨 수정**
+- `fct_recode()`: 레벨 이름 변경
+- `fct_collapse()`: 여러 레벨을 그룹으로 통합
+- `fct_lump()`: 작은 그룹을 자동으로 "Other"로 통합
