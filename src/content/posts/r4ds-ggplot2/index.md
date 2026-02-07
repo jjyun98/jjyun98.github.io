@@ -13,7 +13,6 @@ tags: ['R', 'ggplot2']
 ## 개요
 
 **ggplot2**는 R에서 가장 강력하고 널리 사용되는 데이터 시각화 패키지입니다. 이번 포스팅에서는 ggplot2의 핵심 개념인 **aes(aesthetic mapping)**, **facet**, **geom**, **mapping**, **filter** 등을 실습 예제와 함께 체계적으로 알아보겠습니다.
-
 ```r title="환경 설정"
 # 패키지 로드
 library('tidyverse')  # ggplot2 포함
@@ -97,7 +96,7 @@ ggplot(data = mpg) +
 
 ![fixed color example](./images/2022-07-01-ggplot1_13_0.png)
 
-## 2. facet_
+## 2. Facet (면분할)
 
 전체 데이터를 하나의 그래프에 담기 어려울 때, 특정 변수를 기준으로 **화면을 여러 개의 소그래프로 분할**하여 비교하는 기법입니다. 데이터의 그룹별 패턴(Subset)을 한눈에 파악하기에 매우 유용합니다.
 
@@ -150,7 +149,7 @@ ggplot(data = mpg) +
 
 실린더 수별로만 분할하고 구동 방식은 하나의 플롯에 모두 표시됩니다.
 
-## 3. geom_
+## 3. geom (기하학적 객체)
 
 **geom**은 데이터를 **어떤 시각적 형태로 표현할지** 결정하는 핵심 요소입니다. 같은 데이터라도 점(point), 선(line), 막대(bar) 등 다양한 방식으로 표현할 수 있습니다.
 
@@ -344,10 +343,14 @@ ggplot(data = diamonds) +
 ![stacked bar example](./images/2022-07-01-ggplot1_67_0.png)
 
 각 컷팅 등급별로 투명도(clarity) 등급의 구성 비율을 적층 막대로 표현하여 두 변수 간의 관계를 동시에 파악할 수 있습니다.
-## 8. position
 
-**position = 'identity'** : 원래 위치
+## 8. Position 조정
 
+막대 그래프나 점 그래프에서 **요소들을 어떻게 배치할지** 결정하는 옵션입니다. 데이터의 겹침 문제를 해결하고 비교 목적에 맞게 시각화를 조정할 수 있습니다.
+
+**position = 'identity'** : 원래 위치 그대로
+
+데이터를 **실제 위치에 그대로** 표시합니다. 투명도를 조절하면 겹친 부분을 확인할 수 있습니다.
 ```r
 ggplot(data = diamonds, mapping = aes(x = cut, fill = clarity)) +
   geom_bar(alpha = 0.3, position = 'identity')
@@ -357,6 +360,7 @@ ggplot(data = diamonds, mapping = aes(x = cut, fill = clarity)) +
 
 **position = 'fill'** : 비율 비교
 
+모든 막대를 **동일한 높이(100%)로 표준화**하여 그룹 간 비율을 비교할 때 유용합니다.
 ```r
 ggplot(data = diamonds) +
   geom_bar(mapping = aes(x = cut, fill = clarity), position = 'fill')
@@ -364,8 +368,11 @@ ggplot(data = diamonds) +
 
 ![position fill example](./images/2022-07-01-ggplot1_74_0.png)
 
+각 컷팅 등급 내에서 투명도 등급의 비율을 정확히 비교할 수 있습니다.
+
 **position = 'dodge'** : 나란히 배치
 
+겹치는 막대를 **옆으로 나란히** 배치하여 절대값을 직접 비교할 때 적합합니다.
 ```r
 ggplot(data = diamonds) +
   geom_bar(mapping = aes(x = cut, fill = clarity), position = 'dodge')
@@ -375,6 +382,7 @@ ggplot(data = diamonds) +
 
 **position = 'jitter'** : 점 분산
 
+겹치는 점들을 **무작위로 약간씩 이동**시켜 데이터 밀도와 분포를 더 명확하게 보여줍니다.
 ```r
 ggplot(data = mpg) +
   geom_point(mapping = aes(x = displ, y = hwy), position = 'jitter')
@@ -382,12 +390,15 @@ ggplot(data = mpg) +
 
 ![jitter example](./images/2022-07-01-ggplot1_79_0.png)
 
-**겹치는 점들을 약간 분산**시켜 데이터 밀도를 더 잘 보여줍니다.
+정수값으로 인해 겹쳐있던 점들이 분산되어 실제 데이터 개수를 파악할 수 있습니다.
 
-## 9. 좌표계 변환
+## 9. 좌표계 (Coordinate Systems)
 
-**coord_flip()** : 축 뒤집기
+데이터를 **어떤 좌표 공간에 표시할지** 결정하는 시스템입니다. 기본 직교좌표계 외에도 축 변환, 지리 투영, 극좌표 등 다양한 방식으로 데이터를 표현할 수 있습니다.
 
+### 9.1 coord_flip() - 축 뒤집기
+
+x축과 y축을 **서로 바꿔** 가로 막대 그래프나 긴 범주명을 읽기 쉽게 만듭니다.
 ```r
 # 기본 박스플롯
 ggplot(data = mpg, mapping = aes(x = class, y = hwy)) +
@@ -401,10 +412,13 @@ ggplot(data = mpg, mapping = aes(x = class, y = hwy)) +
 
 ![coord flip example](./images/2022-07-01-ggplot1_81_0.png)
 
-## 10. 지도 시각화
+범주명이 길 때 가로로 배치하면 가독성이 크게 향상됩니다.
+
+### 9.2 지도 시각화 (coord_quickmap)
 
 **기본 지도 그리기**
 
+경도와 위도 데이터를 **다각형으로 연결**하여 지리적 경계를 표현합니다.
 ```r
 # 뉴질랜드 지도 데이터
 nz <- map_data('nz')
@@ -417,6 +431,7 @@ ggplot(nz, aes(long, lat, group = group)) +
 
 **coord_quickmap()** : 비율 보정
 
+지도의 **가로세로 비율을 위도에 맞게 자동 조정**하여 지형이 왜곡되지 않게 합니다.
 ```r
 ggplot(nz, aes(long, lat, group = group)) +
   geom_polygon(fill = 'white', color = 'black') +
@@ -425,10 +440,13 @@ ggplot(nz, aes(long, lat, group = group)) +
 
 ![quickmap example](./images/2022-07-01-ggplot1_86_0.png)
 
-## 11. 극좌표와 파이 차트
+위도가 높아질수록 경도 간격이 좁아지는 것을 반영하여 실제 지형에 가깝게 표시됩니다.
+
+### 9.3 극좌표와 파이 차트 (coord_polar)
 
 **막대 그래프를 파이 차트로 변환**
 
+직교좌표의 막대 그래프를 **원형으로 감싸** 부채꼴 형태로 만듭니다.
 ```r
 # 기본 막대 그래프 설정
 bar <- ggplot(data = diamonds) +
@@ -445,16 +463,24 @@ bar + coord_flip()
 
 **coord_polar()** : 파이 차트 생성
 
+극좌표계로 변환하여 **전체 대비 비율**을 원형으로 표현합니다.
 ```r
 bar + coord_polar()
 ```
 
 ![pie chart example](./images/2022-07-01-ggplot1_90_0.png)
 
-## 12. 라벨 (Labels)
+각 범주의 크기를 각도로 표현하여 비율 관계를 직관적으로 파악할 수 있습니다.
+
+## 10. 텍스트와 주석 (Text & Annotations)
+
+그래프에 **제목, 설명, 라벨**을 추가하여 정보 전달력을 높이는 기법입니다. 전체 플롯의 메타정보부터 개별 데이터 포인트에 대한 상세 설명까지 다양한 수준의 주석을 추가할 수 있습니다.
+
+### 10.1 라벨 (Labels)
 
 **기본 제목과 라벨 추가**
 
+플롯 전체에 대한 **제목, 부제, 출처**를 명시하여 맥락을 제공합니다.
 ```r
 ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(color = class)) +
@@ -470,6 +496,7 @@ ggplot(mpg, aes(displ, hwy)) +
 
 **축 라벨 커스터마이징**
 
+축과 범례의 이름을 **더 명확하고 전문적인 용어**로 변경합니다.
 ```r
 ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(color = class)) +
@@ -485,8 +512,7 @@ ggplot(mpg, aes(displ, hwy)) +
 
 **수학 수식 라벨**
 
-`quote()`를 사용하여 수학 수식을 라벨로 사용할 수 있습니다.
-
+`quote()`를 사용하여 **수학 기호와 그리스 문자**를 포함한 전문적인 라벨을 작성할 수 있습니다.
 ```r
 df <- tibble(
   x = runif(10),
@@ -502,14 +528,16 @@ ggplot(df, aes(x, y)) +
 ```
 
 ![math expressions example](./images/2022-07-02-ggplot2_8_0.png)
+
 :::note
 더 많은 수학 표현식은 `?plotmath`를 참조하세요.
 :::
 
-## 13. 주석 (Annotations)
+### 10.2 주석 (Annotations)
 
 **geom_text()** : 개별 데이터 포인트 라벨링
 
+특정 데이터 포인트에 **텍스트 라벨을 직접** 추가하여 중요한 값을 강조합니다.
 ```r
 # 각 클래스별 최고 연비 차량 선별
 best_in_class <- mpg %>%
@@ -525,6 +553,7 @@ ggplot(mpg, aes(displ, hwy)) +
 
 **geom_label()** : 배경이 있는 라벨
 
+텍스트에 **배경 박스**를 추가하여 가독성을 높입니다.
 ```r
 ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(color = class)) +
@@ -540,8 +569,7 @@ ggplot(mpg, aes(displ, hwy)) +
 
 **ggrepel** : 라벨 겹침 해결
 
-라벨이 겹치는 문제를 해결하는 강력한 도구입니다.
-
+라벨이 서로 겹치거나 데이터 포인트를 가리는 문제를 **자동으로 해결**합니다.
 ```r
 ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(color = class)) +
@@ -560,6 +588,7 @@ ggplot(mpg, aes(displ, hwy)) +
 
 **범례 대신 직접 라벨링**
 
+범례를 제거하고 **그래프 위에 직접 라벨을 배치**하여 더 직관적인 시각화를 만듭니다.
 ```r
 # 클래스별 중앙값 계산
 class_avg <- mpg %>%
@@ -585,6 +614,7 @@ ggplot(mpg, aes(displ, hwy, color = class)) +
 
 **모퉁이에 설명 텍스트 추가**
 
+플롯의 **빈 공간을 활용**하여 해석이나 인사이트를 직접 기입합니다.
 ```r
 # 최대값 위치에 라벨 배치
 label <- mpg %>%
@@ -608,6 +638,7 @@ ggplot(mpg, aes(displ, hwy)) +
 
 **Inf를 활용한 테두리 배치**
 
+`Inf`(무한대)를 사용하면 실제 데이터 범위와 무관하게 **항상 플롯의 끝**에 텍스트를 배치할 수 있습니다.
 ```r
 label <- tibble(
   displ = Inf,      # 무한대로 설정
@@ -632,6 +663,7 @@ ggplot(mpg, aes(displ, hwy)) +
 
 **str_wrap** : 자동 줄바꿈 기능
 
+긴 텍스트를 **지정한 너비로 자동 줄바꿈**하여 가독성을 높입니다.
 ```r
 # stringr::str_wrap()으로 자동 줄바꿈
 "Increasing engine size is related to decreasing fuel economy." %>%
@@ -639,14 +671,15 @@ ggplot(mpg, aes(displ, hwy)) +
   writeLines()
 ```
 
-## 14. 스케일 (Scales)
+## 11. 스케일 커스터마이징 (Scales)
 
-**기본 스케일 이해**
+**스케일**은 데이터 값을 시각적 속성(위치, 색상, 크기 등)으로 변환하는 규칙을 정의합니다. 축의 범위, 눈금 위치, 색상 팔레트 등을 세밀하게 조정하여 데이터 해석을 돕고 시각적 효과를 극대화할 수 있습니다.
 
-ggplot2는 자동으로 스케일을 추가합니다:
+### 11.1 스케일 기본 개념
 
+ggplot2는 자동으로 스케일을 추가하지만, 명시적으로 지정하여 커스터마이징할 수 있습니다.
 ```r
-# 기본 플롯
+# 기본 플롯 (자동 스케일)
 ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(color = class))
 
@@ -660,12 +693,16 @@ ggplot(mpg, aes(displ, hwy)) +
 
 ![basic scales comparison](./images/2022-07-02-ggplot2_27_0.png)
 
-> **스케일 명명 규칙**: `scale_` + `심미성이름` + `_` + `스케일타입`
+:::note
+**스케일 명명 규칙**: `scale_` + `심미성이름` + `_` + `스케일타입`  
+예: `scale_x_continuous()`, `scale_color_manual()`
+:::
 
-## 15. 축, 눈금, 범례 키 조정
+### 11.2 축, 눈금, 범례 키 조정
 
 **breaks** : 눈금 위치 조정
 
+축에 표시될 **눈금의 위치**를 명시적으로 지정합니다.
 ```r
 ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
@@ -676,6 +713,7 @@ ggplot(mpg, aes(displ, hwy)) +
 
 **labels** : 라벨 숨기기
 
+라벨을 `NULL`로 설정하여 **축 라벨을 완전히 제거**할 수 있습니다.
 ```r
 ggplot(mpg, aes(displ, hwy)) +
   geom_point() +
@@ -687,6 +725,7 @@ ggplot(mpg, aes(displ, hwy)) +
 
 **대통령 임기 시각화**
 
+날짜 스케일을 조정하여 **시계열 데이터**를 효과적으로 표현합니다.
 ```r
 presidential %>%
   mutate(id = 33 + row_number()) %>%
@@ -702,10 +741,11 @@ presidential %>%
 
 ![presidential terms example](./images/2022-07-02-ggplot2_36_0.png)
 
-## 16. 범례 레이아웃 조정
+### 11.3 범례 레이아웃 조정
 
 **범례 위치 조정**
 
+범례를 **상하좌우 또는 플롯 내부**에 배치할 수 있습니다.
 ```r
 base <- ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(color = class))
@@ -721,6 +761,7 @@ base + theme(legend.position = "right")
 
 **범례 세부 조정**
 
+범례의 **행 개수, 아이템 크기** 등을 세밀하게 조정합니다.
 ```r
 ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(color = class)) +
@@ -736,13 +777,13 @@ ggplot(mpg, aes(displ, hwy)) +
 
 ![legend customization example](./images/2022-07-02-ggplot2_42_1.png)
 
-## 17. 스케일 교체하기
+### 11.4 스케일 교체하기
 
-### 로그 변환
+**로그 변환**
 
-**기본 플롯 (변환 전)**
-
+넓은 범위의 데이터를 **로그 스케일**로 변환하여 패턴을 명확히 합니다.
 ```r
+# 기본 플롯 (변환 전)
 ggplot(diamonds, aes(carat, price)) +
   geom_bin2d()
 ```
@@ -751,6 +792,7 @@ ggplot(diamonds, aes(carat, price)) +
 
 **방법 1: 데이터 직접 변환** (권장하지 않음)
 
+축 라벨이 변환된 값으로 표시되어 해석이 어렵습니다.
 ```r
 ggplot(diamonds, aes(log10(carat), log10(price))) +
   geom_bin2d()
@@ -760,6 +802,7 @@ ggplot(diamonds, aes(log10(carat), log10(price))) +
 
 **방법 2: 스케일 변환** (권장)
 
+축 라벨은 원래 값으로 유지하면서 **스케일만 로그**로 변환합니다.
 ```r
 ggplot(diamonds, aes(carat, price)) +
   geom_bin2d() +
@@ -769,10 +812,11 @@ ggplot(diamonds, aes(carat, price)) +
 
 ![log transform scale](./images/2022-07-02-ggplot2_49_0.png)
 
-### 색상 스케일
+**색상 스케일**
 
 **ColorBrewer 팔레트 사용**
 
+검증된 **색상 조합**으로 데이터를 더 명확하게 구분합니다.
 ```r
 # 기본 색상
 ggplot(mpg, aes(displ, hwy)) +
@@ -788,6 +832,7 @@ ggplot(mpg, aes(displ, hwy)) +
 
 **색상 + 모양 중복 매핑**
 
+색상과 모양을 함께 사용하여 **접근성**을 높입니다.
 ```r
 ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(color = drv, shape = drv)) +
@@ -802,6 +847,7 @@ ggplot(mpg, aes(displ, hwy)) +
 
 **수동 색상 설정**
 
+특정 범주에 **의미 있는 색상**을 직접 지정합니다.
 ```r
 presidential %>%
   mutate(id = 33 + row_number()) %>%
@@ -815,6 +861,7 @@ presidential %>%
 
 **Viridis 색상 스케일**
 
+**색맹 친화적**이고 흑백 인쇄에서도 명확한 색상 팔레트입니다.
 ```r
 df <- tibble(
   x = rnorm(10000),
@@ -835,10 +882,11 @@ ggplot(df, aes(x, y)) +
 
 ![viridis colors example](./images/2022-07-02-ggplot2_59_0.png)
 
-## 18. 확대/축소 (Zooming)
+### 11.5 확대/축소 (Zooming)
 
 **coord_cartesian() vs filter() 비교**
 
+특정 영역을 확대할 때 **통계 계산 방식**에 중요한 차이가 있습니다.
 ```r
 # coord_cartesian() 사용 (권장)
 ggplot(mpg, mapping = aes(displ, hwy)) +
@@ -857,13 +905,14 @@ mpg %>%
 ![zooming comparison](./images/2022-07-02-ggplot2_63_1.png)
 
 **중요한 차이점**
-- `coord_cartesian()`: 전체 데이터 기준으로 통계 계산 후 확대
-- `filter()`: 일부 데이터만으로 통계 계산
+- `coord_cartesian()`: **전체 데이터 기준**으로 통계 계산 후 확대 (추세선이 정확함)
+- `filter()`: **일부 데이터만**으로 통계 계산 (추세선이 왜곡될 수 있음)
 
-## 19. 스케일 통일하기
+### 11.6 스케일 통일하기
 
 **문제: 서로 다른 스케일**
 
+여러 플롯을 비교할 때 **스케일이 달라** 직접 비교가 어렵습니다.
 ```r
 suv <- mpg %>%
   filter(class == "suv")
@@ -882,6 +931,7 @@ ggplot(compact, aes(displ, hwy, color = drv)) +
 
 **해결: 공통 스케일 적용**
 
+모든 플롯에 **동일한 스케일**을 적용하여 공정한 비교를 가능하게 합니다.
 ```r
 # 공통 스케일 정의
 x_scale <- scale_x_continuous(limits = range(mpg$displ))
@@ -900,10 +950,11 @@ ggplot(compact, aes(displ, hwy, color = drv)) +
 
 ![unified scales solution](./images/2022-07-02-ggplot2_67_0.png)
 
-## 20. 테마 (Themes)
+## 12. 테마 (Themes)
 
-**기본 테마**
+**테마**는 플롯의 **전체적인 외관과 스타일**을 제어합니다. 배경, 그리드선, 폰트, 여백 등 데이터 자체가 아닌 시각적 요소들을 일관되게 설정할 수 있습니다.
 
+**기본 테마 적용**
 ```r
 ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(color = class)) +
@@ -915,10 +966,15 @@ ggplot(mpg, aes(displ, hwy)) +
 
 **주요 내장 테마들**
 
-- `theme_minimal()`: 미니멀한 스타일
-- `theme_classic()`: 클래식한 스타일  
-- `theme_void()`: 배경 없는 스타일
-- `theme_dark()`: 어두운 배경
-- `theme_bw()`: 흑백 스타일
+각 테마는 서로 다른 용도와 스타일을 제공합니다:
 
-**마무리**
+- `theme_minimal()`: **미니멀한 스타일** - 불필요한 요소 최소화, 깔끔한 프레젠테이션에 적합
+- `theme_classic()`: **클래식한 스타일** - 전통적인 학술 논문 스타일, 배경 없이 축만 표시
+- `theme_void()`: **배경 없는 스타일** - 모든 배경과 축 제거, 지도나 네트워크 그래프에 적합
+- `theme_dark()`: **어두운 배경** - 프레젠테이션이나 웹사이트에 효과적
+- `theme_bw()`: **흑백 스타일** - 인쇄물에 적합한 검은 테두리와 흰 배경
+- `theme_gray()`: **기본 회색 배경** - ggplot2 기본 테마
+
+:::tip
+`theme_set(theme_minimal())`을 사용하면 세션 전체에 기본 테마를 설정할 수 있습니다.
+:::
