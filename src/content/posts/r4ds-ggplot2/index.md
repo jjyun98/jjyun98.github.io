@@ -1,8 +1,8 @@
 ---
-title: 'ggplot2 기초부터 고급까지 완전정복'
+title: 'ggplot2 정리'
 published: 2022-07-01
 draft: false
-description: "R의 ggplot2 패키지를 활용한 데이터 시각화 기초부터 고급 기법까지. aes, facet, geom, mapping, filter 등 핵심 개념을 실습 예제와 함께 체계적으로 학습하고, 라벨과 주석 추가, 스케일 커스터마이징, 테마 설정 등 전문적인 시각화 기술을 마스터합니다."
+description: "R ggplot2 패키지 문법 정리. aes, geom, facet 등 기본 개념과 스케일, 테마 커스터마이징 방법을 예제와 함께 다룹니다."
 series: 'R for Data Science'
 tags: ['R', 'ggplot2']
 ---
