@@ -96,7 +96,7 @@ ggplot(data = mpg) +
 
 ![fixed color example](./images/2022-07-01-ggplot1_13_0.png)
 
-## 2. Facet (면분할)
+## 2. facet_
 
 전체 데이터를 하나의 그래프에 담기 어려울 때, 특정 변수를 기준으로 **화면을 여러 개의 소그래프로 분할**하여 비교하는 기법입니다. 데이터의 그룹별 패턴(Subset)을 한눈에 파악하기에 매우 유용합니다.
 
@@ -149,13 +149,14 @@ ggplot(data = mpg) +
 
 실린더 수별로만 분할하고 구동 방식은 하나의 플롯에 모두 표시됩니다.
 
-## 3. geom (기하학적 객체)
+## 3. geom_
 
 **geom**은 데이터를 **어떤 시각적 형태로 표현할지** 결정하는 핵심 요소입니다. 같은 데이터라도 점(point), 선(line), 막대(bar) 등 다양한 방식으로 표현할 수 있습니다.
 
 ### geom_smooth() : 평활선 추가
 
 데이터의 전체적인 **추세(trend)**를 부드러운 곡선으로 표현하여 노이즈 속에서 패턴을 찾아냅니다.
+
 ```r
 ggplot(data = mpg) +
   geom_smooth(mapping = aes(x = displ, y = hwy))
@@ -210,7 +211,7 @@ ggplot(data = diamonds) +
 
 다이아몬드 컷팅 등급별 개수가 자동으로 계산되어 표시됩니다. Ideal 등급이 가장 많고 Fair가 가장 적습니다.
 
-## 4. 매핑 최적화 기법
+## 4. mapping
 
 **전역 매핑 설정**
 
@@ -240,11 +241,12 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
 
 점은 차량 클래스별로 색상이 다르지만, 추세선은 전체 데이터를 하나로 합쳐서 그립니다.
 
-## 5. filter로 데이터 필터링
+## 5. filter
 
 **특정 그룹만 스무딩**
 
 전체 데이터는 점으로 표시하되, **특정 조건을 만족하는 데이터만** 추세선을 그릴 때 유용합니다.
+
 ```r
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
   geom_point(mapping = aes(color = class)) +
@@ -258,7 +260,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
 
 모든 차량 클래스의 점이 표시되지만, 추세선은 서브컴팩트 차량만을 대상으로 그려집니다.
 
-## 6. 통계 변환 (Statistical Transformations)
+## 6. stat 레이어
 
 **사용자 정의 데이터로 막대 그래프**
 
@@ -294,6 +296,7 @@ ggplot(data = diamonds) +
 **stat_summary()** : 통계 요약
 
 각 그룹의 **통계 요약값**(최솟값, 최댓값, 중앙값 등)을 시각화합니다.
+
 ```r
 ggplot(data = diamonds) +
   stat_summary(
@@ -308,9 +311,9 @@ ggplot(data = diamonds) +
 
 각 컷팅 등급별 깊이(depth)의 범위와 중앙값을 한눈에 파악할 수 있습니다.
 
-## 7. Color & Fill의 차이
+## 7. color & fill의 차이
 
-**color vs fill 이해하기**
+**color vs fill**
 
 `color`는 도형의 **테두리(외곽선) 색상**을 지정하고, `fill`은 도형 **내부의 채우기 색상**을 지정합니다. 막대 그래프처럼 면적이 있는 도형에서 그 차이가 명확히 드러납니다.
 ```r
@@ -392,11 +395,11 @@ ggplot(data = mpg) +
 
 정수값으로 인해 겹쳐있던 점들이 분산되어 실제 데이터 개수를 파악할 수 있습니다.
 
-## 9. 좌표계 (Coordinate Systems)
+## 9. 좌표계
 
 데이터를 **어떤 좌표 공간에 표시할지** 결정하는 시스템입니다. 기본 직교좌표계 외에도 축 변환, 지리 투영, 극좌표 등 다양한 방식으로 데이터를 표현할 수 있습니다.
 
-### 9.1 coord_flip() - 축 뒤집기
+### 9.1 coord_flip()
 
 x축과 y축을 **서로 바꿔** 가로 막대 그래프나 긴 범주명을 읽기 쉽게 만듭니다.
 ```r
@@ -414,7 +417,7 @@ ggplot(data = mpg, mapping = aes(x = class, y = hwy)) +
 
 범주명이 길 때 가로로 배치하면 가독성이 크게 향상됩니다.
 
-### 9.2 지도 시각화 (coord_quickmap)
+### 9.2 지도 시각화
 
 **기본 지도 그리기**
 
@@ -442,7 +445,7 @@ ggplot(nz, aes(long, lat, group = group)) +
 
 위도가 높아질수록 경도 간격이 좁아지는 것을 반영하여 실제 지형에 가깝게 표시됩니다.
 
-### 9.3 극좌표와 파이 차트 (coord_polar)
+### 9.3 파이 차트
 
 **막대 그래프를 파이 차트로 변환**
 
@@ -472,13 +475,11 @@ bar + coord_polar()
 
 각 범주의 크기를 각도로 표현하여 비율 관계를 직관적으로 파악할 수 있습니다.
 
-## 10. 텍스트와 주석 (Text & Annotations)
+## 10. 텍스트와 주석
 
 그래프에 **제목, 설명, 라벨**을 추가하여 정보 전달력을 높이는 기법입니다. 전체 플롯의 메타정보부터 개별 데이터 포인트에 대한 상세 설명까지 다양한 수준의 주석을 추가할 수 있습니다.
 
-### 10.1 라벨 (Labels)
-
-**기본 제목과 라벨 추가**
+### 10.1 라벨 (labs)
 
 플롯 전체에 대한 **제목, 부제, 출처**를 명시하여 맥락을 제공합니다.
 ```r
@@ -513,6 +514,7 @@ ggplot(mpg, aes(displ, hwy)) +
 **수학 수식 라벨**
 
 `quote()`를 사용하여 **수학 기호와 그리스 문자**를 포함한 전문적인 라벨을 작성할 수 있습니다.
+
 ```r
 df <- tibble(
   x = runif(10),
@@ -533,7 +535,7 @@ ggplot(df, aes(x, y)) +
 더 많은 수학 표현식은 `?plotmath`를 참조하세요.
 :::
 
-### 10.2 주석 (Annotations)
+### 10.2 주석
 
 **geom_text()** : 개별 데이터 포인트 라벨링
 
@@ -554,6 +556,7 @@ ggplot(mpg, aes(displ, hwy)) +
 **geom_label()** : 배경이 있는 라벨
 
 텍스트에 **배경 박스**를 추가하여 가독성을 높입니다.
+
 ```r
 ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(color = class)) +
@@ -570,6 +573,7 @@ ggplot(mpg, aes(displ, hwy)) +
 **ggrepel** : 라벨 겹침 해결
 
 라벨이 서로 겹치거나 데이터 포인트를 가리는 문제를 **자동으로 해결**합니다.
+
 ```r
 ggplot(mpg, aes(displ, hwy)) +
   geom_point(aes(color = class)) +
@@ -589,6 +593,7 @@ ggplot(mpg, aes(displ, hwy)) +
 **범례 대신 직접 라벨링**
 
 범례를 제거하고 **그래프 위에 직접 라벨을 배치**하여 더 직관적인 시각화를 만듭니다.
+
 ```r
 # 클래스별 중앙값 계산
 class_avg <- mpg %>%
@@ -671,11 +676,11 @@ ggplot(mpg, aes(displ, hwy)) +
   writeLines()
 ```
 
-## 11. 스케일 커스터마이징 (Scales)
+## 11. Scales
 
 **스케일**은 데이터 값을 시각적 속성(위치, 색상, 크기 등)으로 변환하는 규칙을 정의합니다. 축의 범위, 눈금 위치, 색상 팔레트 등을 세밀하게 조정하여 데이터 해석을 돕고 시각적 효과를 극대화할 수 있습니다.
 
-### 11.1 스케일 기본 개념
+**스케일 기본 개념**
 
 ggplot2는 자동으로 스케일을 추가하지만, 명시적으로 지정하여 커스터마이징할 수 있습니다.
 ```r
@@ -698,7 +703,7 @@ ggplot(mpg, aes(displ, hwy)) +
 예: `scale_x_continuous()`, `scale_color_manual()`
 :::
 
-### 11.2 축, 눈금, 범례 키 조정
+### 11.1 축, 눈금, 범례 키 조정
 
 **breaks** : 눈금 위치 조정
 
@@ -741,9 +746,7 @@ presidential %>%
 
 ![presidential terms example](./images/2022-07-02-ggplot2_36_0.png)
 
-### 11.3 범례 레이아웃 조정
-
-**범례 위치 조정**
+### 11.2 범례 레이아웃 조정
 
 범례를 **상하좌우 또는 플롯 내부**에 배치할 수 있습니다.
 ```r
@@ -777,7 +780,7 @@ ggplot(mpg, aes(displ, hwy)) +
 
 ![legend customization example](./images/2022-07-02-ggplot2_42_1.png)
 
-### 11.4 스케일 교체하기
+### 11.3 스케일 교체하기
 
 **로그 변환**
 
@@ -882,7 +885,7 @@ ggplot(df, aes(x, y)) +
 
 ![viridis colors example](./images/2022-07-02-ggplot2_59_0.png)
 
-### 11.5 확대/축소 (Zooming)
+### 11.4 확대/축소 (Zooming)
 
 **coord_cartesian() vs filter() 비교**
 
@@ -908,7 +911,7 @@ mpg %>%
 - `coord_cartesian()`: **전체 데이터 기준**으로 통계 계산 후 확대 (추세선이 정확함)
 - `filter()`: **일부 데이터만**으로 통계 계산 (추세선이 왜곡될 수 있음)
 
-### 11.6 스케일 통일하기
+### 11.5 스케일 통일하기
 
 **문제: 서로 다른 스케일**
 
