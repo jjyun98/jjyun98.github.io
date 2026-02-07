@@ -4,7 +4,7 @@ published: 2022-08-06
 draft: false
 description: "R Factor 패키지 문법 정리. fct_reorder, fct_collapse, fct_recode 등 forcats 패키지 함수들을 예제와 함께 다룹니다."
 series: 'R for Data Science'
-tags: ['R', 'Factor']
+tags: ['R']
 ---
 
 > 참고 자료:

@@ -4,7 +4,7 @@ published: 2022-08-19
 draft: false
 description: "tidyr을 활용한 데이터 정제. pivot_longer/wider, separate/unite, 결측값 처리 방법을 다룹니다."
 series: 'R for Data Science'
-tags: ['R', 'tidyr', '데이터 정제']
+tags: ['R']
 ---
 
 > 참고 자료:

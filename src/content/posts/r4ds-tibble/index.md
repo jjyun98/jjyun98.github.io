@@ -4,7 +4,7 @@ published: 2022-08-18
 draft: false
 description: "R의 tibble과 parsing을 다룹니다."
 series: 'R for Data Science'
-tags: ['R', 'tibble', 'tidyverse']
+tags: ['R']
 ---
 
 Tibble은 tidyverse의 현대적 데이터 구조입니다. 안전하고 직관적인 동작을 제공하며, parsing은 외부 데이터를 R에서 사용 가능한 형태로 변환합니다.

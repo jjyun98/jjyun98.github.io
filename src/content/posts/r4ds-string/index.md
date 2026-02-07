@@ -4,7 +4,7 @@ published: 2022-08-21
 draft: false
 description: "R stringr 패키지 문법 정리. str_length, str_detect, str_extract, str_replace 등 문자열 처리 방법을 예제와 함께 다룹니다."
 series: 'R for Data Science'
-tags: ['R', 'String', 'Regex']
+tags: ['R']
 ---
 
 > 참고 자료: [stringr 공식 문서](https://stringr.tidyverse.org/) | [Regular Expressions in R](https://www.regular-expressions.info/)

@@ -4,7 +4,7 @@ published: 2022-08-01
 draft: false
 description: "dplyr의 핵심 함수들. filter, select, mutate, summarize와 group_by를 활용한 데이터 조작 방법을 다룹니다."
 series: 'R for Data Science'
-tags: ['R', 'dplyr', 'tidyverse']
+tags: ['R']
 ---
 
 >  참고 자료:  

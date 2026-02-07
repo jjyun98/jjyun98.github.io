@@ -4,7 +4,7 @@ published: 2022-07-01
 draft: false
 description: "R ggplot2 패키지 문법 정리. aes, geom, facet 등 기본 개념과 스케일, 테마 커스터마이징 방법을 예제와 함께 다룹니다."
 series: 'R for Data Science'
-tags: ['R', 'ggplot2']
+tags: ['R']
 ---
 
 >  참고 자료:  

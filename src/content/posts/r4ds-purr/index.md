@@ -4,7 +4,7 @@ published: 2022-09-14
 draft: false
 description: "R purrr과 broom 패키지 문법 정리. 중첩 데이터 처리와 리스트-열 조작 방법을 예제와 함께 다룹니다."
 series: 'R for Data Science'
-tags: ['R', 'purrr', 'broom']
+tags: ['R']
 ---
 
 > 참고 자료:

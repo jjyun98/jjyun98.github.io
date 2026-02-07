@@ -4,7 +4,7 @@ published: 2022-08-17
 draft: false
 description: "R Vector와 반복문 처리 방법 정리. apply 계열 함수부터 purrr의 map, reduce까지 예제와 함께 다룹니다."
 series: 'R for Data Science'
-tags: ['R', 'Vector', 'Iteration']
+tags: ['R']
 ---
 
 > 참고 자료:

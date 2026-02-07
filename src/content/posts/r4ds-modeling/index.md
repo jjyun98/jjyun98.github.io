@@ -4,7 +4,7 @@ published: 2022-09-11
 draft: false
 description: "R modelr 패키지 문법 정리. 회귀분석, 예측, 잔차 분석, 변수 상호작용, 비선형 모델을 예제와 함께 다룹니다."
 series: 'R for Data Science'
-tags: ['R', 'Modeling']
+tags: ['R']
 ---
 
 > 참고 자료: [modelr 공식 문서](https://modelr.tidyverse.org/) | [R for Data Science - Model](https://r4ds.had.co.nz/model-intro.html)
