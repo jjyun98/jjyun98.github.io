@@ -14,11 +14,7 @@ tags: ['R', 'ggplot2']
 
 **ggplot2**는 R에서 가장 강력하고 널리 사용되는 데이터 시각화 패키지입니다. 이번 포스팅에서는 ggplot2의 핵심 개념인 **aes(aesthetic mapping)**, **facet**, **geom**, **mapping**, **filter** 등을 실습 예제와 함께 체계적으로 알아보겠습니다.
 
-## 1. 환경 설정 및 라이브러리 로드
-
-### 필수 패키지 설치 및 로드
-
-```r
+```r title="환경 설정"
 # 패키지 로드
 library('tidyverse')  # ggplot2 포함
 library('maps')       # 지도 데이터
@@ -34,11 +30,11 @@ options(
 theme_set(theme_minimal(base_size = 10))
 ```
 
-## 2. aes (Aesthetic Mapping) 옵션들
+## 1. Aesthetic Mapping(aes)
 
-**aes()**는 데이터의 변수를 시각적 속성에 매핑하는 핵심 함수입니다.
+`aes()`는 데이터의 변수를 시각적 요소로 변환하여 `ggplot2`가 그래프를 그릴 수 있게 해주는 핵심 엔진입니다.
 
-### 색상 매핑 (color)
+**1) 색상 매핑 (color)**
 
 ```r
 ggplot(data = mpg) + 
@@ -49,7 +45,7 @@ ggplot(data = mpg) +
 
 **클래스별로 다른 색상**이 자동으로 할당되어 데이터의 그룹을 쉽게 구분할 수 있습니다.
 
-### 크기 매핑 (size)
+**2) 크기 매핑 (size)**
 
 ```r
 ggplot(data = mpg) + 
@@ -58,9 +54,11 @@ ggplot(data = mpg) +
 
 ![size mapping example](./images/2022-07-01-ggplot1_8_1.png)
 
-**주의**: 이산형 변수에 size 매핑을 사용하면 경고가 발생합니다. 연속형 변수에 사용하는 것이 좋습니다.
+:::caution
+이산형 변수에 `size` 매핑을 사용하면 경고가 발생합니다. 연속형 변수에 사용하는 것이 좋습니다.
+:::
 
-### 투명도 매핑 (alpha)
+**3) 투명도 매핑 (alpha)**
 
 ```r
 ggplot(data = mpg) + 
@@ -69,7 +67,7 @@ ggplot(data = mpg) +
 
 ![alpha mapping example](./images/2022-07-01-ggplot1_10_1.png)
 
-### 모양 매핑 (shape)
+**4) 모양 매핑 (shape)**
 
 ```r
 ggplot(data = mpg) + 
@@ -78,9 +76,11 @@ ggplot(data = mpg) +
 
 ![shape mapping example](./images/2022-07-01-ggplot1_12_1.png)
 
-**팁**: shape는 최대 6개의 그룹까지만 구분 가능합니다. 그 이상은 일부 데이터가 표시되지 않습니다.
+:::tip
+`shape`는 최대 6개의 그룹까지만 구분 가능합니다. 그 이상은 일부 데이터가 표시되지 않습니다.
+:::
 
-### 고정 속성 설정
+**고정 속성 설정**
 
 ```r
 # aes 밖에서 설정하면 모든 점에 동일하게 적용
@@ -90,9 +90,12 @@ ggplot(data = mpg) +
 
 ![fixed color example](./images/2022-07-01-ggplot1_13_0.png)
 
-## 3. Facet (면분할) - 데이터 분할 시각화
+## 2. Facet(면분할)
 
-### facet_wrap(): 단일 변수 기준 분할
+전체 데이터를 하나의 그래프에 담기 어려울 때, 특정 변수를 기준으로 화면을 분할하여 비교하는 기법입니다. 데이터의 그룹별 패턴(Subset)을 한눈에 파악하기에 매우 유용합니다.
+
+**facet_wrap()** : 단일 변수 기준 분할
+  하나의 범주형 변수를 기준으로 그래프를 격자 형태로 나열합니다. 주로 화면 공간에 맞춰 자동으로 줄바꿈을 할 때 사용합니다.
 
 ```r
 ggplot(data = mpg) +
@@ -102,9 +105,9 @@ ggplot(data = mpg) +
 
 ![facet wrap example](./images/2022-07-01-ggplot1_17_0.png)
 
-**차량 클래스별로 분리된 플롯**을 생성하여 각 그룹의 패턴을 개별적으로 관찰할 수 있습니다.
+차량 클래스별로 분리된 플롯을 생성하여 각 그룹의 패턴을 개별적으로 관찰할 수 있습니다.
 
-### facet_grid(): 두 변수 기준 격자 분할
+**facet_grid()** : 두 변수 기준 격자 분할
 
 ```r
 ggplot(data = mpg) +
@@ -114,9 +117,9 @@ ggplot(data = mpg) +
 
 ![facet grid example](./images/2022-07-01-ggplot1_20_0.png)
 
-**구동 방식(drv)과 실린더 수(cyl)**의 조합으로 격자 형태의 플롯을 생성합니다.
+구동 방식(drv)과 실린더 수(cyl)의 조합으로 격자 형태의 플롯을 생성합니다.
 
-###  데이터 탐색
+**데이터 탐색**
 
 ```r
 # 구동 방식 확인
@@ -126,7 +129,7 @@ mpg$drv %>% unique()  # "f", "4", "r"
 mpg$cyl %>% unique()  # 4, 6, 8, 5
 ```
 
-### 단방향 분할
+**단방향 분할**
 
 ```r
 # 열만 분할 (행은 통합)
@@ -137,11 +140,13 @@ ggplot(data = mpg) +
 
 ![single direction facet](./images/2022-07-01-ggplot1_27_0.png)
 
-## 4. geom (기하학적 객체) 옵션들
+## 3. geom
+(기하학적 객체) 옵션들
 
 **geom**은 데이터를 어떤 형태로 표현할지 결정하는 핵심 요소입니다.
 
-### geom_smooth(): 평활선 추가
+### geom_smooth()
+: 평활선 추가
 
 ```r
 ggplot(data = mpg) +
@@ -152,7 +157,7 @@ ggplot(data = mpg) +
 
 **LOESS 회귀선**이 자동으로 추가되어 전체적인 트렌드를 파악할 수 있습니다.
 
-### 라인 타입으로 그룹 구분
+**라인 타입으로 그룹 구분**
 
 ```r
 ggplot(data = mpg) +
@@ -161,7 +166,7 @@ ggplot(data = mpg) +
 
 ![linetype example](./images/2022-07-01-ggplot1_34_1.png)
 
-### 색상으로 그룹 구분
+**색상으로 그룹 구분**
 
 ```r
 ggplot(data = mpg) +
@@ -170,7 +175,7 @@ ggplot(data = mpg) +
 
 ![colored smooth example](./images/2022-07-01-ggplot1_38_1.png)
 
-### 포인트와 스무딩 결합
+**포인트와 스무딩 결합**
 
 ```r
 ggplot(data = mpg) + 
@@ -180,7 +185,8 @@ ggplot(data = mpg) +
 
 ![combined plot example](./images/2022-07-01-ggplot1_40_1.png)
 
-### geom_bar(): 막대 그래프
+### geom_bar()
+: 막대 그래프
 
 ```r
 ggplot(data = diamonds) +
@@ -189,9 +195,9 @@ ggplot(data = diamonds) +
 
 ![bar chart example](./images/2022-07-01-ggplot1_42_0.png)
 
-## 5. 매핑 최적화 기법
+## 4. 매핑 최적화 기법
 
-### 전역 매핑 설정
+**전역 매핑 설정**
 
 ```r
 # ggplot()에서 공통 매핑 설정
@@ -202,7 +208,7 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
 
 ![global mapping example](./images/2022-07-01-ggplot1_45_1.png)
 
-### 선택적 매핑 추가
+**선택적 매핑 추가**
 
 ```r
 # 전역 매핑 + 개별 레이어 매핑
@@ -213,9 +219,9 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
 
 ![selective mapping example](./images/2022-07-01-ggplot1_47_1.png)
 
-## 6. 필터링 활용
+## 5. filter
 
-### 특정 그룹만 스무딩
+**특정 그룹만 스무딩**
 
 ```r
 ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
@@ -228,9 +234,9 @@ ggplot(data = mpg, mapping = aes(x = displ, y = hwy)) +
 
 ![filtered smooth example](./images/2022-07-01-ggplot1_50_1.png)
 
-## 7. 통계 변환 (Statistical Transformations)
+## 6. 통계 변환 (Statistical Transformations)
 
-### 사용자 정의 데이터로 막대 그래프
+**사용자 정의 데이터로 막대 그래프**
 
 ```r
 # 커스텀 데이터 생성
@@ -250,7 +256,7 @@ ggplot(data = demo) +
 
 ![custom data bar example](./images/2022-07-01-ggplot1_58_0.png)
 
-### 비율 표시
+**비율 표시**
 
 ```r
 ggplot(data = diamonds) +
@@ -259,7 +265,7 @@ ggplot(data = diamonds) +
 
 ![proportion bar example](./images/2022-07-01-ggplot1_60_1.png)
 
-### stat_summary(): 통계 요약
+**stat_summary()** : 통계 요약
 
 ```r
 ggplot(data = diamonds) +
@@ -273,23 +279,27 @@ ggplot(data = diamonds) +
 
 ![stat summary example](./images/2022-07-01-ggplot1_62_1.png)
 
-## 8. 색상과 채우기 (Color vs Fill)
+## 7. Color & Fill
 
-### color vs fill 차이점
+**color, fill 차이점**
 
 ```r
 # 테두리 색상
 ggplot(data = diamonds) +
   geom_bar(mapping = aes(x = cut, color = cut))
+```
 
+![color vs fill example1](./images/2022-07-01-ggplot1_65_0.png)
+
+```r
 # 내부 채우기 색상  
 ggplot(data = diamonds) +
   geom_bar(mapping = aes(x = cut, fill = cut))
 ```
 
-![color vs fill example](./images/2022-07-01-ggplot1_65_0.png)
+![color vs fill example2](./images/output_fill.png)
 
-### 그룹별 적층 막대
+**그룹별 적층 막대**
 
 ```r
 ggplot(data = diamonds) +
