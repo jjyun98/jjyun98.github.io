@@ -8,11 +8,19 @@ tags: ['R']
 ---
 
 >  참고 자료:
-> [tibble 공식 문서](https://tibble.tidyverse.org/) | [tidyr 공식 문서](https://tidyr.tidyverse.org/) | [Tidy Data 논문](https://vita.had.co.nz/papers/tidy-data.pdf)
+> [tibble 공식 문서](https://tibble.tidyverse.org/) | [tidyr 공식 문서](https://tidyr.tidyverse.org/) | [R for Data Science](https://r4ds.had.co.nz/)
 
 ## 개요
 
 **Tibble**은 tidyverse의 현대적 데이터 구조이고, **Tidy Data**는 분석하기 쉬운 형태로 데이터를 구조화하는 핵심 개념입니다. 이 포스팅에서는 tibble의 기초와 데이터 parsing부터 pivot, separate/unite, 결측값 처리까지 데이터 정제의 전 과정을 다룹니다.
+
+:::owl
+Tibble이 기존 데이터프레임보다 똑똑하다고들 하는데, 구체적으로 어떤 점이 다른 걸까요?
+:::
+
+:::unicorn
+가장 큰 차이는 친절함이에요! 티블은 대용량 데이터를 출력할 때 화면을 가득 채우지 않고 깔끔하게 요약해서 보여주고, 데이터 타입을 함부로 바꾸지 않아 분석가의 실수를 줄여준답니다.
+:::
 
 ```r title="환경 설정"
 # 패키지 로드
@@ -35,6 +43,18 @@ theme_set(theme_minimal(base_size = 10))
 
 ```r title="변환 예제"
 as_tibble(iris) %>% head()
+```
+
+```text
+# A tibble: 6 x 5
+  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+         <dbl>       <dbl>        <dbl>       <dbl> <fct>  
+1          5.1         3.5          1.4         0.2 setosa 
+2          4.9         3.0          1.4         0.2 setosa 
+3          4.7         3.2          1.3         0.2 setosa 
+4          4.6         3.1          1.5         0.2 setosa 
+5          5.0         3.6          1.4         0.2 setosa 
+6          5.4         3.9          1.7         0.4 setosa
 ```
 
 **새로운 Tibble 생성**
