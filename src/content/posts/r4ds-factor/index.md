@@ -8,11 +8,11 @@ tags: ['R']
 ---
 
 > 참고 자료:
-> [forcats 공식 문서](https://forcats.tidyverse.org/) | [R for Data Science - Factors](https://r4ds.had.co.nz/factors.html)
+> [R for Data Science - Factors](https://r4ds.had.co.nz/factors.html)
 
 ## 개요
 
-**Factor(팩터)**는 R에서 범주형 변수를 다루는 핵심 데이터 타입입니다. 가질 수 있는 값이 미리 정해진 범주형 데이터를 효율적으로 처리하고, 문자형 벡터를 원하는 순서로 정렬할 때 사용됩니다.
+**factor**는 R에서 범주형 변수를 다루는 핵심 데이터 타입입니다. 가질 수 있는 값이 미리 정해진 범주형 데이터를 효율적으로 처리하고, 문자형 벡터를 원하는 순서로 정렬할 때 사용됩니다.
 
 ```r title="환경 설정"
 # 패키지 로드

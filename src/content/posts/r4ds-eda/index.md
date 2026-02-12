@@ -1,6 +1,6 @@
 ---
 title: 'EDA 정리'
-published: 2022-08-02
+published: 2022-07-15
 draft: false
 description: "탐색적 데이터 분석. 변동과 공변동 분석, 이상값 탐지, 시각화 기법을 다룹니다."
 series: 'R for Data Science'
