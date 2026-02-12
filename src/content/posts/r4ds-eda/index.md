@@ -151,7 +151,7 @@ ggplot(data = faithful, mapping = aes(x = eruptions)) +
 이 그래프를 보면 데이터가 두 개의 봉우리를 가진 분포를 띠고 있음을 알 수 있습니다. 짧은 분출과 긴 분출이라는 두 가지 뚜렷한 패턴이 존재하며, 이 패턴에서 크게 벗어난 값은 보이지 않습니다.  
 
 **이상값 발견의 어려움: diamonds 데이터셋**  
-하지만 실제 대규모 데이터셋에서는 이상값이 거대한 데이터군에 묻혀 보이지 않는 경우가 많습니다. `diamonds`데이터의`y`변수(다이아몬드 폭, mm)를 살펴봅시다.
+하지만 실제 대규모 데이터셋에서는 이상값이 거대한 데이터군에 묻혀 보이지 않는 경우가 많습니다. `diamonds`데이터의`y`변수(다이아몬드 너비, mm)를 살펴봅시다.
 ```r
 # y 변수의 분포 확인
 ggplot(diamonds) +
@@ -282,9 +282,10 @@ ggplot(data = diamonds) +
 
 - **통계적 문제**: `Ideal` 등급은 많고 `Fair` 등급은 너무 적어서, 개별 그룹의 내부 분포 모양보다 그룹 전체의 크기 차이만 눈에 띄게 됩니다.
 
-**해결책 1: 밀도(Density)로 표준화하기** 이럴 때는 y축을 빈도가 아닌 <b>밀도(Density)</b>로 바꿔야 합니다. 밀도는 각 그룹의 전체 면적을 1로 표준화하여, 데이터 개수와 상관없이 분포의 '모양'을 직접 비교할 수 있게 해줍니다.
+**해결책 1: 밀도(Density)로 표준화하기**  
+이럴 때는 y축을 빈도가 아닌 <b>밀도(Density)</b>로 바꿔야 합니다. 밀도는 각 그룹의 전체 면적을 1로 표준화하여, 데이터 개수와 상관없이 분포의 '모양'을 직접 비교할 수 있게 해줍니다.
 ```r
-# 밀도로 표준화하여 패턴 비교
+# y축을 density로 설정하여 비교
 ggplot(
   data = diamonds,
   mapping = aes(x = price, y = after_stat(density))
@@ -294,9 +295,11 @@ geom_freqpoly(mapping = aes(color = cut), binwidth = 500)
 
 ![density comparison](./images/2022-08-02-data_handling_b_47_1.png)
 
-**해결책 2: 박스플롯 활용**
+놀랍게도 품질이 가장 낮은 `Fair` 등급의 가격 중앙값이 품질이 좋은 등급보다 더 높게 형성되는 패턴을 확인할 수 있습니다.
 
-박스플롯은 **분포의 요약 정보**(중앙값, 사분위수, 이상값)를 한눈에 보여줍니다.
+**해결책 2: 박스플롯(Boxplot) 활용**  
+분포가 복잡할 때는 박스 플롯이 요약 통계량을 보여주는 데 훨씬 효율적입니다.
+
 ```r
 ggplot(data = diamonds, mapping = aes(x = cut, y = price)) +
   geom_boxplot()
@@ -304,11 +307,10 @@ ggplot(data = diamonds, mapping = aes(x = cut, y = price)) +
 
 ![boxplot comparison](./images/2022-08-02-data_handling_b_50_0.png)
 
-더 좋은 품질의 다이아몬드가 평균적으로 더 저렴합니다. 이는 직관에 반하는 흥미로운 발견입니다.
+박스플롯을 통해 중앙값(`median`)을 비교해 보면, 품질이 낮은 등급이 더 비싸다는 역설적인 사실이 더 명확히 드러납니다.(뒤에서 나오지만 이 이유는 `carat` 때문입니다.)
 
-**순서가 없는 범주형 변수**
-
-범주에 자연스러운 순서가 없을 때는 **reorder()**로 정렬하면 패턴이 명확해집니다.
+**순서가 없는 범주형 변수**  
+범주에 자연스러운 순서가 없을 때는 <b>reorder()</b>로 정렬하면 패턴이 명확해집니다.
 ```r
 # 기본 순서 (알파벳순)
 ggplot(data = mpg, mapping = aes(x = class, y = hwy)) +
@@ -316,6 +318,7 @@ ggplot(data = mpg, mapping = aes(x = class, y = hwy)) +
 ```
 
 ![unordered categories](./images/2022-08-02-data_handling_b_56_0.png)
+
 ```r
 # 중간값 기준으로 재정렬
 ggplot(data = mpg) +
@@ -329,9 +332,8 @@ ggplot(data = mpg) +
 
 ![reordered categories](./images/2022-08-02-data_handling_b_58_0.png)
 
-**축 뒤집기로 가독성 향상**
-
-범주명이 길 때는 축을 뒤집으면 읽기 쉽습니다.
+**축 뒤집기(coord_flip)**  
+범주형 변수의 이름이 길어 x축에서 서로 겹친다면, 억지로 글자를 기울이지말고 축을 뒤집어보자.
 ```r
 ggplot(data = mpg) +
   geom_boxplot(
@@ -347,11 +349,10 @@ ggplot(data = mpg) +
 
 ### 2.2 범주형 vs 범주형
 
-두 범주형 변수의 관계는 **조합의 빈도**를 세어 파악합니다.
+두 개의 범주형 변수 사이의 관계를 파악하는 핵심은 <b>조합별 빈도(Frequency)</b>를 확인하는 것입니다.
 
-**geom_count()로 조합 빈도 시각화**
-
-점의 크기로 빈도를 표현합니다.
+<b>1) 점의 크기로 보는 geom_count()</b>  
+각 좌표에 데이터가 얼마나 몰려 있는지 점의 크기로 표현합니다.
 ```r
 ggplot(data = diamonds) +
   geom_count(mapping = aes(x = cut, y = color))
@@ -359,11 +360,14 @@ ggplot(data = diamonds) +
 
 ![categorical covariation](./images/2022-08-02-data_handling_b_63_0.png)
 
-**count()와 geom_tile() 조합**
+:::note
+원의 크기가 클수록 해당 조합의 데이터가 많음을 의미합니다. 직관적이지만, 색상 정보가 없어 각 조합의 상대적 비율을 정밀하게 비교하기엔 한계가 있습니다.
+:::
 
-히트맵 형태로 표현하면 패턴을 더 명확히 볼 수 있습니다.
+<b>2) 색상의 농도로 보는 geom_tile() (추천)</b>  
+`count()`함수로 미리 데이터를 집계한 뒤 히트맵형태로 시각화 합니다.
+
 ```r
-# 데이터 전처리
 diamonds %>%
   count(color, cut) %>%
   ggplot(mapping = aes(x = color, y = cut)) +
@@ -372,34 +376,41 @@ diamonds %>%
 
 ![tile heatmap](./images/2022-08-02-data_handling_b_68_0.png)
 
+- 장점: 색상의 진하기를 통해 데이터의 쏠림 현상을 한눈에 파악할 수 있습니다.
+- 분석 포인트: 특정 컬러(예: G)와 특정 컷(예: Ideal)의 조합이 압도적으로 많은지 등을 확인하여 두 변수 간의 연관성을 파악합니다.
+
 ### 2.3 연속형 vs 연속형
 
-두 연속형 변수의 관계는 **산점도**가 기본이지만, 데이터가 많을 때는 다른 방법이 필요합니다.
+연속형 변수끼리는 산점도(`geom_point`)가 기본이지만, **빅데이터**에서는 점들이 겹쳐서 덩어리처럼 보이는 **Overplotting** 문제가 발생합니다.
 
-**산점도의 한계**
+<b>1) 산점도의 한계 극복: 투명도(alpha)</b>  
+<b>투명도(alpha)</b>를 이용하면 다음처럼 점들이 겹치는 문제를 해결할 수 있습니다.
+
 ```r
-ggplot(data = diamonds) +
-  geom_point(mapping = aes(x = carat, y = price))
-```
+p1 <- ggplot(data = diamonds) +
+  geom_point(
+    mapping = aes(x = carat, y = price)
+  ) +
+  ggtitle("Standard")
 
-![basic scatterplot](./images/2022-08-02-data_handling_b_71_0.png)
-
-데이터가 많으면 점들이 겹쳐서 밀도를 파악하기 어렵습니다.
-
-**투명도로 겹침 문제 해결**
-```r
-ggplot(data = diamonds) +
+p2 <- ggplot(data = diamonds) +
   geom_point(
     mapping = aes(x = carat, y = price),
     alpha = 0.01
-  )
+  ) +
+  ggtitle("Alpha Blending")
+
+p1 + p2
 ```
 
-![alpha scatterplot](./images/2022-08-02-data_handling_b_73_0.png)
+![basic scatterplot](./images/output_standard_alpha.png)
 
-**2D 빈(Bin) 활용**
 
-데이터를 **격자로 나눠 빈도를 계산**하면 패턴이 선명해집니다.
+<b>2) 2D공간의 히스토그램: 빈(Bin) 시각화</b>  
+데이터를 작은 격자로 나누어 각 격자 안에 들어가는 포인트의 개수를 세는 방식입니다.
+
+- **geom_bin2d()**: 직사각형 격자
+- **geom_hex()**: 육각형 격자
 
 **직사각형 빈**
 ```r
@@ -419,29 +430,35 @@ ggplot(data = smaller) +
 
 ![hex plot](./images/2022-08-02-data_handling_b_76_0.png)
 
-**연속형 변수를 범주형으로 변환**
+**3) 연속형 변수를 범주화하여 분석하기**  
+연속형 변수 하나를 일정 구간으로 나누면(Binning), 박스플롯을 활용해 분포의 변화를 추적할 수 있습니다.
 
-한 변수를 구간으로 나누면 **박스플롯**을 활용할 수 있습니다.
+- **cut_width(carat, 0.1)**: 캐럿을 0.1단위로 동일하게 자릅니다.
+- **cut_number(carat, 20)**: 각 구간에 들어가는 **데이터의 개수가 동일**하도록 자릅니다.
+
 
 **cut_width() - 동일한 너비**
-```r
+```r title="0.1캐럿 간격"
 ggplot(data = smaller, mapping = aes(x = carat, y = price)) +
   geom_boxplot(mapping = aes(group = cut_width(carat, 0.1)))
 ```
 
 ![cut_width boxplot](./images/2022-08-02-data_handling_b_78_0.png)
 
+x축 구간의 너비가 0.1 단위로 일정합니다. 데이터가 몰린 구간(작은 캐럿)은 박스가 밀집되어 있고, 데이터가 적은 구간(큰 캐럿)은 박스가 왜소하게 보입니다.
+
 **cut_number() - 동일한 개수**
 
-각 구간에 동일한 개수의 관측치가 들어가도록 분할합니다.
-```r
+```r title="20개 그룹"
 ggplot(data = smaller, mapping = aes(x = carat, y = price)) +
   geom_boxplot(mapping = aes(group = cut_number(carat, 20)))
 ```
 
 ![cut_number boxplot](./images/2022-08-02-data_handling_b_81_0.png)
 
-### 2.4 패턴과 모델
+각 박스에 포함된 데이터 개수가 같으므로, 데이터가 희소한 구간(고중량 캐럿)은 박스의 폭이 넓게 그려집니다.
+
+### 2.4 잔차 분석
 
 **패턴 분석 질문**
 
@@ -453,7 +470,8 @@ ggplot(data = smaller, mapping = aes(x = carat, y = price)) +
 4. **다른 변수의 영향은?** 제3의 변수가 영향을 주는가?
 5. **하위집단별 차이는?** 그룹별로 패턴이 다른가?
 
-**Old Faithful 간헐천 사례**
+faithful 데이터 셋을 살펴보면, 분출 사이의 대기 시간이 길수록 분출 시간도 길어지는 뚜렷한 양의 상관관계가 보입니다.
+
 ```r
 ggplot(data = faithful) +
   geom_point(mapping = aes(x = eruptions, y = waiting))
@@ -461,28 +479,44 @@ ggplot(data = faithful) +
 
 ![faithful pattern](./images/2022-08-02-data_handling_b_85_0.png)
 
-분출 사이의 대기 시간이 길수록 분출 시간도 길어지는 강한 양의 상관관계가 보입니다.
+다이아몬드 데이터를 살펴보면 그렇지 않습니다. 캐럿과 가격은 지수적 관계이며, 품질과 가격은 평균값으로 보면 어떠한 관계도 없어 보입니다. 오히려 더 낮은 품질이 가격 평균이 높은 경우도 있습니다. 왜 그럴까요?
 
-**모델을 활용한 패턴 추출**
-
-회귀 모델로 **주요 관계를 제거**하면 숨겨진 패턴을 발견할 수 있습니다.
 ```r
-# 캐럿-가격 관계 모델링
+p1 <- ggplot(data = diamonds, aes(x = carat, y = price)) + 
+  geom_point(alpha = 0.1) +
+  ggtitle("Price vs Carat")
+
+p2 <- ggplot(data = diamonds, aes(x = cut, y = price)) + 
+  geom_boxplot() +
+  ggtitle("Price vs Cut")
+
+p1 + p2
+```
+
+![original pirce carat cut](./images/output_price_carat_cut.png)
+
+**모델을 활용한 패턴 추출**  
+"품질이 좋은데 왜 가격이 낮을까?"라는 의문을 해결하기 위해, 가격에 가장 큰 영향을 주는 '캐럿' 변수의 효과를 모델로 제거해 봅니다.
+
+```r
+# 가격과 캐럿의 지수적 관계를 고려하여 로그 변환 후 선형 회귀
 mod <- lm(log(price) ~ log(carat), data = diamonds)
 
-# 잔차 계산
+# 모델이 설명하지 못하는 '가격의 차이(잔차)'를 데이터셋에 추가
 diamonds2 <- diamonds %>%
   add_residuals(mod) %>%
   mutate(resid = exp(resid))
 
-# 잔차 vs 캐럿
 ggplot(data = diamonds2) +
   geom_point(mapping = aes(x = carat, y = resid))
 ```
 
 ![residuals vs carat](./images/2022-08-02-data_handling_b_89_0.png)
 
-**캐럿 효과 제거 후 컷 품질 분석**
+잔차가 캐럿에 따라 크고 작음이 뚜렷하게 보입니다. 특정 캐럿은 가격에 큰 영향을 주기에 캐럿은 가격을 결정짓는 큰 요인이었음을 알 수 있습니다. 캐럿의 효과(잔차)를 제거한다면 가격 분포는 어떻게 될까요?
+
+**캐럿 효과 제거 후의 결과 분석**  
+이제 가격에서 캐럿의 영향력을 제거한 '잔차'를 기준으로 품질(`cut`)별 분포를 다시 확인합니다.
 ```r
 ggplot(data = diamonds2) +
   geom_boxplot(mapping = aes(x = cut, y = resid))
@@ -490,14 +524,4 @@ ggplot(data = diamonds2) +
 
 ![residuals by cut](./images/2022-08-02-data_handling_b_90_0.png)
 
-캐럿의 효과를 제거하고 나니, 더 좋은 품질의 다이아몬드가 실제로 더 비싸다는 것을 확인할 수 있습니다.
-
-## 시각화 기법 선택 가이드
-
-| 변수 조합 | 추천 방법 | 목적 |
-|-----------|-----------|------|
-| 범주형 단일 | 막대 그래프 | 빈도 확인 |
-| 연속형 단일 | 히스토그램 | 분포 파악 |
-| 범주형 vs 연속형 | 박스플롯, 바이올린 플롯 | 그룹별 분포 비교 |
-| 범주형 vs 범주형 | count 플롯, 타일 플롯 | 조합 빈도 |
-| 연속형 vs 연속형 | 산점도, 2D 빈, 육각형 빈 | 상관관계 |
+캐럿의 효과를 통제하고 나니, 예상했던 대로 **품질(cut)이 좋을수록 가격(잔차)이 높게 형성**되는 정상적인 패턴을 볼 수 있습니다.
