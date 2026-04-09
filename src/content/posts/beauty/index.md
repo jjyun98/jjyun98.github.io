@@ -120,6 +120,69 @@ TBLPROPERTIES ('parquet.compression'='SNAPPY');
 
 ## 4. 핵심 지표 산출 로직
 
+구체적인 분석 계획이 세워지지 않았기에 성분에 따른 다양한 지표를 추출해보고 그 중에서 궁금한 것을 알아보고자 합니다. 먼저 가장 관심이 많은 에센스/세럼 카테고리에 해당하는 화장품부터 살펴봅니다. 가지고 있는 정보중에 profiles, 즉 고객 피부속성같은 정보들도 있기 때문에 이를 활용하면 좋을 거 같아 추출하여 정리하고 가겠습니다.
+
+```sql
+SELECT DISTINCT skintype, COUNT(*) AS cnt
+FROM profiles
+GROUP BY skintype
+ORDER BY skintype ASC;
+```
+
+| 순번 | skintype | 피부 타입 명칭 | 데이터 수 (cnt) |
+|:---:|:---:|:---|:---:|
+| 1 | **A01** | 건성 | 5,819 |
+| 2 | **A02** | 지성 | 9,165 |
+| 3 | **A03** | 복합성 | 15,735 |
+| 4 | **A04** | 민감성 | 3,360 |
+| 5 | **A05** | 약건성 | 523 |
+| 6 | **A06** | 트러블성 | 2,232 |
+| 7 | **A07** | 기타 | 643 |
+| 8 | **-** | 정보 미기입(Null) | 113,426 |
+
+전체 약 15만건의 리뷰 데이터 중 정보 제공자는 약 24.8%에 불과합니다. 그리고 그 중 42%가 복합성 피부라고 표시했는데 여기서 복합성 피부란 T존 유분과 U존 건조함
+
+<iframe 
+  src="/charts/beauty/skintype_chart.html" 
+  width="100%" 
+  height="500px" 
+  frameborder="0" 
+  scrolling="no">
+</iframe>
+
+:::note
+피부 타입 명칭은 gemini 결과를 추가한 것입니다. 원본은 A01이 건성을 의미하는 지 알려주지 않습니다.
+:::
+
+skintone도 같은 방식으로 살펴봅니다.
+
+<iframe 
+  src="/charts/beauty/skintone_chart.html" 
+  width="100%" 
+  height="500px" 
+  frameborder="0" 
+  scrolling="no">
+</iframe>
+
+
+```sql
+SELECT DISTINCT skintone, COUNT(*) AS cnt
+FROM profiles
+GROUP BY skintone
+ORDER BY skintone ASC;
+```
+
+| 순번 | skintone | 피부 톤 명칭 | 데이터 수 (cnt) | 비고 |
+|:---:|:---:|:---|:---:|:---|
+| 1 | **B01** | 매우 밝은 톤 | 8,041 | 13호~17호 수준 |
+| 2 | **B02** | 밝은 보통 톤 | 9,636 | 21호 |
+| 3 | **B03** | 보통 톤 | 5,063 | 22호~23호 수준 |
+| 4 | **B04** | 차분한 톤 | 6,301 | 23호 이상 건강한 피부 |
+| 5 | **B05** | 어두운/태닝 톤 | 3,501 | 구릿빛 혹은 어두운 피부 |
+| 6 | **B06** | 기타/특수 톤 | 2,460 | 붉은기/노란기 강한 피부 |
+| 7 | **-** | 정보 미기입(Null) | 115,901 | |
+
+
 분석을 위해 다음과 같은 핵심 지표를 정의했습니다.
 
 - **SOV (Share of Voice)**: 전체 리뷰 중 해당 키워드가 차지하는 비중
