@@ -342,3 +342,17 @@ ORDER BY keyword_name, month;
 
 
 
+$$
+\begin{array}{c|c|l|r}
+\text{순번} & \text{skintype} & \text{피부 타입 명칭} & \text{데이터 수 (cnt)} \\
+\hline
+1 & \text{A01} & \text{건성} & 5{,}819 \\
+2 & \text{A02} & \text{지성} & 9{,}165 \\
+3 & \text{A03} & \text{복합성} & 15{,}735 \\
+4 & \text{A04} & \text{민감성} & 3{,}360 \\
+5 & \text{A05} & \text{약건성} & 523 \\
+6 & \text{A06} & \text{트러블성} & 2{,}232 \\
+7 & \text{A07} & \text{기타} & 643 \\
+8 & - & \text{정보 미기입(Null)} & 113{,}426 \\
+\end{array}
+$$
