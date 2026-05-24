@@ -1,5 +1,6 @@
 ---
 import type { MarkdownHeading } from 'astro'
+import katex from 'katex'
 
 interface Props {
   heading: MarkdownHeading
@@ -8,6 +9,28 @@ interface Props {
 const {
   heading: { depth, slug, text },
 } = Astro.props
+
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+
+const renderKatex = (expression: string) =>
+  katex.renderToString(expression, {
+    displayMode: false,
+    throwOnError: false,
+    strict: 'warn',
+  })
+
+const renderInlineMath = (value: string) =>
+  escapeHtml(value)
+    .replace(/\$([^$]+)\$/g, (_match, expression: string) => renderKatex(expression))
+    .replace(/\\mathbb\{[^}]+\}(?:\^[A-Za-z0-9{}]+)?/g, (expression: string) => renderKatex(expression))
+
+const renderedText = renderInlineMath(text)
 ---
 
 <li class="flex items-stretch border-foreground/20">
@@ -23,8 +46,9 @@ const {
   </div>
   <a
     class="inline-block line-clamp-2 ml-3 xl:ml-2 py-1 ps-1 hover:text-accent"
-    href={`#${slug}`}>{text}</a
-  >
+    href={`#${slug}`}
+    set:html={renderedText}
+  ></a>
 </li>
 
 <style>
