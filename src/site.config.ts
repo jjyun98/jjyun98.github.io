@@ -152,6 +152,10 @@ const config: SiteConfig = {
   // Social links to display in the footer.
   socialLinks: {
     github: 'https://github.com/jjyun98',
+    linkedin: 'https://www.linkedin.com/in/jjyun98',
+    bluesky: 'https://bsky.app/profile/jjyun98.bsky.social',
+    twitter: 'https://x.com/jjyun98',
+    email: 'jyn9815@gmail.com',
     rss: true, // Set to true to include an RSS feed link in the footer
   },
   // Configuration for Giscus comments.
