@@ -1,6 +1,10 @@
 ---
 layout: '~/layouts/MarkdownLayout.astro'
-title: About Me
+title: About
 ---
 
-The laughing kookaburra (Dacelo novaeguineae) is a bird in the kingfisher subfamily Halcyoninae. It is a large robust kingfisher with a whitish head and a brown eye-stripe. The upperparts are mostly dark brown but there is a mottled light-blue patch on the wing coverts. The underparts are cream-white and the tail is barred with rufous and black. The plumage of the male and female birds is similar. The territorial call is a distinctive laugh that is often delivered by several birds at the same time, and is widely used as a stock sound effect in situations that involve a jungle setting.
+통계학을 전공하고 금융경제학을 부전공했습니다. 이 블로그는 데이터를 분석하고, 분석이 반복 가능하게 흐르도록 파이프라인과 시스템을 구성하는 과정을 기록하는 공간입니다.
+
+주요 도구로는 R, Python, SQL, AWS, Airflow를 사용합니다. 주식과 금융 데이터, 개인 건강 데이터, 자전거 운동 데이터 등 관심 있는 주제를 분석하고, 필요한 경우 수집, 적재, 변환, 자동화까지 다룹니다.
+
+통계 관련 글은 전공 서적을 기반으로 개념과 직관을 풀어서 설명하는 방향으로 정리합니다. 분석 프로젝트 글은 문제 정의, 데이터 준비, 모델링, 시각화, 해석, 운영 가능한 파이프라인까지 이어지는 흐름을 남기는 데 초점을 둡니다.

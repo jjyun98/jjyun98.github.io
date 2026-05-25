@@ -1,1 +1,5 @@
-The `theme-data.json` file is auto-generated and only used during theme development as a reference. It is not imported or required to build the site. Feel free to delete the whole `dev` directory if you like.
+# dev
+
+테마 개발이나 참고용 파일을 두는 디렉터리입니다.
+
+현재 블로그 실행에는 필수 디렉터리가 아니며, `theme-data.json` 같은 파일은 테마 색상 확인용 참고 자료로만 사용합니다.

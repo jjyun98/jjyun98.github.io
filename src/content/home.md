@@ -1,8 +1,10 @@
 ---
 avatarImage:
   src: './avatar.jpg'
-  alt: 'My avatar'
+  alt: 'jjyun98 avatar'
 githubCalendar: 'jjyun98'
 ---
 
-Welcome to the example site. This site is meant to show off my custom Astro theme/template **MultiTerm** which creates a coder-ready blog complete with an interactive theme changer, RSS, sitemap, tagging, and markdown extensions.
+통계학 전공과 금융경제학 부전공을 바탕으로 데이터 분석, 통계 모델링, 데이터 파이프라인, 엔지니어링을 정리하는 개인 블로그입니다.
+
+주식과 금융 데이터, 개인 건강과 자전거 운동 데이터처럼 직접 관심을 가진 문제를 분석하고, 그 과정에서 필요한 R, Python, SQL, AWS, Airflow 활용 과정을 함께 기록합니다. 통계 글은 전공 서적의 내용을 바탕으로 개념을 풀어서 설명하는 방향으로 정리합니다.

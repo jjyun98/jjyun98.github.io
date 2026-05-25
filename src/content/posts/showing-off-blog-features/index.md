@@ -1,7 +1,7 @@
 ---
 title: 'Showing Off Blog Features'
 published: 2025-07-20
-draft: false
+draft: true
 tags: ['astro', 'demo', 'markdown']
 toc: true
 coverImage:
@@ -182,13 +182,9 @@ GitHub overview cards heavily inspired by [Astro Cactus](https://github.com/chri
 ::github{repo="stelcodes/multiterm-astro"}
 ```
 
-::github{repo="stelcodes/multiterm-astro"}
-
 ```md wrap=true title="GitHub user card example in markdown"
 ::github{user="withastro"}
 ```
-
-::github{user="withastro"}
 
 ## Emoji :star_struck:
 

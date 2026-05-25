@@ -1,6 +1,6 @@
 {
-  "name": "multiterm-astro",
-  "description": "A terminal-inspired coding blog built with Astro.",
+  "name": "jjyun98.github.io",
+  "description": "Personal blog for statistics, data analysis, data pipelines, and engineering notes.",
   "type": "module",
   "version": "1.0.0",
   "scripts": {

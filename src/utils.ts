@@ -216,7 +216,7 @@ export async function resolveThemeColorStyles(
 
 export async function getSortedPosts() {
   const allPosts = await getCollection('posts', ({ data }) => {
-    return import.meta.env.PROD ? data.draft !== true : true
+    return data.draft !== true
   })
   const sortedPosts = allPosts.sort((a, b) => {
     return a.data.published < b.data.published ? -1 : 1
