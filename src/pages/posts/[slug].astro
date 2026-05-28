@@ -150,4 +150,68 @@ if (postData.tags && postData.tags.length > 0) {
     )
   }
   <ScrollUpButton />
+  <style is:global>
+    .prose .plotly-chart {
+      width: 100%;
+      min-height: 420px;
+      margin: 2rem 0;
+      padding: 0.5rem;
+      border: 1px solid color-mix(in srgb, currentColor 16%, transparent);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  </style>
+  <script is:inline>
+    ;(() => {
+      const charts = Array.from(document.querySelectorAll('[data-plotly]'))
+      if (charts.length === 0) return
+
+      const loadPlotly = () =>
+        new Promise((resolve, reject) => {
+          if (window.Plotly) {
+            resolve(window.Plotly)
+            return
+          }
+
+          const existing = document.querySelector('script[data-plotly-loader]')
+          if (existing) {
+            existing.addEventListener('load', () => resolve(window.Plotly), { once: true })
+            existing.addEventListener('error', reject, { once: true })
+            return
+          }
+
+          const script = document.createElement('script')
+          script.src = 'https://cdn.plot.ly/plotly-2.35.2.min.js'
+          script.async = true
+          script.dataset.plotlyLoader = 'true'
+          script.addEventListener('load', () => resolve(window.Plotly), { once: true })
+          script.addEventListener('error', reject, { once: true })
+          document.head.appendChild(script)
+        })
+
+      loadPlotly().then((Plotly) => {
+        charts.forEach((chart) => {
+          try {
+            const spec = JSON.parse(chart.getAttribute('data-plotly') || '{}')
+            const layout = {
+              margin: { t: 44, r: 24, b: 48, l: 56 },
+              paper_bgcolor: 'rgba(0,0,0,0)',
+              plot_bgcolor: 'rgba(0,0,0,0)',
+              font: { color: 'currentColor' },
+              ...spec.layout,
+            }
+            const config = {
+              responsive: true,
+              displaylogo: false,
+              ...spec.config,
+            }
+            Plotly.newPlot(chart, spec.data || [], layout, config)
+          } catch (error) {
+            chart.textContent = 'Plotly chart data could not be rendered.'
+            console.error(error)
+          }
+        })
+      })
+    })()
+  </script>
 </Layout>
