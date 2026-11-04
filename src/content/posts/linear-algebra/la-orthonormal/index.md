@@ -184,6 +184,18 @@ $\hat{\mathbf{c}}$는 기저 $\mathbf{b}_i$에 대한 정사영의 좌표벡터�
 
 $\mathbf{B}^T\mathbf{B}\mathbf{x} = \mathbf{0}$이면 $\mathbf{x}^T\mathbf{B}^T\mathbf{B}\mathbf{x} = \lVert \mathbf{B}\mathbf{x} \rVert^2 = 0$이므로 $\mathbf{B}\mathbf{x} = \mathbf{0}$이다. 따라서 $N(\mathbf{B}^T\mathbf{B}) = N(\mathbf{B})$이고, $\mathbf{B}$의 열이 일차독립이면($N(\mathbf{B}) = \{\mathbf{0}\}$) 정사각행렬 $\mathbf{B}^T\mathbf{B}$는 가역이다.
 
+### 사영 행렬의 성질
+
+$\mathbf{H} = \mathbf{B}(\mathbf{B}^T\mathbf{B})^{-1}\mathbf{B}^T$는 다음을 만족한다.
+
+- $\mathbf{H}^2 = \mathbf{H}$ (멱등): 이미 $W$에 있는 벡터는 다시 사영해도 그대로다.
+- $\mathbf{H}^T = \mathbf{H}$ (대칭)
+- $\mathbf{I} - \mathbf{H}$는 $W^{\perp}$로의 사영 행렬이다.
+- $\operatorname{tr}(\mathbf{H}) = \operatorname{rank}(\mathbf{H}) = \dim W$
+- 거꾸로, 대칭이면서 멱등인 행렬은 모두 자기 열공간으로의 정사영 행렬이다.
+
+회귀분석에서는 $\mathbf{H} = \mathbf{X}(\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T$를 **hat 행렬**이라 한다. 적합값은 $\hat{\mathbf{y}} = \mathbf{H}\mathbf{y}$, 잔차는 $\mathbf{e} = (\mathbf{I} - \mathbf{H})\mathbf{y}$이고, $\operatorname{tr}(\mathbf{H}) = p$(계수 개수)가 잔차 자유도 $n - p$의 근거가 된다.
+
 ### 최소제곱해
 
 $\mathbf{Ax} = \mathbf{b}$에서 식이 변수보다 많으면 보통 해가 없다($\mathbf{b} \notin C(\mathbf{A})$). $\mathbf{Ax}$가 갈 수 있는 곳은 $C(\mathbf{A})$뿐이므로, $\lVert \mathbf{b} - \mathbf{Ax} \rVert$를 최소로 하는 최선의 선택은 $\mathbf{b}$를 $C(\mathbf{A})$에 정사영한 점이다. 이 $\hat{\mathbf{x}}$는 **정규방정식**을 만족한다.
@@ -212,7 +224,9 @@ $$
 
 ### 다항식 근사 (회귀)
 
-자료 $(x_1, y_1), \dots, (x_m, y_m)$에 $n$차 다항식 $f(x) = a_0 + a_1x + \cdots + a_nx^n$ ($n < m$)을 맞추되 $\sum_i (y_i - f(x_i))^2$을 최소로 하려면, 다음 문제의 최소제곱해를 구하면 된다.
+![최소제곱 직선과 잔차](./figures/fig-least-squares-fit.svg)
+
+세로 점선(잔차)의 제곱합이 가장 작은 직선을 찾는 문제다. 자료 $(x_1, y_1), \dots, (x_m, y_m)$에 $n$차 다항식 $f(x) = a_0 + a_1x + \cdots + a_nx^n$ ($n < m$)을 맞추되 $\sum_i (y_i - f(x_i))^2$을 최소로 하려면, 다음 문제의 최소제곱해를 구하면 된다.
 
 $$
 \underbrace{\begin{pmatrix}
@@ -243,6 +257,44 @@ $$
 | 정사영 행렬 | $\mathbf{B}(\mathbf{B}^T\mathbf{B})^{-1}\mathbf{B}^T$ | 정규직교 열이면 $\mathbf{Q}\mathbf{Q}^T$ |
 | 정규방정식 | $\mathbf{A}^T\mathbf{A}\hat{\mathbf{x}} = \mathbf{A}^T\mathbf{b}$ | 열이 독립이면 $\mathbf{A}^T\mathbf{A}$ 가역 |
 | QR 최소제곱 | $\hat{\mathbf{x}} = \mathbf{R}^{-1}\mathbf{Q}^T\mathbf{b}$ | 후진대입, 수치적으로 안정 |
+| hat 행렬 | $\mathbf{H}^2 = \mathbf{H} = \mathbf{H}^T$ | $\operatorname{tr}\mathbf{H} = p$, 잔차는 $(\mathbf{I} - \mathbf{H})\mathbf{y}$ |
 | 회귀 | $\hat{\boldsymbol{\beta}} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}$ | 다항식 근사와 같은 식 |
+
+## R / Python으로 확인
+
+```r
+A <- matrix(c(1, 1, 1, 1, 1, 2, 2, 1, 2, 3, 1, 6), nrow = 4)
+b <- c(1, 2, 2, 4)
+
+q <- qr(A)
+qr.Q(q); qr.R(q)                     # 부호는 열마다 반대로 나올 수 있다
+
+solve(crossprod(A), crossprod(A, b)) # 정규방정식
+qr.solve(A, b)                       # QR 최소제곱
+coef(lm(b ~ A - 1))                  # 회귀 계수와 같다
+
+H <- A %*% solve(crossprod(A)) %*% t(A)   # 사영(hat) 행렬
+```
+
+```python
+import numpy as np
+
+A = np.array([[1, 1, 2], [1, 2, 3], [1, 2, 1], [1, 1, 6]], dtype=float)
+Q, R = np.linalg.qr(A)      # 부호는 열마다 반대로 나올 수 있다
+
+# 최소제곱: 세 방법이 같은 답
+b = np.array([1, 2, 2, 4], dtype=float)
+x1 = np.linalg.solve(A.T @ A, A.T @ b)          # 정규방정식
+x2 = np.linalg.solve(R, Q.T @ b)                # QR
+x3 = np.linalg.lstsq(A, b, rcond=None)[0]       # 라이브러리
+
+H = A @ np.linalg.inv(A.T @ A) @ A.T            # 사영(hat) 행렬
+np.allclose(H @ H, H), np.allclose(H, H.T)      # (True, True)
+```
+
+## 참고자료
+
+- 하길찬, 『해설이 있는 선형대수학』
+- 유호석, 「선형대수학」, 세종대학교, KOCW 공개강의
 
 다음 글: [선형대수 - 선형사상과 행렬표현](/posts/la-linear-map)

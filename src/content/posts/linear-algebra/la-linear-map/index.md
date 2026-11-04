@@ -136,6 +136,21 @@ $[L]_{B_V, B_W}$를 기저 $B_V, B_W$에 대한 $L$의 **행렬표현**이라 �
 - 기저를 고정하면 행렬표현은 **유일**하다. 좌표벡터를 아는 것이 벡터를 아는 것과 같기 때문이다.
 - $V = \mathbb{R}^n$, $W = \mathbb{R}^m$에서 표준기저를 쓰면 $j$번째 열은 $L(\mathbf{e}_j)$이다.
 
+### 평면 선형변환의 예
+
+$\mathbb{R}^2$에서 행렬의 두 열은 $\mathbf{e}_1 = (1, 0)$, $\mathbf{e}_2 = (0, 1)$이 가는 곳이다. 그래서 단위정사각형이 어떻게 바뀌는지만 보면 행렬을 바로 읽을 수 있다.
+
+![단위정사각형에 회전, 반사, 정사영, 전단을 적용한 결과](./figures/fig-plane-transforms.svg)
+
+| 변환 | 행렬 | $\det$ | 특징 |
+|---|---|---|---|
+| 회전 ($\theta$) | $\begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}$ | $1$ | 직교행렬, 길이와 각을 보존하는 등장사상 |
+| 반사 ($x$축) | $\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}$ | $-1$ | 직교행렬, 방향(시계/반시계)이 뒤집힌다 |
+| 정사영 ($x$축) | $\begin{pmatrix} 1 & 0 \\ 0 & 0 \end{pmatrix}$ | $0$ | $\operatorname{Ker}$ = $y$축, $\operatorname{Im}$ = $x$축, $\mathbf{P}^2 = \mathbf{P}$ |
+| 전단 | $\begin{pmatrix} 1 & k \\ 0 & 1 \end{pmatrix}$ | $1$ | 넓이는 보존, 길이와 각은 바뀐다 |
+
+행렬식의 절댓값이 넓이 배율, 부호가 방향 보존 여부라는 기하학적 의미와 맞아떨어진다. 정사영은 $\det = 0$이라 단사가 아니며, 차원정리대로 $\dim\operatorname{Ker} + \dim\operatorname{Im} = 1 + 1 = 2$이다.
+
 ### 가환 도식
 
 선형사상으로 바로 가는 길(위)과 좌표로 옮긴 뒤 행렬을 곱하는 길(아래)은 같은 결과에 도착한다.
@@ -212,5 +227,36 @@ $$
 | 행렬표현 | $[L(\mathbf{v})]_{B_W} = [L]_{B_V,B_W}[\mathbf{v}]_{B_V}$ | $j$열 $= [L(\mathbf{v}_j)]_{B_W}$ |
 | 합성 | $[G \circ F] = [G][F]$ | 곱하는 순서가 적용 순서의 반대 |
 | 닮음 | $\mathbf{A} = \mathbf{P}^{-1}\mathbf{B}\mathbf{P}$ | 같은 사상, 다른 기저. det·tr·rank·고유값 동일 |
+
+## R / Python으로 확인
+
+```r
+th <- pi / 6
+rotation <- matrix(c(cos(th), sin(th), -sin(th), cos(th)), nrow = 2)
+shear    <- matrix(c(1, 0, 0.6, 1), nrow = 2)
+
+square <- matrix(c(0, 0, 1, 0, 1, 1, 0, 1), nrow = 2)   # 꼭짓점을 열로
+rotation %*% square
+det(rotation); det(shear)                               # 넓이 배율 1, 1
+```
+
+```python
+import numpy as np
+
+t = np.deg2rad(30)
+rotation   = np.array([[np.cos(t), -np.sin(t)], [np.sin(t), np.cos(t)]])
+reflection = np.array([[1, 0], [0, -1]])
+projection = np.array([[1, 0], [0, 0]])
+shear      = np.array([[1, 0.6], [0, 1]])
+
+square = np.array([[0, 1, 1, 0], [0, 0, 1, 1]])   # 단위정사각형의 꼭짓점(열)
+rotation @ square                                  # 변환된 꼭짓점
+[np.linalg.det(M) for M in (rotation, reflection, projection, shear)]   # 넓이 배율: 1, -1, 0, 1
+```
+
+## 참고자료
+
+- 하길찬, 『해설이 있는 선형대수학』
+- 유호석, 「선형대수학」, 세종대학교, KOCW 공개강의
 
 다음 글: [선형대수 - 고유값, 대각화와 이차형식](/posts/la-eigen)

@@ -127,7 +127,9 @@ $$
 
 ## 4. 행렬곱을 보는 네 가지 관점
 
-예시는 모두 같은 곱이다.
+![행렬곱을 보는 네 가지 관점](./figures/fig-matmul-views.svg)
+
+색칠한 칸이 각 관점에서 함께 보는 부분이다. 예시는 모두 같은 곱이다.
 
 $$
 \mathbf{AB} =
@@ -208,5 +210,34 @@ $$
 | 대각합 | $\operatorname{tr}(\mathbf{AB}) = \operatorname{tr}(\mathbf{BA})$, 세 개 이상은 순환 순서만 |
 | 외적 | $\mathbb{R}^3$ 전용, 반교환 $\mathbf{b} \times \mathbf{a} = -\mathbf{a} \times \mathbf{b}$ |
 | 생성 vs 기저 | 기저 = 생성 + 선형독립 |
+
+## R / Python으로 확인
+
+```r
+A <- matrix(c(1, 3, 2, 4), nrow = 2)   # 열 우선 입력: [[1, 2], [3, 4]]
+B <- matrix(c(5, 7, 6, 8), nrow = 2)
+
+A %*% B                                         # 행렬곱 (* 는 성분별 곱)
+outer(A[, 1], B[1, ]) + outer(A[, 2], B[2, ])   # 관점 2: rank 1 행렬의 합
+sum(diag(A %*% B)) == sum(diag(B %*% A))        # TRUE
+crossprod(A)                                    # t(A) %*% A
+```
+
+```python
+import numpy as np
+
+A = np.array([[1, 2], [3, 4]])
+B = np.array([[5, 6], [7, 8]])
+
+A @ B                                   # 행렬곱
+np.outer(A[:, 0], B[0]) + np.outer(A[:, 1], B[1])   # 관점 2: rank 1 행렬의 합
+np.trace(A @ B) == np.trace(B @ A)      # True
+np.cross([1, 0, 0], [0, 1, 0])          # array([0, 0, 1])
+```
+
+## 참고자료
+
+- 하길찬, 『해설이 있는 선형대수학』
+- 유호석, 「선형대수학」, 세종대학교, KOCW 공개강의
 
 다음 글: [선형대수 - 가우스 소거법, 역행렬과 LU 분해](/posts/la-gauss-lu)

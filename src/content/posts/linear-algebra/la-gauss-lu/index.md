@@ -134,6 +134,36 @@ $$
 
 **가역행렬은 항상** 적절한 치환행렬 $\mathbf{P}$에 대해 이렇게 분해된다.
 
+## 5. 해의 존재와 유일성
+
+### rank로 판정하기
+
+$m \times n$ 행렬 $\mathbf{A}$와 첨가행렬 $[\mathbf{A} \mid \mathbf{b}]$를 소거하면 해의 개수가 rank로 정해진다. $r = \operatorname{rank}(\mathbf{A})$라 하면
+
+| 조건 | 해 | 소거 결과의 모습 |
+|---|---|---|
+| $\operatorname{rank}[\mathbf{A} \mid \mathbf{b}] > r$ | 없음 | $(0 \cdots 0 \mid c)$, $c \neq 0$인 행이 생긴다 |
+| $\operatorname{rank}[\mathbf{A} \mid \mathbf{b}] = r = n$ | 유일 | 모든 변수가 선행변수 |
+| $\operatorname{rank}[\mathbf{A} \mid \mathbf{b}] = r < n$ | 무수히 많음 | 자유변수가 $n - r$개 |
+
+해가 존재한다는 것은 $\mathbf{b}$가 $\mathbf{A}$의 열들의 선형결합, 즉 $\mathbf{b} \in C(\mathbf{A})$라는 뜻이다.
+
+### 해집합의 구조
+
+해가 있으면 모든 해는 **특수해 하나 + 동차방정식의 해** 꼴이다.
+
+$$
+\mathbf{x} = \mathbf{x}_p + \mathbf{x}_h, \qquad \mathbf{A}\mathbf{x}_p = \mathbf{b},\quad \mathbf{x}_h \in N(\mathbf{A})
+$$
+
+두 해의 차가 $\mathbf{A}(\mathbf{x}_1 - \mathbf{x}_2) = \mathbf{0}$을 만족하기 때문이다. 예를 들어 $x + 2y = 3$, $2x + 4y = 6$은 두 식이 사실상 같아서 $r = 1 < n = 2$이고
+
+$$
+\begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} 3 \\ 0 \end{pmatrix} + t\begin{pmatrix} -2 \\ 1 \end{pmatrix}, \qquad t \in \mathbb{R}
+$$
+
+반면 두 번째 식이 $2x + 4y = 7$이면 소거 후 $(0\ \ 0 \mid 1)$이 생겨 해가 없다. 정사각행렬은 가역일 때 정확히 유일해 $\mathbf{x} = \mathbf{A}^{-1}\mathbf{b}$를 갖는다.
+
 ## 요약
 
 | 항목 | 핵심 |
@@ -143,6 +173,36 @@ $$
 | 기본행렬의 역 | $R_{i,j}^{-1} = R_{i,j}$, $R_i(c)^{-1} = R_i(1/c)$, $R_{i,j}(c)^{-1} = R_{i,j}(-c)$ |
 | LU 분해 | $\mathbf{L}$ = 소거 배수(대각 1), $\mathbf{U}$ = 행사다리꼴 |
 | 행교환 필요 | $\mathbf{PA} = \mathbf{LU}$, $R_{k,l}$을 넘길 때 첨자 $k \leftrightarrow l$ |
+| 해의 개수 | $\operatorname{rank}[\mathbf{A} \mid \mathbf{b}] > r$이면 없음, $= r = n$이면 유일, $= r < n$이면 $\mathbf{x}_p + N(\mathbf{A})$ |
 | 쓰임 | 전진·후진대입으로 $\mathbf{Ax} = \mathbf{b}$ 반복 풀이, $\det\mathbf{A} = \prod u_{ii}$ |
+
+## R / Python으로 확인
+
+```r
+A <- matrix(c(1, 3, 2, 2, 8, 6, 4, 14, 13), nrow = 3)
+
+solve(matrix(c(2, 1, 1, 1), nrow = 2))   # 역행렬
+solve(A, c(1, 2, 3))                     # Ax = b 풀이
+qr(cbind(A, c(1, 2, 3)))$rank            # 첨가행렬의 rank
+
+library(Matrix)
+expand(lu(A))                            # P, L, U (A = P L U)
+```
+
+```python
+import numpy as np
+from scipy.linalg import lu
+
+A = np.array([[1, 2, 4], [3, 8, 14], [2, 6, 13]], dtype=float)
+P, L, U = lu(A)        # A = P @ L @ U (부분 피벗팅 때문에 P가 단위행렬이 아닐 수 있다)
+np.linalg.inv([[2, 1], [1, 1]])          # [[ 1, -1], [-1,  2]]
+np.linalg.solve(A, [1, 2, 3])            # Ax = b 풀이 (역행렬을 직접 구하지 않는다)
+np.linalg.matrix_rank(np.c_[A, [1, 2, 3]])  # 첨가행렬의 rank
+```
+
+## 참고자료
+
+- 하길찬, 『해설이 있는 선형대수학』
+- 유호석, 「선형대수학」, 세종대학교, KOCW 공개강의
 
 다음 글: [선형대수 - 행렬식, 치환과 보간다항식](/posts/la-determinant)

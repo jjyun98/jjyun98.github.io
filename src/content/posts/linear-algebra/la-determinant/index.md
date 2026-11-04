@@ -213,6 +213,26 @@ $$
 
 $2 \times 2$에서는 익숙한 공식 $\begin{pmatrix} a & b \\ c & d \end{pmatrix}^{-1} = \dfrac{1}{ad - bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix}$가 된다.
 
+### 크래머 공식
+
+$\mathbf{A}$가 가역이면 $\mathbf{Ax} = \mathbf{b}$의 해는
+
+$$
+x_i = \frac{\det(\mathbf{A}_i)}{\det(\mathbf{A})}, \qquad \mathbf{A}_i = \mathbf{A}\text{의 } i\text{번째 열을 } \mathbf{b}\text{로 바꾼 행렬}
+$$
+
+$\mathbf{x} = \mathbf{A}^{-1}\mathbf{b} = \frac{1}{\det\mathbf{A}}\operatorname{adj}(\mathbf{A})\mathbf{b}$의 $i$번째 성분 $\sum_k C_{k,i}b_k$가 $\mathbf{A}_i$를 $i$열로 여인자 전개한 값과 같아서 나온다.
+
+예를 들어 $2x + y = 5$, $x + y = 3$이면 $\det\mathbf{A} = 1$이고
+
+$$
+x = \det\begin{pmatrix} 5 & 1 \\ 3 & 1 \end{pmatrix} = 2,
+\qquad
+y = \det\begin{pmatrix} 2 & 5 \\ 1 & 3 \end{pmatrix} = 1
+$$
+
+행렬식을 $n + 1$번 계산해야 하므로 큰 계산에는 소거법을 쓰고, 해를 식으로 나타내거나 성분 하나만 필요할 때 쓴다.
+
 ## 6. 행렬식의 기하학적 의미
 
 $\lvert\det\rvert$는 행벡터(또는 열벡터)가 만드는 평행사변형의 넓이, 평행육면체의 부피다. 부호는 방향(오른손·왼손)을 나타낸다.
@@ -302,7 +322,41 @@ $\ell_i(x_i) = 1$이고 $j \neq i$에서 $\ell_i(x_j) = 0$이라서 $L(x_i) = y_
 | 치환행렬 | $\mathbf{P}^{-1} = \mathbf{P}^T$, $\det\mathbf{P} = \operatorname{sgn}(\sigma)$ |
 | 여인자 전개 | $\det\mathbf{A} = \sum_k a_{ik}C_{i,k}$, $C_{i,j} = (-1)^{i+j}M_{i,j}$ |
 | 역행렬 | $\mathbf{A}^{-1} = \operatorname{adj}(\mathbf{A})/\det\mathbf{A}$ |
+| 크래머 공식 | $x_i = \det\mathbf{A}_i / \det\mathbf{A}$, $\mathbf{A}_i$는 $i$열을 $\mathbf{b}$로 교체 |
 | 기하 | $\lvert\det\rvert$ = 넓이·부피, 세 점 삼각형은 절반 |
 | 보간 | 반데르몽드 $\det = \prod_{i<j}(x_j - x_i)$, 라그랑주는 같은 다항식의 다른 표현 |
+
+## R / Python으로 확인
+
+```r
+A <- matrix(c(2, 1, 1, 1), nrow = 2)
+b <- c(5, 3)
+det(A)                                   # 1
+
+# 크래머 공식
+sapply(1:2, function(i) { Ai <- A; Ai[, i] <- b; det(Ai) / det(A) })   # 2 1
+
+x <- c(1, 2, 4, 7)
+det(outer(x, 0:3, `^`))                  # 반데르몽드 행렬식
+```
+
+```python
+import numpy as np
+
+A = np.array([[2, 1], [1, 1]], dtype=float)
+b = np.array([5, 3], dtype=float)
+np.linalg.det(A)                         # 1.0
+
+# 크래머 공식
+x = [np.linalg.det(np.column_stack([b if j == i else A[:, j] for j in range(2)])) / np.linalg.det(A)
+     for i in range(2)]                  # [2.0, 1.0]
+
+np.linalg.det(np.vander([1, 2, 4, 7], increasing=True))   # 반데르몽드 행렬식
+```
+
+## 참고자료
+
+- 하길찬, 『해설이 있는 선형대수학』
+- 유호석, 「선형대수학」, 세종대학교, KOCW 공개강의
 
 다음 글: [선형대수 - 벡터공간, 기저와 차원](/posts/la-vector-space)

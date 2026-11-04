@@ -195,6 +195,24 @@ $$
 
 이 차원정리는 다음 글들의 선형사상에서 $\dim\operatorname{Im}(L) + \dim\operatorname{Ker}(L) = \dim V$로 다시 등장한다.
 
+### 네 가지 기본 부분공간
+
+$\mathbf{A}^T$의 영공간 $N(\mathbf{A}^T) = \{\mathbf{y} \mid \mathbf{A}^T\mathbf{y} = \mathbf{0}\}$을 **좌영공간**이라 한다. $\mathbf{y}^T\mathbf{A} = \mathbf{0}^T$, 즉 왼쪽에서 곱해 0을 만드는 벡터들이다. 앞의 세 공간과 합쳐 **네 가지 기본 부분공간**이라 부른다.
+
+![네 가지 기본 부분공간](./figures/fig-four-subspaces.svg)
+
+| 공간 | 위치 | 차원 | 직교하는 짝 |
+|---|---|---|---|
+| 행공간 $R(\mathbf{A})$ | $\mathbb{R}^n$ | $r$ | 영공간 |
+| 영공간 $N(\mathbf{A})$ | $\mathbb{R}^n$ | $n - r$ | 행공간 |
+| 열공간 $C(\mathbf{A})$ | $\mathbb{R}^m$ | $r$ | 좌영공간 |
+| 좌영공간 $N(\mathbf{A}^T)$ | $\mathbb{R}^m$ | $m - r$ | 열공간 |
+
+- $\mathbf{Ax} = \mathbf{0}$은 $\mathbf{A}$의 모든 행과 $\mathbf{x}$의 내적이 0이라는 뜻이다. 그래서 영공간은 행공간에 수직이다. 같은 이유로 좌영공간은 열공간에 수직이다.
+- 차원이 맞물려 $\mathbb{R}^n = R(\mathbf{A}) \oplus N(\mathbf{A})$, $\mathbb{R}^m = C(\mathbf{A}) \oplus N(\mathbf{A}^T)$로 나뉜다.
+- $\mathbf{A}$는 행공간을 열공간으로 일대일 대응시키고 영공간은 $\mathbf{0}$으로 보낸다.
+- 위 예시의 $\mathbf{A}$($3 \times 4$, rank 2)는 영공간이 $4 - 2 = 2$차원, 좌영공간이 $3 - 2 = 1$차원이다. 3행 = 1행 + 2 $\times$ 2행이므로 $\mathbf{y} = (1, 2, -1)^T$가 $\mathbf{y}^T\mathbf{A} = \mathbf{0}^T$를 만족한다.
+
 ## 요약
 
 | 개념 | 핵심 |
@@ -208,6 +226,32 @@ $$
 | 열공간 | $\mathbf{Ax}$의 치역, $\mathbf{Ax} = \mathbf{b}$ 해 존재 $\iff \mathbf{b} \in C(\mathbf{A})$ |
 | 행공간 | 행 연산으로 불변, 기약행사다리꼴의 0 아닌 행이 기저 |
 | 계수 | 행계수 = 열계수 = 선행성분 개수 |
+| 네 부분공간 | $\mathbb{R}^n$: 행공간 $\perp$ 영공간 ($r$, $n - r$), $\mathbb{R}^m$: 열공간 $\perp$ 좌영공간 ($r$, $m - r$) |
 | 차원정리 | $\operatorname{rank} + \operatorname{nullity} = $ 열의 수, nullity = 자유변수 개수 |
+
+## R / Python으로 확인
+
+```r
+A <- matrix(c(1, 1, 3, 0, 1, 2, 1, 0, 1, 1, 1, 3), nrow = 3)
+
+qr(A)$rank          # 2
+MASS::Null(t(A))    # N(A)의 기저, 열 2개
+MASS::Null(A)       # 좌영공간 N(A^T)의 기저, 열 1개
+```
+
+```python
+import numpy as np
+from scipy.linalg import null_space
+
+A = np.array([[1, 0, 1, 1], [1, 1, 0, 1], [3, 2, 1, 3]], dtype=float)
+np.linalg.matrix_rank(A)    # 2
+null_space(A)               # N(A)의 정규직교기저, 열 2개
+null_space(A.T)             # 좌영공간 N(A^T)의 기저, 열 1개
+```
+
+## 참고자료
+
+- 하길찬, 『해설이 있는 선형대수학』
+- 유호석, 「선형대수학」, 세종대학교, KOCW 공개강의
 
 다음 글: [선형대수 - 정규직교기저와 최소제곱법](/posts/la-orthonormal)

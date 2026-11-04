@@ -27,6 +27,10 @@ $$
 E_{\mathbf{A}}(\lambda) = \{\mathbf{v} \mid \mathbf{A}\mathbf{v} = \lambda\mathbf{v}\} = N(\mathbf{A} - \lambda\mathbf{I})
 $$
 
+![고유벡터는 방향이 유지되고 고유값 배만큼 늘어난다](./figures/fig-eigen-geometry.svg)
+
+$\mathbf{A} = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}$에서 $(1, 1)$ 방향은 3배로 늘고 $(1, -1)$ 방향은 그대로 유지된다. 그 밖의 벡터, 예를 들어 $(1, 0)$은 $(2, 1)$로 방향이 바뀐다.
+
 선형사상 $L : V \to V$에서도 $L(\mathbf{v}) = \lambda\mathbf{v}$로 같게 정의하며, 기저 $\mathcal{B}$를 잡으면 $[L]_{\mathcal{B}}[\mathbf{v}]_{\mathcal{B}} = \lambda[\mathbf{v}]_{\mathcal{B}}$로 행렬 문제가 된다. 닮음행렬은 같은 사상이므로 고유값이 같다.
 
 ### 특성방정식
@@ -63,6 +67,16 @@ $$
 
 확인: $\det\mathbf{A} = -10 + 12 = 2 = 1 \times 2$, $\operatorname{tr}\mathbf{A} = 3 = 1 + 2$.
 
+### 케일리-해밀턴 정리
+
+특성다항식 $p(\lambda) = \det(\lambda\mathbf{I} - \mathbf{A})$에 행렬 자신을 넣으면 영행렬이 된다.
+
+$$
+p(\mathbf{A}) = \mathbf{O}
+$$
+
+위 예시는 $p(\lambda) = \lambda^2 - 3\lambda + 2$이므로 $\mathbf{A}^2 - 3\mathbf{A} + 2\mathbf{I} = \mathbf{O}$이다. 따라서 $\mathbf{A}^2 = 3\mathbf{A} - 2\mathbf{I}$처럼 높은 거듭제곱을 낮은 차수로 줄일 수 있고, 역행렬도 $\mathbf{A}(3\mathbf{I} - \mathbf{A}) = 2\mathbf{I}$에서 $\mathbf{A}^{-1} = \frac{1}{2}(3\mathbf{I} - \mathbf{A})$처럼 다항식으로 쓸 수 있다.
+
 ## 2. 대각화
 
 ### 정의와 조건
@@ -93,6 +107,22 @@ $$
 - 서로 다른 고유값에 대응하는 고유벡터들은 일차독립이다.
 - 따라서 **서로 다른 고유값이 $n$개**면 대각화 가능하다(충분조건).
 - 중근이 있으면 각 고유값의 고유공간 차원(기하적 중복도)이 근의 중복도(대수적 중복도)와 같은지 확인해야 한다. 예를 들어 $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$은 고유값 1이 중근인데 고유공간이 1차원이라 대각화되지 않는다.
+
+### 대각화가 안 될 때: 조르당 형태
+
+고유벡터가 부족하면 대각행렬 대신 대각 바로 위에 1이 붙은 **조르당 블록**까지만 단순화할 수 있다. 모든 복소 정사각행렬은 조르당 블록을 대각으로 늘어놓은 행렬과 닮음이다.
+
+$$
+\mathbf{P}^{-1}\mathbf{A}\mathbf{P} = \begin{pmatrix} \mathbf{J}_1 & & \\ & \ddots & \\ & & \mathbf{J}_s \end{pmatrix},
+\qquad
+\mathbf{J}_i = \begin{pmatrix} \lambda_i & 1 & & \\ & \lambda_i & \ddots & \\ & & \ddots & 1 \\ & & & \lambda_i \end{pmatrix}
+$$
+
+- 블록의 개수는 일차독립인 고유벡터의 개수와 같다.
+- 모든 블록이 $1 \times 1$이면 대각화 가능이다.
+- 앞의 $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$은 그 자체가 $2 \times 2$ 조르당 블록이다.
+
+조르당 형태는 성분이 조금만 바뀌어도 모양이 달라질 만큼 수치적으로 불안정하다. 그래서 실제 계산에서는 쓰지 않고 쉬르 분해나 SVD를 쓴다.
 
 ### 쓰임: 거듭제곱
 
@@ -268,12 +298,35 @@ $$
 
 통계에서 공분산행렬과 $\mathbf{X}^T\mathbf{X}$는 항상 양의 준정부호이고, 주성분분석(PCA)은 공분산행렬의 이 주축을 찾는 것이다.
 
+## 8. 가역행렬 동치조건 총정리
+
+$n \times n$ 행렬 $\mathbf{A}$에 대해 다음은 모두 **동치**다. 시리즈 곳곳에 흩어진 조건을 한곳에 모았다.
+
+| 관점 | 조건 | 다룬 글 |
+|---|---|---|
+| 역행렬 | $\mathbf{A}^{-1}$이 존재한다 | 벡터와 행렬곱 |
+| 소거 | 기약행사다리꼴이 $\mathbf{I}$, 기본행렬들의 곱으로 표현된다 | 가우스 소거법 |
+| 연립방정식 | 모든 $\mathbf{b}$에 대해 $\mathbf{Ax} = \mathbf{b}$의 해가 유일하다 | 가우스 소거법 |
+| 동차방정식 | $\mathbf{Ax} = \mathbf{0}$의 해는 $\mathbf{x} = \mathbf{0}$뿐이다 | 벡터공간 |
+| 행렬식 | $\det\mathbf{A} \neq 0$ | 행렬식 |
+| 계수 | $\operatorname{rank}\mathbf{A} = n$, $\operatorname{nullity}\mathbf{A} = 0$ | 벡터공간 |
+| 열과 행 | 열(행)이 일차독립이다, $\mathbb{R}^n$을 생성한다, 기저를 이룬다 | 벡터공간 |
+| 부분공간 | $C(\mathbf{A}) = \mathbb{R}^n$, $N(\mathbf{A}) = \{\mathbf{0}\}$ | 벡터공간 |
+| 선형사상 | $\mathbf{x} \mapsto \mathbf{Ax}$가 단사, 전사, 동형사상 | 선형사상 |
+| 전치와 곱 | $\mathbf{A}^T$가 가역, $\mathbf{A}^T\mathbf{A}$가 양의 정부호 | 정규직교기저 |
+| 고유값 | 0이 고유값이 아니다 | 고유값 |
+| 특잇값 | 특잇값이 모두 양수다 | SVD |
+
+정사각행렬에서는 단사와 전사가 같은 말이라 하나만 확인하면 된다는 점이 핵심이다.
+
 ## 요약
 
 | 개념 | 핵심 |
 |---|---|
 | 고유값 | $\det(\mathbf{A} - \lambda\mathbf{I}) = 0$, $\det\mathbf{A} = \prod\lambda_i$, $\operatorname{tr}\mathbf{A} = \sum\lambda_i$ |
 | 대각화 | $\mathbf{P}^{-1}\mathbf{AP} = \mathbf{D}$ $\iff$ 고유벡터 기저 존재. 서로 다른 고유값 $n$개면 충분 |
+| 케일리-해밀턴 | $p(\mathbf{A}) = \mathbf{O}$, 거듭제곱과 역행렬을 다항식으로 |
+| 조르당 형태 | 대각화가 안 되면 조르당 블록까지, 블록 수 = 고유벡터 수 |
 | 쉬르 정리 | 모든 복소행렬은 유니타리 삼각화 가능 |
 | 스펙트럼 정리 | 정규 $\iff$ 유니타리 대각화, 실대칭 $\iff$ 직교 대각화 |
 | 에르미트·실대칭 | 고유값 실수, 고유벡터 직교 |
@@ -282,3 +335,35 @@ $$
 | 정사영 행렬 | $\mathbf{P}_i = \prod_{j \neq i}(\mathbf{A} - \lambda_j\mathbf{I})/(\lambda_i - \lambda_j)$ |
 | 양의 정부호 | 고유값 $> 0$ $\iff$ 선행 주소행렬식 $> 0$ (준정부호는 모든 주소행렬식 $\ge 0$) |
 | 이차형식 | $\mathbf{x}^T\mathbf{Ax} = \sum\lambda_iy_i^2$, 주축 = 고유벡터 |
+
+## R / Python으로 확인
+
+```r
+A <- matrix(c(5, 2, -6, -2), nrow = 2)
+e <- eigen(A)
+e$values; e$vectors                  # 고유벡터는 길이 1로 정규화되어 나온다
+A %*% A - 3 * A + 2 * diag(2)        # 케일리-해밀턴: 영행렬
+
+S <- matrix(c(2, 1, 1, 2), nrow = 2)
+eigen(S, symmetric = TRUE)           # 대칭행렬: 고유값 내림차순, 직교 고유벡터
+chol(S)                              # 양의 정부호면 성공 (S = t(R) %*% R)
+```
+
+```python
+import numpy as np
+
+A = np.array([[5, -6], [2, -2]], dtype=float)
+w, V = np.linalg.eig(A)          # 고유값 [2, 1] 순서는 보장되지 않음, 열이 정규화된 고유벡터
+A @ A - 3 * A + 2 * np.eye(2)    # 케일리-해밀턴: 영행렬
+
+S = np.array([[2, 1], [1, 2]], dtype=float)
+w, Q = np.linalg.eigh(S)         # 대칭행렬 전용: 고유값 오름차순 [1, 3], Q는 직교행렬
+np.linalg.cholesky(S)            # 양의 정부호면 성공, 아니면 LinAlgError
+```
+
+## 참고자료
+
+- 하길찬, 『해설이 있는 선형대수학』
+- 유호석, 「선형대수학」, 세종대학교, KOCW 공개강의
+
+다음 글: [선형대수 - 특잇값 분해와 주성분분석](/posts/la-svd)
