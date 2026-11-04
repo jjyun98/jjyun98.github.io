@@ -267,7 +267,7 @@ by_maker |>
 | 교호작용 | `y ~ x1 * x2` |
 | 곡선 | `poly(x, 2)`, `splines::ns(x, 3)` |
 | 패턴 제거 후 보기 | `augment()`의 `.resid`를 그래프로 |
-| 그룹별 모델 | `nest(data = -g) \|> mutate(model = map(data, \(d) lm(...)), fit = map(model, glance)) \|> unnest(fit)` |
+| 그룹별 모델 | `nest(data = -g)` → `map(data, \(d) lm(...))` → `map(model, glance)` → `unnest()` |
 
 ## 참고자료
 
