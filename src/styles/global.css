@@ -613,3 +613,9 @@ article img {
     @apply border-accent cursor-pointer;
   }
 }
+
+/* Excalidraw 스타일 그림 (figures/fig-*.svg) */
+article img[src*='fig-'] {
+  @apply border-0 rounded-none my-6;
+  filter: var(--fig-filter, none);
+}

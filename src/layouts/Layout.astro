@@ -7,6 +7,7 @@ import SelectThemeLoader from '~/components/SelectThemeLoader.astro'
 import siteConfig from '~/site.config'
 import { pick, resolveThemeColorStyles } from '~/utils'
 import crypto from 'crypto'
+import Color from 'color'
 
 interface Props {
   title?: string
@@ -107,6 +108,10 @@ for (const [themeId, themeStyles] of Object.entries(resolvedThemes)) {
   cssLines.push(`:root[data-theme="${themeId}"] {`)
   for (const [key, value] of Object.entries(relevantStyles)) {
     cssLines.push(`--theme-${key}: ${value};`)
+  }
+  // 다크 테마에서는 Excalidraw 그림 색을 반전 (Excalidraw 다크모드와 같은 방식)
+  if (themeStyles.background && Color(themeStyles.background).isDark()) {
+    cssLines.push(`--fig-filter: invert(93%) hue-rotate(180deg);`)
   }
   cssLines.push(`}`)
 }

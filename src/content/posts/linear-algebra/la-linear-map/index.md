@@ -2,466 +2,215 @@
 title: '선형대수 - 선형사상과 행렬표현'
 published: 2023-05-15
 draft: false
-description: '전사와 단사, 선형사상, 핵공간과 상공간, 동형사상, 등장사상, 행렬표현과 닮음행렬 정리'
+description: '선형사상의 정의, 핵공간과 상공간, 차원정리, 동형사상과 등장사상, 행렬표현과 닮음행렬 정리'
 series: '선형대수학'
 tags: ['선형대수학', '수학']
 ---
 
-선형사상은 벡터공간 사이의 구조를 보존하는 함수이고, 적절한 기저를 잡으면 행렬로 표현할 수 있다. 이 글에서는 핵공간과 상공간, 동형사상, 행렬표현, 닮음행렬까지 정리한다.
+선형사상은 벡터공간 사이에서 덧셈과 스칼라배를 보존하는 함수이고, 기저를 고정하면 하나의 행렬로 표현된다. 이 글은 핵공간·상공간과 차원정리, 동형·등장사상, 행렬표현과 닮음행렬을 다룬다.
 
-이전 글:
+이전 글: [선형대수 - 정규직교기저와 최소제곱법](/posts/la-orthonormal)
 
-- [선형대수 - 정규직교기저와 최소제곱법](/posts/la-orthonormal)
+## 1. 단사, 전사, 전단사
 
-## 1. 전사, 단사, 전단사 정리
+선형사상의 성질을 말할 때 계속 쓰이므로 함수의 세 종류부터 정리한다. $f : X \to Y$에 대해
 
-**단사(injective)**
+| 종류 | 정의 | 직관 |
+|---|---|---|
+| 단사 (injective) | $f(x_1) = f(x_2) \Rightarrow x_1 = x_2$ | 공역의 각 원소가 화살표를 **최대 한 개** 받는다 |
+| 전사 (surjective) | $f(X) = Y$ (치역 = 공역) | 공역의 모든 원소가 화살표를 **적어도 한 개** 받는다 |
+| 전단사 (bijective) | 단사이면서 전사 | 일대일대응, 역함수가 존재한다 |
 
-정의: $f(x_1) = f(x_2)$일 때 $x_1 = x_2$
-
-<br>
-
-![img](./images/la_0702_1.png)
-
-<br>
-
-**전사(surjective)**
-
-정의: 공역과 치역이 같다. $f(x) = Y$
-
-<br>
-
-![img](./images/la_0702_2.png)
-
-<br>
-
-**전단사(bijective)**
-
-정의: $f(x) = y$인 유일한 $x$존재
-
-<br>
-
-![img](./images/la_0702_3.png)
-
-<br>
+![단사, 전사, 전단사 대응 비교](./figures/fig-function-types.svg)
 
 ## 2. 선형사상
 
-### 선형사상 정의
+### 정의
 
-$V$와 $W$는 벡터공간일 때, $L : V \to W$을 만족시키며 아래의 두 가지 조건을 만족하는 함수 $L$을 **선형사상**이라고 부른다.
-
-<br>
+벡터공간 $V, W$와 함수 $L : V \to W$가 모든 $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v} \in V$, 스칼라 $k$에 대해 다음을 만족하면 $L$을 **선형사상**이라 한다.
 
 $$
-L(\mathbf{v}_1 + \mathbf{v}_2) = L(\mathbf{v}_1) + L(\mathbf{v}_2)\\
-L(k\mathbf{v}) = kL(\mathbf{v})
+L(\mathbf{v}_1 + \mathbf{v}_2) = L(\mathbf{v}_1) + L(\mathbf{v}_2), \qquad L(k\mathbf{v}) = kL(\mathbf{v})
 $$
 
-<br>
+두 조건을 합쳐 $L(a\mathbf{u} + b\mathbf{v}) = aL(\mathbf{u}) + bL(\mathbf{v})$ 하나로 확인해도 된다.
 
-선형사상이 되면 아래 3가지도 성립하게 된다.
-
-<br>
+### 바로 따라오는 성질
 
 $$
-L(\mathbf{0}) = \mathbf{0}\\
-L(-\mathbf{v}) = -L(\mathbf{v})\\
-L(\mathbf{u} - \mathbf{v}) = L(\mathbf{u}) - L(\mathbf{v})
+L(\mathbf{0}) = \mathbf{0}, \qquad L(-\mathbf{v}) = -L(\mathbf{v}), \qquad L(\mathbf{u} - \mathbf{v}) = L(\mathbf{u}) - L(\mathbf{v})
 $$
 
-<br>
+$L(\mathbf{0}) \neq \mathbf{0}$이면 선형사상이 아니므로, 선형성 판별에서 가장 먼저 확인할 조건이다. 또한 선형사상의 합성 $L_2 \circ L_1$도 선형사상이다.
 
-### 핵공간
+## 3. 핵공간과 상공간
 
-핵공간은 0으로 가는 정의구역 원소들을 의미하며 식과 그림으로 나타내면 다음과 같다.
-
-<br>
+### 정의
 
 $$
-\text{Ker}(L) = \{\mathbf{v} \in V : L(\mathbf{v}) = \mathbf{0}\}
+\operatorname{Ker}(L) = \{\mathbf{v} \in V : L(\mathbf{v}) = \mathbf{0}\}, \qquad
+\operatorname{Im}(L) = \{L(\mathbf{v}) : \mathbf{v} \in V\}
 $$
 
-<br>
+- **핵공간** $\operatorname{Ker}(L)$: $\mathbf{0}$으로 가는 정의역 벡터의 모임. $V$의 부분공간이다.
+- **상공간** $\operatorname{Im}(L)$: 화살표를 받는 공역 벡터의 모임(치역). $W$의 부분공간이다.
 
-![img](./images/la_0705_1.png)
+![핵공간은 0으로 가는 정의역 벡터, 상공간은 화살표를 받는 공역 벡터](./figures/fig-kernel-image.svg)
 
-<br>
+### 핵공간과 단사
 
-또한 집합 $\text{Ker}(L)$에 속하는 임의의 벡터들도 부분공간의 두 조건을 만족하기 때문에 $\text{Ker}(L)$은 벡터공간이자 $V$의 부분공간이 된다.
-
-<br>
-
-선형 사상 $L$에 대해 아래의 동치관계가 성립하고
-
-<br>
+$L(\mathbf{v}_1) = L(\mathbf{v}_2) \Leftrightarrow L(\mathbf{v}_1 - \mathbf{v}_2) = \mathbf{0} \Leftrightarrow \mathbf{v}_1 - \mathbf{v}_2 \in \operatorname{Ker}(L)$이므로
 
 $$
-L(\mathbf{v}_1) = L(\mathbf{v}_2) \Leftrightarrow L(\mathbf{v}_1 - \mathbf{v}_2) = \mathbf{0}
+L \text{이 단사} \iff \operatorname{Ker}(L) = \{\mathbf{0}\}
 $$
 
-<br>
+핵공간에 $\mathbf{0}$만 남으면 서로 다른 벡터가 같은 곳으로 갈 수 없다.
 
-선형사상 $L$이 단사가 될 필요충분조건이 성립하는 것을 알 수 있다. 이를 정리하면 다음과 같다.
+![핵공간이 영벡터 하나뿐이면 단사](./figures/fig-injective-kernel.svg)
 
-<br>
+마찬가지로 $\operatorname{Im}(L)$은 $W$의 부분공간이므로, 유한차원에서는 $\dim \operatorname{Im}(L) = \dim W$일 때 $L$이 전사다.
 
-$$
-\text{Ker}(L) = \{\mathbf{0}\}\\
-\Leftrightarrow L = \text{단사}
-$$
+### 차원정리 (rank-nullity)
 
-<br>
-
-### 상공간
-
-**상공간**은 선형사상 $L : V \to W$에 대해 $L$의 치역을 의미하며 식과 그림으로 나타내면 다음과 같다.
-
-<br>
+$\operatorname{nullity}(L) = \dim \operatorname{Ker}(L)$, $\operatorname{rank}(L) = \dim \operatorname{Im}(L)$이라 하면
 
 $$
-\text{Im}(L) = \{L(\mathbf{x}) : \mathbf{x} \in V\}
+\operatorname{nullity}(L) + \operatorname{rank}(L) = \dim V
 $$
 
-<br>
-
-![img](./images/la_0706_1.png)
-
-<br>
-
-Image(상)은 공역에서 화살표를 받은 치역만을 의미한다. 그리고 핵공간이 정의공간에서의 부분공간이었던 것처럼 상공간도 공역의 부분공간이다.
-
-<br>
-
-핵공간은 화살표가 0으로 향하는 정의역의 원소를 모아놓은 공간이다. 만약 핵공간에 원소가 0만 남아서 0 → 0의 화살표만 존재한다면 이 선형사상은 단사함수가 된다. 그림으로 표현하면 아래와 같다.
-
-<br>
-
-![img](./images/la_0706_2.png)
-
-<br>
-
-확장하자면 $\text{Im}(L)$은 $W$의 부분공간이므로 $\dim(\text{Im}(L)) = \dim(W)$이 만족되면 $L$이 전사가 된다고 할 수도 있다.
-
-<br>
-
-두 벡터공간 $V, W$사이에 정의된 선형사상 $L : V \to W$에 대해, 핵공간의 차원을 $\text{nullity}(L)$이라 하고, $L$의 상공간의 차원을 $L$의 계수라하고 $\text{rank}(L)$로 나타낸다. 따라서 다음과 같이 정의할 수 있고,
-
-<br>
+정의역의 차원은 "$\mathbf{0}$으로 사라지는 차원"과 "공역에 살아남는 차원"으로 나뉜다는 뜻이다. $m \times n$ 행렬 $\mathbf{A}$에 대해서는 같은 정리가 다음과 같이 쓰인다.
 
 $$
-\text{nullity}(L) = \dim(\text{Ker}(L)), \quad \text{rank}(L) = \dim(\text{Im}(L))
+\dim N(\mathbf{A}) + \operatorname{rank}(\mathbf{A}) = n \;(\mathbf{A}\text{의 열의 수})
 $$
 
-<br>
-
-이를 종합하여 식으로 정리하면 다음과 같다. 여기에서 $P_n$은 정의구역을 의미한다.
-
-<br>
-
-$$
-\text{nullity}(L) + \text{rank}(L) = \dim(V)\\
-\Leftrightarrow \dim \text{Ker}(L) + \dim \text{Im}(L) = \dim P_n
-$$
-
-<br>
-
-추가적으로 열공간과 핵공간은 의미하는 바가 같다고 확장시켜 해석한다면 아래와 같은 식들도 보일 수 있다.
-
-<br>
-
-$$
-\dim N(\mathbf{A}) = \text{nullity}(\mathbf{A})\\
-\text{nullity}(\mathbf{A}) + \text{rank}(\mathbf{A}) = \mathbf{A}\text{의 열의 수}
-$$
-
-<br>
+## 4. 동형사상과 등장사상
 
 ### 동형사상
 
-먼저, 합성함수 $L_2 \circ L_1$도 선형사상이 된다. 그리고 역함수의 경우 주어진 함수가 전단사여야 한다.
-
-<br>
-
-만약 1) 선형사상, 2) 전단사 두 조건을 만족한다면 이를 **동형사상**이라고 부른다. 이때의 두 벡터공간 관계를 **동형**이라고 한다. 서로 동형인 두 벡터공간 $V, W$를 $V \cong W$로 나타낸다. 동형사상에서의 차원관계를 식으로 나타내면 다음과 같다.
-
-<br>
+선형사상이면서 전단사인 $L$을 **동형사상**, 이때 두 공간을 **동형**이라 하고 $V \cong W$로 쓴다. 차원정리에 대입하면
 
 $$
-\dim(\text{Ker}(L)) = 0\\
-\dim(\text{Ker}(L)) + \dim(\text{Im}(L)) = \dim(V)\\
-\dim(\text{Im}(L)) = \dim(W)
+\dim \operatorname{Ker}(L) = 0, \qquad \dim \operatorname{Im}(L) = \dim W \quad\Rightarrow\quad \dim V = \dim W
 $$
 
-<br>
-
-언급한 것처럼 동형일 경우 역함수가 존재하게 되는데 전단사함수이므로 $V$와 $W$는 같은 차원을 갖고 $L^{-1}$ 역시 선형사상이 된다. 동형사상 $L$의 역함수를 $L$의 **역사상**이라 부른다.
-
-<br>
-
-위의 차원 관계를 확장해보면, 정의역은 화살표를 주는 개수가 차원이 되고, 공역에서는 화살표를 받는 개수 즉, 치역의 수가 차원이 된다. 만약 화살표를 주는 쪽과 받는 쪽이 수가 같다면, 다시말해 "차원이 같다면 두 벡터는 동형이다"라고도 말할 수 있다.
-
-<br>
-
-$$
-\dim V = \dim W = n\\
-\Rightarrow V, W \text{ 동형}
-$$
-
-<br>
+- 동형사상의 역함수 $L^{-1}$도 선형사상이며, 이를 **역사상**이라 한다.
+- 같은 체 위의 유한차원 벡터공간은 **차원이 같으면 동형**이다. 즉 $\dim V = \dim W = n$이면 $V \cong W \cong \mathbb{R}^n$이다.
 
 ### 등장사상
 
-등장사상은 길이(norm)를 보존시키는 함수이다. 즉, 내적값과 함수 $L$을 통과한 것들의 내적값이 같다면 등장사상이라 부른다. 정의는 다음 식을 만족해야 한다.
-
-<br>
+내적(따라서 길이)을 보존하는 선형사상을 **등장사상**이라 한다.
 
 $$
-\langle L(\mathbf{u}), L(\mathbf{v})\rangle_W = \langle\mathbf{u}, \mathbf{v}\rangle_V\\
-\Leftrightarrow \|L(\mathbf{u})\| = \|\mathbf{u}\|
+\langle L(\mathbf{u}), L(\mathbf{v}) \rangle_W = \langle \mathbf{u}, \mathbf{v} \rangle_V
+\iff \lVert L(\mathbf{u}) \rVert = \lVert \mathbf{u} \rVert
 $$
 
-<br>
+선형사상에서는 내적 보존과 norm 보존이 서로 동치다. 내적은 norm으로 표현되기 때문이다($\langle \mathbf{u}, \mathbf{v}\rangle = \tfrac{1}{4}(\lVert \mathbf{u}+\mathbf{v} \rVert^2 - \lVert \mathbf{u}-\mathbf{v} \rVert^2)$).
 
-두 번째 식은 "norm이 보존되면 내적이 보존된다. ⇔ 내적이 보존되면 norm이 보존된다."의 의미이다.
+## 5. 선형사상의 행렬표현
 
-<br>
+### 유도
 
-## 3. 선형사상의 행렬표현
-
-결론부터 말하면 선형사상은 행렬의 곱으로 표현될 수 있다. 과정을 나타내 본다.
-
-<br>
+$\dim V = n$, $\dim W = m$이고 기저를 $B_V = \{\mathbf{v}_1, \dots, \mathbf{v}_n\}$, $B_W$로 고정한다. $\mathbf{v} = c_1\mathbf{v}_1 + \cdots + c_n\mathbf{v}_n$이면 선형성에 의해
 
 $$
-L : V \to W\\
-\dim V = n
+\begin{aligned}
+[L(\mathbf{v})]_{B_W}
+&= c_1[L(\mathbf{v}_1)]_{B_W} + \cdots + c_n[L(\mathbf{v}_n)]_{B_W} \\
+&= \begin{pmatrix} [L(\mathbf{v}_1)]_{B_W} & \cdots & [L(\mathbf{v}_n)]_{B_W} \end{pmatrix}
+\begin{pmatrix} c_1 \\ \vdots \\ c_n \end{pmatrix}
+\end{aligned}
 $$
 
-<br>
-
-이때, $V$의 기저 $B$와 $\mathbf{v} \in V$에서 $\mathbf{v}$를 다음과 같이 나타낼 수 있다.
-
-<br>
+가운데 $m \times n$ 행렬을 $[L]_{B_V, B_W}$, 오른쪽 좌표벡터를 $[\mathbf{v}]_{B_V}$로 쓰면
 
 $$
-B = \{\mathbf{v}_1, \mathbf{v}_2, \cdots, \mathbf{v}_n\}\\
-\mathbf{v} = c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_n \mathbf{v}_n
+[L(\mathbf{v})]_{B_W} = [L]_{B_V, B_W}\,[\mathbf{v}]_{B_V}
 $$
 
-<br>
+$[L]_{B_V, B_W}$를 기저 $B_V, B_W$에 대한 $L$의 **행렬표현**이라 한다.
 
-여기까지 벡터를 선형결합으로 나타낸 것이고 이를 선형사상으로 표현하면
+- **$j$번째 열** $= [L(\mathbf{v}_j)]_{B_W}$, 즉 $j$번째 기저벡터가 어디로 가는지를 $B_W$ 좌표로 적은 것이다.
+- 기저를 고정하면 행렬표현은 **유일**하다. 좌표벡터를 아는 것이 벡터를 아는 것과 같기 때문이다.
+- $V = \mathbb{R}^n$, $W = \mathbb{R}^m$에서 표준기저를 쓰면 $j$번째 열은 $L(\mathbf{e}_j)$이다.
 
-<br>
+### 가환 도식
 
-$$
-L(\mathbf{v}) = L(c_1 \mathbf{v}_1 + \cdots + c_n \mathbf{v}_n)\\
-= c_1 L(\mathbf{v}_1) + c_2 L(\mathbf{v}_2) + \cdots + c_n L(\mathbf{v}_n) \in W
-$$
+선형사상으로 바로 가는 길(위)과 좌표로 옮긴 뒤 행렬을 곱하는 길(아래)은 같은 결과에 도착한다.
 
-<br>
-
-이때, $L(\mathbf{v})$를 $W$의 한 기저인 $B_W$에 대한 좌표벡터 $[L(\mathbf{v})]_{B_W}$는 다음과 같이 표현된다.
-
-<br>
+![선형사상과 행렬표현의 가환 도식](./figures/fig-matrix-representation.svg)
 
 $$
-[L(\mathbf{v})]_{B_W}\\
-= [c_1 L(\mathbf{v}_1) + c_2 L(\mathbf{v}_2) + \cdots + c_n L(\mathbf{v}_n)]_{B_W}\\
-= c_1[L(\mathbf{v}_1)]_{B_W} + c_2[L(\mathbf{v}_2)]_{B_W} + \cdots + c_n[L(\mathbf{v}_n)]_{B_W}\\
-= \begin{pmatrix} [L(\mathbf{v}_1)]_{B_W} & [L(\mathbf{v}_2)]_{B_W} & \cdots & [L(\mathbf{v}_n)]_{B_W}\end{pmatrix} \begin{pmatrix}
-c_1\\
-c_2\\
-\vdots\\
-c_n\\
-\end{pmatrix}
+[L(\mathbf{v})]_{B_W} = [L]_{B_V, B_W}\,[\mathbf{v}]_{B_V}
 $$
 
-<br>
-
-마지막 줄은 함수의 곱의 형태에서 행렬의 곱으로 이해한 모습이다.
-
-<br>
-
-$c_1, c_2 \cdots c_n$은 $V$의 좌표벡터 의미이고$(= [\mathbf{v}]_{B_V})$
-
-$\begin{pmatrix} [L(\mathbf{v}_1)]_{B_W} & [L(\mathbf{v}_2)]_{B_W} & \cdots & [L(\mathbf{v}_n)]_{B_W}\end{pmatrix} = [L]_{B_V, B_W}$라고 쓴다면,
-
-<br>
-
-한줄로 정리한 식은 아래와 같다.
-
-<br>
+세로 화살표인 좌표 대응이 동형사상이므로, $\mathbf{A} = [L]_{B_V, B_W}$라 하면 선형사상의 성질이 행렬의 성질로 그대로 옮겨진다.
 
 $$
-[L(\mathbf{v})]_{B_W} = [L]_{B_V, B_W} [\mathbf{v}]_{B_V}\\
-\text{열벡터} \quad \text{기저로 만든 행렬} \quad \text{열벡터}
+\operatorname{Ker}(L) \cong N(\mathbf{A}), \qquad \operatorname{Im}(L) \cong C(\mathbf{A}), \qquad \operatorname{rank}(L) = \operatorname{rank}(\mathbf{A})
 $$
 
-<br>
+즉 선형사상의 핵공간은 행렬의 **영공간**, 상공간은 행렬의 **열공간**에 대응한다.
 
-벡터공간에서 한 기저를 고정시키면, 벡터의 좌표벡터를 아는 것은 그 벡터를 아는 것과 같다.("선형사상의 모든 것은 행렬로 변환이 가능하다" 의미) 따라서, $V$와 $W$의 기저를 고정시키고 나면, 두 벡터공간 사이의 선형사상 $L$에 대응되는 행렬 $[L]_{B_V, B_W}$가 유일하게 결정됨을 의미한다.
+### 합성·역·등장사상의 행렬표현
 
-<br>
+| 상황 | 행렬표현 |
+|---|---|
+| 합성 $F : V_1 \to V_2$, $G : V_2 \to V_3$ | $[G \circ F]_{B_1, B_3} = [G]_{B_2, B_3}\,[F]_{B_1, B_2}$ |
+| 역사상 ($L$이 동형사상) | $[L^{-1}]_{B_2, B_1} = \left([L]_{B_1, B_2}\right)^{-1}$ |
+| 등장사상 (실내적공간, $B_1, B_2$가 정규직교기저) | $[L]_{B_1, B_2}^{T}\,[L]_{B_1, B_2} = \mathbf{I}$ (열들이 정규직교, 정사각이면 직교행렬) |
 
-이때 $m \times n$ 행렬 $[L]_{B_V, B_W}$를 기저 $B_V$와 기저 $B_W$에 대한 선형사상 $L$의 **행렬표현**이라 한다.
+합성은 행렬곱 순서가 사상을 적용하는 순서와 **반대**라는 점에 주의한다.
 
-<br>
+## 6. 닮음행렬
 
-$[L]_{B_V, B_W}$는 기저로 만들어진 일종의 transition matrix라고 할 수 있는데, 이를 행렬 **A**라고 한다면 위의 식은 아래처럼 보일 수 있다.
+### 정의
 
-<br>
+$n \times n$ 행렬 $\mathbf{A}, \mathbf{B}$에 대해 가역행렬 $\mathbf{P}$가 있어 $\mathbf{A} = \mathbf{P}^{-1}\mathbf{B}\mathbf{P}$이면 $\mathbf{A}$와 $\mathbf{B}$를 **닮음행렬**이라 한다.
 
-$$
-[L(\mathbf{v})]_{B_W} = \mathbf{A} [\mathbf{v}]_{B_V}
-$$
+### 유도: 기저만 바꾼 같은 사상
 
-<br>
-
-$\mathbf{A} = [L(\mathbf{v})]_{B_W} = [L]_{B_V, B_W} [\mathbf{v}]_{B_V}$ 였기에 **A**의 열들은 아래와 같이 표현이 가능하다.
-
-<br>
+$L : V \to V$를 두 기저 $B_1, B_2$로 표현해 본다. 항등사상 $\mathrm{id}$를 양쪽에 끼우고 합성의 행렬표현을 쓰면
 
 $$
-[L(\mathbf{v}_1)]_{B_W} \quad [L(\mathbf{v}_2)]_{B_W}\\
-= [L(\mathbf{e}_1)]_{B_W} \quad = [L(\mathbf{e}_2)]_{B_W}\\
-= [\mathbf{A} \mathbf{e}_1]_{B_W} \quad = [\mathbf{A} \mathbf{e}_2]_{B_W}\\
-= \mathbf{A}_1^c \quad = \mathbf{A}_2^c
+\begin{aligned}
+[L]_{B_1} &= [\mathrm{id} \circ L \circ \mathrm{id}]_{B_1, B_1} \\
+&= [\mathrm{id}]_{B_2, B_1}\,[L]_{B_2}\,[\mathrm{id}]_{B_1, B_2} \\
+&= \mathbf{P}^{-1}\,[L]_{B_2}\,\mathbf{P}, \qquad \mathbf{P} = [\mathrm{id}]_{B_1, B_2}
+\end{aligned}
 $$
 
-<br>
+$\mathbf{P}$는 $B_1$ 좌표를 $B_2$ 좌표로 바꾸는 전이행렬이다. 따라서 **닮음행렬은 같은 선형사상을 다른 기저로 본 행렬**이다. $\mathbf{P}$를 잘 고르면 행렬표현이 단순해지고(대각행렬 등) 계산량이 줄어든다. 이것이 다음 글의 대각화로 이어진다.
 
-즉, $\mathbf{v}_1$, $\mathbf{v}_2$, $\cdots$, $\mathbf{v}_n$이 $\mathbf{A}$의 1열, 2열, $\cdots$, $n$열 이라는 의미이다.
+### 닮음에서 변하지 않는 값
 
-<br>
-
-지금까지의 관계를 동형인 벡터공간을 이용하여 도식화한다면 아래와 같다.
-
-<br>
-
-![img](./images/la_0707_1.png)
-
-<br>
-
-그림 위쪽 화살표를 타고가는 선형사상 메커니즘과 아래쪽 화살표를 타고 가는 행렬 메커니즘은 같은 결과로 이어진다. 여기서 $[\mathbf{A}]_{B_V, B_W} = \mathbf{A}$였으니
-
-<br>
+같은 사상이므로 기저에 의존하지 않는 값은 같다.
 
 $$
-\text{Ker}(L) = \{\mathbf{v} \in V \mid L(\mathbf{v}) = \mathbf{0}\}\\
-N(\mathbf{A}) = \{\mathbf{v} \in M_{n, 1} \mid \mathbf{A} \mathbf{v} = \mathbf{0}\}
+\det(\mathbf{A}) = \det(\mathbf{P}^{-1})\det(\mathbf{B})\det(\mathbf{P}) = \det(\mathbf{B})
 $$
 
-<br>
-
-는 같은 의미가 된다. 즉, "선형사상의 핵공간 = 행렬로 변형한 곳의 영공간"이 되고, 핵공간과 영공간은 동형이라는 결론이 나온다.
-
-<br>
-
-이를 바탕으로 계수와 열에 대해 확장해보면 아래와 같이 정리할 수 있다.
-
-<br>
-
 $$
-\text{rank}(L) = \text{rank}(\mathbf{A})\\
-\text{Im}(L) \cong C(\mathbf{A})
+\operatorname{tr}(\mathbf{A}) = \operatorname{tr}(\mathbf{P}^{-1}\mathbf{B}\mathbf{P}) = \operatorname{tr}(\mathbf{B}\mathbf{P}\mathbf{P}^{-1}) = \operatorname{tr}(\mathbf{B})
 $$
 
-<br>
+두 번째 식은 $\operatorname{tr}(\mathbf{XY}) = \operatorname{tr}(\mathbf{YX})$를 이용했다. 같은 이유로 계수(rank)와 고유값도 같다.
 
-### 합성사상의 행렬표현
+## 요약
 
-세 벡터공간 $V_1, V_2, V_3$의 순서기저를 각각 $\mathcal{B}_1, \mathcal{B}_2, \mathcal{B}_3$이라 하고, $F : V_1 \to V_2$, $G : V_2 \to V_3$를 각각 선형사상이라 하자. 이때 합성사상 $G \circ F$의 기저 $\mathcal{B}_1, \mathcal{B}_3$에 대한 행렬표현은 다음과 같다.
+| 개념 | 핵심 식 | 기억할 점 |
+|---|---|---|
+| 선형사상 | $L(a\mathbf{u} + b\mathbf{v}) = aL(\mathbf{u}) + bL(\mathbf{v})$ | $L(\mathbf{0}) = \mathbf{0}$부터 확인 |
+| 핵공간 | $\operatorname{Ker}(L) = \{\mathbf{v} : L(\mathbf{v}) = \mathbf{0}\}$ | 행렬의 영공간 $N(\mathbf{A})$에 대응 |
+| 상공간 | $\operatorname{Im}(L) = \{L(\mathbf{v})\}$ | 행렬의 열공간 $C(\mathbf{A})$에 대응 |
+| 단사 판정 | $\operatorname{Ker}(L) = \{\mathbf{0}\}$ | |
+| 차원정리 | $\operatorname{nullity}(L) + \operatorname{rank}(L) = \dim V$ | 행렬: $\dim N(\mathbf{A}) + \operatorname{rank}\mathbf{A} = $ 열의 수 |
+| 동형 | 선형 + 전단사 | 유한차원에서 차원이 같으면 동형 |
+| 등장 | $\lVert L(\mathbf{u}) \rVert = \lVert \mathbf{u} \rVert$ | 정규직교기저에서 행렬표현의 열이 정규직교 |
+| 행렬표현 | $[L(\mathbf{v})]_{B_W} = [L]_{B_V,B_W}[\mathbf{v}]_{B_V}$ | $j$열 $= [L(\mathbf{v}_j)]_{B_W}$ |
+| 합성 | $[G \circ F] = [G][F]$ | 곱하는 순서가 적용 순서의 반대 |
+| 닮음 | $\mathbf{A} = \mathbf{P}^{-1}\mathbf{B}\mathbf{P}$ | 같은 사상, 다른 기저. det·tr·rank·고유값 동일 |
 
-<br>
-
-$$
-[G \circ F]_{\mathcal{B}_1, \mathcal{B}_3} = [G]_{\mathcal{B}_2, \mathcal{B}_3} [F]_{\mathcal{B}_1, \mathcal{B}_2}
-$$
-
-<br>
-
-### 역사상의 행렬표현
-
-두 동형공간 $V_1, V_2$의 순서기저를 각각 $\mathcal{B}_1, \mathcal{B}_2$라 하고, $L : V_1 \to V_2$를 동형사상이라 하자. 이때 $L$의 역사상 $L^{-1}$를 기저 $\mathcal{B}_2, \mathcal{B}_1$에 대해 표현한 행렬은 다음과 같다.
-
-<br>
-
-$$
-[L^{-1}]_{\mathcal{B}_2, \mathcal{B}_1} [L]_{\mathcal{B}_1, \mathcal{B}_2} = \mathbf{I}
-$$
-
-<br>
-
-### 등장사상의 행렬표현
-
-실수상에서 정의된 두 내적공간 $V_1, V_2$의 정규직교 순서기저를 각각 $\mathcal{B}_1, \mathcal{B}_2$라 하자. 등장사상 $L : V_1 \to V_2$의 기저 $\mathcal{B}_1, \mathcal{B}_2$에 대해 행렬 $[L]_{\mathcal{B}_1, \mathcal{B}_2}$의 열벡터들은 정규직교집합을 이루며 $[L]_{\mathcal{B}_1, \mathcal{B}_2}$는 다음을 만족하는 직교행렬이 된다.
-
-<br>
-
-$$
-[L]^{T}_{B_V, B_W} [L]_{B_V, B_W} = \mathbf{I}
-$$
-
-<br>
-
-### 닮음행렬
-
-$n \times n$ 행렬 $\mathbf{A}, \mathbf{B}$에서 $\mathbf{A} = \mathbf{P}^{-1} \mathbf{B} \mathbf{P}$ 라면 $\mathbf{A}$와 $\mathbf{B}$는 **닮음행렬**이라고 한다.
-
-<br>
-
-유도과정을 보면 아래와 같다.
-
-<br>
-
-$$
-[L]_{\mathcal{B}_1} = [L]_{\mathcal{B}_1, \mathcal{B}_1}\\
-= [\text{id} \circ L \circ \text{id}]_{\mathcal{B}_1, \mathcal{B}_1}\\
-= [\text{id}]_{\mathcal{B}_2, \mathcal{B}_1} [L]_{\mathcal{B}_2, \mathcal{B}_2} [\text{id}]_{\mathcal{B}_1, \mathcal{B}_2}\\
-= \mathbf{P}^{-1}_{\mathcal{B}_1, \mathcal{B}_2} [L]_{\mathcal{B}_2, \mathcal{B}_2} \mathbf{P}_{\mathcal{B}_1, \mathcal{B}_2}
-$$
-
-<br>
-
-여기서는 $L$이라는 사상의 관점에서 보였지만 결론은 동일하다. 과정을 보면 $L$이라는 추상적 함수를 가시화하기 위해 행렬표현으로 바꿨다.
-
-<br>
-
-행렬표현에서 사용된 기저를 잡는 방법은 여러가지인데 그들 서로를 바꾸는 방법으로 $\mathbf{P}$라는 함수(transition matrix)가 사용되었고 따라서 $\mathbf{P}$를 잘 설정해야 변형된 형태가 예쁘게(연산량을 낮추는) 나오기에 그 과정이 중요하다.
-
-<br>
-
-결과적으로 $[L]_{\mathcal{B}_1} = \mathbf{P}^{-1} [L]_{\mathcal{B}_2} \mathbf{P}$의 관계가 성립하기 때문에 $[L]_{\mathcal{B}_1}$과 $[L]_{\mathcal{B}_2}$는 닮음행렬이라고 할 수 있다.
-
-<br>
-
-#### 닮음행렬의 det & Tr
-
-닮음행렬이면 $\det$가 같다. 아래는 그 과정이다.
-
-<br>
-
-$$
-\det(\mathbf{A}) = \det(\mathbf{P}^{-1} \mathbf{B} \mathbf{P})\\
-= \det(\mathbf{P}^{-1}) \det(\mathbf{B}) \det(\mathbf{P})\\
-= \frac{1}{\det(\mathbf{P})} \det(\mathbf{B}) \det(\mathbf{P})\\
-= \det(\mathbf{B})
-$$
-
-<br>
-
-닮음행렬이면 $\text{Tr}$가 같다. 아래는 그 과정이다.
-
-<br>
-
-$$
-\text{Tr}(\mathbf{A}) = \text{Tr}(\mathbf{P}^{-1} \mathbf{B} \mathbf{P}) = \text{Tr}(\mathbf{B} \mathbf{P} \mathbf{P}^{-1}) = \text{Tr}(\mathbf{B})
-$$
-
-## 다음 글
-
-다음 글에서는 고유값, 대각화와 이차형식을 이어서 정리한다.
-
-- [선형대수 - 고유값, 대각화와 이차형식](/posts/la-eigen)
+다음 글: [선형대수 - 고유값, 대각화와 이차형식](/posts/la-eigen)
