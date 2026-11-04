@@ -63,29 +63,27 @@ $$
 
 ### 시뮬레이션으로 확인
 
-참 함수가 2차식인 데이터를 만들고, 다항회귀 차수를 1부터 10까지 올려 본다.
+참 함수가 2차식인 데이터에서 학습 데이터 50개로 다항회귀를 적합하고, 같은 모형에서 새로 뽑은 테스트 데이터 1,000개로 MSE를 잰다. 한 번의 표본은 우연의 영향이 크므로 이 과정을 100번 반복해 평균을 낸다.
 
 ```r
 library(tidyverse)
 theme_set(theme_minimal(base_size = 12))
 
-set.seed(123)
-n <- 100
-sim <- tibble(
-  x = runif(n, 0, 10),
-  y = 2 + 1.5 * x - 0.2 * x^2 + rnorm(n, sd = 3)
-)
-
-train_id <- sample(n, 70)
-train <- sim[train_id, ]
-test  <- sim[-train_id, ]
-
+f <- function(x) 2 + 1.5 * x - 0.2 * x^2
+gen <- function(n) tibble(x = runif(n, 0, 10), y = f(x) + rnorm(n, sd = 3))
 mse <- function(fit, data) mean((data$y - predict(fit, data))^2)
 
-result <- map_dfr(1:10, \(d) {
-  fit <- lm(y ~ poly(x, d), data = train)
-  tibble(degree = d, train = mse(fit, train), test = mse(fit, test))
-})
+set.seed(123)
+result <- map_dfr(1:100, \(rep) {
+  train <- gen(50)
+  test  <- gen(1000)
+  map_dfr(1:10, \(d) {
+    fit <- lm(y ~ poly(x, d), data = train)
+    tibble(rep = rep, degree = d, train = mse(fit, train), test = mse(fit, test))
+  })
+}) |>
+  group_by(degree) |>
+  summarise(train = mean(train), test = mean(test))
 result
 ```
 
@@ -100,9 +98,11 @@ result |>
   labs(x = "polynomial degree (flexibility)", y = "MSE", color = NULL)
 ```
 
-![다항식 차수별 학습 MSE와 테스트 MSE](./images/dm-overview-01.png)
+![다항식 차수별 학습 MSE와 테스트 MSE (100회 평균)](./images/dm-overview-01.png)
 
-점선은 $Var(\epsilon) = 3^2 = 9$다. 학습 MSE는 차수가 오를수록 계속 내려가지만, 테스트 MSE는 참 함수의 차수인 2 근처에서 가장 작고 이후로는 줄지 않거나 다시 커진다. 표본이 작아 곡선이 매끈하지는 않으므로 시드를 바꿔 여러 번 보면 경향이 더 분명해진다.
+점선은 $Var(\epsilon) = 3^2 = 9$다. 학습 MSE는 차수가 오를수록 계속 내려가 9보다도 작아진다. 잡음까지 외우고 있다는 뜻이다. 테스트 MSE는 참 함수의 차수인 2에서 가장 작고, 차수가 높아질수록 다시 커진다. 테스트 MSE가 9 아래로 내려가지 않는 것도 확인할 수 있다.
+
+반복 없이 한 번만 해 보면 곡선이 들쭉날쭉하고, 테스트 데이터가 작으면 우연히 9보다 작게 나오기도 한다. 테스트 오차도 결국 표본에서 계산한 추정값이기 때문이다.
 
 ## 편향-분산 분해
 
