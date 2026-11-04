@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# 로컬 임시 보관 (배포 제외)
+_tmp/
