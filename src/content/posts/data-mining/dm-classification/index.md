@@ -2,151 +2,162 @@
 title: '데이터 마이닝 - 분류, LDA/QDA와 KNN'
 published: 2022-03-23
 draft: false
-description: '분류 문제의 기본 구조, 베이즈 분류기, LDA, QDA, KNN의 가정과 차이 정리'
+description: '베이즈 분류기, 판별분석(LDA, QDA)의 가정과 판별함수, KNN과 K 선택을 iris 데이터로 정리한다.'
 series: '데이터 마이닝'
 tags: ['데이터 마이닝', '분류', 'LDA', 'QDA', 'KNN', 'R', 'ISLR']
 ---
 
-분류 문제에서는 관측값이 어떤 범주에 속하는지를 예측한다. 로지스틱 회귀가 조건부 확률을 직접 모델링한다면, LDA와 QDA는 각 범주에서 설명 변수의 분포를 가정해 분류한다. KNN은 별도의 모수적 가정보다 가까운 이웃의 정보를 사용한다.
+ISLR 2·4장과 이영미 교수님 데이터마이닝 강의의 분류 부분을 정리했다. 로지스틱 회귀가 $P(Y = k \mid X)$를 직접 모델링한다면, 판별분석은 범주별 $X$의 분포를 모델링한 뒤 베이즈 정리로 뒤집는다. KNN은 분포 가정 없이 가까운 관측값으로 추정한다.
 
-## 1. 베이즈 정리와 분류
+## 베이즈 분류기
 
-분류의 이상적인 기준은 사후확률이 가장 큰 범주를 선택하는 것이다.
-
-$$
-\hat{Y} = \arg\max_k P(Y = k \mid X = x)
-$$
-
-베이즈 정리를 쓰면 다음처럼 쓸 수 있다.
+테스트 오분류율을 최소화하는 규칙은 사후확률이 가장 큰 범주를 고르는 것이다.
 
 $$
-P(Y = k \mid X = x) = \frac{\pi_k f_k(x)}{\sum_{l=1}^{K} \pi_l f_l(x)}
+\hat y = \arg\max_k P(Y = k \mid X = x)
 $$
 
-여기서 $f_k(x)$는 $k$번째 범주에서의 $X$의 확률밀도함수이고, $\pi_k$는 $k$번째 범주의 사전확률이다.
-
-## 2. 로지스틱 회귀와 판별분석
-
-강의에서는 로지스틱 회귀와 판별분석의 차이를 강조한다.
-
-- 범주가 잘 분리되어 있으면 로지스틱 회귀의 계수 추정이 불안정할 수 있다.
-- 표본 수가 작고 각 범주에서 설명 변수 분포가 정규분포에 가까우면 LDA가 안정적일 수 있다.
-- 범주가 3개 이상일 때 LDA는 자연스럽게 확장된다.
-
-## 3. LDA와 QDA
-
-LDA는 각 범주의 설명 변수가 정규분포를 따르고, 모든 범주가 같은 공분산행렬을 가진다고 가정한다.
+$\pi_k = P(Y = k)$를 사전확률, $f_k(x)$를 범주 $k$에서 $X$의 밀도라 하면 베이즈 정리로 다음과 같다.
 
 $$
-X \mid Y = k \sim N(\mu_k, \Sigma)
+p_k(x) = P(Y = k \mid X = x) = \frac{\pi_k f_k(x)}{\sum_{l=1}^{K} \pi_l f_l(x)}
 $$
 
-공분산행렬이 공통이므로 결정경계는 선형이 된다.
+분모는 모든 $k$에 공통이므로 $\pi_k f_k(x)$가 가장 큰 범주를 고르면 된다. $\pi_k$는 표본 비율로 쉽게 추정되므로, 문제는 $f_k(x)$를 어떻게 추정하느냐다.
 
-QDA는 범주마다 다른 공분산행렬을 허용한다.
+## LDA와 QDA
+
+$f_k$를 다변량 정규분포로 둔다.
+
+| | LDA | QDA |
+|---|---|---|
+| 가정 | $X \mid Y = k \sim N(\mu_k, \Sigma)$ | $X \mid Y = k \sim N(\mu_k, \Sigma_k)$ |
+| 공분산 | 모든 범주 공통 | 범주마다 다름 |
+| 결정경계 | 선형 | 이차 |
+| 공분산 모수 수 | $p(p+1)/2$ | $K \cdot p(p+1)/2$ |
+| 성향 | 편향 큼, 분산 작음 | 편향 작음, 분산 큼 |
+
+![LDA와 QDA의 결정경계](./figures/fig-dm-lda-qda.svg)
+
+### LDA 판별함수
+
+$\log(\pi_k f_k(x))$에서 $k$와 무관한 항을 지우면 다음 판별함수가 남는다.
 
 $$
-X \mid Y = k \sim N(\mu_k, \Sigma_k)
+\delta_k(x) = x^T \Sigma^{-1} \mu_k - \frac{1}{2} \mu_k^T \Sigma^{-1} \mu_k + \log \pi_k
 $$
 
-결정경계가 이차식 형태가 될 수 있어 LDA보다 유연하지만, 추정해야 할 모수가 많아진다.
+$x$에 대해 1차식이므로 두 범주의 경계 $\delta_k(x) = \delta_l(x)$는 초평면이다. QDA에서는 $\Sigma_k$가 범주마다 달라 $-\frac{1}{2} x^T \Sigma_k^{-1} x$ 항이 지워지지 않고, 경계가 이차곡면이 된다.
 
-## 4. LDA 실습
+추정은 $\hat\pi_k = n_k / n$, $\hat\mu_k$ = 범주별 표본평균, $\hat\Sigma$ = 범주별 편차를 합친 공통 표본공분산으로 한다.
 
-실습에서는 `iris` 데이터와 `Default.csv`를 사용한다. 먼저 `iris`의 변수별 산점도를 확인한다.
+### 로지스틱 회귀와 비교
+
+두 범주 LDA의 로그 오즈도 $x$의 1차식이라 형태는 로지스틱 회귀와 같다. 차이는 추정 방법이다.
+
+- 범주가 잘 분리되면 로지스틱 회귀의 가능도가 발산해 계수가 불안정해진다. LDA는 그렇지 않다.
+- $n$이 작고 정규 가정이 대략 맞으면 LDA가 더 안정적이다.
+- 정규 가정이 크게 틀리면 로지스틱 회귀가 낫다.
+- 범주가 3개 이상일 때 LDA는 그대로 확장된다.
+
+## iris 실습
 
 ```r
 library(tidyverse)
+theme_set(theme_minimal(base_size = 12))
 library(MASS)
-library(ROCR)
-
-pairs(
-  iris[, -5],
-  col = c("steelblue", "darkorange", "darkgreen")[iris$Species]
-)
-```
-
-LDA는 `MASS::lda()`로 적합한다.
-
-```r
-lda.fit <- lda(Species ~ ., data = iris)
-lda.fit
-
-lda.pred <- predict(lda.fit, newdata = iris)
-table(predicted = lda.pred$class, actual = iris$Species)
-mean(lda.pred$class == iris$Species)
-```
-
-두 범주만 남겨 로지스틱 회귀와 비교할 수도 있다.
-
-```r
-sub_iris <- iris[iris$Species != "setosa", -(1:2)]
-sub_iris <- droplevels(sub_iris)
-
-glm.fit <- glm(Species ~ Petal.Length + Petal.Width,
-               data = sub_iris, family = binomial)
-
-summary(glm.fit)
-```
-
-## 5. KNN
-
-KNN은 예측하려는 관측값 주변의 $K$개 이웃을 찾고, 그 이웃들이 가장 많이 속한 범주로 분류한다.
-
-$$
-P(Y = k \mid X = x_0) \approx \frac{1}{K} \sum_{i \in N_0} I(y_i = k)
-$$
-
-$K$가 작으면 모델이 복잡해지고 분산이 커진다. $K$가 크면 결정경계가 부드러워지고 편향이 커진다.
-
-## 6. KNN 실습
-
-실습 노트북에서는 `iris`의 꽃잎 길이와 너비만 사용해 KNN을 적용한다.
-
-```r
 library(class)
-library(tidyverse)
 
-data(iris)
+iris |>
+  ggplot(aes(Petal.Length, Petal.Width, color = Species)) +
+  geom_point() +
+  labs(x = "Petal.Length", y = "Petal.Width")
+```
+
+![꽃잎 길이와 너비로 본 iris 세 품종](./images/dm-cls-01.png)
+
+`MASS`는 `dplyr::select`를 가리므로 이 글에서는 `select`를 쓰지 않는다. 꽃잎 두 변수만으로도 세 품종이 꽤 잘 나뉜다.
+
+```r
 set.seed(1234)
+train_id <- sample(nrow(iris), 0.7 * nrow(iris))
+train <- iris[train_id, ]
+test  <- iris[-train_id, ]
 
-train_id <- sample(1:nrow(iris), nrow(iris) * 0.7)
+lda_fit <- lda(Species ~ ., data = train)
+qda_fit <- qda(Species ~ ., data = train)
+lda_fit
 
-train_dt_x <- iris[train_id, 3:4]
-train_dt_y <- iris[train_id, 5]
-test_dt_x <- iris[-train_id, 3:4]
-test_dt_y <- iris[-train_id, 5]
+acc <- function(fit) mean(predict(fit, test)$class == test$Species)
+c(LDA = acc(lda_fit), QDA = acc(qda_fit))
 ```
 
-교차검증으로 $K$를 고른다.
+`lda_fit` 출력의 `Coefficients of linear discriminants`는 $\Sigma^{-1}$ 방향으로 정한 판별축(LD1, LD2)의 계수다. 범주가 $K$개면 판별축은 최대 $K-1$개다.
 
 ```r
-k.grid <- seq(1, 21, 2)
-acc_df <- data.frame(k = k.grid, acc = NA)
-
-for (i in seq_along(k.grid)) {
-  pred_y <- knn.cv(train_dt_x, cl = train_dt_y, k = k.grid[i])
-  acc_df[i, "acc"] <- mean(pred_y == train_dt_y)
-}
-
-plot(acc_df, type = "b")
-opt_k <- k.grid[which.max(acc_df$acc)]
-opt_k
+proj <- predict(lda_fit, iris)$x
+as_tibble(proj) |>
+  mutate(Species = iris$Species) |>
+  ggplot(aes(LD1, LD2, color = Species)) +
+  geom_point()
 ```
 
-테스트 데이터에 적용한다.
+![LDA 판별축 위에 투영한 iris](./images/dm-cls-02.png)
+
+LD1 한 축만으로도 세 품종이 거의 분리된다. LDA는 이렇게 범주 간 분리를 최대화하는 저차원 투영으로도 쓸 수 있다.
+
+## KNN
+
+$x_0$에서 가장 가까운 학습 관측값 $K$개의 집합을 $N_0$라 할 때, 조건부 확률을 이웃의 범주 비율로 추정한다.
+
+$$
+\hat P(Y = k \mid X = x_0) = \frac{1}{K} \sum_{i \in N_0} I(y_i = k)
+$$
+
+![K=3일 때 KNN 분류](./figures/fig-dm-knn.svg)
+
+- $K = 1$이면 학습 오차는 0이지만 경계가 매우 울퉁불퉁하다(분산 큼).
+- $K$가 커지면 경계가 부드러워지고, 너무 크면 국소 구조를 놓친다(편향 큼).
+- 거리 기반이므로 단위가 다른 변수는 표준화해야 한다.
+- $p$가 크면 "가까운 이웃"이 사실상 멀어져 성능이 급격히 떨어진다(차원의 저주).
+
+### K 선택
+
+`knn.cv()`는 학습 데이터에서 한 개씩 빼고 나머지로 예측하는 LOOCV를 수행한다.
 
 ```r
-pred_test <- knn(
-  train = train_dt_x,
-  test = test_dt_x,
-  cl = train_dt_y,
-  k = opt_k,
-  prob = TRUE
-)
+x_train <- scale(train[, 1:4])
+x_test  <- scale(test[, 1:4],
+                 center = attr(x_train, "scaled:center"),
+                 scale  = attr(x_train, "scaled:scale"))
 
-table(predicted = pred_test, actual = test_dt_y)
-mean(pred_test == test_dt_y)
+cv_acc <- tibble(k = seq(1, 31, 2)) |>
+  mutate(acc = map_dbl(k, \(k) mean(knn.cv(x_train, train$Species, k = k) == train$Species)))
+
+ggplot(cv_acc, aes(k, acc)) +
+  geom_line() + geom_point() +
+  labs(x = "K", y = "LOOCV accuracy")
 ```
 
-KNN은 거리 기반 방법이므로 변수 스케일에 민감하다. 실제 데이터에서는 표준화를 먼저 고려해야 한다.
+![K에 따른 LOOCV 정확도](./images/dm-cls-03.png)
+
+테스트 데이터는 **학습 데이터의 평균과 표준편차로** 표준화한다. 테스트 데이터 자체로 표준화하면 테스트 정보를 학습에 쓰는 셈이 된다.
+
+```r
+best_k <- cv_acc$k[which.max(cv_acc$acc)]
+pred <- knn(x_train, x_test, cl = train$Species, k = best_k)
+
+table(predicted = pred, actual = test$Species)
+mean(pred == test$Species)
+```
+
+정확도가 같은 $K$가 여럿이면 `which.max`는 가장 작은 $K$를 고른다. 비슷하다면 더 큰 $K$(더 단순한 경계)를 고르는 것도 방법이다.
+
+## 방법 비교
+
+| 방법 | 경계 | 가정 | 잘 맞는 상황 |
+|---|---|---|---|
+| 로지스틱 | 선형 | $P(Y \mid X)$의 로짓이 선형 | 이진, 해석 필요 |
+| LDA | 선형 | 정규, 공통 공분산 | $n$ 작음, 다범주 |
+| QDA | 이차 | 정규, 범주별 공분산 | $n$ 큼, 범주별 퍼짐이 다름 |
+| KNN | 비모수 | 없음 (거리) | 경계가 복잡, $p$ 작음 |
