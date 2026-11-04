@@ -1,347 +1,178 @@
 ---
-title: 'Factor 정리'
-published: 2022-08-06
+title: 'R4DS - factor 다루기'
+published: 2022-08-19
 draft: false
-description: "R Factor 패키지 문법 정리. fct_reorder, fct_collapse, fct_recode 등 forcats 패키지 함수들을 예제와 함께 다룹니다."
+description: 'forcats로 범주형 변수의 수준 순서 바꾸기(fct_infreq, fct_reorder, fct_reorder2, fct_relevel), 수준 이름 바꾸기와 묶기(fct_recode, fct_collapse, fct_lump)를 gss_cat 실습으로 정리'
 series: 'R for Data Science'
-tags: ['R']
+tags: ['R', 'tidyverse', 'forcats']
 ---
 
-> 참고 자료:
-> [R for Data Science - Factors](https://r4ds.had.co.nz/factors.html)
-
-## 개요
-
-**factor**는 R에서 범주형 변수를 다루는 핵심 데이터 타입입니다. 가질 수 있는 값이 미리 정해진 범주형 데이터를 효율적으로 처리하고, 문자형 벡터를 원하는 순서로 정렬할 때 사용됩니다.
+factor는 가질 수 있는 값(수준, level)이 정해진 범주형 변수다. 문자열과 달리 **순서**를 가질 수 있어서, 그래프의 범주 순서나 모델의 기준 범주를 정할 때 쓴다. R4DS(2판) Factors 장을 따라 forcats 사용법을 정리한다. 데이터는 미국 종합사회조사 일부인 `forcats::gss_cat`을 쓴다.
 
 ```r title="환경 설정"
-# 패키지 로드
-library('tidyverse')  # forcats 패키지 포함
+library(tidyverse)
+library(patchwork)
 
-# 플롯 최적화 설정
-options(
-  repr.plot.width = 8,
-  repr.plot.height = 5,
-  repr.plot.res = 150
-)
-
-# 테마 설정
-theme_set(theme_minimal(base_size = 10))
+theme_set(theme_minimal(base_size = 12))
 ```
 
-## 1. Factor 기초 개념
-
-**팩터형이란?**
-
-팩터형은 범주형 변수에 사용되는 데이터 타입으로, 다음과 같은 특징을 가집니다:
-
-- 가질 수 있는 값이 **미리 고정되고 알려진** 변수
-- 문자형 벡터를 **알파벳순이 아닌 원하는 순서**로 표시
-- **메모리 효율성**과 **데이터 무결성** 보장
-
-**문자형 vs 팩터형 비교**
+## 1. 기초
 
 ```r
-# 월 데이터 예시
-x1 <- c("Dec", "Apr", "Jan", "Mar")
-x1
-# [1] "Dec" "Apr" "Jan" "Mar"
+x <- c("Dec", "Apr", "Jan", "Mar")
+month_levels <- month.abb
 
-# 문자형 정렬 (알파벳순)
-sort(x1)
-# [1] "Apr" "Dec" "Jan" "Mar"  # 원하는 순서가 아님!
+sort(x)                                   # 문자열은 알파벳순: "Apr" "Dec" "Jan" "Mar"
+y <- factor(x, levels = month_levels)
+sort(y)                                   # 수준 순서대로: Jan Mar Apr Dec
+levels(y)
+
+factor(c("Jan", "Jam"), levels = month_levels)   # 오타는 조용히 NA가 된다
+try(fct(c("Jan", "Jam"), levels = month_levels))  # forcats::fct()는 에러로 알려준다
 ```
 
-**팩터형 생성과 레벨 설정**
+- `levels`를 생략하면 알파벳순으로 정해진다. 데이터에 나온 순서를 쓰려면 `fct_inorder()`.
+- 순서가 의미 있는 범주(설문 응답 "매우 불만 < 불만 < 보통")는 `ordered()`나 `factor(..., ordered = TRUE)`로 만든다.
+- `count()`나 그래프는 데이터에 없는 수준도 수준으로 남는다. 빈 수준을 지우려면 `fct_drop()`.
 
-```r
-# 올바른 월 순서 정의
-month_levels <- c(
-  "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-  "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-)
+## 2. 순서 바꾸기
 
-# 팩터형 생성
-y1 <- factor(x1, levels = month_levels)
-y1
-# [1] Dec Apr Jan Mar
-# Levels: Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
+그래프의 범주 순서는 factor 수준 순서를 따른다. 순서만 바꿔도 그래프가 훨씬 잘 읽힌다.
 
-# 팩터형 정렬 (원하는 순서대로!)
-sort(y1)
-# [1] Jan Mar Apr Dec
+| 함수 | 기준 | 주 용도 |
+|---|---|---|
+| `fct_infreq(f)` | 빈도 내림차순 | 막대그래프 |
+| `fct_rev(f)` | 현재 순서를 뒤집기 | `fct_infreq`와 함께 |
+| `fct_reorder(f, x, median)` | 다른 변수의 요약값 | 점 그래프, 상자그림 |
+| `fct_reorder2(f, x, y)` | 가장 큰 x에서의 y값 | 선 그래프 (범례 순서를 선 끝과 맞춤) |
+| `fct_relevel(f, "a")` | 지정한 수준을 앞으로 | 기준 범주, "기타"를 맨 뒤로 |
+| `fct_inorder(f)` | 데이터에 처음 나온 순서 | 이미 정렬된 데이터 |
+
+### 다른 변수 기준으로 정렬
+
+종교별 하루 평균 TV 시청 시간을 비교한다.
+
+```r w=10 h=4
+relig_summary <- gss_cat |>
+  summarise(tvhours = mean(tvhours, na.rm = TRUE), n = n(), .by = relig)
+
+p1 <- ggplot(relig_summary, aes(x = tvhours, y = relig)) +
+  geom_point() + ggtitle("정렬 전")
+p2 <- ggplot(relig_summary, aes(x = tvhours, y = fct_reorder(relig, tvhours))) +
+  geom_point() + labs(y = NULL) + ggtitle("fct_reorder(relig, tvhours)")
+p1 + p2
 ```
 
-**오타 감지 기능**
+![종교별 TV 시청 시간, 정렬 전후](./images/factor-01.png)
+
+정렬하면 "Don't know" 응답자가 가장 많이 보고, Hinduism과 Other eastern이 가장 적게 본다는 것이 바로 보인다. 다만 `n`이 작은 범주가 섞여 있으니 해석 전에 개수를 확인해야 한다.
+
+`fct_reorder()`는 순서가 원래 없는 범주에만 쓴다. 소득 구간처럼 이미 순서가 있는 범주를 값으로 재정렬하면 오히려 읽기 어렵다.
+
+### 빈도순 막대
 
 ```r
-# 오타가 포함된 데이터
-x2 <- c("Dec", "Apr", "Jam", "Mar")  # "Jam"은 오타
-y2 <- factor(x2, levels = month_levels)
-y2
-# [1] Dec Apr <NA> Mar  # 오타는 자동으로 NA 처리
-
-# parse_factor 사용시 경고 메시지
-y2 <- parse_factor(x2, levels = month_levels)
-# Warning: 1 parsing failure.
-# row col expected actual
-#   3  -- value in level set Jam
-```
-
-## 2. ggplot2에서 Factor 활용
-
-**GSS 데이터셋**
-
-```r
-# General Social Survey 데이터
-gss_cat %>% head()
-# 설문조사 데이터로 다양한 팩터형 변수 포함
-```
-
-**팩터 레벨 확인 방법**
-
-방법 1: count() 함수
-
-```r
-gss_cat %>% count(race)
-#     race     n
-# 1  Other  1959
-# 2  Black  3129
-# 3  White 16395
-```
-
-방법 2: 막대 그래프
-
-```r
-ggplot(gss_cat, aes(race)) +
+gss_cat |>
+  mutate(marital = marital |> fct_infreq() |> fct_rev()) |>
+  ggplot(aes(x = marital)) +
   geom_bar()
 ```
 
-**빈 레벨 표시하기**
+![결혼 상태별 응답자 수, 빈도 오름차순](./images/factor-02.png)
+
+### 선 그래프의 범례 순서
 
 ```r
-# 빈 레벨도 x축에 표시
-ggplot(gss_cat, aes(race)) +
-  geom_bar() +
-  scale_x_discrete(drop = FALSE)
-```
+by_age <- gss_cat |>
+  filter(!is.na(age)) |>
+  count(age, marital) |>
+  mutate(prop = n / sum(n), .by = age)
 
-## 3. 팩터 재정렬
-
-### fct_reorder() : 다른 변수 기준 정렬
-
-```r
-# 종교별 평균 계산
-relig_summary <- gss_cat %>%
-  group_by(relig) %>%
-  summarize(
-    age = mean(age, na.rm = TRUE),
-    tvhours = mean(tvhours, na.rm = TRUE),
-    n = n()
-  )
-
-# 기본 플롯 (읽기 어려움)
-ggplot(relig_summary, aes(tvhours, relig)) +
-  geom_point()
-```
-
-```r
-# tvhours 기준으로 재정렬 (훨씬 읽기 쉬움!)
-ggplot(relig_summary, aes(tvhours, fct_reorder(relig, tvhours))) +
-  geom_point()
-```
-
-tibble 자체를 재정렬하는 방법:
-
-```r
-relig_summary %>%
-  mutate(relig = fct_reorder(relig, tvhours)) %>%
-  ggplot(aes(tvhours, relig)) +
-  geom_point()
-```
-
-### fct_relevel() : 특정 레벨을 앞으로 이동
-
-```r
-# 소득별 평균 나이 분석
-rincome_summary <- gss_cat %>%
-  group_by(rincome) %>%
-  summarize(
-    age = mean(age, na.rm = TRUE),
-    tvhours = mean(tvhours, na.rm = TRUE),
-    n = n()
-  )
-
-# "Not applicable"을 맨 앞으로 이동
-ggplot(rincome_summary, aes(age, fct_relevel(rincome, "Not applicable"))) +
-  geom_point()
-```
-
-### fct_reorder2() : 선 그래프 최적화
-
-```r
-# 나이별 결혼 상태 비율
-by_age <- gss_cat %>%
-  filter(!is.na(age)) %>%
-  count(age, marital) %>%
-  group_by(age) %>%
-  mutate(prop = n / sum(n))
-
-# 기본 선 그래프
-ggplot(by_age, aes(age, prop, color = marital)) +
-  geom_line(na.rm = TRUE)
-```
-
-```r
-# 범례와 선 순서 일치시키기
-ggplot(by_age, aes(age, prop, color = fct_reorder2(marital, age, prop))) +
-  geom_line() +
+ggplot(by_age, aes(x = age, y = prop, color = fct_reorder2(marital, age, prop))) +
+  geom_line(linewidth = 1) +
   labs(color = "marital")
 ```
 
-### fct_infreq() : 빈도 기준 정렬
+![나이별 결혼 상태 비율, 범례를 선 끝 순서와 맞춤](./images/factor-03.png)
+
+`fct_reorder2()`는 x가 가장 클 때의 y값 순서로 정렬해서, 오른쪽 끝의 선 위치와 범례 순서가 같아진다.
+
+## 3. 수준 바꾸기
+
+### 이름 바꾸기와 묶기
 
 ```r
-# 빈도 기준 내림차순 정렬
-gss_cat %>%
-  mutate(marital = marital %>% fct_infreq() %>% fct_rev()) %>%
-  ggplot(aes(marital)) +
-  geom_bar()
-```
+gss_cat |> count(partyid)
 
-## 4. 팩터 레벨 수정
-
-### fct_recode() : 레벨 이름 변경
-
-```r
-# 정당 성향 데이터 확인
-gss_cat %>% count(partyid)
-```
-
-```r
-# 레벨 이름을 더 명확하게 변경
-gss_cat %>%
+gss_cat |>
   mutate(partyid = fct_recode(partyid,
-    "Republican, strong"     = "Strong republican",
-    "Republican, weak"       = "Not str republican",
-    "Independent, near rep"  = "Ind,near rep",
-    "Independent, near dem"  = "Ind,near dem",
-    "Democrat, weak"         = "Not str democrat",
-    "Democrat, strong"       = "Strong democrat"
-  )) %>%
+    "Republican, strong"    = "Strong republican",
+    "Republican, weak"      = "Not str republican",
+    "Independent, near rep" = "Ind,near rep",
+    "Independent, near dem" = "Ind,near dem",
+    "Democrat, weak"        = "Not str democrat",
+    "Democrat, strong"      = "Strong democrat",
+    "Other"                 = "No answer",
+    "Other"                 = "Don't know",
+    "Other"                 = "Other party"
+  )) |>
   count(partyid)
 ```
 
-**여러 레벨을 하나로 통합**
+새 이름 = 옛 이름 순서로 쓴다. 여러 수준을 같은 이름으로 바꾸면 하나로 묶인다. 묶는 것이 주목적이면 `fct_collapse()`가 짧다.
 
 ```r
-# 기타 항목들을 "Other"로 통합
-gss_cat %>%
-  mutate(partyid = fct_recode(partyid,
-    "Republican, strong"     = "Strong republican",
-    "Republican, weak"       = "Not str republican",
-    "Independent, near rep"  = "Ind,near rep",
-    "Independent, near dem"  = "Ind,near dem",
-    "Democrat, weak"         = "Not str democrat",
-    "Democrat, strong"       = "Strong democrat",
-    "Other"                  = "No answer",
-    "Other"                  = "Don't know",
-    "Other"                  = "Other party"
-  )) %>%
-  count(partyid)
-```
-
-:::caution
-서로 다른 성격의 범주들을 무분별하게 통합하면 잘못된 분석 결과를 초래할 수 있습니다.
-:::
-
-## 5. 고급 팩터 조작
-
-### fct_collapse() : 효율적인 그룹화
-
-```r
-# 여러 레벨을 한 번에 그룹화
-gss_cat %>%
+gss_cat |>
   mutate(partyid = fct_collapse(partyid,
-    other = c("No answer", "Don't know", "Other party"),
-    rep = c("Strong republican", "Not str republican"),
-    ind = c("Ind,near rep", "Independent", "Ind,near dem"),
-    dem = c("Not str democrat", "Strong democrat")
-  )) %>%
+    "other" = c("No answer", "Don't know", "Other party"),
+    "rep"   = c("Strong republican", "Not str republican"),
+    "ind"   = c("Ind,near rep", "Independent", "Ind,near dem"),
+    "dem"   = c("Not str democrat", "Strong democrat")
+  )) |>
   count(partyid)
 ```
 
-### fct_lump() : 자동 그룹화
-
-**상위 1개만 남기고 나머지는 Other로**
+### 드문 범주를 "Other"로
 
 ```r
-gss_cat %>%
-  mutate(relig = fct_lump(relig)) %>%
-  count(relig)
-#       relig     n
-# 1 Protestant 10846
-# 2     Other 10637
-```
-
-**상위 n개만 남기고 나머지는 Other로**
-
-```r
-# 상위 4개 종교만 남기기
-gss_cat %>%
-  mutate(relig = fct_lump(relig, n = 4)) %>%
+gss_cat |>
+  mutate(relig = fct_lump_n(relig, n = 10)) |>
   count(relig, sort = TRUE)
-#        relig     n
-# 1  Protestant 10846
-# 2    Catholic  5124
-# 3        None  3523
-# 4   Christian   689
-# 5       Other  1301
 ```
 
-## 6. 실전 활용
+| 함수 | 남기는 기준 |
+|---|---|
+| `fct_lump_n(f, n)` | 상위 n개 |
+| `fct_lump_prop(f, prop)` | 비율이 prop 이상인 범주 |
+| `fct_lump_min(f, min)` | 개수가 min 이상인 범주 |
+| `fct_lump_lowfreq(f)` | "Other"가 가장 작은 범주보다 작게 유지되도록 |
 
-**범주형 변수 시각화 최적화**
+## 자주 하는 실수
 
-```r
-# Before: 읽기 어려운 차트
-gss_cat %>%
-  ggplot(aes(relig)) +
-  geom_bar() +
-  theme(axis.text.x = element_text(angle = 45))
+| 증상 | 원인과 해결 |
+|---|---|
+| 그래프 범주가 알파벳순 | 문자열이거나 수준이 알파벳순. `fct_infreq`, `fct_reorder`, `fct_relevel` |
+| 값이 조용히 NA로 바뀜 | `factor()`에 없는 수준. `fct()`를 쓰면 에러로 알려준다 |
+| 그래프에 빈 범주가 남음 | 걸러낸 뒤에도 수준이 남아 있다. `fct_drop()` |
+| `as.numeric(f)`가 이상한 숫자 | 값이 아니라 수준 번호가 나온다. 숫자 문자열이면 `as.numeric(as.character(f))` |
+| 모델의 기준 범주가 원하는 것이 아님 | 첫 번째 수준이 기준이다. `fct_relevel(f, "기준")` |
 
-# After: 정렬된 차트
-gss_cat %>%
-  mutate(relig = fct_infreq(relig)) %>%
-  ggplot(aes(relig)) +
-  geom_bar() +
-  coord_flip()  # 수평 막대로 더 읽기 쉽게
-```
+## 요약
 
-**다변량 분석에서 팩터 활용**
+| 하고 싶은 것 | 코드 |
+|---|---|
+| 순서 지정해 만들기 | `factor(x, levels = )`, `fct(x, levels = )` |
+| 빈도순 | `fct_infreq()`, 뒤집기 `fct_rev()` |
+| 다른 값 기준 정렬 | `fct_reorder(f, x, median)` |
+| 선 그래프 범례 정렬 | `fct_reorder2(f, x, y)` |
+| 특정 수준을 앞으로 | `fct_relevel(f, "a")` |
+| 이름 바꾸기 | `fct_recode(f, new = "old")` |
+| 여러 수준 묶기 | `fct_collapse(f, new = c("a", "b"))` |
+| 드문 범주 묶기 | `fct_lump_n(f, n = 10)` |
 
-```r
-# 소득-나이-결혼상태 관계 분석
-gss_cat %>%
-  filter(!is.na(rincome), rincome != "Not applicable") %>%
-  mutate(
-    rincome = fct_reorder(rincome, age),
-    marital = fct_infreq(marital)
-  ) %>%
-  ggplot(aes(age, rincome, color = marital)) +
-  geom_jitter(alpha = 0.3) +
-  facet_wrap(~marital)
-```
+## 참고자료
 
-## 주요 함수 요약
+- *R for Data Science* (2nd ed.): [16 Factors](https://r4ds.hadley.nz/factors.html)
+- [forcats 공식 문서](https://forcats.tidyverse.org/)
 
-**재정렬**
-- `fct_reorder()`: 다른 변수 기준 정렬
-- `fct_infreq()`: 빈도 기준 정렬
-- `fct_relevel()`: 특정 레벨을 앞으로 이동
-- `fct_reorder2()`: 선 그래프 최적화
-
-**레벨 수정**
-- `fct_recode()`: 레벨 이름 변경
-- `fct_collapse()`: 여러 레벨을 그룹으로 통합
-- `fct_lump()`: 작은 그룹을 자동으로 "Other"로 통합
+다음 글: [R4DS - 반복: across와 map](/posts/r4ds-iteration)
