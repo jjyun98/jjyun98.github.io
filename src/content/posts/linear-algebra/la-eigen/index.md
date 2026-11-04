@@ -2,938 +2,283 @@
 title: '선형대수 - 고유값, 대각화와 이차형식'
 published: 2023-07-04
 draft: false
-description: '고유값과 고유벡터, 대각화, 대칭행렬과 유니타리 대각화, 스펙트럼 분해, 양의 정부호 행렬과 이차형식 정리'
+description: '고유값과 고유벡터, 대각화 조건, 대칭·에르미트·유니타리·정규행렬, 쉬르 정리와 스펙트럼 정리, 스펙트럼 분해, 양의 정부호 판정과 이차형식 정리'
 series: '선형대수학'
 tags: ['선형대수학', '수학']
 ---
 
-고유값과 고유벡터는 행렬이 어떤 방향을 보존하며 작용하는지를 보여준다. 이 글에서는 대각화, 유니타리 대각화, 스펙트럼 분해, 양의 정부호 행렬, 이차형식까지 이어서 정리한다.
+고유벡터는 행렬을 곱해도 방향이 바뀌지 않고 크기만 고유값 배만큼 변하는 벡터다. 고유벡터로 기저를 만들 수 있으면 행렬이 대각행렬로 단순해진다. 이 글은 대각화 조건, 대칭·에르미트·유니타리·정규행렬의 대각화, 스펙트럼 분해, 양의 정부호 판정과 이차형식을 정리한다.
 
-이전 글:
+이전 글: [선형대수 - 선형사상과 행렬표현](/posts/la-linear-map)
 
-- [선형대수 - 선형사상과 행렬표현](/posts/la-linear-map)
+## 1. 고유값과 고유벡터
 
-## 1. 행렬의 대각화
+### 정의
 
-대각화 가능 행렬이란 대각화를 할 수 있는 행렬을 의미한다.
+정사각행렬 $\mathbf{A}$에 대해
 
-<br>
-
-> **A** 행렬이 대각화 가능행렬이다.
-> ⇔ **A**는 대각행렬과 닮음이다.
-> ⇔ $\mathbf{P}^{-1}\mathbf{A}\mathbf{P}$가 대각행렬이 되는 $\mathbf{P}$가 존재
-
-<br>
-
-$$
-\mathbf{P}^{-1}\mathbf{A}\mathbf{P} = 
-\begin{pmatrix}
-\lambda_1 & 0 & 0 & \cdots & 0\\
-0 & \lambda_2 & 0 & \cdots & 0\\
-0 & 0 & \lambda_3 & \cdots & 0\\
-0 & \cdots & 0 & 0 & \lambda_n\\
-\end{pmatrix}
-$$
-
-<br>
-
-이러한 꼴의 대각행렬을 만들 수 있는 행렬 $\mathbf{A}$를 **대각화 가능 행렬**이라 하고, 행렬 $\mathbf{P}$는 $\mathbf{A}$를 **대각화하는 행렬**이라 한다.
-
-<br>
-
-위의 식을 변형시켜보면 다음과 같은 결과들을 얻을 수 있다.
-
-<br>
-
-$$
-\mathbf{P}^{-1}\mathbf{A}\mathbf{P} = 
-\begin{pmatrix}
-\lambda_1 & 0 & 0 & \cdots & 0\\
-0 & \lambda_2 & 0 & \cdots & 0\\
-0 & 0 & \lambda_3 & \cdots & 0\\
-0 & \cdots & 0 & 0 & \lambda_n\\
-\end{pmatrix}
-$$
-
-<br>
-
-$$
-\Leftrightarrow \mathbf{A}\mathbf{P} = \mathbf{P} \begin{pmatrix}
-\lambda_1 & 0 & 0 & \cdots & 0\\
-0 & \lambda_2 & 0 & \cdots & 0\\
-0 & 0 & \lambda_3 & \cdots & 0\\
-0 & \cdots & 0 & 0 & \lambda_n\\
-\end{pmatrix}
-$$
-
-<br>
-
-$$
-\Leftrightarrow \begin{pmatrix}
-\mathbf{A}\mathbf{P}^{c}_1 & \mathbf{A}\mathbf{P}^{c}_2 & \cdots & \mathbf{A}\mathbf{P}^{c}_n
-\end{pmatrix}
-= \begin{pmatrix}
-\mathbf{P}^{c}_1 & \mathbf{P}^{c}_2 & \cdots & \mathbf{P}^{c}_n
-\end{pmatrix}
-\begin{pmatrix}
-\lambda_1 & 0 & 0 & \cdots & 0\\
-0 & \lambda_2 & 0 & \cdots & 0\\
-0 & 0 & \lambda_3 & \cdots & 0\\
-0 & \cdots & 0 & 0 & \lambda_n\\
-\end{pmatrix}
-$$
-
-<br>
-
-$$
-\Leftrightarrow \begin{pmatrix}
-\mathbf{A}\mathbf{P}^{c}_1 & \mathbf{A}\mathbf{P}^{c}_2 & \cdots & \mathbf{A}\mathbf{P}^{c}_n
-\end{pmatrix} = \begin{pmatrix}
-\lambda_1 \mathbf{P}^{c}_1 & \lambda_2 \mathbf{P}^{c}_2 & \cdots & \lambda_n \mathbf{P}^{c}_n
-\end{pmatrix}
-$$
-
-<br>
-
-따라서 $\mathbf{A}\mathbf{P}_i^c = \lambda_i \mathbf{P}_i^c$라는 결론이 나온다.
-
-<br>
-
-계산 과정에서 역행렬을 사용했기 때문에 이때의 행렬 $\mathbf{P}$는 역행렬을 가져야 한다. 따라서 다음 두 가지가 성립한다.
-
-<br>
-
-$$
-\det \mathbf{P} \neq 0\\
-\{\mathbf{P}_1^c, \mathbf{P}_2^c, \cdots, \mathbf{P}_n^c\} = \text{일차독립}
-$$
-
-<br>
-
-여기서 일차독립이라 함은 같은 행 또는 열에 하나의 scalar만 있는 것을 의미하기에 곧 $\{\mathbf{P}_1^c, \mathbf{P}_2^c, \cdots, \mathbf{P}_n^c\}$는 $\mathbb{R}^n$의 기저가 된다.
-
-<br>
-
-## 2. 고유값, 고유벡터
-
-어떤 행렬 $\mathbf{A}$에 열벡터 $\mathbf{v}$를 곱해서 다음과 같은 꼴이 될 때, $\lambda$ 에 대응되는 0 아닌 벡터 $\mathbf{v}$가 존재할 때, $\lambda$를 $\mathbf{A}$의 **고유값(eigenvalue)**이라 하고 $\mathbf{v}$를 $\lambda$에 대응되는 $\mathbf{A}$의 **고유벡터(eigenvector)**라 한다.
-
-<br>
-
-$$
-\mathbf{A}\mathbf{v} = \lambda \mathbf{v} \\
-(\mathbf{v} \neq \mathbf{0})
-$$
-
-<br>
-
-또한, 벡터공간 $V$사이에 정의된 선형사상 $L : V \to V$에 대해, $L(\mathbf{v}) = \lambda \mathbf{v}$에서 $\lambda$가 scalar로 깔끔하게 n배 형식이 나온다면, 그 때의 $\mathbf{v}$를 고유벡터, $\lambda$를 고유값이라고 할 수 있다.
-
-<br>
-
-이러한 추상적 이해를 기저의 좌표벡터 차원에서 이해하자면 다음과 같이 표현된다.
-
-<br>
-
-$$
-[L(\mathbf{v})]_{\mathcal{B}} = [\lambda \mathbf{v}]_{\mathcal{B}}\\
-\Leftrightarrow [L]_{\mathcal{B}} [\mathbf{v}]_{\mathcal{B}} = \lambda [\mathbf{v}]_{\mathcal{B}}
-$$
-
-<br>
-
-이는 $[L]_{\mathcal{B}}$행렬에 열벡터를 곱하니, 그 열벡터의 몇 배가 나왔다라고 이해할 수 있다. 여기서 "그 열벡터"는 고유벡터의 좌표벡터를 의미하고 "몇 배"는 고유값을 의미한다.
-
-<br>
-
-위의 $\mathbf{A}\mathbf{v} = \lambda \mathbf{v} (\mathbf{v} \neq \mathbf{0})$로 돌아오면, 이 식에서는 고유값과 고유벡터를 얻을 수 있다. 이때 $\{\mathbf{v}_1, \cdots, \mathbf{v}_n\}$꼴의 고유 벡터로 이루어진 기저를 만들면(무조건 생기는 것은 아니다) 다음과 같이 표현된다.
-
-<br>
-
-$$
-\mathbf{A} \begin{pmatrix}
-\mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_n
-\end{pmatrix} = \begin{pmatrix}
-\lambda_1 \mathbf{v}_1 & \lambda_2 \mathbf{v}_2 & \cdots & \lambda_n \mathbf{v}_n
-\end{pmatrix}
-$$
-
-<br>
-
-$$
-\mathbf{A} \begin{pmatrix}
-\mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_n
-\end{pmatrix} = \begin{pmatrix}
-\mathbf{v}_1 & \mathbf{v}_2 & \cdots & \mathbf{v}_n
-\end{pmatrix} \begin{pmatrix}
-\lambda_1 & 0 & 0 & \cdots & 0\\
-0 & \lambda_2 & 0 & \cdots & 0\\
-0 & 0 & \lambda_3 & \cdots & 0\\
-0 & \cdots & 0 & 0 & \lambda_n\\
-\end{pmatrix}
-$$
-
-<br>
-
-$\mathbf{V}$는 기저라 역행렬이 가능하므로 양변에 역행렬을 취하면 아래와 같다.
-
-<br>
-
-$$
-\mathbf{V}^{-1} \mathbf{A} \mathbf{V} = \begin{pmatrix}
-\lambda_1 & 0 & 0 & \cdots & 0\\
-0 & \lambda_2 & 0 & \cdots & 0\\
-0 & 0 & \lambda_3 & \cdots & 0\\
-0 & \cdots & 0 & 0 & \lambda_n\\
-\end{pmatrix}
-$$
-
-<br>
-
-즉, 행렬의 대각화 여부는 고유벡터로 구성된 기저의 유무를 묻는 것과 같다.
-
-<br>
-
-$\lambda$를 고유값으로 가지는 고유벡터들의 모임을 **고유공간**이라 한다. 기호로 표현하면 다음과 같다.
-
-<br>
-
-$$
-E_A(\lambda) = \{\mathbf{v} \in M_{n, 1}(\mathbb{R}) \mid \mathbf{A}\mathbf{v} = \lambda \mathbf{v}\}
-$$
-
-<br>
-
-### 고유값, 고유벡터 구하기
-
-행렬 $\mathbf{A} = \begin{pmatrix}
-5 & -6\\
-2 & -2\\
-\end{pmatrix}$의 모든 고유값과 대응되는 고유공간을 구해보면 다음과 같이 구할 수 있다.
-
-<br>
-
-#### 1-1) 다항식으로 고유값 구하기
-
-<br>
-
-$$
-\begin{pmatrix}
-5 & -6\\
-2 & -2\\
-\end{pmatrix}
-\begin{pmatrix}
-x\\
-y\\
-\end{pmatrix} =
-\lambda \begin{pmatrix}
-x\\
-y\\
-\end{pmatrix}\\
-\Leftrightarrow \begin{pmatrix}
-5 - \lambda & -6\\
-2 & -2 - \lambda\\
-\end{pmatrix}\begin{pmatrix}
-x\\
-y\\
-\end{pmatrix} = 
-\begin{pmatrix}
-0\\
-0\\
-\end{pmatrix}
-$$
-
-<br>
-
-$(x \; y)^T \neq (0 \; 0)^T$이므로
-
-<br>
-
-$$
-\det \begin{pmatrix}
-5 - \lambda & -6\\
-2 & -2 - \lambda\\
-\end{pmatrix} = 0 
-\Leftrightarrow (\lambda - 1)(\lambda - 2) = 0\\
-\therefore \lambda_1 = 1, \; \lambda_2 = 2
-$$
-
-<br>
-
-#### 1-2) 좀 더 빠른 다항식으로 고유값 구하기
-
-유사한데 처음부터 과정을 아래와 같이 계산한다.
-
-<br>
-
-$$
-\begin{pmatrix}
-5 & -6\\
-2 & -2\\
-\end{pmatrix}
-\begin{pmatrix}
-x\\
-y\\
-\end{pmatrix} - \lambda \begin{pmatrix}
-1 & 0\\
-0 & 1\\
-\end{pmatrix}\begin{pmatrix}
-x\\
-y\\
-\end{pmatrix} =\begin{pmatrix}
-0\\
-0\\
-\end{pmatrix}
-$$
-
-<br>
-
-이후 계산과정은 동일하게 $(x \; y)^T \neq (0 \; 0)^T$이므로
-
-<br>
-
-$$
-\det \begin{pmatrix}
-5 - \lambda & -6\\
-2 & -2 - \lambda\\
-\end{pmatrix} = 0 
-\Leftrightarrow (\lambda - 1)(\lambda - 2) = 0\\
-\therefore \lambda_1 = 1, \; \lambda_2 = 2
-$$
-
-<br>
-
-#### 2) 고유공간 구하기
-
-구해진 $\lambda$를 행렬 $\mathbf{A}$에 계산해서 나온 행렬과 $(x \; y)^T$를 곱한 값이 0이 나오게 되는 x와 y의 모임을 고유공간이라 할 수 있는데 $\lambda_1 = 1$에 대응되는 고유공간을 구하는 계산 과정은 다음과 같다.
-
-<br>
-
-$$
-\begin{pmatrix}
-4 & -6\\
-2 & -3\\
-\end{pmatrix}
-\begin{pmatrix}
-x\\
-y\\
-\end{pmatrix} =
-\begin{pmatrix}
-0\\
-0\\
-\end{pmatrix} \Leftrightarrow 2x = 3y \Leftrightarrow \begin{pmatrix}
-x\\
-y\\
-\end{pmatrix} = x\begin{pmatrix}
-3\\
-2\\
-\end{pmatrix}
-$$
-
-<br>
-
-이를 다음과 같이 표기하기도 한다.
-
-<br>
-
-$$
-\left\langle
-\left\{
-\begin{pmatrix}
-3\\
-2\\
-\end{pmatrix}
-\right\}
-\right\rangle
-$$
-
-<br>
-
-$\lambda_2 = 2$에 대응되는 고유공간을 구하는 과정도 동일하고 이 결과는 다음과 같다.
-
-<br>
-
 $$
-\left\langle
-\left\{
-\begin{pmatrix}
-2\\
-1\\
-\end{pmatrix}
-\right\}
-\right\rangle
+\mathbf{A}\mathbf{v} = \lambda\mathbf{v}, \qquad \mathbf{v} \neq \mathbf{0}
 $$
 
-<br>
+을 만족하는 스칼라 $\lambda$를 **고유값**, $\mathbf{v}$를 $\lambda$에 대응하는 **고유벡터**라 한다. $\lambda$에 대응하는 고유벡터와 $\mathbf{0}$을 모은 부분공간을 **고유공간**이라 한다.
 
-따라서 고유공간을 표현하는 기호를 이용한다면 고유공간은 각각 $E_A(1) = \text{span}(\{(3, 2)^T\})$, $E_A(2) = \text{span}(\{(2, 1)^T\})$가 된다.
-
-<br>
-
-여기서 고유값 2개와 각 고유값에 해당하는 고유공간 2개를 얻었는데 이를 아래와 같은 식으로 변형 가능하다.
-
-<br>
-
-$$
-\begin{pmatrix}
-5 & -6\\
-2 & -2\\
-\end{pmatrix}\begin{pmatrix}
-3\\
-2\\
-\end{pmatrix}
-= 1 \cdot\begin{pmatrix}
-3\\
-2\\
-\end{pmatrix}, \quad \begin{pmatrix}
-5 & -6\\
-2 & -2\\
-\end{pmatrix}\begin{pmatrix}
-2\\
-1\\
-\end{pmatrix}
-= 2 \cdot\begin{pmatrix}
-2\\
-1\\
-\end{pmatrix}
-$$
-
-<br>
-
-이 두 식을 하나의 식으로 합치면 다음과 같고,
-
-<br>
-
-$$
-\begin{pmatrix}
-5 & -6\\
-2 & -2\\
-\end{pmatrix}\begin{pmatrix}
-3 & 2\\
-2 & 1\\
-\end{pmatrix}
-= \begin{pmatrix}
-3 & 4\\
-2 & 2\\
-\end{pmatrix}
-$$
-
-<br>
-
-오른쪽 행렬을 나눠쓰면 아래와 같이 표현 가능하다.
-
-<br>
-
-$$
-\begin{pmatrix}
-5 & -6\\
-2 & -2\\
-\end{pmatrix}\begin{pmatrix}
-3 & 2\\
-2 & 1\\
-\end{pmatrix}
-= \begin{pmatrix}
-3 & 2\\
-2 & 1\\
-\end{pmatrix}
-\begin{pmatrix}
-1 & 0\\
-0 & 2\\
-\end{pmatrix}
-$$
-
-<br>
-
 $$
-\Leftrightarrow 
-{\begin{pmatrix}
-3 & 2\\
-2 & 1\\
-\end{pmatrix}}^{-1}
- \begin{pmatrix}
-5 & -6\\
-2 & -2\\
-\end{pmatrix}\begin{pmatrix}
-3 & 2\\
-2 & 1\\
-\end{pmatrix} = \begin{pmatrix}
-1 & 0\\
-0 & 2\\
-\end{pmatrix}
+E_{\mathbf{A}}(\lambda) = \{\mathbf{v} \mid \mathbf{A}\mathbf{v} = \lambda\mathbf{v}\} = N(\mathbf{A} - \lambda\mathbf{I})
 $$
-
-<br>
-
-결국 가운데 끼인 행렬은 시작할 때의 행렬 **A**였기 때문에 위의 식을 토대로 주어진 행렬이 대각화 가능하고 대각화할 경우 결과는 고유값들의 대각행렬 꼴로 나옴을 알 수 있다. 그리고 그 끼이게 하는 행렬은 고유벡터들이 된다.
 
-<br>
+선형사상 $L : V \to V$에서도 $L(\mathbf{v}) = \lambda\mathbf{v}$로 같게 정의하며, 기저 $\mathcal{B}$를 잡으면 $[L]_{\mathcal{B}}[\mathbf{v}]_{\mathcal{B}} = \lambda[\mathbf{v}]_{\mathcal{B}}$로 행렬 문제가 된다. 닮음행렬은 같은 사상이므로 고유값이 같다.
 
-### 서로 다른 고유값의 특성
+### 특성방정식
 
-**a)**
+$(\mathbf{A} - \lambda\mathbf{I})\mathbf{v} = \mathbf{0}$이 $\mathbf{0}$이 아닌 해를 가지려면 $\mathbf{A} - \lambda\mathbf{I}$가 가역이 아니어야 한다.
 
-<br>
-
 $$
-\mathbf{A}\mathbf{v}_1 = \lambda_1 \mathbf{v}_1\\
-\mathbf{A}\mathbf{v}_2 = \lambda_2 \mathbf{v}_2
+\det(\mathbf{A} - \lambda\mathbf{I}) = 0
 $$
-
-<br>
-
-이고 $\lambda_1 \neq \lambda_2$같이 고유값이 다르다면 두 고유벡터 $\{\mathbf{v}_1, \mathbf{v}_2\}$는 **일차독립**이다.
-
-<br>
-
-**b)**
-
-행렬 **A**가 n개의 서로 다른 고유값을 가지면, **A**는 대각화 가능하다.
-
-<br>
-
-따라서 행렬 **A**가 대각화 가능한지를 판단하려면, 각 고유값에 대응되는 고유벡터들이 기저를 이룰 수 있는지를 확인하면 된다. 이를 확인하기 위해서는 조건을 만족하는 고유값과 고유벡터를 구해야 하는데 그 조건은 지금까지 나온 과정이고 이를 하나의 식으로 표현하면 다음과 같다.
 
-<br>
+이를 **특성방정식**이라 한다. 근을 중복도까지 세면(복소수 포함) 항상
 
 $$
-\det(\mathbf{A} - \lambda \mathbf{I}_n) = 0
+\det(\mathbf{A}) = \lambda_1\lambda_2\cdots\lambda_n,
+\qquad
+\operatorname{tr}(\mathbf{A}) = \lambda_1 + \lambda_2 + \cdots + \lambda_n
 $$
 
-<br>
+이 성립한다. 대각화 가능 여부와 관계없다.
 
-이 식을 **특성방정식**이라고 하며 앞으로 고유값과 고유벡터를 구하기 위해 이 식만 사용하면 된다.
+### 예시
 
-<br>
+$\mathbf{A} = \begin{pmatrix} 5 & -6 \\ 2 & -2 \end{pmatrix}$에 대해
 
-### 대각화 가능한 행렬의 행렬식, 대각합
-
-정사각행렬 **A**가 대각화 가능하고, n개의 고유값이 $\lambda_1, \lambda_2, \cdots, \lambda_n$이라 하면 행렬 **A**의 행렬식과 대각합은 다음이 성립한다.
-
-<br>
-
 $$
-\det(\mathbf{A}) = \lambda_1 \lambda_2 \cdots \lambda_n\\
-\text{Tr}(\mathbf{A}) = \lambda_1 + \lambda_2 + \cdots + \lambda_n
+\det\begin{pmatrix} 5 - \lambda & -6 \\ 2 & -2 - \lambda \end{pmatrix}
+= \lambda^2 - 3\lambda + 2 = (\lambda - 1)(\lambda - 2) = 0
 $$
 
-<br>
+| 고유값 | $\mathbf{A} - \lambda\mathbf{I}$ | 고유공간 |
+|---|---|---|
+| $\lambda_1 = 1$ | $\begin{pmatrix} 4 & -6 \\ 2 & -3 \end{pmatrix}$, $2x = 3y$ | $E(1) = \operatorname{span}\{(3, 2)^T\}$ |
+| $\lambda_2 = 2$ | $\begin{pmatrix} 3 & -6 \\ 2 & -4 \end{pmatrix}$, $x = 2y$ | $E(2) = \operatorname{span}\{(2, 1)^T\}$ |
 
-## 3. 대칭행렬, 에르미트 행렬, 유니타리행렬의 고유값
+확인: $\det\mathbf{A} = -10 + 12 = 2 = 1 \times 2$, $\operatorname{tr}\mathbf{A} = 3 = 1 + 2$.
 
-여러 행렬 소개
+## 2. 대각화
 
-**1) 대칭 행렬**
-
-<br>
-
-$$
-\mathbf{A}^T = \mathbf{A}\\
-\text{ex) } \mathbf{A} = \begin{pmatrix}
-1 & 3\\
-3 & 7\\
-\end{pmatrix}
-$$
+### 정의와 조건
 
-<br>
+$\mathbf{P}^{-1}\mathbf{A}\mathbf{P} = \mathbf{D}$(대각행렬)가 되는 가역행렬 $\mathbf{P}$가 있으면 $\mathbf{A}$를 **대각화 가능**하다고 한다. 즉 대각행렬과 닮음이다.
 
-**2) 에르미트 행렬**
+$\mathbf{AP} = \mathbf{PD}$를 열별로 보면 $\mathbf{A}\mathbf{p}_i = \lambda_i\mathbf{p}_i$이다. 따라서
 
-<br>
+- $\mathbf{P}$의 열 = 고유벡터, $\mathbf{D}$의 대각 = 대응하는 고유값
+- $\mathbf{P}$가 가역 = 고유벡터 $n$개가 일차독립
 
 $$
-\mathbf{A}^{*} = \mathbf{A}\\
-\mathbf{A}^{*} = (\bar{\mathbf{A}})^T\\
-\text{ex) } \mathbf{A} = \begin{pmatrix}
-3 & 1 + i\\
-1 - i & 4\\
-\end{pmatrix}
+\mathbf{A} \text{ 대각화 가능} \iff \text{고유벡터로 이루어진 } \mathbb{R}^n \text{(또는 } \mathbb{C}^n\text{)의 기저가 존재}
 $$
 
-<br>
+위 예시에서는
 
-**3) 직교 행렬**
-
-<br>
-
 $$
-\mathbf{A}\mathbf{A}^T = \mathbf{I} = \mathbf{A}^T\mathbf{A}\\
-\text{ex) } \mathbf{A} = \begin{pmatrix}
-\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}\\
-\frac{1}{\sqrt{2}} & - \frac{1}{\sqrt{2}}\\
-\end{pmatrix}
+\begin{pmatrix} 3 & 2 \\ 2 & 1 \end{pmatrix}^{-1}
+\begin{pmatrix} 5 & -6 \\ 2 & -2 \end{pmatrix}
+\begin{pmatrix} 3 & 2 \\ 2 & 1 \end{pmatrix}
+=
+\begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}
 $$
-
-<br>
-
-이때, **A** = 정규직교기저 행렬이 된다.(실수 범위)
 
-<br>
+### 판정에 쓰는 사실
 
-**4) 유니타리 행렬**
-
-<br>
-
-$$
-\mathbf{U}\mathbf{U}^{*} = \mathbf{I} = \mathbf{U}^{*}\mathbf{U}\\
-\text{ex) } \mathbf{U} = 
-\begin{pmatrix}
-\frac{1 + i}{2} & \frac{1 + i}{2}\\
-\frac{1 - i}{2} & \frac{- 1 + i}{2}\\
-\end{pmatrix}
-$$
+- 서로 다른 고유값에 대응하는 고유벡터들은 일차독립이다.
+- 따라서 **서로 다른 고유값이 $n$개**면 대각화 가능하다(충분조건).
+- 중근이 있으면 각 고유값의 고유공간 차원(기하적 중복도)이 근의 중복도(대수적 중복도)와 같은지 확인해야 한다. 예를 들어 $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$은 고유값 1이 중근인데 고유공간이 1차원이라 대각화되지 않는다.
 
-<br>
+### 쓰임: 거듭제곱
 
-이때, **U** = 정규직교기저 행렬이 된다.(복소수 범위)
+$\mathbf{A} = \mathbf{PDP}^{-1}$이면 $\mathbf{A}^k = \mathbf{P}\mathbf{D}^k\mathbf{P}^{-1}$이고, $\mathbf{D}^k$는 대각 성분만 $k$제곱하면 된다.
 
-<br>
+## 3. 특별한 행렬들
 
-**5) 정규 행렬**
+### 복소행렬과 켤레전치
 
-<br>
+복소행렬 $\mathbf{A}$의 **켤레전치** $\mathbf{A}^* = \overline{\mathbf{A}}^T$는 켤레를 취한 뒤 전치한 것이다.
 
 $$
-\mathbf{A}\mathbf{A}^{*} = \mathbf{A}^{*}\mathbf{A}\\
-\text{ex) } \mathbf{A} = 
-\begin{pmatrix}
-1 & i\\
-i & 1\\
-\end{pmatrix}
+\mathbf{A} = \begin{pmatrix} i & 1 - i \\ 2 & 3 + 2i \end{pmatrix}
+\quad\Rightarrow\quad
+\mathbf{A}^* = \begin{pmatrix} -i & 2 \\ 1 + i & 3 - 2i \end{pmatrix}
 $$
 
-<br>
+복소 내적은 $\langle \mathbf{u}, \mathbf{v} \rangle = \mathbf{v}^*\mathbf{u}$이고, 실수에서의 전치 $T$ 역할을 복소수에서는 $*$가 한다.
 
-### 에르미트 행렬 성질
+### 종류
 
-대칭행렬(실수 범위) $\subset$ 에르미트행렬(복소수 범위)
+| 이름 | 조건 | 예 | 실수 버전 |
+|---|---|---|---|
+| 에르미트 | $\mathbf{A}^* = \mathbf{A}$ | $\begin{pmatrix} 3 & 1 + i \\ 1 - i & 4 \end{pmatrix}$ | 대칭 $\mathbf{A}^T = \mathbf{A}$ |
+| 유니타리 | $\mathbf{U}^*\mathbf{U} = \mathbf{U}\mathbf{U}^* = \mathbf{I}$ | $\frac12\begin{pmatrix} 1 + i & 1 + i \\ 1 - i & -1 + i \end{pmatrix}$ | 직교 $\mathbf{Q}^T\mathbf{Q} = \mathbf{I}$ |
+| 정규 | $\mathbf{A}^*\mathbf{A} = \mathbf{A}\mathbf{A}^*$ | $\begin{pmatrix} 1 & i \\ i & 1 \end{pmatrix}$ | |
 
-<br>
+유니타리(직교)행렬의 열은 정규직교기저를 이룬다. 실대칭행렬은 에르미트행렬이고, 에르미트행렬과 유니타리행렬은 모두 정규행렬이다.
 
-$n \times n$ 행렬 **A**가 실수 성분을 갖는 대칭행렬이거나, 복소수 성분을 갖는 에르미트행렬이면 다음이 성립한다.
+![정규행렬 안에서 에르미트, 실대칭, 유니타리 행렬의 포함 관계](./figures/fig-normal-matrices.svg)
 
-<br>
+### 고유값의 성질
 
-> - $\mathbf{v}^{*}\mathbf{A}\mathbf{v}$ = 실수
-> - 고유값 $\lambda$는 실수다. 만약 **A**가 대칭행렬이라면, 고유벡터도 실수다
-> - 다른 고유값에 대응하는 각각의 고유벡터는 항상 직교한다
+| 행렬 | 고유값 | 고유벡터 |
+|---|---|---|
+| 에르미트(실대칭) | 모두 **실수**. $\mathbf{v}^*\mathbf{A}\mathbf{v}$도 항상 실수 | 서로 다른 고유값의 고유벡터는 직교. 실대칭이면 고유벡터도 실수로 잡을 수 있다 |
+| 유니타리(직교) | 절댓값이 **1**인 복소수 | 서로 다른 고유값의 고유벡터는 직교 |
 
-<br>
+유니타리행렬은 내적과 길이를 보존한다: $\langle \mathbf{U}\mathbf{u}, \mathbf{U}\mathbf{v} \rangle = \langle \mathbf{u}, \mathbf{v} \rangle$, $\lVert \mathbf{U}\mathbf{u} \rVert = \lVert \mathbf{u} \rVert$.
 
-### 유니타리 행렬 성질
+## 4. 쉬르 정리와 스펙트럼 정리
 
-직교행렬(실수 범위) $\subset$ 유니타리행렬(복소수 범위)
+### 쉬르 정리: 삼각화는 항상 된다
 
-<br>
+대각화가 안 되는 행렬도 있지만, **모든 복소 정사각행렬**은 유니타리행렬로 상삼각행렬로 만들 수 있다.
 
-$n \times n$ 복소행렬 **U**가 유니타리행렬이면 다음이 성립한다.
-
-<br>
-
-> - 임의의 벡터 **u**, **v**에 대해 $\langle\mathbf{U}\mathbf{u}, \mathbf{U}\mathbf{v}\rangle = \langle\mathbf{u}, \mathbf{v}\rangle$이고 $\|\mathbf{U}\mathbf{u}\| = \|\mathbf{u}\|$
-> - **U**의 고유값 $\lambda$는 절대값이 1인 복소수
-> - 다른 고유값에 대응하는 각각의 고유벡터는 항상 직교한다
-
-<br>
-
-### 복소행렬의 삼각형화
-
-고유값이 존재하더라도 대각화 가능하지 않은 행렬이 존재할 수 있다.
-
-<br>
-
-하지만 일반적으로 아래와 같은 꼴을 만들면 그 결과는 상삼각행렬 형태로 나오게 되고, 행렬 **A**는 삼각형화 가능이라 한다. 만약 고유값이 존재한다면 대각선에는 고유값이 위치하게 되지만 삼각형화에서는 고유값이 필수적으로 존재해야 하지는 않는다.
-
-<br>
-
 $$
-\mathbf{P}^{-1}\mathbf{A}\mathbf{P} = \begin{pmatrix}
-a & b & c\\
-0 & d & e\\
-0 & 0 & f\\
-\end{pmatrix}
+\mathbf{U}^*\mathbf{A}\mathbf{U} = \mathbf{T} = \begin{pmatrix} \lambda_1 & * & * \\ 0 & \lambda_2 & * \\ 0 & 0 & \lambda_3 \end{pmatrix}
 $$
-
-<br>
-
-이때 **P**자리에 유니타리 행렬 **U**가 들어가게 된다면, 똑같이 상삼각행렬이 모습이 나오게 되고 추가로 이때의 대각선의 원소들은 고유값이 배치되게 된다. 이를 **쉬르의 정리**라고 한다.
 
-<br>
+$\mathbf{T}$의 대각에는 $\mathbf{A}$의 고유값이 놓인다. 실행렬의 고유값이 모두 실수이면 $\mathbf{U}$를 실직교행렬로 잡을 수 있다.
 
-#### 쉬르의 정리
+### 스펙트럼 정리: 언제 유니타리 대각화가 되는가
 
-> 임의의 $n \times n$ 복소행렬 **A**에 대해 $\mathbf{U}^{*}\mathbf{A}\mathbf{U}$가 상삼각행렬이 되는 유니타리행렬 **U**가 존재하고 이때의 상삼각행렬의 대각성분은 **A**의 고유값을 배치한 것이다.
-> 만약 **A**가 실수에서 정의된 대칭행렬이라면, 행렬 **U**는 실수에서 정의된 직교행렬이 되게 할 수 있다.
+쉬르 정리의 $\mathbf{T}$가 대각행렬이 되는 조건이 정규성이다.
 
-<br>
-
 $$
-\mathbf{U}^{*}\mathbf{A}\mathbf{U} = \begin{pmatrix}
-a & b & c\\
-0 & d & e\\
-0 & 0 & f\\
-\end{pmatrix}
+\mathbf{A} \text{가 정규행렬} \iff \mathbf{U}^*\mathbf{A}\mathbf{U} = \mathbf{D} \text{인 유니타리 } \mathbf{U} \text{가 존재 (유니타리 대각화 가능)}
 $$
-
-<br>
-
-## 4. 행렬의 직교 대각화, 유니타리 대각화
-
-따라서 쉬르의 정리에 따르면 대칭행렬과 직교행렬 모두 직교 대각화가 가능하다.
 
-<br>
+실수 범위에서는
 
-고로 **P**가 대칭행렬이라면, $\mathbf{P}^{-1}\mathbf{A}\mathbf{P} = \mathbf{D}$에서 $\mathbf{D}$는 직교대각행렬이 되고, **P**가 직교행렬이여도, $\mathbf{P}^{-1}\mathbf{A}\mathbf{P} = \mathbf{D}$에서 $\mathbf{D}$는 직교대각행렬이 된다. 이를 도식화 시키면 다음과 같다.
-
-<br>
-
 $$
-\mathbf{A}^T = \mathbf{A} \Leftrightarrow \mathbf{A} \text{ 직교 대각화 가능} \Leftarrow \mathbf{P}^T \mathbf{A} \mathbf{P} = \mathbf{D}\\
-(\mathbf{A} = \text{대칭행렬}) \quad (\mathbf{P} = \text{직교행렬}, \; \mathbf{D} = \text{대각행렬})
+\mathbf{A} \text{가 실대칭행렬} \iff \mathbf{P}^T\mathbf{A}\mathbf{P} = \mathbf{D} \text{인 직교행렬 } \mathbf{P} \text{가 존재 (직교 대각화 가능)}
 $$
-
-<br>
-
-### 정리
-
-위의 내용을 구조화 하면 다음과 같고,
-
-<br>
-
-![img](./images/la_0808_1.png)
-
-<br>
-
-위의 내용을 모두 정리해보면 다음과 같다.
-
-<br>
-
-> - 정규행렬 = 유니타리 대각화 가능
-> - 에르미트 행렬 = 고유값이 다 실수(대각선이 실수라는 의미)
-> - 대칭행렬 = 직교대각화 가능
-> - 유니타리 행렬 = 고유값의 절대값이 1(대각선의 원소들이 1)
-
-<br>
-
-이를 수식화 해보면 다음과 같다.
-
-<br>
-
-![img](./images/la_0808_2.png)
 
-<br>
+실직교행렬은 정규행렬이라 복소수 범위에서는 유니타리 대각화되지만, 회전행렬처럼 고유값이 복소수일 수 있어 실수 범위에서는 일반적으로 대각화되지 않는다.
 
-**동시에 유니타리대각화 가능**
+| $\mathbf{U}^*\mathbf{A}\mathbf{U} = \mathbf{D}$에서 | $\mathbf{U}$ | $\mathbf{D}$의 대각 (고유값) |
+|---|---|---|
+| $\mathbf{A}$ 정규 | 복소 유니타리 | 복소수 |
+| $\mathbf{A}$ 에르미트 | 복소 유니타리 | **실수** |
+| $\mathbf{A}$ 실대칭 | **실직교** | **실수** |
+| $\mathbf{A}$ 유니타리 | 복소 유니타리 | 절댓값 **1** |
 
-> 유니타리대각화 가능한 행렬 **A**, **B**가 동시에 유니타리대각화 가능할 필요충분조건은 $\mathbf{A}\mathbf{B} = \mathbf{B}\mathbf{A}$이다.
+**동시 대각화**: 유니타리 대각화 가능한 $\mathbf{A}, \mathbf{B}$를 같은 $\mathbf{U}$로 동시에 대각화할 수 있다 $\iff \mathbf{AB} = \mathbf{BA}$.
 
-<br>
+## 5. 스펙트럼 분해
 
-### 행렬의 스펙트럼 분해
+### 형태
 
-행렬 **A**가 정규행렬이라면 다음과 같은 형태로 분해가 가능하다.
+정규행렬 $\mathbf{A}$의 서로 다른 고유값을 $\lambda_1, \dots, \lambda_k$, 각 고유공간으로의 정사영 행렬을 $\mathbf{P}_i$라 하면
 
-<br>
-
-$$
-\mathbf{A} = \lambda_1 \mathbf{P}_1 + \lambda_2 \mathbf{P}_2 + \cdots + \lambda_k \mathbf{P}_k\\
-\left\{
-\begin{array}{c}
-\mathbf{P}_i^2 = \mathbf{P}_i \\
-\mathbf{P}_i \mathbf{P}_j = \mathbf{0} (i \neq j)
-\end{array}
-\right.
-$$
-
-<br>
-
-이를 행렬 **A**의 스펙트럼 분해라고 하고, 응용하면 아래와 같은 결과도 가능하다.
-
-<br>
-
 $$
-\mathbf{A}\mathbf{v} = \lambda_1 \mathbf{P}_1 \mathbf{v} + \lambda_2 \mathbf{P}_2 \mathbf{v} + \cdots + \lambda_k \mathbf{P}_k \mathbf{v}\\
-\mathbf{A} \mathbf{P}_1 \mathbf{v} = (\lambda_1 \mathbf{P}_1 + \lambda_2 \mathbf{P}_2 + \cdots + \lambda_k \mathbf{P}_k)\mathbf{P}_1\mathbf{v}\\
-= \lambda_1 \mathbf{P}_1 \mathbf{v}
+\mathbf{A} = \lambda_1\mathbf{P}_1 + \lambda_2\mathbf{P}_2 + \cdots + \lambda_k\mathbf{P}_k
 $$
 
-<br>
-
-결과적으로 $\mathbf{P}_1 \mathbf{v}$는 고유값이 $\lambda_1$인 고유벡터, $\mathbf{P}_k \mathbf{v}$는 고유값이 $\lambda_k$인 고유벡터가 되고 이는 $\mathbf{A}\mathbf{v}$라는 것이 고유벡터들의 선형결합꼴로 나타남을 알 수 있다.
-
-<br>
-
-또한, $\mathbf{P}_1$을 곱하면 임의의 벡터 **v**가 고유값이 $\lambda_1$인 고유벡터로 바뀌고, 이것이 고유값이 $\lambda_1$인 고유공간에 포함된다고 할 수 있다. 이를 수식으로 나타내면 아래와 같고 이 과정을 정사영이라고 한다.(큰 집합에서 작은 집합으로 다운 그레이드)
-
-<br>
-
 $$
-\mathbf{P}_1 \mathbf{v} \in E_A(\lambda_1)
+\mathbf{P}_i^2 = \mathbf{P}_i, \qquad \mathbf{P}_i^* = \mathbf{P}_i, \qquad \mathbf{P}_i\mathbf{P}_j = \mathbf{O}\ (i \neq j), \qquad \mathbf{P}_1 + \cdots + \mathbf{P}_k = \mathbf{I}
 $$
 
-<br>
+고유값 $\lambda_i$의 정규직교 고유벡터를 $\mathbf{u}$들이라 하면 $\mathbf{P}_i = \sum \mathbf{u}\mathbf{u}^*$이다. 1편의 "열 × 행 = rank 1 행렬의 합" 관점 그대로다.
 
-**A**라는 행렬의 n차승에 대해 알아보면 아래와 같다.(곱해보면 나옴)
+### 의미
 
-<br>
+$\mathbf{P}_i\mathbf{v} \in E_{\mathbf{A}}(\lambda_i)$, 즉 $\mathbf{P}_i$는 임의의 벡터를 $\lambda_i$의 고유공간으로 정사영한다. 따라서
 
 $$
-\mathbf{A} = \lambda_1 \mathbf{P}_1 + \lambda_2 \mathbf{P}_2 + \cdots + \lambda_k \mathbf{P}_k\\
-\mathbf{A}^2 = \lambda_1^2 \mathbf{P}_1 + \lambda_2^2 \mathbf{P}_2 + \cdots + \lambda_k^2 \mathbf{P}_k\\
-\mathbf{A}^3 = \lambda_1^3 \mathbf{P}_1 + \lambda_2^3 \mathbf{P}_2 + \cdots + \lambda_k^3 \mathbf{P}_k
+\mathbf{A}\mathbf{v} = \lambda_1(\mathbf{P}_1\mathbf{v}) + \cdots + \lambda_k(\mathbf{P}_k\mathbf{v})
 $$
-
-<br>
-
-이는 **A**의 n차승 만큼 $\lambda$(고유값)의 차수를 올리면 쉽게 행렬 표현이 가능함을 알려준다.
-
-<br>
 
-### P(고유벡터) 구하기
+는 $\mathbf{v}$를 고유공간 성분으로 쪼갠 뒤 각 성분을 고유값 배만큼 늘리는 것이다.
 
-위 과정들은 행렬 계산을 편이하게 해주는 기능을 한다. 대신 행렬 **P**(고유벡터)를 요구하는데 이 **P**를 쉽게 구하는 방법이 있다. 함수 f가 위의 정의들에 따라 아래와 같이 표현이 가능하다.
+### 행렬 함수
 
-<br>
+$\mathbf{P}_i$의 성질 때문에 거듭제곱이 고유값에만 작용한다.
 
 $$
-f(\mathbf{A}) = f(\lambda_1)\mathbf{P}_1 + f(\lambda_2)\mathbf{P}_2 + \cdots + f(\lambda_k)\mathbf{P}_k
+\mathbf{A}^m = \lambda_1^m\mathbf{P}_1 + \cdots + \lambda_k^m\mathbf{P}_k,
+\qquad
+f(\mathbf{A}) = f(\lambda_1)\mathbf{P}_1 + \cdots + f(\lambda_k)\mathbf{P}_k
 $$
 
-<br>
+### 정사영 행렬 $\mathbf{P}_i$ 구하기
 
-이때, $f(\lambda_1) = 1$이 나오고 $f(\lambda_2) = 0$, $\cdots f(\lambda_k) = 0$이라면, $f(\mathbf{A}) = \mathbf{P}_1$이 되게 된다. 이 아이디어에 따라 f(x)를 다음과 같이 정의하자.(라그랑주 보간다항식에서 사용한 방법)
+$f(\lambda_1) = 1$, $f(\lambda_j) = 0$ ($j \neq 1$)인 다항식을 고르면 $f(\mathbf{A}) = \mathbf{P}_1$이다. 이런 $f$가 바로 라그랑주 보간의 기저다.
 
-<br>
-
 $$
-f(x) = \frac{(x-\lambda_2)(x-\lambda_3)\cdots(x-\lambda_k)}{(\lambda_1-\lambda_2)(\lambda_1-\lambda_3)\cdots(\lambda_1-\lambda_k)}
+\mathbf{P}_i = \prod_{j \neq i}\frac{\mathbf{A} - \lambda_j\mathbf{I}}{\lambda_i - \lambda_j}
 $$
-
-<br>
-
-결국 고유값만 알게되면 행렬 **P**를 쉽게 찾을 수 있다.
-
-<br>
-
-### 대각화 총정리
-
-> - 고유벡터로 구성된 기저가 있으면 대각화가 가능하다
-> - 그러나 고유벡터를 구하는 과정은 너무 복잡함
-> - 대각화가 가능한지 알아보는 더 쉬운 방법이 있으면 좋겠다
-> - 알아낸 쉬운 방법 → 정규행렬
-
-<br>
 
-추가 조건을 더하면 더 좋은 대각화까지 가능. 대칭행렬, 유니타리 행렬, 에르미트 행렬 등
+고유벡터를 따로 구하지 않고 고유값만으로 정사영 행렬을 얻는다.
 
-<br>
+## 6. 양의 정부호 행렬
 
-## 5. 양의 정부호 행렬 & 양의 준정부호 행렬
+### 정의와 판정
 
-행렬 **A**가 에르미트 행렬일 때, 다음과 같이 정의할 수 있다.
+에르미트(실대칭) 행렬 $\mathbf{H}$에 대해
 
-<br>
+| | 고유값 | 이차형식 | 소행렬식 판정 |
+|---|---|---|---|
+| 양의 정부호 (PD) | 모두 $> 0$ | $\mathbf{z}^*\mathbf{H}\mathbf{z} > 0$ ($\mathbf{z} \neq \mathbf{0}$) | **선행** 주소행렬식이 모두 $> 0$ |
+| 양의 준정부호 (PSD) | 모두 $\ge 0$ | $\mathbf{z}^*\mathbf{H}\mathbf{z} \ge 0$ | **모든** 주소행렬식이 $\ge 0$ |
+| 음의 정부호 | 모두 $< 0$ | $\mathbf{z}^*\mathbf{H}\mathbf{z} < 0$ | $(-1)^k\det\mathbf{H}_k > 0$ |
 
-$$
-\mathbf{U}^* \mathbf{A} \mathbf{U} = \begin{pmatrix}
-\lambda_1 & 0 & \cdots & 0 \\
-0 & \lambda_2 & \cdots & 0 \\
-\vdots & \vdots & \ddots & \vdots \\
-0 & 0 & \cdots & \lambda_n
-\end{pmatrix}
-$$
-
-<br>
-
-> - 대각성분($\lambda$) > 0 → 양의 정부호(Positive Definite)행렬
-> - 대각성분($\lambda$) ≥ 0 → 양의 준정부호(Positive Semi Definite)행렬
+**실베스터 판정법**: $k$번째 선행 주소행렬 $\mathbf{H}_k$(왼쪽 위 $k \times k$ 부분)에 대해 $\det\mathbf{H}_k > 0$ ($k = 1, \dots, n$)이면 양의 정부호다. $3 \times 3$이면
 
-<br>
-
-위의 정의에 따르면 양의 정부호 판별을 위해 고유값을 구해야 한다는 번거러움이 있다. **H**가 양의 정부호 행렬이 되는 두 가지 경우가 더 있다. 먼저 아래와 같이 닮음 행렬 꼴이 0보다 크다면 같은 결과가 나온다.
-
-<br>
-
 $$
-\mathbf{H} : P.D \Leftrightarrow \left\{
-\begin{array}{c}
-\mathbf{z}^* \mathbf{H} \mathbf{z} > 0\\
-(\mathbf{z} \neq \mathbf{0})
-\end{array}
-\right.
+h_{11} > 0, \qquad \det\begin{pmatrix} h_{11} & h_{12} \\ h_{21} & h_{22} \end{pmatrix} > 0, \qquad \det\mathbf{H} > 0
 $$
-
-<br>
 
-**이때, $\mathbf{z}^* \mathbf{H} \mathbf{z} = 0$일 조건은 $\mathbf{z} = \mathbf{0}$인 경우이다.**
+고유값을 구하지 않고 행렬식만으로 판정할 수 있다. 준정부호는 **선행 소행렬식에 등호만 붙여서는 안 된다**. 예를 들어 $\operatorname{diag}(0, -1)$은 선행 소행렬식이 $0, 0$이지만 PSD가 아니다. 모든 주소행렬식(임의의 행·열 집합을 같이 고른 것)을 봐야 한다.
 
-<br>
+### 부분공간에서 양수인 경우
 
-또는 **H**가 다음과 같다고 할 때,
+에르미트 행렬 $\mathbf{A}$와 $k$차원 부분공간 $W$에 대해, $W$의 모든 $\mathbf{w} \neq \mathbf{0}$에서 $\mathbf{w}^*\mathbf{A}\mathbf{w} > 0$이면 $\mathbf{A}$는 양수 고유값을 **적어도 $k$개** 가진다. 전체 공간($k = n$)에서 성립하면 양의 정부호다.
 
-<br>
+## 7. 이차형식
 
-$$
-\mathbf{H} = \begin{pmatrix}
-a_{11} & a_{12} & a_{13} \\
-a_{21} & a_{22} & a_{23} \\
-a_{31} & a_{32} & a_{33}
-\end{pmatrix}
-$$
-
-<br>
-
-$a_{11}$부터 부분으로 쪼개는 것을 **선행주요소행렬**이라고 하는데 이들이 모두 0보다 커도 **H**는 양의 정부호 행렬이 된다.
+### 정의와 주축정리
 
-<br>
+실대칭행렬 $\mathbf{A}$에 대해 $Q(\mathbf{x}) = \mathbf{x}^T\mathbf{A}\mathbf{x}$를 **이차형식**이라 한다. 교차항 계수는 반씩 나눠 대칭으로 배치한다.
 
 $$
-\mathbf{H} : P.D \\
-\Leftrightarrow
-\left(a_{11} > 0, \quad
-\left|\begin{pmatrix}
-a_{11} & a_{12} \\
-a_{21} & a_{22} \\
-\end{pmatrix}\right| > 0, \quad
-\det(\mathbf{H}) > 0\right)
+2x^2 + 2xy + 2y^2 = \begin{pmatrix} x & y \end{pmatrix}\begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}\begin{pmatrix} x \\ y \end{pmatrix}
 $$
-
-<br>
-
-위의 결과는 고유값 계산을 하지 않고 det계산만으로 양의 정부호 판별이 가능하기에 계산상의 이득이 있다고 할 수 있다.
-
-<br>
-
-**양의 준 정부호는 위의 경우들에 등호 성립만 추가하면 된다.**
 
-<br>
+$\mathbf{A} = \mathbf{PDP}^T$로 직교 대각화하고 $\mathbf{y} = \mathbf{P}^T\mathbf{x}$로 좌표를 돌리면 교차항이 사라진다(**주축정리**).
 
-### 양의 정부호 행렬과 부분공간
-
-$\mathbf{A}_{n \times n}$가 에르미트 행렬이고 W는 정의 구역의 부분공간이라고 할 때,
-
-<br>
-
 $$
-\mathbf{w}^* \mathbf{A} \mathbf{w} > 0 \quad (\text{if } \mathbf{w} \in W \text{ and } \mathbf{w} \neq \mathbf{0}) \\
-\dim W = k
+Q = \mathbf{y}^T\mathbf{D}\mathbf{y} = \lambda_1y_1^2 + \cdots + \lambda_ny_n^2
 $$
-
-<br>
 
-두 조건을 만족하면, 행렬**A**는 양수인 고유값을 적어도 k개 가진다. (위의 내용은 양정치행렬의 일부 조건이 성립하는 경우에 대해 말하는 내용임)
+예에서 고유값은 $3$(방향 $(1, 1)/\sqrt2$)과 $1$(방향 $(1, -1)/\sqrt2$)이므로 $Q = 3y_1^2 + y_2^2$이다. 두 고유값이 양수라 $Q > 0$, 즉 양의 정부호이고, $Q = 1$은 주축이 $45°$ 기울어진 타원이다.
 
-<br>
+### 고유값으로 보는 이차형식
 
-쉽게 말해 n = 3이라는 것은 $\mathbf{w}^* \mathbf{A} \mathbf{w} > 0$라는 것이 3차원 정도에서 일어난다는 의미
+| 고유값 부호 | 이차형식 | $Q = 1$의 모양 (2차원) |
+|---|---|---|
+| 모두 양수 | 양의 정부호, 최솟값 0 | 타원 |
+| 양수와 음수 섞임 | 부정부호, 안장점 | 쌍곡선 |
+| 0 포함, 나머지 양수 | 양의 준정부호 | 평행한 두 직선 |
 
-<br>
+통계에서 공분산행렬과 $\mathbf{X}^T\mathbf{X}$는 항상 양의 준정부호이고, 주성분분석(PCA)은 공분산행렬의 이 주축을 찾는 것이다.
 
-### 실베스터 판정법: 양의 정부호 판별
+## 요약
 
-에르미트 행렬 **H**가 양의 정부호가 될 필요충분조건은 모든 선행주요소행렬 $\mathbf{H}_k$에 대해 다음이 성립하면 된다. **음의 정부호 행렬**이라는 것도 있는데, 이는 $(-1)^k$를 곱해준 것과 결과가 같다.
-
-<br>
-
-$$
-\det(\mathbf{H}_k) > 0
-$$
+| 개념 | 핵심 |
+|---|---|
+| 고유값 | $\det(\mathbf{A} - \lambda\mathbf{I}) = 0$, $\det\mathbf{A} = \prod\lambda_i$, $\operatorname{tr}\mathbf{A} = \sum\lambda_i$ |
+| 대각화 | $\mathbf{P}^{-1}\mathbf{AP} = \mathbf{D}$ $\iff$ 고유벡터 기저 존재. 서로 다른 고유값 $n$개면 충분 |
+| 쉬르 정리 | 모든 복소행렬은 유니타리 삼각화 가능 |
+| 스펙트럼 정리 | 정규 $\iff$ 유니타리 대각화, 실대칭 $\iff$ 직교 대각화 |
+| 에르미트·실대칭 | 고유값 실수, 고유벡터 직교 |
+| 유니타리·직교 | $\lvert\lambda\rvert = 1$, 길이·내적 보존 |
+| 스펙트럼 분해 | $\mathbf{A} = \sum\lambda_i\mathbf{P}_i$, $f(\mathbf{A}) = \sum f(\lambda_i)\mathbf{P}_i$ |
+| 정사영 행렬 | $\mathbf{P}_i = \prod_{j \neq i}(\mathbf{A} - \lambda_j\mathbf{I})/(\lambda_i - \lambda_j)$ |
+| 양의 정부호 | 고유값 $> 0$ $\iff$ 선행 주소행렬식 $> 0$ (준정부호는 모든 주소행렬식 $\ge 0$) |
+| 이차형식 | $\mathbf{x}^T\mathbf{Ax} = \sum\lambda_iy_i^2$, 주축 = 고유벡터 |

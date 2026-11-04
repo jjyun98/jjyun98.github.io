@@ -2,567 +2,247 @@
 title: '선형대수 - 정규직교기저와 최소제곱법'
 published: 2023-05-02
 draft: false
-description: '복소행렬, 순서기저와 좌표벡터, 직교여공간, 정규직교기저, 그람-슈미트 직교화, QR 분해와 최소제곱법 정리'
+description: '좌표벡터와 전이행렬, 직교여공간, 정규직교기저와 정사영, 그람-슈미트 직교화와 QR 분해, 최소제곱법과 정규방정식 정리'
 series: '선형대수학'
 tags: ['선형대수학', '수학']
 ---
 
-기저와 차원을 이해한 뒤에는 좌표를 어떻게 바꾸고, 벡터를 어떻게 직교 성분으로 나누어 볼 수 있는지가 중요해진다. 이 글에서는 정규직교기저, 그람-슈미트 직교화, QR 분해, 최소제곱법을 정리한다.
+기저를 바꾸면 좌표가 어떻게 바뀌는지, 벡터를 부분공간과 그에 수직인 성분으로 어떻게 나누는지 정리한다. 정규직교기저를 만드는 그람-슈미트 직교화와 QR 분해를 거쳐, 해가 없는 연립방정식의 최선의 근사해를 구하는 최소제곱법까지 이어진다.
 
-이전 글:
+이전 글: [선형대수 - 벡터공간, 기저와 차원](/posts/la-vector-space)
 
-- [선형대수 - 벡터공간, 기저와 차원](/posts/la-vector-space)
+## 1. 좌표벡터와 전이행렬
 
-## 1. 복소행렬
+### 순서기저와 좌표벡터
 
-$n \times m$ 행렬 **A**의 모든 (i, j) 성분이 복소수일 때, 이 행렬을 **복소행렬**이라하고, $n \times m$ 복소행렬들의 집합을 $M_{n,m}(\mathbb{C})$ 라고 나타낸다.
-
-<br>
-
-복소행렬에 켤레행렬을 구하고 이에 전치를 시킨 것을 **켤레전치행렬**이라 하고, $\mathbf{A}^*$라고 표현한다. 예를 들면 아래와 같다.
-
-<br>
+벡터의 순서까지 고정한 기저를 **순서기저**라 한다. 순서기저 $\mathcal{B} = \{\mathbf{u}_1, \dots, \mathbf{u}_n\}$에 대해 $\mathbf{v} = a_1\mathbf{u}_1 + \cdots + a_n\mathbf{u}_n$이면, 계수를 모은
 
 $$
-\mathbf{A} = 
-\begin{pmatrix}
-i & 1 - i\\
-2 & 3 + 2i\\
-\end{pmatrix}, \quad \mathbf{A}^* =
-\begin{pmatrix}
--i & 2\\
-1 + i & 3 - 2i\\
-\end{pmatrix}
+[\mathbf{v}]_{\mathcal{B}} = (a_1, \dots, a_n)^T
 $$
 
-<br>
+를 $\mathcal{B}$에 대한 **좌표벡터**라 한다. 기저 표현은 유일하므로 좌표벡터도 유일하다. 또한 $\{\mathbf{v}_1, \dots, \mathbf{v}_k\}$가 일차독립인 것과 $\{[\mathbf{v}_1]_{\mathcal{B}}, \dots, [\mathbf{v}_k]_{\mathcal{B}}\}$가 일차독립인 것은 같다. 그래서 $n$차원 공간의 문제는 $\mathbb{R}^n$의 문제로 옮겨 풀 수 있다.
 
-이때, $\mathbf{A}^* = \mathbf{A}$일 경우, 이를 **에르미트 행렬**이라고 부른다. 아래는 그 예시이다.
+### 전이행렬
 
-<br>
-
-$$
-\begin{pmatrix}
-2 & 2 - i\\
-2 + i & 3\\
-\end{pmatrix}
-$$
-
-<br>
-
-## 2. 순서기저, 좌표벡터
-
-$\{\mathbf{v}_1, \cdots, \mathbf{v}_k\}$가 일차독립이면 $\{[\mathbf{v}_1]_{\mathcal{B}}, \cdots, [\mathbf{v}_k]_{\mathcal{B}}\}$ 도 일차독립이다. 이에 따라 $V$라는 벡터 집합은 $\mathbb{R}^3$ 같은 좌표공간으로 생각할 수도 있을 것이다.
-
-<br>
-
-기저를 이루는 벡터들의 순서가 고정되어 있다면 이를 **순서기저**라 할 수 있다. 예를 들자면,
-
-<br>
-
-V는 벡터공간이고 $\mathbb{R}^3 = \{(x, y, z) \mid x, y, z \in \mathbb{R}\}$이라면 순서기저는 $\{(1,0,0), (0,1,0), (0,0,1)\}$이라고 할 수 있다.
-
-<br>
-
-다시 말하면 순서기저란 순서가 고정된 기저를 말하기에, 꼭 위의 것만 기저라는 것이 아니고, 다른 기저도 가능하지만 그 역시 순서가 고정되어 있어야 함을 의미한다.
-
-<br>
-
-이때, 순서기저에 일차결합된 계수들의 집합을 좌표벡터라고 한다. 예를 들자면,
-
-<br>
-
-$\mathbf{v} \in V$ 일 때, 순서기저 $\{\mathbf{u}_1, \mathbf{u}_2, \cdots, \mathbf{u}_n\} = \mathcal{B}$ 이고, $\mathbf{v} = a_1 \mathbf{u}_1 + a_2 \mathbf{u}_2 + \cdots + a_n \mathbf{u}_n$이면,
-
-<br>
+같은 공간의 두 기저 $\mathcal{B}_1, \mathcal{B}_2$ 사이에서 좌표를 바꿔 주는 행렬을 **전이행렬**(transition matrix)이라 한다.
 
 $$
-[\mathbf{v}]_{\mathcal{B}} = (a_1, \cdots, a_n) = \text{좌표벡터}
-$$
-
-<br>
-
-### transition matrix
-
-n차원 벡터공간 V의 서로 다른 두 기저 $\mathcal{B}_1 = \{\mathbf{v}_1, \mathbf{v}_2, \cdots, \mathbf{v}_n\}$, $\mathcal{B}_2 = \{\mathbf{w}_1, \mathbf{w}_2, \cdots, \mathbf{w}_n\}$ 가 있고, $\mathbf{v} \in V$ 의 두 좌표벡터 $[\mathbf{v}]_{\mathcal{B}_1} = (a_1, a_2, \cdots, a_n)^T$, $[\mathbf{v}]_{\mathcal{B}_2} = (b_1, b_2, \cdots, b_n)^T$ 는 다음의 관계가 있다. 물론, 역도 성립한다.
-
-<br>
-
-$$
-[\mathbf{v}]_{\mathcal{B}_2} = \mathbf{P}_{\mathcal{B}_1, \mathcal{B}_2} [\mathbf{v}]_{\mathcal{B}_1}
-$$
-
-<br>
-
-행렬 $\mathbf{P}_{\mathcal{B}_1, \mathcal{B}_2}$ 를 기저 $\mathcal{B}_1$ 에서 $\mathcal{B}_2$ 로의 **transition matrix**라고 한다. 그리고 **transition matrix**간에는 다음 관계가 성립한다.
-
-<br>
-
-$$
+[\mathbf{v}]_{\mathcal{B}_2} = \mathbf{P}_{\mathcal{B}_1, \mathcal{B}_2}[\mathbf{v}]_{\mathcal{B}_1},
+\qquad
 \mathbf{P}_{\mathcal{B}_2, \mathcal{B}_1} = \mathbf{P}_{\mathcal{B}_1, \mathcal{B}_2}^{-1}
 $$
 
-<br>
+$\mathbf{P}_{\mathcal{B}_1, \mathcal{B}_2}$의 $j$번째 열은 $[\mathbf{v}_j]_{\mathcal{B}_2}$, 즉 $\mathcal{B}_1$의 $j$번째 기저벡터를 $\mathcal{B}_2$ 좌표로 쓴 것이다.
 
-## 3. 직교여공간
+## 2. 직교여공간
 
-내적공간 $V$의 한 부분공간 $W$에 대해, $W$의 모든 벡터와 직교인 $V$의 벡터들로 이루어진 집합을 $W^{\perp}$라고 하면 이를 **직교여공간**이라 부르고, 다음과 같이 쓸 수 있다.
-
-<br>
+내적공간 $V$의 부분공간 $W$에 대해, $W$의 모든 벡터와 직교하는 벡터의 모임을 **직교여공간**이라 한다.
 
 $$
-W^{\perp} = \{\mathbf{v} \in V : \forall \mathbf{w} \in W, \langle\mathbf{v}, \mathbf{w}\rangle = 0\}
+W^{\perp} = \{\mathbf{v} \in V : \langle \mathbf{v}, \mathbf{w} \rangle = 0,\ \forall \mathbf{w} \in W\}
 $$
 
-<br>
+$W$의 기저 $\{\mathbf{w}_1, \dots, \mathbf{w}_k\}$와만 직교하면 $W$ 전체와 직교한다. 내적이 선형이기 때문이다.
 
-$V$가 $n$차원 벡터공간이고 $k$차원 부분공간 $W$의 기저가 $\mathcal{B} = \{\mathbf{w}_1, \cdots, \mathbf{w}_k\}$ 라면, $W$의 임의의 벡터 $\mathbf{w}$는 기저 벡터로부터 생성되기 때문에 $\mathbf{w} = c_1\mathbf{w}_1 + c_2\mathbf{w}_2 + \cdots + c_k\mathbf{w}_k$ 형태이다. $\mathbf{v} \in W^{\perp}$ 라면, 다음의 모습이 보이게 된다.
-
-<br>
+$V$가 유한차원이면
 
 $$
-\langle\mathbf{v},\mathbf{w}\rangle = c_1\langle\mathbf{v},\mathbf{w}_1\rangle + c_2\langle\mathbf{v},\mathbf{w}_2\rangle + \cdots + c_k\langle\mathbf{v},\mathbf{w}_k\rangle = 0
+V = W \oplus W^{\perp},
+\qquad
+\dim W + \dim W^{\perp} = \dim V,
+\qquad
+(W^{\perp})^{\perp} = W
 $$
 
-<br>
+$\oplus$는 **직합**으로, $W_1 + W_2$이면서 $W_1 \cap W_2 = \{\mathbf{0}\}$인 경우다. 모든 벡터가 $\mathbf{v} = \mathbf{w} + \mathbf{w}^{\perp}$로 **유일하게** 분해된다는 뜻이다. 행렬에서는 $N(\mathbf{A}) = C(\mathbf{A}^T)^{\perp}$, 즉 영공간과 행공간이 서로의 직교여공간이다.
 
-$W_1 \oplus W_2$에서의 기호를 **직합**이라고 하고, $W_1 + W_2$인데 $W_1 \cap W_2 = \{\mathbf{0}\}$ 인 경우를 의미한다.
+## 3. 정규직교기저와 정사영
 
-<br>
+### 정의
 
-### 직교여공간의 차원
+서로 직교하고($\langle \mathbf{u}_i, \mathbf{u}_j \rangle = 0$, $i \neq j$) 길이가 1인($\langle \mathbf{u}_i, \mathbf{u}_i \rangle = 1$) 벡터들로 이루어진 기저를 **정규직교기저**라 한다.
 
-$\mathbb{R}$ 또는 $\mathbb{C}$상에서 정의된 내적공간 $V$의 부분공간 $W$와 $W$의 직교여공간 $W^{\perp}$에 대해 다음이 성립한다.
+![서로 수직이고 길이가 1인 기저벡터](./figures/fig-orthonormal-basis.svg)
 
-<br>
+### 좌표가 내적 한 번으로 나온다
 
-$$
-V = W \oplus W^{\perp}, \quad \dim_{\mathbb{F}}(W \oplus W^{\perp}) = \dim_{\mathbb{F}}(W) + \dim_{\mathbb{F}}(W^{\perp}) = \dim_{\mathbb{F}}(V)
-$$
-
-<br>
-
-> **직교여공간의 직교여공간**
-> $(W^{\perp})^{\perp} = W$
-
-<br>
-
-## 4. 정규직교기저
-
-**정규직교기저**란 말 그대로 단어 두 개씩 끊어서 이해하면 된다. 즉, 서로서로 수직이고, 크기가 1인 벡터들이, 기저가 되면 정규직교기저라 한다. 식으로 정리하면 다음과 같다.
-
-<br>
+$\mathbf{v} = a_1\mathbf{v}_1 + \cdots + a_k\mathbf{v}_k$에서 양변을 $\mathbf{v}_i$와 내적하면, 직교성 때문에 $i$번째 항만 남는다.
 
 $$
-S = \text{기저}\\
-\mathbf{v} \in S, \quad \langle\mathbf{v}_i, \mathbf{v}_i\rangle = 1, \quad \langle\mathbf{v}_i, \mathbf{v}_j\rangle = 0
+\langle \mathbf{v}, \mathbf{v}_i \rangle = a_i\langle \mathbf{v}_i, \mathbf{v}_i \rangle
+\quad\Rightarrow\quad
+a_i = \frac{\langle \mathbf{v}, \mathbf{v}_i \rangle}{\lVert \mathbf{v}_i \rVert^2}
 $$
 
-<br>
-
-### 정규직교집합의 다른 표현
-
-$S$는 직교기저이고 $\{\mathbf{v}_1, \cdots, \mathbf{v}_k\}$이라하면 기저이기에 $V$의 한 원소를 $\mathbf{v} = a_1 \mathbf{v}_1 + a_2 \mathbf{v}_2 + a_k \mathbf{v}_k$이라 표현할 수 있다. 이를 이용하여 다음결과를 도출할 수 있다.
-
-<br>
+정규직교기저라면 분모가 1이므로
 
 $$
-\langle\mathbf{v}, \mathbf{v}_1\rangle = \langle a_1 \mathbf{v}_1 + a_2 \mathbf{v}_2 + a_k \mathbf{v}_k, \mathbf{v}_1\rangle\\
-= a_1 \langle\mathbf{v}_1, \mathbf{v}_1\rangle + a_2 \langle\mathbf{v}_2, \mathbf{v}_1\rangle + \cdots + a_k \langle\mathbf{v}_k, \mathbf{v}_1\rangle \\
-= a_1\langle\mathbf{v}_1, \mathbf{v}_1\rangle
+\mathbf{v} = \sum_{i=1}^{n}\langle \mathbf{v}, \mathbf{u}_i \rangle\mathbf{u}_i,
+\qquad
+[\mathbf{v}]_{\mathcal{B}} = \big(\langle \mathbf{v}, \mathbf{u}_1 \rangle, \dots, \langle \mathbf{v}, \mathbf{u}_n \rangle\big)^T
 $$
 
-<br>
+연립방정식을 풀 필요 없이 내적만으로 좌표가 나온다는 것이 정규직교기저의 가장 큰 장점이다.
 
-결과적으로 $a_1 = \frac{\langle\mathbf{v}, \mathbf{v}_1\rangle}{\langle\mathbf{v}_1, \mathbf{v}_1\rangle}$이라는 결론이 나오고 임의의 벡터 $\mathbf{v} \in \text{span}(S)$에 대해, 이를 일반화하면 다음과 같다.
+### 성질
 
-<br>
+정규직교기저 $\mathcal{B} = \{\mathbf{u}_1, \dots, \mathbf{u}_n\}$에 대해
 
-$$
-\mathbf{v} = \frac{\langle\mathbf{v}, \mathbf{v}_1\rangle}{\|\mathbf{v}_1\|^2} \mathbf{v}_1 + \frac{\langle\mathbf{v}, \mathbf{v}_2\rangle}{\|\mathbf{v}_2\|^2} \mathbf{v}_2 + \cdots + \frac{\langle\mathbf{v}, \mathbf{v}_k\rangle}{\|\mathbf{v}_k\|^2} \mathbf{v}_k
-$$
-
-<br>
-
-만약, S가 정규직교집합이라면 다음과 같이 바꿀 수 있다.
-
-<br>
+- 내적과 길이가 좌표에서 그대로 계산된다: $\langle \mathbf{v}, \mathbf{w} \rangle = [\mathbf{v}]_{\mathcal{B}} \cdot [\mathbf{w}]_{\mathcal{B}}$, $\lVert \mathbf{v} \rVert = \lVert [\mathbf{v}]_{\mathcal{B}} \rVert$
+- 일부 $\{\mathbf{u}_{i_1}, \dots, \mathbf{u}_{i_k}\}$가 생성하는 부분공간 $W$로의 **정사영**은 해당 항만 골라 더한 것이다.
 
 $$
-\mathbf{v} = \langle\mathbf{v}, \mathbf{v}_1\rangle\mathbf{v}_1 + \langle\mathbf{v}, \mathbf{v}_2\rangle\mathbf{v}_2 + \cdots + \langle\mathbf{v}, \mathbf{v}_k\rangle\mathbf{v}_k\\
-\Leftrightarrow [\mathbf{v}]_S = (\langle\mathbf{v}, \mathbf{v}_1\rangle, \langle\mathbf{v}, \mathbf{v}_2\rangle, \cdots, \langle\mathbf{v}, \mathbf{v}_k\rangle)^T
+\operatorname{proj}_W(\mathbf{v}) = \sum_{j=1}^{k}\langle \mathbf{v}, \mathbf{u}_{i_j} \rangle\mathbf{u}_{i_j}
 $$
 
-<br>
+## 4. 그람-슈미트 직교화
 
-### 정규직교기저의 성질
+일차독립인 $\{\mathbf{v}_1, \dots, \mathbf{v}_n\}$에서 같은 공간을 생성하는 정규직교기저 $\{\mathbf{u}_1, \dots, \mathbf{u}_n\}$을 만드는 방법이다. 새 벡터에서 **이미 만든 방향으로의 성분(정사영)을 빼고**, 남은 수직 성분을 길이 1로 맞춘다.
 
-$\mathbb{F}$상에서 정의된 내적공간 V의 정규직교기저 $\mathcal{B} = \{\mathbf{u}_1, \mathbf{u}_2, \cdots, \mathbf{u}_n\}$ 에 대해 다음이 성립한다.
-
-<br>
-
-> - 임의의 $\mathbf{v}, \mathbf{w} \in V$에 대해 $\langle\mathbf{v},\mathbf{w}\rangle_V = \langle[\mathbf{v}]_{\mathcal{B}}, [\mathbf{w}]_{\mathcal{B}}\rangle_{\mathbb{F}^n}$이다
-> - 임의의 $\mathbf{v} \in V$에 대해 $\|\mathbf{v}\|_V = \|[\mathbf{v}]_{\mathcal{B}}\|_{\mathbb{F}^n}$
-> - 임의의 부분집합 $S = \{\mathbf{u}_{i1}, \cdots, \mathbf{u}_{ik}\} \subset \mathcal{B}$ 에 대해 부분공간 $W = \text{span}(S)$에 내린 벡터 $\mathbf{v}$의 정사영 벡터 $\text{proj}_W(\mathbf{v})$는 다음과 같다
-> - $\text{proj}_W(\mathbf{v}) = \langle\mathbf{v}, \mathbf{u}_{i1}\rangle\mathbf{u}_{i1} + \langle\mathbf{v}, \mathbf{u}_{i2}\rangle\mathbf{u}_{i2} + \cdots + \langle\mathbf{v}, \mathbf{u}_{ik}\rangle\mathbf{u}_{ik}$
-
-<br>
-
-### 그람-슈미트 직교화
-
-내적공간 $V$에서 일차독립인 부분집합 $S = \{\mathbf{v}_1, \mathbf{v}_2, \cdots, \mathbf{v}_n\}$ 이라하고, $\mathbf{u}_1 = \frac{\mathbf{v}_1}{\|\mathbf{v}_1\|}$이라하면,
-
-<br>
-
-![img](./images/la_0623_2.png)
-
-<br>
-
-![img](./images/la_0623_1.png)
-
-<br>
-
-의 그림 관계이고 이 관계는,
-
-<br>
-
-$\mathbf{u}_2 = \frac{\mathbf{v}_2 - \langle\mathbf{v}_2,\mathbf{u}_1\rangle \mathbf{u}_1}{\|\mathbf{v}_2 - \langle\mathbf{v}_2,\mathbf{u}_1\rangle \mathbf{u}_1\|}$,
-
-<br>
-
-$\mathbf{u}_3 = \frac{\mathbf{v}_3 - \langle\mathbf{v}_3,\mathbf{u}_1\rangle \mathbf{u}_1 - \langle\mathbf{v}_3,\mathbf{u}_2\rangle \mathbf{u}_2}{\|\mathbf{v}_3 - \langle\mathbf{v}_3,\mathbf{u}_1\rangle \mathbf{u}_1 - \langle\mathbf{v}_3,\mathbf{u}_2\rangle \mathbf{u}_2\|}$ 이라 표현 가능하다.
-
-<br>
-
-즉, 일반적인 정사영은 그림자 부분에 집중했지만, 이번에는 정사영시 수직으로 내리꽂는 높이 벡터를 활용한다. 분자는 벡터가 하나씩 추가됨에 따라 기존꺼의 수직인 방향으로 수정되어가고, 분모는 크기가 1이 되도록 계속 자기 자신의 크기만큼 나누어 준다.
-
-<br>
-
-결과적으로, 그람-슈미트 직교화 과정이란, 제시한 벡터들 모두에 수직이면서 크기가 1인 벡터(= 정규직교 기저) 구해가는 과정을 말한다.
-
-<br>
-
-### QR분해
-
-QR분해는 그람-슈미트 직교화를 응용한 것이다. 형태는 다음과 같다.
-
-<br>
+![v₂에서 u₁ 방향 성분을 빼면 u₁에 수직인 성분이 남는다](./figures/fig-gram-schmidt.svg)
 
 $$
-\mathbf{A} = \mathbf{Q} \mathbf{R}\\
-(m \times n) \quad (m \times n) \quad (n \times n)
+\begin{aligned}
+\mathbf{u}_1 &= \frac{\mathbf{v}_1}{\lVert \mathbf{v}_1 \rVert} \\
+\mathbf{u}_2 &= \frac{\mathbf{v}_2 - \langle \mathbf{v}_2, \mathbf{u}_1 \rangle\mathbf{u}_1}{\lVert \mathbf{v}_2 - \langle \mathbf{v}_2, \mathbf{u}_1 \rangle\mathbf{u}_1 \rVert} \\
+\mathbf{u}_k &= \frac{\mathbf{v}_k - \sum_{j<k}\langle \mathbf{v}_k, \mathbf{u}_j \rangle\mathbf{u}_j}{\lVert \mathbf{v}_k - \sum_{j<k}\langle \mathbf{v}_k, \mathbf{u}_j \rangle\mathbf{u}_j \rVert}
+\end{aligned}
 $$
 
-<br>
+분자는 "그림자를 뺀 높이", 분모는 길이 정규화다. 각 단계에서 $\operatorname{span}\{\mathbf{u}_1, \dots, \mathbf{u}_k\} = \operatorname{span}\{\mathbf{v}_1, \dots, \mathbf{v}_k\}$가 유지된다.
 
-여기서 $m \geq n$ 이고, $\mathbf{Q}$ = 정규직교집합, $\mathbf{R}$ = 상삼각행렬이다. $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$라는 3개의 벡터가 있다고 하고 QR분해 예시를 보이면 다음과 같다.
+## 5. QR 분해
 
-<br>
+### 형태
+
+열이 일차독립인 $m \times n$ 행렬 $\mathbf{A}$ ($m \ge n$)는 다음처럼 분해된다.
 
 $$
-\left(
-\begin{array}{c|c|c}
-    1 & 1 & 2 \\
-    1 & 2 & 3 \\
-    1 & 2 & 1 \\
-    1 & 1 & 6 \\
-\end{array}
-\right)
+\underset{m \times n}{\mathbf{A}} = \underset{m \times n}{\mathbf{Q}}\;\underset{n \times n}{\mathbf{R}}
+$$
+
+- $\mathbf{Q}$: $\mathbf{A}$의 열에 그람-슈미트를 적용한 $\mathbf{u}_1, \dots, \mathbf{u}_n$을 열로 갖는다. 열이 정규직교이므로 $\mathbf{Q}^T\mathbf{Q} = \mathbf{I}$이다.
+- $\mathbf{R}$: $r_{ij} = \langle \mathbf{v}_j, \mathbf{u}_i \rangle$인 상삼각행렬. $\mathbf{u}_i$는 $\mathbf{v}_1, \dots, \mathbf{v}_i$로만 만들어졌으므로 $i > j$이면 $\mathbf{v}_j \perp \mathbf{u}_i$, 즉 대각 아래가 0이다.
+
+### 예시
+
+$$
+\begin{pmatrix} 1 & 1 & 2 \\ 1 & 2 & 3 \\ 1 & 2 & 1 \\ 1 & 1 & 6 \end{pmatrix}
 =
-\left(
-\begin{array}{c|c|c}
-    \frac{1}{2} & -\frac{1}{2} & -\frac{2}{\sqrt{10}} \\
-    \frac{1}{2} & \frac{1}{2}   & \frac{1}{\sqrt{10}} \\
-    \frac{1}{2} & \frac{1}{2}   & -\frac{1}{\sqrt{10}} \\
-    \frac{1}{2} & -\frac{1}{2} & \frac{2}{\sqrt{10}} \\
-\end{array}
-\right)
-\left(
-\begin{array}{ccc}
-    \langle\mathbf{v}_1,\mathbf{u}_1\rangle & \langle\mathbf{v}_2,\mathbf{u}_1\rangle & \langle\mathbf{v}_3,\mathbf{u}_1\rangle \\
-    \langle\mathbf{v}_1,\mathbf{u}_2\rangle & \langle\mathbf{v}_2,\mathbf{u}_2\rangle & \langle\mathbf{v}_3,\mathbf{u}_2\rangle \\
-    \langle\mathbf{v}_1,\mathbf{u}_3\rangle & \langle\mathbf{v}_2,\mathbf{u}_3\rangle & \langle\mathbf{v}_3,\mathbf{u}_3\rangle \\
-\end{array}
-\right)
-$$
-
-<br>
-
-$$\mathbf{A} = \mathbf{Q} \mathbf{R}$$
-
-<br>
-
-여기서 $\mathbf{A}$의 열이 각각 $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$를 의미하고, $\mathbf{Q}$의 열이 각각 $\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3$를 의미한다. 이때, $\mathbf{Q}$의 $\mathbf{u}$들은 그람-슈미트의 그 $\mathbf{u}$가 맞다. 
-
-<br>
-
-**R**의 $\langle\mathbf{v}_1,\mathbf{u}_2\rangle, \langle\mathbf{v}_1,\mathbf{u}_3\rangle, \langle\mathbf{v}_2,\mathbf{u}_3\rangle$는 직교라 0이되기에 **R**은 상삼각행렬임이 보여진다.
-
-<br>
-
-또한, 식을 전개해보면 다음과 같은 특징을 찾을 수 있다.
-
-<br>
-
-$$
-\mathbf{Q}^T \mathbf{Q} = \mathbf{I}
-$$
-
-<br>
-
-이처럼, 전치행렬과의 곱이 $\mathbf{I}$가 되는 행렬을 **직교행렬**이라 한다. 근데 $\mathbf{Q}^{-1} \mathbf{Q} = \mathbf{I}$가 원래 성립하기에,
-
-<br>
-
-$$
-\mathbf{Q}^{T} = \mathbf{Q}^{-1}
-$$
-
-<br>
-
-라고 할 수 있다.
-
-<br>
-
-종합하면, 열벡터로 볼 때, 정규직교행렬이 되어야 직교행렬이 될 수 있다.
-
-<br>
-
-#### QR분해를 이용해 근 구하기
-
-$\mathbf{A}\mathbf{X} = \mathbf{b}$에서 $\mathbf{X}$를 구해야 한다. 이때 $\mathbf{A} = m \times n$ 행렬이고, $\text{rank}(\mathbf{A}) = n$이다.
-
-<br>
-
-**case 1)** $m > n$ 라면
-- $\mathbf{b} \in C(\mathbf{A})$면 유일한 해 $\mathbf{X} = \mathbf{R}^{-1}\mathbf{Q}^T\mathbf{b}$
-- $\mathbf{b} \notin C(\mathbf{A})$면 답이 없다.
-
-<br>
-
-**case 2)** $m < n$ 라면  
-- 일반해 $\mathbf{X} = \mathbf{Q}(\mathbf{R}^T)^{-1}\mathbf{b}$
-- 나머지 해는 영공간 $N(\mathbf{A})$에 있다. 여기서 $N(\mathbf{A}) = C(\mathbf{A}^T)^{\perp}$
-
-<br>
-
-## 5. 최소제곱법
-
-### 정사영벡터의 좌표벡터
-
-$V \to \mathbf{v}$에서 V의 부분집합인 W의 정규직교기저가 $\{\mathbf{u}_1, \mathbf{u}_2, \cdots, \mathbf{u}_k\}$이면, $\text{proj}_W(\mathbf{v})$는 다음과 같은 일차결합꼴로 나타낼 수 있다.
-
-<br>
-
-$$
-\text{proj}_W(\mathbf{v}) = \langle\mathbf{v}, \mathbf{u}_1\rangle\mathbf{u}_1 + \langle\mathbf{v}, \mathbf{u}_2\rangle\mathbf{u}_2 + \cdots + \langle\mathbf{v}, \mathbf{u}_k\rangle\mathbf{u}_k
-$$
-
-<br>
-
-하지만 정규직교기저가 아닌 그냥 기저들이라면, $\text{proj}_W(\mathbf{a})$는 다음과 같은 꼴로 표현가능하다.
-
-<br>
-
-$$
-\text{proj}_W(\mathbf{a}) = \hat{a_1} \mathbf{b}_1 + \hat{a_2} \mathbf{b}_2 + \cdots + \hat{a_k} \mathbf{b}_k
-$$
-
-<br>
-
-임의의 벡터 **a**와 W공간에 내린 정사영의 관계 그림은 아래와 같은데
-
-<br>
-
-![img](./images/la_0625_1.png)
-
-<br>
-
-여기에서 정사영과 수직인 벡터는 평면공간의 벡터들과 내적이 0이라는 점을 이용하면 이 관계식은 다음과 같이 쓸 수 있다. $(i = 1, 2, \cdots, k)$
-
-<br>
-
-$$
-\langle\mathbf{a} - \text{proj}_W(\mathbf{a}), \mathbf{b}_i\rangle = 0
-$$
-
-<br>
-
-내적표현꼴로 나타낸 위의 식을 행렬의 곱의 형태로 표현한다면 다음과 같을 것이다.
-
-<br>
-
-$$
-\mathbf{b}_1^T (\mathbf{a} - \text{proj}_W(\mathbf{a})) = 0\\
-\mathbf{b}_2^T (\mathbf{a} - \text{proj}_W(\mathbf{a})) = 0\\
-\vdots \\
-\mathbf{b}_k^T (\mathbf{a} - \text{proj}_W(\mathbf{a})) = 0
-$$
-
-<br>
-
-$\mathbf{B} = (\mathbf{b}_1, \cdots, \mathbf{b}_k)$라 할 때, 식을 간략화 시키면,
-
-<br>
-
-$$
-\mathbf{B}^T(\mathbf{a} - \mathbf{B}\begin{pmatrix}
-\hat{a_1}\\
-\hat{a_2}\\
-\vdots\\
-\hat{a_k}
-\end{pmatrix}
-) \Rightarrow \mathbf{B}^T\mathbf{a} - \mathbf{B}^T \mathbf{B}\begin{pmatrix}
-\hat{a_1}\\
-\hat{a_2}\\
-\vdots\\
-\hat{a_k}
-\end{pmatrix}
-$$
-
-<br>
-
-이라 표현 가능하고, $\hat{a_i}$들만 모아보면 최종적으로 다음과 같이 표현할 수 있다.
-
-<br>
-
-$$
 \begin{pmatrix}
-\hat{a_1}\\
-\hat{a_2}\\
-\vdots\\
-\hat{a_k}
-\end{pmatrix} =[\text{proj}_W(\mathbf{a})]_{\mathcal{B}} = (\mathbf{B}^T \mathbf{B})^{-1} \mathbf{B}^T \mathbf{a}
-$$
-
-<br>
-
-풀어쓰면, $\hat{\mathbf{a}}$는 **B**기저에 대한 $\text{proj}_W(\mathbf{a})$의 좌표벡터이고, 이는 또한 위의 식의 꼴로 표현 가능하다는 의미이다.
-
-<br>
-
-**$\mathbf{B}^T \mathbf{B}$의 역행렬 성립**
-
-$\mathbf{B}$는 $m \times n$ matrix이고, $\mathbf{B}^T \mathbf{B}$는 $n \times n$ matrix이기에 아래가 성립한다.
-
-<br>
-
-$$
-\text{rank}(\mathbf{B}) + \text{nullity}(\mathbf{B}) = n\\
-\text{rank}(\mathbf{B}^T \mathbf{B}) + \text{nullity}(\mathbf{B}^T \mathbf{B}) = n
-$$
-
-<br>
-
-위의 식은 행렬 **B**의 열벡터 $\{\mathbf{B}_1^c, \mathbf{B}_2^c, \cdots, \mathbf{B}_k^c\}$가 **일차독립**임을 의미하고, 아래 식은 행렬 $\mathbf{B}^T \mathbf{B}$는 결과적으로 위의 식과 같은 꼴이 된다. 이는 곧 행렬 $\mathbf{B}^T \mathbf{B}$가 **가역행렬**이라는 것을 의미하고 **역행렬**을 갖는다는 것을 보이게 된다.
-
-<br>
-
-### 다항식으로의 근사
-
-m개의 자료 $\{(x_1, y_1), (x_2, y_2), \cdots, (x_m, y_m)\} \subset \mathbb{R}$가 주어졌을 때, 이 자료의 분포를 근사적으로 나타내는 n차(n < m) 다항함수 $y = f(x)$를 구하는 방법에는 **최소제곱법**이 있다. 이는 자료의 각 $x_i$에 대해 함수값 $f(x_i)$와 실제 자료값 $y_i$의 오차의 합이 최소가 되도록 하기위해 다음이 최소가 되는 다항함수 $f$를 구하는 방법을 말한다.
-
-<br>
-
-$$
-\sum_{i = 1}^{m} (y_i - f(x_i))^2
-$$
-
-<br>
-
-n차 다항함수 $f(x) = a_0 + a_1 x + \cdots + a_n x^n$에 대해, $\mathbf{f}$는 다음과 같이 나타낼 수 있다.
-
-<br>
-
-$$
-\mathbf{f} = \begin{pmatrix}
-f(x_1)\\
-f(x_2)\\
-\vdots\\
-f(x_m)
-\end{pmatrix} = \begin{pmatrix}
-a_0 + a_1 x_1 + \cdots + a_n x^n_1\\
-a_0 + a_1 x_2 + \cdots + a_n x^n_2\\
-\vdots\\
-a_0 + a_1 x_m + \cdots + a_n x^n_m\\
+\frac12 & -\frac12 & -\frac{2}{\sqrt{10}} \\
+\frac12 & \frac12 & \frac{1}{\sqrt{10}} \\
+\frac12 & \frac12 & -\frac{1}{\sqrt{10}} \\
+\frac12 & -\frac12 & \frac{2}{\sqrt{10}}
 \end{pmatrix}
+\begin{pmatrix} 2 & 3 & 6 \\ 0 & 1 & -2 \\ 0 & 0 & \sqrt{10} \end{pmatrix}
 $$
 
-<br>
+### 직교행렬
+
+$\mathbf{Q}$가 **정사각**이면서 $\mathbf{Q}^T\mathbf{Q} = \mathbf{I}$이면 **직교행렬**이라 하고, $\mathbf{Q}^{-1} = \mathbf{Q}^T$이다. 직사각 $\mathbf{Q}$는 $\mathbf{Q}^T\mathbf{Q} = \mathbf{I}$이지만 $\mathbf{Q}\mathbf{Q}^T \neq \mathbf{I}$라서 역행렬이 아니다. $\mathbf{Q}\mathbf{Q}^T$는 $C(\mathbf{A})$로의 정사영 행렬이다.
+
+### QR로 연립방정식 풀기
+
+$\operatorname{rank}(\mathbf{A}) = n$인 $m \times n$ 행렬에 대해
+
+| 경우 | 해 |
+|---|---|
+| $m \ge n$, $\mathbf{A} = \mathbf{QR}$ | $\mathbf{b} \in C(\mathbf{A})$이면 유일해 $\mathbf{x} = \mathbf{R}^{-1}\mathbf{Q}^T\mathbf{b}$. 아니면 해가 없고, 같은 식이 최소제곱해가 된다 |
+| $m < n$, $\mathbf{A}^T = \mathbf{QR}$ | 해가 무수히 많다. $\mathbf{x} = \mathbf{Q}(\mathbf{R}^T)^{-1}\mathbf{b}$가 길이가 가장 짧은 해이고, 나머지 해는 여기에 $N(\mathbf{A}) = C(\mathbf{A}^T)^{\perp}$의 벡터를 더한 것 |
+
+$\mathbf{R}$이 상삼각이므로 $\mathbf{R}^{-1}$을 직접 구하지 않고 후진대입으로 푼다.
+
+## 6. 최소제곱법
+
+### 정사영과 정규방정식
+
+$W = C(\mathbf{B})$이고 $\mathbf{B}$의 열 $\mathbf{b}_1, \dots, \mathbf{b}_k$가 정규직교가 아닌 일반 기저일 때, $\mathbf{a}$의 정사영을 $\operatorname{proj}_W(\mathbf{a}) = \mathbf{B}\hat{\mathbf{c}}$로 쓰자.
+
+![a를 W에 정사영하면 남은 성분은 W에 수직이다](./figures/fig-projection.svg)
+
+남은 성분 $\mathbf{a} - \mathbf{B}\hat{\mathbf{c}}$는 $W$에 수직이므로 모든 $\mathbf{b}_i$와 내적이 0이다.
 
 $$
-= \begin{pmatrix}
-1 & x_1 & x_1^2 & \cdots & x_1^n\\
-1 & x_2 & x_2^2 & \cdots & x_2^n\\
-\vdots & \vdots & \vdots & \ddots & \vdots\\
-1 & x_m & x_m^2 & \cdots & x_m^n\\
-\end{pmatrix}
-\begin{pmatrix}
-a_0\\
-a_1\\
-a_2\\
-\vdots\\
-a_n
-\end{pmatrix} = \mathbf{B}\mathbf{a}
+\mathbf{b}_i^T(\mathbf{a} - \mathbf{B}\hat{\mathbf{c}}) = 0 \;(i = 1, \dots, k)
+\iff
+\mathbf{B}^T(\mathbf{a} - \mathbf{B}\hat{\mathbf{c}}) = \mathbf{0}
 $$
 
-<br>
-
-행렬 **B**의 열벡터로 생성되는 벡터공간을 $C(\mathbf{B}) = W$라 하고 $\mathbf{y} = \mathbf{w} + \mathbf{w}^\perp$로 분해되므로 아래와 같이 나타낼 수 있다. 여기서 $\mathbf{w} = \text{proj}_W(\mathbf{y})$를 의미한다.
-
-<br>
-
 $$
-\|\mathbf{y} - \mathbf{f}\|^2 = \|(\mathbf{w} - \mathbf{f}) + \mathbf{w}^{\perp}\|^2\\
-= \langle (\mathbf{w} - \mathbf{f}) + \mathbf{w}^{\perp}, (\mathbf{w} - \mathbf{f}) + \mathbf{w}^{\perp} \rangle\\
-= \|\mathbf{w} - \mathbf{f}\|^2 + \|\mathbf{w}^{\perp}\|^2\\
-= \|\mathbf{w} - \mathbf{B}\mathbf{a}\|^2 + \|\mathbf{w}^{\perp}\|^2
+\mathbf{B}^T\mathbf{B}\,\hat{\mathbf{c}} = \mathbf{B}^T\mathbf{a}
+\quad\Rightarrow\quad
+\hat{\mathbf{c}} = (\mathbf{B}^T\mathbf{B})^{-1}\mathbf{B}^T\mathbf{a},
+\qquad
+\operatorname{proj}_W(\mathbf{a}) = \mathbf{B}(\mathbf{B}^T\mathbf{B})^{-1}\mathbf{B}^T\mathbf{a}
 $$
 
-<br>
+$\hat{\mathbf{c}}$는 기저 $\mathbf{b}_i$에 대한 정사영의 좌표벡터다.
 
-결과적으로 $\|\mathbf{y} - \mathbf{f}\|$가 최소가 되려면 $\mathbf{f} = \mathbf{B}\mathbf{a}$가 되어야한다. $\mathbf{w} = \text{proj}_W(\mathbf{y})$이고 $\|\mathbf{y} - \mathbf{f}\|$를 최소로 만드는 $\mathbf{a}$는 다음과 같이 구할 수 있다.
+### $\mathbf{B}^T\mathbf{B}$가 가역인 이유
 
-<br>
+$\mathbf{B}^T\mathbf{B}\mathbf{x} = \mathbf{0}$이면 $\mathbf{x}^T\mathbf{B}^T\mathbf{B}\mathbf{x} = \lVert \mathbf{B}\mathbf{x} \rVert^2 = 0$이므로 $\mathbf{B}\mathbf{x} = \mathbf{0}$이다. 따라서 $N(\mathbf{B}^T\mathbf{B}) = N(\mathbf{B})$이고, $\mathbf{B}$의 열이 일차독립이면($N(\mathbf{B}) = \{\mathbf{0}\}$) 정사각행렬 $\mathbf{B}^T\mathbf{B}$는 가역이다.
 
-$$
-\mathbf{f} = \mathbf{B}\mathbf{a} = \text{proj}_W(\mathbf{y})\\
-= \mathbf{B}(\mathbf{B}^T \mathbf{B})^{-1} \mathbf{B}^T \mathbf{y}\\
-\mathbf{a} = (\mathbf{B}^T \mathbf{B})^{-1} \mathbf{B}^T \mathbf{y}
-$$
+### 최소제곱해
 
-<br>
-
-### 근사해
-
-우리가 만들 수 있는 것은 W의 원소 뿐이고, W는 일반적으로 부분공간(더 작은 공간)이므로 **Y**는 W에 없다.(있으면 **Y**는 W의 선형결합) 즉, 최선의 선택은 **Y**를 W에 정사영시키는 것이 최선의 근사가 된다.
-
-<br>
-
-변수의 개수보다 식의 개수가 많으면 일반적으로 해가 존재하지 않는다. 이때 가장 근사한 값 $\hat{\mathbf{x}}$를 구하는 방법은 다음과 같다.
-
-<br>
+$\mathbf{Ax} = \mathbf{b}$에서 식이 변수보다 많으면 보통 해가 없다($\mathbf{b} \notin C(\mathbf{A})$). $\mathbf{Ax}$가 갈 수 있는 곳은 $C(\mathbf{A})$뿐이므로, $\lVert \mathbf{b} - \mathbf{Ax} \rVert$를 최소로 하는 최선의 선택은 $\mathbf{b}$를 $C(\mathbf{A})$에 정사영한 점이다. 이 $\hat{\mathbf{x}}$는 **정규방정식**을 만족한다.
 
 $$
-\mathbf{A}\mathbf{x} = \mathbf{b}\\
-\Leftrightarrow \mathbf{A}^T \mathbf{A} \mathbf{x} = \mathbf{A}^T \mathbf{b}\\
-\Leftrightarrow \hat{\mathbf{x}} = {(\mathbf{A}^T \mathbf{A})}^{-1} \mathbf{A}^T \mathbf{b}
+\mathbf{A}^T\mathbf{A}\hat{\mathbf{x}} = \mathbf{A}^T\mathbf{b}
+\quad\Rightarrow\quad
+\hat{\mathbf{x}} = (\mathbf{A}^T\mathbf{A})^{-1}\mathbf{A}^T\mathbf{b}
 $$
 
-<br>
-
-**QR 분해를 이용한 근사해**
-
-$\mathbf{A}$의 $QR$ 분해가 $\mathbf{A} = \mathbf{Q}\mathbf{R}$이면, 최소제곱법으로 구한 연립방정식 $\mathbf{A}\mathbf{x} = \mathbf{b}$의 근사해 $\hat{\mathbf{x}}$는 다음과 같다.
-
-<br>
+원래 식 $\mathbf{Ax} = \mathbf{b}$와 동치가 아니라, 해가 없을 때도 항상 풀리는 **대체 문제**다. $\mathbf{A} = \mathbf{QR}$이면 $\mathbf{A}^T\mathbf{A} = \mathbf{R}^T\mathbf{R}$이므로 다음처럼 쓸 수 있고, 수치적으로도 더 안정적이다.
 
 $$
-\hat{\mathbf{x}} = \mathbf{R}^{-1} \mathbf{Q}^T \mathbf{b}
+\hat{\mathbf{x}} = \mathbf{R}^{-1}\mathbf{Q}^T\mathbf{b}
 $$
 
-## 다음 글
+### 왜 정사영이 최소인가
 
-다음 글에서는 선형사상과 행렬표현을 이어서 정리한다.
+$\mathbf{w} = \operatorname{proj}_W(\mathbf{y})$, $\mathbf{w}^{\perp} = \mathbf{y} - \mathbf{w}$라 하면, $W$의 임의의 $\mathbf{f}$에 대해 $\mathbf{w} - \mathbf{f} \in W$와 $\mathbf{w}^{\perp} \in W^{\perp}$가 직교하므로 피타고라스 정리에 의해
 
-- [선형대수 - 선형사상과 행렬표현](/posts/la-linear-map)
+$$
+\lVert \mathbf{y} - \mathbf{f} \rVert^2 = \lVert \mathbf{w} - \mathbf{f} \rVert^2 + \lVert \mathbf{w}^{\perp} \rVert^2 \ge \lVert \mathbf{w}^{\perp} \rVert^2
+$$
+
+등호는 $\mathbf{f} = \mathbf{w}$일 때만 성립한다.
+
+### 다항식 근사 (회귀)
+
+자료 $(x_1, y_1), \dots, (x_m, y_m)$에 $n$차 다항식 $f(x) = a_0 + a_1x + \cdots + a_nx^n$ ($n < m$)을 맞추되 $\sum_i (y_i - f(x_i))^2$을 최소로 하려면, 다음 문제의 최소제곱해를 구하면 된다.
+
+$$
+\underbrace{\begin{pmatrix}
+1 & x_1 & \cdots & x_1^n \\
+1 & x_2 & \cdots & x_2^n \\
+\vdots & \vdots & \ddots & \vdots \\
+1 & x_m & \cdots & x_m^n
+\end{pmatrix}}_{\mathbf{B}}
+\begin{pmatrix} a_0 \\ a_1 \\ \vdots \\ a_n \end{pmatrix}
+\approx
+\begin{pmatrix} y_1 \\ y_2 \\ \vdots \\ y_m \end{pmatrix}
+\qquad\Rightarrow\qquad
+\hat{\mathbf{a}} = (\mathbf{B}^T\mathbf{B})^{-1}\mathbf{B}^T\mathbf{y}
+$$
+
+통계의 선형회귀 계수 $\hat{\boldsymbol{\beta}} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}$가 정확히 이 식이다. $x_i$ 중 서로 다른 값이 $n + 1$개 이상이면 $\mathbf{B}$의 열이 일차독립이라 해가 유일하다.
+
+## 요약
+
+| 개념 | 핵심 식 | 기억할 점 |
+|---|---|---|
+| 전이행렬 | $[\mathbf{v}]_{\mathcal{B}_2} = \mathbf{P}_{\mathcal{B}_1,\mathcal{B}_2}[\mathbf{v}]_{\mathcal{B}_1}$ | 반대 방향은 역행렬 |
+| 직교여공간 | $V = W \oplus W^{\perp}$ | $N(\mathbf{A}) = C(\mathbf{A}^T)^{\perp}$ |
+| 정규직교 좌표 | $[\mathbf{v}]_{\mathcal{B}} = (\langle \mathbf{v}, \mathbf{u}_i \rangle)_i$ | 내적 한 번으로 좌표 |
+| 그람-슈미트 | 이전 방향 정사영을 빼고 정규화 | 생성 공간 유지 |
+| QR 분해 | $\mathbf{A} = \mathbf{QR}$, $r_{ij} = \langle \mathbf{v}_j, \mathbf{u}_i \rangle$ | $\mathbf{Q}^T\mathbf{Q} = \mathbf{I}$, $\mathbf{R}$ 상삼각 |
+| 직교행렬 | 정사각 + $\mathbf{Q}^T\mathbf{Q} = \mathbf{I}$ | $\mathbf{Q}^{-1} = \mathbf{Q}^T$ |
+| 정사영 행렬 | $\mathbf{B}(\mathbf{B}^T\mathbf{B})^{-1}\mathbf{B}^T$ | 정규직교 열이면 $\mathbf{Q}\mathbf{Q}^T$ |
+| 정규방정식 | $\mathbf{A}^T\mathbf{A}\hat{\mathbf{x}} = \mathbf{A}^T\mathbf{b}$ | 열이 독립이면 $\mathbf{A}^T\mathbf{A}$ 가역 |
+| QR 최소제곱 | $\hat{\mathbf{x}} = \mathbf{R}^{-1}\mathbf{Q}^T\mathbf{b}$ | 후진대입, 수치적으로 안정 |
+| 회귀 | $\hat{\boldsymbol{\beta}} = (\mathbf{X}^T\mathbf{X})^{-1}\mathbf{X}^T\mathbf{y}$ | 다항식 근사와 같은 식 |
+
+다음 글: [선형대수 - 선형사상과 행렬표현](/posts/la-linear-map)

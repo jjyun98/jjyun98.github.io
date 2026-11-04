@@ -2,781 +2,212 @@
 title: '선형대수 - 벡터공간, 기저와 차원'
 published: 2023-04-10
 draft: false
-description: '벡터공간과 내적공간, 부분공간, 일차독립과 일차종속, 기저와 차원, 행계수와 열계수 정리'
+description: '벡터공간과 내적공간의 공리, 부분공간과 생성, 일차독립, 기저와 차원, 행공간·열공간·영공간과 계수 정리'
 series: '선형대수학'
 tags: ['선형대수학', '수학']
 ---
 
-벡터공간은 선형대수의 여러 개념이 놓이는 기본 무대다. 이 글에서는 벡터공간과 부분공간에서 시작해 일차결합, 일차독립, 기저, 차원, 행계수와 열계수까지 이어서 정리한다.
+벡터공간은 선형대수의 모든 개념이 놓이는 무대다. 이 글은 벡터공간과 내적공간의 공리, 부분공간과 생성, 일차독립, 기저와 차원, 행렬의 네 가지 기본 공간 중 행공간·열공간·영공간과 계수를 정리한다.
 
-이전 글:
-
-- [선형대수 - 행렬식, 치환과 보간다항식](/posts/la-determinant)
+이전 글: [선형대수 - 행렬식, 치환과 보간다항식](/posts/la-determinant)
 
 ## 1. 벡터공간
 
-다음 7가지 성질을 만족하면 **벡터공간**이라 정의한다. 그리고 벡터공간 $V$의 원소를 **벡터**라고 한다.
+### 공리
 
-<br>
+집합 $V$에 덧셈과 실수배가 정의되어 있고, 두 연산의 결과가 다시 $V$에 속하며(**닫힘**), 임의의 $\mathbf{u}, \mathbf{v}, \mathbf{w} \in V$, $h, k \in \mathbb{R}$에 대해 다음 8가지가 성립하면 $V$를 **벡터공간**이라 한다. 원소를 **벡터**라 부른다.
 
-### 벡터공간의 7가지 규칙
+| | 덧셈 | | 실수배 |
+|---|---|---|---|
+| A1 | $(\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})$ | S1 | $1\mathbf{u} = \mathbf{u}$ |
+| A2 | $\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}$ | S2 | $(hk)\mathbf{u} = h(k\mathbf{u})$ |
+| A3 | 영벡터 $\mathbf{0}$이 존재해 $\mathbf{u} + \mathbf{0} = \mathbf{u}$ | S3 | $(h + k)\mathbf{u} = h\mathbf{u} + k\mathbf{u}$ |
+| A4 | 역원 $-\mathbf{u}$가 존재해 $\mathbf{u} + (-\mathbf{u}) = \mathbf{0}$ | S4 | $k(\mathbf{u} + \mathbf{v}) = k\mathbf{u} + k\mathbf{v}$ |
 
-**A1) 결합법칙**
+공리에서 $0\mathbf{u} = \mathbf{0}$, $(-1)\mathbf{u} = -\mathbf{u}$가 따라 나온다.
 
-임의의 $\mathbf{u}, \mathbf{v}, \mathbf{w} \in V$에 대해 다음이 성립한다.
+### $\mathbb{R}^n$과 표준단위벡터
 
-<br>
+$\mathbb{R}^n = \{(x_1, \dots, x_n) \mid x_i \in \mathbb{R}\}$은 성분별 덧셈과 실수배로 벡터공간이 된다. $i$번째 성분만 1인 벡터 $\mathbf{e}_i$를 **표준단위벡터**라 한다.
 
-$$
-(\mathbf{u} + \mathbf{v}) + \mathbf{w} = \mathbf{u} + (\mathbf{v} + \mathbf{w})
-$$
-
-<br>
-
-**A2) 교환법칙**
-
-모든 $\mathbf{u}, \mathbf{v} \in V$에 대해 다음이 성립한다.
-
-<br>
-
-$$
-\mathbf{u} + \mathbf{v} = \mathbf{v} + \mathbf{u}
-$$
-
-<br>
-
-**A3) 항등원**
-
-모든 $\mathbf{u} \in V$에 대하여 다음이 성립하는 $\mathbf{x} \in V$가 존재한다.
-
-<br>
-
-$$
-\mathbf{u} + \mathbf{x} = \mathbf{u} = \mathbf{x} + \mathbf{u}
-$$
-
-<br>
-
-이때, $\mathbf{x}$를 $V$의 **영벡터**(항등원 = 결과 변화시키지 않는)라 하고 **0**으로 나타낸다.
-
-<br>
-
-**A4) 역원**
-
-모든 $\mathbf{u} \in V$에 대해 다음이 성립하는 $\mathbf{x} \in V$가 존재한다.
-
-<br>
-
-$$
-\mathbf{u} + \mathbf{x} = \mathbf{0} = \mathbf{x} + \mathbf{u}
-$$
-
-<br>
-
-이때, $\mathbf{x}$를 덧셈에 대한 $\mathbf{u}$의 역원이라 하고, $-\mathbf{u}$로 나타낸다.
-
-<br>
-
-**S1) 상수배 $1 \in \mathbb{R}$**
-
-모든 $\mathbf{u} \in V$에 대해 $1\mathbf{u} = \mathbf{u}$.
-
-<br>
-
-**S2) 상수배에 대한 결합·교환법칙**
-
-임의의 $\mathbf{u} \in V$와 $h, k \in \mathbb{R}$에 대해 다음이 성립한다.
-
-<br>
-
-$$
-(hk)\mathbf{u} = h(k\mathbf{u}) = k(h\mathbf{u})
-$$
-
-<br>
-
-**S3) 덧셈과 상수배의 분배법칙**
-
-임의의 $\mathbf{u}, \mathbf{v} \in V$와 $h, k \in \mathbb{R}$에 대해 다음이 성립한다.
-
-<br>
-
-$$
-(h + k)\mathbf{u} = h\mathbf{u} + k\mathbf{u}, \quad k(\mathbf{u} + \mathbf{v}) = k\mathbf{u} + k\mathbf{v}
-$$
-
-<br>
-
-**벡터공간의 성질**
-
-벡터 공간 $V$의 임의의 벡터 $\mathbf{u}$에 대해, 다음이 성립한다.
-
-<br>
-
-$$
-0 \cdot \mathbf{u} = \mathbf{0}, \quad (-1)\mathbf{u} = -\mathbf{u}
-$$
-
-<br>
-
-### 벡터공간 $\mathbb{R}^n$
-
-실수 n개의 순서쌍으로 이루어진 집합을 다음과 같이 정의한다.
-
-<br>
-
-$$
-\mathbb{R}^n := \{(x_1, x_2, \cdots, x_n) \mid x_i \in \mathbb{R}, \; i = 1, 2, \cdots, n\}
-$$
-
-<br>
-
-**표준단위벡터**: i번째 성분만 1이고 나머지 성분은 모두 0인 $\mathbb{R}^n$의 벡터, 이는 $\mathbf{e}_i$로 나타낸다. 예를 들면 아래와 같다.
-
-<br>
-
-$$
-\mathbf{e}_1 = (1, 0, \cdots, 0)\\
-\mathbf{e}_2 = (0, 1, \cdots, 0)\\
-\mathbf{e}_n = (0, 0, \cdots, 1)
-$$
-
-<br>
+$\mathbb{R}^n$의 벡터는 행벡터($M_{1,n}$)로도 열벡터($M_{n,1}$)로도 쓸 수 있다. 같은 공간이지만 어느 쪽으로 세웠는지 강조할 때 $\mathbb{R}^n_r$, $\mathbb{R}^n_c$로 구분해 쓰기도 한다.
 
 ## 2. 내적공간
 
-다음 벡터공간을 만족하고, 추가로 다음 4가지 규칙을 만족하면 **내적공간**이라 한다.
+벡터공간 $V$에 다음 네 조건을 만족하는 $\langle \cdot, \cdot \rangle$이 정의되면 **내적공간**이라 한다.
 
-<br>
+1. $\langle \mathbf{u}, \mathbf{u} \rangle \ge 0$이고, $\langle \mathbf{u}, \mathbf{u} \rangle = 0 \iff \mathbf{u} = \mathbf{0}$
+2. $\langle \mathbf{u}, \mathbf{v} \rangle = \langle \mathbf{v}, \mathbf{u} \rangle$
+3. $\langle \mathbf{u} + \mathbf{v}, \mathbf{w} \rangle = \langle \mathbf{u}, \mathbf{w} \rangle + \langle \mathbf{v}, \mathbf{w} \rangle$
+4. $\langle k\mathbf{u}, \mathbf{v} \rangle = k\langle \mathbf{u}, \mathbf{v} \rangle$
 
-### 내적공간 4가지 규칙
-
-**규칙 1**
-
-임의의 $\mathbf{u} \in V$에 대해 $\langle\mathbf{u}, \mathbf{u}\rangle \geq 0$이고, $\langle\mathbf{u}, \mathbf{u}\rangle = 0 \Leftrightarrow \mathbf{u} = \mathbf{0}$이다.
-
-<br>
-
-**규칙 2**
-
-임의의 $\mathbf{u}, \mathbf{v} \in V$에 대해 $\langle\mathbf{u}, \mathbf{v}\rangle = \langle\mathbf{v}, \mathbf{u}\rangle$이다.
-
-<br>
-
-**규칙 3**
-
-임의의 $\mathbf{u}, \mathbf{v}, \mathbf{w} \in V$에 대해 $\langle\mathbf{u} + \mathbf{v}, \mathbf{w}\rangle = \langle\mathbf{u}, \mathbf{w}\rangle + \langle\mathbf{v}, \mathbf{w}\rangle$이다.
-
-<br>
-
-**규칙 4**
-
-임의의 $\mathbf{u}, \mathbf{v} \in V$와 $k \in \mathbb{R}$에 대해 $\langle k\mathbf{u}, \mathbf{v}\rangle = k\langle\mathbf{u}, \mathbf{v}\rangle = \langle\mathbf{u}, k\mathbf{v}\rangle$이다.
-
-<br>
-
-### 코시-슈바르츠 부등식
-
-$\mathbb{R}^n$의 임의의 벡터 $\mathbf{a}, \mathbf{b}$에 대하여 다음이 성립한다.
-
-<br>
+내적으로 길이 $\lVert \mathbf{u} \rVert = \sqrt{\langle \mathbf{u}, \mathbf{u} \rangle}$를 정의하면, 모든 내적공간에서 **코시-슈바르츠 부등식**이 성립한다.
 
 $$
-|\langle\mathbf{a}, \mathbf{b}\rangle| \leq \|\mathbf{a}\| \|\mathbf{b}\|
+\lvert\langle \mathbf{u}, \mathbf{v} \rangle\rvert \le \lVert \mathbf{u} \rVert \lVert \mathbf{v} \rVert
 $$
 
-<br>
+등호는 두 벡터가 평행(한쪽이 다른 쪽의 상수배)일 때만 성립한다. 이 부등식 덕분에 $\cos\theta = \dfrac{\langle \mathbf{u}, \mathbf{v} \rangle}{\lVert \mathbf{u} \rVert \lVert \mathbf{v} \rVert}$로 사잇각을 정의할 수 있다.
 
-## 3. 부분공간
+## 3. 부분공간과 생성
 
-$W \subseteq V$ 이려면 다음 두 조건을 만족해야 한다.
+### 부분공간
 
-<br>
-
-$$
-\mathbf{w}_1, \mathbf{w}_2 \in W \Rightarrow \mathbf{w}_1 + \mathbf{w}_2 \in W \\
-\mathbf{w} \in W, k \in \mathbb{R} \Rightarrow k\mathbf{w} \in W
-$$
-
-<br>
-
-즉, 덧셈이 벡터공간이 되고, 상수배도 벡터공간이 된다면 $W$를 $V$의 **부분공간**이라고 한다.
-
-<br>
-
-### 일차결합
-
-실수 상에서 정의된 벡터공간 $V$에서 $n$개의 벡터 $\mathbf{v}_1, \mathbf{v}_2, \cdots, \mathbf{v}_n$과 임의의 실수 $c_1, c_2, \cdots, c_n$에 대해, 다음 형태의 벡터를 $\mathbf{v}_1, \mathbf{v}_2, \cdots, \mathbf{v}_n$의 **일차결합** 또는 **선형결합**이라고 한다.
-
-<br>
+$V$의 부분집합 $W$가 $\mathbf{0}$을 포함하고 다음 두 조건을 만족하면 $W$는 그 자체로 벡터공간이 되며, $V$의 **부분공간**이라 한다.
 
 $$
-c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_n \mathbf{v}_n \in V
+\mathbf{w}_1, \mathbf{w}_2 \in W \Rightarrow \mathbf{w}_1 + \mathbf{w}_2 \in W,
+\qquad
+\mathbf{w} \in W,\ k \in \mathbb{R} \Rightarrow k\mathbf{w} \in W
 $$
 
-<br>
+나머지 공리는 $V$에서 물려받으므로 닫힘만 확인하면 된다.
 
-이때, 벡터 $\mathbf{w} \in V$가 적당한 실수 $c_i$에 대해 $\mathbf{w} = c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_n \mathbf{v}_n$를 만족하면, $\mathbf{w}$는 집합 $\{\mathbf{v}_1, \mathbf{v}_2, \cdots, \mathbf{v}_n\}$으로부터 **생성**되었다고 한다.
+### 생성
 
-<br>
-
-일차결합은 이 벡터들로 만들 수 있는 새로운 벡터의 일반적인 형태이다. 또한, 일차결합으로 이루어진 집합은 또 하나의 벡터공간이 된다. 다시 말하면, 아래와 같이 표현이 가능하다.
-
-<br>
+$S = \{\mathbf{v}_1, \dots, \mathbf{v}_n\}$의 선형결합 전체
 
 $$
-W = \{c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_n \mathbf{v}_n\}
+\operatorname{span}(S) = \langle S \rangle = \{c_1\mathbf{v}_1 + \cdots + c_n\mathbf{v}_n \mid c_i \in \mathbb{R}\}
 $$
 
-<br>
+는 항상 부분공간이다. 이를 $S$가 **생성하는** 부분공간이라 하고, $S$를 **생성집합**이라 한다.
 
-이 벡터공간 $W$는 $V$의 부분집합 $S = \{\mathbf{v}_1, \mathbf{v}_2, \cdots, \mathbf{v}_n\}$의 벡터들로 생성되는 부분공간이므로 집합 $S$를 $W$의 **생성집합**이라 하고 이를 기호로 나타내면 아래와 같이 두 가지로 표현 가능하다.
+### 부분공간의 교집합과 합
 
-<br>
+두 부분공간 $W_1, W_2$에 대해
 
-$$
-W = \text{span}(S) \\
-W = \langle S \rangle
-$$
-
-<br>
-
-### 행렬과 관련된 $\mathbb{R}^n$의 부분공간
-
-먼저, 벡터공간 $M_{1,n}$에 속하는 벡터나 벡터공간 $M_{n,1}$에 속하는 벡터 모두 $\mathbb{R}^n$의 벡터라고 생각할 수 있는데 이는 사실 같은 공간을 가리키는 표현이기 때문이다.
-
-<br>
-
-쉽게 말해, 집합으로 표현하면 $\mathbb{R}^n$이고 행으로 표현하면 $M_{1,n}$, 열로 표현하면 $M_{n,1}$인 것이기 때문이다.
-
-<br>
-
-같은 것을 행으로 세운 것이나 열로 세운 것이 결국 같은 길이의 벡터집합이라 하더라도 강조하고자 하는 바에 따라 표현을 의도적으로 달리 사용할 수도 있는데 그럴 경우에는 상황에 맞춰 표현 방법이 달라질 수 있다. 즉, $\mathbb{R}^n$을 행벡터들로 이루어진 벡터공간으로 이해한다면 $\mathbb{R}_r^n$으로 표현하고, 열벡터들로 이루어진 벡터공간으로 이해한다면 $\mathbb{R}_c^n$로 표현한다.
-
-<br>
+- **교집합** $W_1 \cap W_2$는 부분공간이다.
+- **합집합** $W_1 \cup W_2$는 일반적으로 부분공간이 **아니다**. 예를 들어 $x$축과 $y$축의 합집합에서 $(1, 0) + (0, 1) = (1, 1)$은 어느 축에도 없다.
+- 대신 **합공간** $W_1 + W_2 = \{\mathbf{w}_1 + \mathbf{w}_2\}$는 부분공간이고, $W_1 \cup W_2$를 포함하는 가장 작은 부분공간이다.
 
 $$
-\begin{pmatrix}
-1 & 2 & 3 & 0\\
-2 & 3 & 4 & 1\\
-5 & -1 & 7& 2\\
-\end{pmatrix}
-\begin{pmatrix}
-x\\
-y\\
-z\\
-w\\
-\end{pmatrix}
-=
-\begin{pmatrix}
-x + 2y + 3z\\
-2x + 3y + 4z + w\\
-5x - y + 7z + 2w\\
-\end{pmatrix}
+\dim(W_1 + W_2) = \dim W_1 + \dim W_2 - \dim(W_1 \cap W_2)
 $$
 
-<br>
+## 4. 일차독립
+
+### 정의
+
+$\mathbf{v}_1, \dots, \mathbf{v}_n$이 **일차독립**이라는 것은
 
 $$
-\mathbf{A} \quad \mathbf{X}(\text{정의역}) \quad \mathbf{Y}(\text{치역})
+c_1\mathbf{v}_1 + \cdots + c_n\mathbf{v}_n = \mathbf{0} \;\Rightarrow\; c_1 = \cdots = c_n = 0
 $$
 
-<br>
+이라는 뜻이다. 이를 만족하지 않으면(0이 아닌 $c_j$가 있으면) **일차종속**이다. 일차종속은 어떤 벡터 하나가 나머지의 선형결합으로 표현된다는 것과 같다. 벡터가 두 개일 때는 한쪽이 다른 쪽의 상수배, 즉 평행하다는 뜻이 된다.
 
-위의 예시를 보면 **X**(정의역)라는 열벡터에 적당한 행렬(**A**)를 곱했을 때의 결과(**Y** = 치역)가 나오는 식을 의미한다. **A**라는 행렬을 열의 묶음으로 이해한다면 이는 결국 아래와 같이 나타낼 수 있다.
+### $\mathbb{R}^n$에서 판별하기
 
-<br>
+| 방법 | 판별 |
+|---|---|
+| 소거 | 벡터들을 행으로 쌓아 행사다리꼴로 만든다. 0인 행이 생기면 일차종속 |
+| 행렬식 | $n$개의 벡터를 쌓은 $n \times n$ 행렬 $\mathbf{A}$에 대해, 일차독립 $\iff \det\mathbf{A} \neq 0$ |
+| 개수 | $\mathbb{R}^n$에서 $n$개보다 많은 벡터는 항상 일차종속 |
 
-$$
-x\begin{pmatrix}
-1\\
-2\\
-5\\
-\end{pmatrix} +
-y\begin{pmatrix}
-2\\
-3\\
--1\\
-\end{pmatrix} +
-z\begin{pmatrix}
-3\\
-4\\
-7\\
-\end{pmatrix} +
-w\begin{pmatrix}
-0\\
-1\\
-2\\
-\end{pmatrix}
-$$
+## 5. 기저와 차원
 
-<br>
+### 기저
 
-그리고 이는 다시 말해 아래 4개의 벡터의 선형결합으로 만들어진 집합을 의미한다.
+유한집합 $B \subset V$가 다음 두 조건을 만족하면 $V$의 **기저**다.
 
-<br>
-
-다시말하면
-- 4개의 벡터로 생성되는 집합
-- 4개의 벡터로 span되는 집합  
-- 4개의 벡터의 선형결합으로 만들어지는 집합
-
-<br>
-
-$$
-\left\langle
-\left\{
-\begin{pmatrix}
-1\\
-2\\
-5\\
-\end{pmatrix},
-\begin{pmatrix}
-2\\
-3\\
--1\\
-\end{pmatrix},
-\begin{pmatrix}
-3\\
-4\\
-7\\
-\end{pmatrix},
-\begin{pmatrix}
-0\\
-1\\
-2\\
-\end{pmatrix}
-\right\}
-\right\rangle
-$$
-
-<br>
-
-즉, 행렬의 곱으로 만들어진 결과물은 원래 행렬의 열벡터들의 선형결합으로 만들어진 치역을 의미한다. 따라서 치역이 어떻게 생겼는지는 곱해지는 행렬을 보면 알 수 있다.
-
-<br>
-
-**C(A)**라는 기호는 열공간을 뜻하고, 이는 행렬을 열로 잘라서 얻어지는 열벡터들로 생성된 벡터공간을 의미한다. 즉, $\mathbf{A}$뒤에 $\mathbf{v}$를 곱해 얻어진 치역이고 이를 식으로 나타내면 다음과 같다.
-
-<br>
-
-$$
-C(\mathbf{A}) = \{ \mathbf{A}\mathbf{v} \mid \mathbf{v} \in M_{m,1}\}
-$$
-
-<br>
-
-이때, 
-
-<br>
-
-$$
-\mathbf{v} =  
-\begin{pmatrix}
-x_1\\
-x_2\\
-\vdots\\
-x_n\\
-\end{pmatrix}
-$$
-
-<br>
-
-**R(A)**라는 기호는 행공간을 의미하고 이는 행렬을 행으로 잘라서 얻어지는 행벡터들로 생성된 벡터공간을 의미한다. 즉, $\mathbf{A}$앞에 $\mathbf{w}$를 곱해 얻어진 치역이고 이를 식으로 나타내면 다음과 같다.
-
-<br>
-
-$$
-R(\mathbf{A}) = \{\mathbf{w}\mathbf{A} \mid \mathbf{w} \in M_{1,m}\}
-$$
-
-<br>
-
-결과적으로 원래 행렬도 벡터공간이었다면, 그 행렬의 열 벡터들의 선형결합으로 만들어진(=생성된) 새로운 치역 역시, 벡터공간이 된다.
-
-<br>
-
-이때 행공간과 열공간의 전치관계를 이용하면 아래와 같은 성질을 얻을 수 있다. 이로 인해, 한 쪽만 구하고 다른 쪽은 전치시키는 방법도 가능하다.
-
-<br>
-
-$$
-R(\mathbf{A}) = C(\mathbf{A}^T)^T
-$$
-
-<br>
-
-만약, 가우스-조르당 연산으로 행렬 **A**를 변환시키고 그 행렬이 한 줄이 0인 형태가 되었다면, 원래 행렬 **A**의 3개의 행(또는 열)은 행렬 **A**를 생성하는 벡터들이다.
-
-<br>
-
-$$
-\mathbf{A} = \begin{pmatrix}
-1 & 1 & 0\\
--1 & 1 & 2\\
-0 & 2 & 2\\
-\end{pmatrix}
-$$
-
-<br>
-
-하지만, 연산을 통해 얻어진 행렬 역시, 이 모든 연산을 벡터들의 선형결합 과정으로 이해한다면 새로운 행렬의 각 행 벡터들도 행렬 **A**를 생성하는 벡터로 볼 수 있다.
-
-<br>
-
-$$
-R_{1,2}(-1) R_{2,3}(1) R_{2}(2) R_{2,1}(1)
-\begin{pmatrix}
-1 & 0 & -1\\
-0 & 1 & 1\\
-0 & 0 & 0\\
-\end{pmatrix}
-=\mathbf{A}
-$$
-
-<br>
-
-그렇게 될 경우 생성하는 벡터가 줄었다고 볼 수도 있지만, 마지막 (0 0 0)벡터도 **A**를 생성하는 벡터로 본다면, 그 수 자체는 3개로 줄지 않았다고 생각할 수도 있다.
-
-<br>
-
-### 일차독립, 일차종속
-
-벡터공간 $V$에서 $n$개의 벡터 $\mathbf{v}_1, \mathbf{v}_2, \cdots, \mathbf{v}_n$이 주어졌을 때, 이들 벡터가 서로 **일차독립**이라는 것은 이들 벡터 중 어떤 벡터도 나머지 벡터들로부터 생성되지 않음을 의미한다. 따라서, 이 경우에 위배된다면 **일차종속**이라고 한다.
-
-<br>
-
-즉, $\mathbf{v}_1, \mathbf{v}_2, \cdots, \mathbf{v}_n$가 일차종속이라는 말은 어떤 한 벡터를 나머지 벡터들의 일차결합으로 나타낼 수 있음을 의미한다.
-
-<br>
-
-일차종속이라 함은 결국 두 벡터가 있다고 할 때, 한 벡터가 다른 벡터의 선형결합 형태로 표현된다는 의미이다. 이는 곧, 두 벡터가 평행하다는 것을 의미한다. 다시 말해 한 벡터가 다른 벡터의 상수배라는 뜻이다.
-
-<br>
-
-**일차독립일 필요충분조건**
-
-벡터공간에서 $n$개의 벡터 $\mathbf{v}_1, \mathbf{v}_2, \cdots, \mathbf{v}_n$이 일차독립일 필요충분조건은 다음과 같다.
-
-<br>
-
-$$
-c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \cdots + c_n \mathbf{v}_n = \mathbf{0} \\
-\Rightarrow c_1 = c_2 = \cdots = c_n = 0
-$$
-
-<br>
-
-위의 식에서 일차종속이었다면, 적어도 하나의 0이 아닌 $c_j$가 존재하였을 것이다.
-
-<br>
-
-### $\mathbb{R}^n$의 부분집합에 대한 일차독립, 일차종속 판별
-
-아래 $\mathbf{v}$들로 이루어진 벡터에 가우스-조르당 소거법을 사용하여 기약행사다리꼴을 만들어 낸다면 $\alpha_1 \mathbf{v}_1 + \cdots + \alpha_m \mathbf{v}_m = \mathbf{0}$이된다. 이는 어떠한 선형결합이 $(0, 0, 0, 0, 0)$인 행을 만들어 냈다는 것을 의미하고 결과적으로 일차종속을 의미한다.
-
-<br>
-
-$$
-\begin{pmatrix}
-\mathbf{v}_1 \\
-\vdots \\
-\mathbf{v}_n \\
-\end{pmatrix} \Rightarrow
-\begin{pmatrix}
-\vdots & \vdots & \vdots & \vdots & \vdots \\
-\vdots & \vdots & \vdots & \vdots & \vdots \\
-0 & 0 & 0 & 0 & 0 \\
-\end{pmatrix}
-$$
-
-<br>
-
-이때, $m = n$인 정방행렬이라면 다음과 같이 행렬식을 이용해도 좋다.
-
-<br>
-
-$\mathbf{v}_1, \mathbf{v}_2, \cdots, \mathbf{v}_m$이 일차독립 $\Leftrightarrow \det(\mathbf{A}) \neq 0$
-
-<br>
-
-여기서 조건이라고 할 수 있는 것은 벡터 공간 $\mathbb{R}^n$에서 m개의 벡터가 일차독립이라면, $m \leq n$이어야 한다. 예를 들면, 4차원 벡터공간에서 5개의 벡터를 뽑아낸다면 그 중 하나는 무조건 중복이 될 수밖에 없기 때문이다.
-
-<br>
-
-## 4. 기저(basis)
-
-실수 $\mathbb{R}$ 상에서 정의된 벡터공간 $V$의 부분집합 $B$가 다음 세 가지 조건을 만족하면 이때의 $B$를 **기저**라고 한다.
-
-<br>
-
-> - $|B|$ = 유한개
-> - $B$가 $V$를 생성. 즉, $\langle B \rangle = V$  
-> - $B$는 일차독립
-
-<br>
+1. $B$가 $V$를 생성한다: $\langle B \rangle = V$
+2. $B$가 일차독립이다.
 
 ### 차원
 
-기저를 구성하는 원소의 개수를 **차원**이라 한다. 이게 가능한 이유는 기저의 수는 다양하지만, 구성하는 원소의 수는 $\mathbb{R}^n$에서 $n$개로 동일하기 때문이다.
+같은 공간의 기저는 여러 가지지만 **원소의 개수는 항상 같다**. 이 개수를 **차원** $\dim V$라 한다. 예를 들어 $\dim\mathbb{R}^n = n$이고, $\{\mathbf{e}_1, \dots, \mathbf{e}_n\}$이 표준기저다.
 
-<br>
+$\dim V = n$일 때 다음이 성립한다.
 
-이를 정리하면 유한차원 벡터공간 $V$의 두 기저 $\mathcal{B}_1, \mathcal{B}_2$에 대해 $n(\mathcal{B}_1) = n(\mathcal{B}_2)$이 성립한다. 즉, 어떤 벡터공간의 기저를 이루는 벡터의 개수는 항상 일정하므로, 이를 벡터공간의 **차원**이라고 하고, $\dim_{\mathbb{R}}(V) = n(\mathcal{B}_1)$으로 나타낸다.
+- $n$개의 벡터는 **생성하거나 일차독립이기만 하면** 기저다. 둘 중 하나가 나머지를 보장한다.
+- 부분공간 $W$에 대해 $\dim W \le n$이고, $\dim W = n$이면 $W = V$이다.
 
-<br>
+## 6. 행렬의 공간과 계수
 
-유한차원 벡터공간 $V$의 차원이 $n$일 때, $V$의 부분공간 $W \neq \{\mathbf{0}\}$는 항상 기저를 가지고 $\dim_{\mathbb{R}}(W) \leq \dim_{\mathbb{R}}(V)$이다. 이때, $\dim_{\mathbb{R}}(W) = n$이라면 $W = V$이다.
+$m \times n$ 행렬 $\mathbf{A}$에 대해 다음 공간을 정의한다.
 
-<br>
+| 공간 | 정의 | 위치 |
+|---|---|---|
+| 열공간 $C(\mathbf{A})$ | 열들의 생성 $= \{\mathbf{A}\mathbf{x} \mid \mathbf{x} \in M_{n,1}\}$ | $M_{m,1}$의 부분공간 |
+| 행공간 $R(\mathbf{A})$ | 행들의 생성 $= \{\mathbf{y}\mathbf{A} \mid \mathbf{y} \in M_{1,m}\}$ | $M_{1,n}$의 부분공간 |
+| 영공간 $N(\mathbf{A})$ | $\{\mathbf{x} \mid \mathbf{A}\mathbf{x} = \mathbf{0}\}$ | $M_{n,1}$의 부분공간 |
 
-n차원의 벡터공간 $V$에서 일차독립인 n개의 벡터가 주어지면 저절로 $V$를 생성하고 $V$의 기저가 된다. 비슷하게 n개의 벡터가 $V$를 생성하면, 실제로 n개의 벡터가 일차독립이 되고 $V$의 기저가 된다.
+### 열공간 = $\mathbf{Ax}$가 갈 수 있는 곳
 
-<br>
-
-따라서, n차원의 벡터공간에서
-
-<br>
-
-**n개의 벡터가 기저가 되는지를 확인하는 방법**
-
-> (둘 중 하나만 성립하면 됨)
-> - 벡터공간 전체를 생성하는가?
-> - 일차독립인가?
-
-<br>
-
-둘 중 하나만 성립해도 모두가 성립하게 되는 이유를 다시 정리해보자면, 유한차원 벡터공간 $V$의 차원이 $n$일 때, $n$개의 벡터 $\mathcal{B} = \{\mathbf{v}_1, \mathbf{v}_2, \cdots, \mathbf{v}_n\} \subset V$에 대해 다음이 성립하기 때문이다.
-
-<br>
-
-$\mathcal{B}$가 일차독립이면, $\mathcal{B}$는 $V$를 생성하고 기저가 되고, $\mathcal{B}$가 $V$를 생성하면, $\mathcal{B}$는 일차독립이 되고 기저가 된다.
-
-<br>
-
-따라서, $V$의 부분공간 $W$의 차원이 $n$이면, $W = V$이다.
-
-<br>
-
-### 부분공간의 교집합, 합집합
-
-벡터공간 $V$에 두 부분공간 $W_1, W_2$이 있을 때, 다음이 성립한다.
-
-<br>
+$\mathbf{Ax}$는 $\mathbf{A}$의 열들의 선형결합이다.
 
 $$
-W_1, W_2 \subseteq V \\
-W_1 \cap W_2 \subseteq V \\
-W_1 + W_2 \subseteq V
+\begin{pmatrix} 1 & 2 & 3 & 0 \\ 2 & 3 & 4 & 1 \\ 5 & -1 & 7 & 2 \end{pmatrix}
+\begin{pmatrix} x \\ y \\ z \\ w \end{pmatrix}
+= x\begin{pmatrix} 1 \\ 2 \\ 5 \end{pmatrix} + y\begin{pmatrix} 2 \\ 3 \\ -1 \end{pmatrix} + z\begin{pmatrix} 3 \\ 4 \\ 7 \end{pmatrix} + w\begin{pmatrix} 0 \\ 1 \\ 2 \end{pmatrix}
 $$
 
-<br>
+따라서 $\mathbf{Ax}$의 치역은 열공간이고, $\mathbf{Ax} = \mathbf{b}$에 해가 있다 $\iff \mathbf{b} \in C(\mathbf{A})$이다. 행공간은 전치로 연결된다: $R(\mathbf{A}) = C(\mathbf{A}^T)^T$.
 
-즉, 부분공간의 교집합 or 합집합도 $V$의 부분공간이 된다.
+### 행 연산은 행공간을 바꾸지 않는다
 
-<br>
-
-#### 부분공간의 차원
-
-실수 상에서 정의된 유한차원 벡터공간 $V$의 두 부분공간 $W_1, W_2$에 대해 다음이 성립한다.
-
-<br>
+행 연산은 행들의 선형결합이고 되돌릴 수도 있으므로 행공간이 그대로다. 그래서 **기약행사다리꼴의 0이 아닌 행이 행공간의 기저**가 된다.
 
 $$
-\dim_{\mathbb{R}}(W_1 + W_2) = \dim_{\mathbb{R}}(W_1) + \dim_{\mathbb{R}}(W_2) - \dim_{\mathbb{R}}(W_1 \cap W_2)
+\mathbf{A} = \begin{pmatrix} 1 & 1 & 0 \\ -1 & 1 & 2 \\ 0 & 2 & 2 \end{pmatrix}
+\;\longrightarrow\;
+\begin{pmatrix} 1 & 0 & -1 \\ 0 & 1 & 1 \\ 0 & 0 & 0 \end{pmatrix}
 $$
 
-<br>
+세 행이 $R(\mathbf{A})$를 생성하지만 기저는 $\{(1, 0, -1), (0, 1, 1)\}$ 두 개면 충분하다. 즉 $\dim R(\mathbf{A}) = 2$이다.
 
-## 5. 행계수, 열계수, 계수
-
-$n \times m$ 행렬 **A**에 대해 $M_{1,m}$의 부분공간이 되는 행공간 $R(\mathbf{A})$의 차원을 행렬의 **행계수**라한다. 마찬가지로 $M_{n,1}$의 부분공간이 되는 열공간 $C(\mathbf{A})$의 차원을 행렬의 **열계수**라고 한다. 이들은 다음과 같이 나타낸다.
-
-<br>
+### 계수: 행계수 = 열계수
 
 $$
-r(\mathbf{A}) = \text{행계수} = \dim R(\mathbf{A})\\
-c(\mathbf{A}) = \text{열계수} = \dim C(\mathbf{A})
+\mathbf{A} = \begin{pmatrix} 1 & 0 & 1 & 1 \\ 1 & 1 & 0 & 1 \\ 3 & 2 & 1 & 3 \end{pmatrix}
+\;\longrightarrow\;
+\begin{pmatrix} 1 & 0 & 1 & 1 \\ 0 & 1 & -1 & 0 \\ 0 & 0 & 0 & 0 \end{pmatrix},
+\qquad
+\mathbf{A}^T \;\longrightarrow\;
+\begin{pmatrix} 1 & 0 & 1 \\ 0 & 1 & 2 \\ 0 & 0 & 0 \\ 0 & 0 & 0 \end{pmatrix}
 $$
 
-<br>
-
-예를 들면, 행렬 **A**가 아래와 같다고 하자.
-
-<br>
+행공간과 열공간의 차원이 모두 2다. 이는 우연이 아니라 항상 성립하므로, 둘을 구분하지 않고 **계수**라 한다.
 
 $$
-\mathbf{A} = \begin{pmatrix}
-1 & 0 & 1 & 1\\
-1 & 1 & 0 & 1\\
-3 & 2 & 1 & 3\\
-\end{pmatrix}
+\operatorname{rank}(\mathbf{A}) = \dim R(\mathbf{A}) = \dim C(\mathbf{A}) = \text{기약행사다리꼴의 선행성분 개수}
 $$
 
-<br>
+### 영공간과 nullity
 
-여기서 행공간 $R(\mathbf{A})$와 열공간 $C(\mathbf{A})$는 각각 다음과 같다.
+위의 $\mathbf{A}$로 $\mathbf{Ax} = \mathbf{0}$을 풀면, 기약행사다리꼴에서
 
-<br>
-
-$$
-R(\mathbf{A}) =
-\left\langle
-\left\{
-\begin{pmatrix}
-1 & 0 & 1 & 1
-\end{pmatrix},
-\begin{pmatrix}
-1 & 1 & 0 & 1
-\end{pmatrix},
-\begin{pmatrix}
-3 & 2 & 1 & 3
-\end{pmatrix}
-\right\}
-\right\rangle
-$$
-
-<br>
+- **선행변수** $x_1, x_2$: 선행성분이 있는 열. 다른 변수로 결정된다.
+- **자유변수** $x_3, x_4$: 아무 값이나 가질 수 있다.
 
 $$
-C(\mathbf{A}) =
-\left\langle
-\left\{
-\begin{pmatrix}
-1\\
-1\\
-3\\
-\end{pmatrix},
-\begin{pmatrix}
-0\\
-1\\
-2\\
-\end{pmatrix},
-\begin{pmatrix}
-1\\
-0\\
-1\\
-\end{pmatrix},
-\begin{pmatrix}
-1\\
-1\\
-3\\
-\end{pmatrix}
-\right\}
-\right\rangle
+x_1 = -x_3 - x_4,\quad x_2 = x_3
+\quad\Rightarrow\quad
+\mathbf{x} = x_3\begin{pmatrix} -1 \\ 1 \\ 1 \\ 0 \end{pmatrix} + x_4\begin{pmatrix} -1 \\ 0 \\ 0 \\ 1 \end{pmatrix}
 $$
 
-<br>
-
-**A**를 가우스-조르당 연산을 사용해 기약행사다리꼴로 변환시키면 아래와 같은데, 여기서 열에 대해 가우스-조르당 연산을 사용하면, 열에 대해 계산해야 한다. 하지만 그러한 방법은 배우지 않았으므로, **A**를 전치시킨다음 연산을 행하면 이와 같은 결과가 나올 것이라고 생각할 수 있다. 아래는 그에 대한 결과이다.
-
-<br>
+두 벡터가 $N(\mathbf{A})$의 기저이고, $\operatorname{nullity}(\mathbf{A}) = \dim N(\mathbf{A}) = 2$ = 자유변수의 개수다. 선행변수와 자유변수를 합치면 전체 변수이므로
 
 $$
-\begin{pmatrix}
-1 & 0 & 1 & 1\\
-1 & 1 & 0 & 1\\
-3 & 2 & 1 & 3\\
-\end{pmatrix} \Rightarrow
-\begin{pmatrix}
-1 & 0 & 1 & 1\\
-0 & 1 & -1 & 0\\
-0 & 0 & 0 & 0\\
-\end{pmatrix}
+\operatorname{rank}(\mathbf{A}) + \operatorname{nullity}(\mathbf{A}) = n \;(\text{열의 수} = \text{변수의 수})
 $$
 
-<br>
+이 차원정리는 다음 글들의 선형사상에서 $\dim\operatorname{Im}(L) + \dim\operatorname{Ker}(L) = \dim V$로 다시 등장한다.
 
-$$
-\begin{pmatrix}
-1 & 1 & 3\\
-0 & 1 & 2\\
-1 & 0 & 1\\
-1 & 1 & 3\\
-\end{pmatrix} \Rightarrow
-\begin{pmatrix}
-1 & 0 & 1\\
-0 & 1 & 2\\
-0 & 0 & 0\\
-0 & 0 & 0\\
-\end{pmatrix}
-$$
+## 요약
 
-<br>
+| 개념 | 핵심 |
+|---|---|
+| 벡터공간 | 덧셈·실수배에 닫힘 + 8개 공리 |
+| 부분공간 판정 | $\mathbf{0}$ 포함, 덧셈·실수배에 닫힘 |
+| 교집합·합집합 | 교집합과 합공간 $W_1 + W_2$는 부분공간, 합집합은 일반적으로 아님 |
+| 일차독립 | $\sum c_i\mathbf{v}_i = \mathbf{0} \Rightarrow$ 모든 $c_i = 0$ |
+| 기저 | 생성 + 일차독립. $\dim V = n$이면 $n$개 벡터는 둘 중 하나만 확인 |
+| 차원 | 기저 원소의 개수, 기저와 무관하게 일정 |
+| 열공간 | $\mathbf{Ax}$의 치역, $\mathbf{Ax} = \mathbf{b}$ 해 존재 $\iff \mathbf{b} \in C(\mathbf{A})$ |
+| 행공간 | 행 연산으로 불변, 기약행사다리꼴의 0 아닌 행이 기저 |
+| 계수 | 행계수 = 열계수 = 선행성분 개수 |
+| 차원정리 | $\operatorname{rank} + \operatorname{nullity} = $ 열의 수, nullity = 자유변수 개수 |
 
-결과적으로 $r(\mathbf{A}) = 2$, $c(\mathbf{A}) = 2$로 동일하다. 정리하면 다음과 같다. 어차피 같은 결과를 지칭하기에, 이제 행계수, 열계수라고 구분안하고 계수라고 부른다.
-
-<br>
-
-$$
-\text{rank}(\mathbf{A}) = c(\mathbf{A}) = r(\mathbf{A})
-$$
-
-<br>
-
-### nullity
-
-$\mathbf{A}\mathbf{X} = \mathbf{0}$이라는 식에서 $\mathbf{X} = (x_1, x_2, x_3, x_4)^T$일 때, $\mathbf{A}$를 다음과 같이 표현한다면,
-
-<br>
-
-$$
-\mathbf{A}=
-\begin{pmatrix}
-1 & 0 & 1 & 1\\
-0 & 1 & 0 & 1\\
-0 & 0 & 0 & 0\\
-\end{pmatrix}
-$$
-
-<br>
-
-**X**의 일부 변수는 다른 변수의 조합으로 꼴이 만들어질 것이다.(일차종속) 이때의 0공간(일차독립된 벡터들의 집합)의 차원을 **nullity**라고 한다.
-
-<br>
-
-즉, 다음과 같이 행렬의 곱으로 주어진다면, 다음과 같이 정리할 수 있다.
-
-<br>
-
-$$
-\mathbf{A} \quad \times \quad
-\begin{pmatrix}
-\vdots\\
-\vdots\\
-\vdots\\
-\end{pmatrix}
-$$
-
-<br>
-
-$$
-n \times m \quad m \times 1
-$$
-
-<br>
-
-> **rank와 nullity의 관계**
-> - $\text{rank}(\mathbf{A}) = m - \text{nullity}(\mathbf{A})$
-> - $\text{rank}(\mathbf{A}) =$ 결과물의 차원 = 치역의 차원 = 열공간의 차원
-> - 치역의 차원 + 0공간의 차원(nullity) = 정의구역의 차원
-
-<br>
-
-조금 더 설명하자면, 위의 **A**를 볼 때, 선행성분들은 독립성이 없다고 말할 수 있다.(다른 변수에 의해 표현되므로) 이러한 선행성분의 개수를 $\text{rank}(\mathbf{A})$라 한다면,
-
-<br>
-
-$$
-\text{nullity}(\mathbf{A}) = m(\text{전체 변수의 개수}) - \text{rank}(\mathbf{A})(\text{선행성분(=종속)의 개수}) = \text{독립적인 변수들의 개수}
-$$
-
-<br>
-
-라고 이해할 수 있다.
-
-## 다음 글
-
-다음 글에서는 정규직교기저와 최소제곱법을 이어서 정리한다.
-
-- [선형대수 - 정규직교기저와 최소제곱법](/posts/la-orthonormal)
+다음 글: [선형대수 - 정규직교기저와 최소제곱법](/posts/la-orthonormal)
