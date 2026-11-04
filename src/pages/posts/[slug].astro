@@ -85,7 +85,7 @@ if (postData.tags && postData.tags.length > 0) {
       )
     }
     <div class="md:mx-2">
-      <h1 id={post.id} class="mb-4 text-[1.75rem] text-heading1 font-semibold">
+      <h1 id={post.id} class="mb-4 text-[2rem] leading-tight text-heading1 font-semibold">
         # {postData.title}
       </h1>
       <div class="my-2 border-l-2 border-accent/80 pl-4 py-2">
@@ -100,9 +100,15 @@ if (postData.tags && postData.tags.length > 0) {
       </div>
     </div>
     <!-- <hr class="border-accent/10 border-2 rounded-xl hidden lg:block" /> -->
-    <div class="flex flex-col xl:gap-1 2xl:gap-18 xl:flex-row xl:items-start">
-      {postData.toc && headings.length > 0 && <TableOfContents headings={headings} />}
-      <div class="mb-5 xl:min-w-full 2xl:min-w-full prose">
+    <div class="relative">
+      {
+        postData.toc && headings.length > 0 && (
+          <div class="xl:absolute xl:left-full xl:top-0 xl:h-full xl:ml-8 xl:w-56">
+            <TableOfContents headings={headings} />
+          </div>
+        )
+      }
+      <div class="mb-5 prose">
         <PostContent />
       </div>
     </div>

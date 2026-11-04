@@ -115,7 +115,7 @@ let generatedCss: string = cssLines.join('\n')
 
 <!doctype html>
 <html
-  lang="en"
+  lang="ko"
   data-theme={defaultTheme}
   data-dark-theme={darkTheme}
   data-light-theme={lightTheme}
@@ -142,6 +142,12 @@ let generatedCss: string = cssLines.join('\n')
     <link rel="canonical" href={pageUrl} />
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap"
+    />
     <link
       rel="alternate"
       type="application/rss+xml"
@@ -156,7 +162,7 @@ let generatedCss: string = cssLines.join('\n')
   </head>
   <body class="w-full h-full m-0 bg-background text-foreground">
     <div
-      class="flex flex-col max-w-3xl min-h-screen border-accent/10 m-auto p-3 sm:py-5 sm:px-6 md:py-10"
+      class="flex flex-col w-full max-w-[720px] box-content min-h-screen border-accent/10 m-auto px-4 py-4 sm:px-6 sm:py-6 lg:px-8 md:py-10"
     >
       <Header />
       <main class="flex flex-col py-1">

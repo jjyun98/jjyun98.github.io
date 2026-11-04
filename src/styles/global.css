@@ -39,8 +39,10 @@
   --color-yellow: var(--theme-yellow);
   --color-magenta: var(--theme-magenta);
   --color-cyan: var(--theme-cyan);
-  --default-font-family: var(--theme-font), monospace;
-  --default-mono-font-family: var(--theme-font), monospace;
+  --default-font-family:
+    var(--theme-font), 'Noto Sans KR', -apple-system, BlinkMacSystemFont, system-ui, 'Apple SD Gothic Neo',
+    'Malgun Gothic', sans-serif;
+  --default-mono-font-family: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 header {
@@ -67,8 +69,9 @@ html {
 
 body {
   @apply transition-colors;
-  font-display: block;
-  font-size-adjust: from-font var(--theme-font);
+  /* 한글 줄바꿈을 단어 단위로 */
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 input:focus-visible,
@@ -114,7 +117,7 @@ article img {
 }
 
 .prose {
-  @apply text-base/7;
+  @apply text-[17px]/[1.8];
 
   code:not(.expressive-code code) {
     @apply text-sm text-foreground/90 bg-foreground/5 px-2 py-1 rounded-lg whitespace-nowrap;
@@ -175,7 +178,7 @@ article img {
         span.title {
           @apply !text-foreground/90 !bg-foreground/8 text-center !border-b-2 !border-t-0 !border-r-0 !border-l-0 !border-foreground/10;
           width: 100%;
-          font-family: var(--theme-font);
+          font-family: var(--default-mono-font-family);
           font-size: var(--ec-codeFontSize);
           border-radius: 10px 10px 0 0 !important;
           border-bottom-width: 0 !important;
@@ -230,7 +233,7 @@ article img {
   }
 
   h2 {
-    @apply text-[1.6rem] text-heading2 mt-12;
+    @apply text-2xl text-heading2 mt-12;
 
     &::before {
       @apply mr-2 content-['##'];
@@ -242,7 +245,7 @@ article img {
   }
 
   h3 {
-    @apply text-2xl text-heading3 mt-10;
+    @apply text-xl text-heading3 mt-10;
 
     &::before {
       @apply mr-2 content-['###'];
@@ -254,7 +257,7 @@ article img {
   }
 
   h4 {
-    @apply text-2xl text-heading4 mt-8;
+    @apply text-lg text-heading4 mt-8;
 
     &::before {
       @apply mr-2 content-['####'];
@@ -266,7 +269,7 @@ article img {
   }
 
   h5 {
-    @apply text-lg text-heading5;
+    @apply text-base text-heading5;
 
     &::before {
       @apply mr-2 content-['#####'];
@@ -278,7 +281,7 @@ article img {
   }
 
   h6 {
-    @apply text-lg text-heading6;
+    @apply text-base text-heading6;
 
     &::before {
       @apply mr-2 content-['######'];
