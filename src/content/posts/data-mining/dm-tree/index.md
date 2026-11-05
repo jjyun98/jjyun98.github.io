@@ -56,6 +56,25 @@ $$
 
 $|T|$는 단말 노드 수, $\alpha \ge 0$는 크기에 대한 벌점이다. $\alpha = 0$이면 가장 큰 나무, $\alpha$가 커질수록 작은 나무가 선택된다. $\alpha$는 교차검증으로 정한다. `rpart`의 `cp`는 이 $\alpha$를 루트 노드의 오차로 나눈 상대적인 값이다.
 
+## 강의 예제: 야구 선수 연봉
+
+ISLR의 첫 트리 예제로, 메이저리그 타자의 연봉을 경력 연수(`Years`)와 전년도 안타 수(`Hits`)로 설명한다. 연봉은 오른쪽으로 치우쳐 로그를 취한다.
+
+```r base w=6 h=4
+library(ISLR2)
+library(rpart)
+library(rpart.plot)
+
+hitters <- na.omit(Hitters)
+salary_tree <- rpart(log(Salary) ~ Years + Hits, data = hitters,
+                     control = rpart.control(maxdepth = 2))
+rpart.plot(salary_tree, type = 2, extra = 101)
+```
+
+![경력과 안타 수로 나눈 연봉 회귀나무](./images/dm-tree-00.png)
+
+첫 분할은 경력 약 4.5년이다. 경력이 짧은 선수는 연봉이 낮고, 경력이 긴 선수 안에서는 안타가 많을수록 연봉이 높다. 단말 노드의 값은 그 영역에 속한 선수들의 `log(Salary)` 평균이다. "경력이 짧으면 안타 수는 연봉과 별 관련이 없다"는 상호작용을 따로 지정하지 않아도 트리가 자동으로 잡아낸다.
+
 ## 분류나무 실습: iris
 
 ```r
