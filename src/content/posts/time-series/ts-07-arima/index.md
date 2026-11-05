@@ -123,7 +123,7 @@ c(var_original = var(x), var_diff1 = var(diff(x)), var_diff2 = var(diff(x, diffe
 c(acf_lag1_diff2 = acf(diff(x, differences = 2), plot = FALSE)$acf[2])
 ```
 
-필요 이상으로 차분할수록 분산이 커지고 시차 1 자기상관이 $-0.5$ 쪽으로 간다.
+$\phi = 0.8$처럼 1에 가까운 정상 과정은 1차 차분에서 오히려 분산이 줄어든다($Var(\nabla Z_t) = 2\gamma_0(1 - \rho_1)$). 그래서 단위근인지 아닌지 그림만으로 헷갈리기 쉽다. 그러나 2차 차분을 하면 분산이 다시 원래 수준으로 커지고, 시차 1 자기상관이 약 $-0.55$로 과대차분의 전형적인 신호가 나타난다.
 
 ## 5. 계절 차분과 ARIMA
 

@@ -92,7 +92,7 @@ round(c(1, psi), 3)
 round(sqrt(cumsum(c(1, psi^2))), 3)    # sigma = 1일 때 l = 1, 2, ...의 예측 표준오차
 ```
 
-`ARMAtoMA()`가 $\psi_j$를 계산한다. AR(1), $\phi = 0.7$이면 $\psi_j = 0.7^j$이고, 예측 표준오차는 $1/\sqrt{1 - 0.49} \approx 1.40$으로 수렴한다.
+`ARMAtoMA()`가 $\psi_j$를 계산한다. 출력의 둘째 줄처럼 표준오차가 1, 1.22, 1.32, ...로 늘다가 1.40에서 멈춘다. AR(1), $\phi = 0.7$이면 $\psi_j = 0.7^j$이고, 예측 표준오차는 $1/\sqrt{1 - 0.49} \approx 1.40$으로 수렴한다.
 
 ## 5. 예제: AR(1) 예측
 
@@ -142,6 +142,8 @@ autoplot(forecast(fit2, h = 50)) + labs(x = "t", y = NULL, title = "ARIMA(0,1,1)
 
 ![ARIMA(0,1,1)의 50시차 예측과 넓어지는 예측구간](./images/ts09-02.png)
 
+R의 `ma1` $\approx 0.76$이므로 교재 표기로는 $\hat\theta \approx -0.76$이다. 대응하는 평활상수 $\omega = 1 - \theta \approx 1.76$이 1보다 커서, 이 자료는 단순지수평활의 범위(0~1)로는 표현되지 않는다. ARIMA 표현이 평활법보다 넓은 경우를 포함한다는 예다.
+
 | | 정상 ARMA | 비정상 ARIMA ($d \ge 1$) |
 |---|---|---|
 | 장기 예측값 | 평균 $\mu$로 수렴 | 마지막 수준(또는 추세선)을 유지 |
@@ -175,7 +177,7 @@ map_dfr(cands, \(f) as_tibble(accuracy(forecast(f, h = length(test)), test)["Tes
         .id = "model")
 ```
 
-`accuracy(forecast, test)`는 학습 구간과 시험 구간의 오차를 함께 준다. 여러 시점에서 원점을 옮겨 가며 1시차 예측오차를 모으는 것이 더 안정적인 비교다(`tsCV()`).
+AR(1)과 AR(2)의 시험 구간 오차가 거의 같고 MA(1)이 조금 크다. 같은 성능이면 모수가 적은 AR(1)을 고른다. `accuracy(forecast, test)`는 학습 구간과 시험 구간의 오차를 함께 준다. 여러 시점에서 원점을 옮겨 가며 1시차 예측오차를 모으는 것이 더 안정적인 비교다(`tsCV()`).
 
 ## 요약
 

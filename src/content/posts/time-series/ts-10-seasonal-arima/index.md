@@ -124,9 +124,8 @@ autoplot(tour) + labs(x = NULL, y = "tourists", title = "Monthly tourists")
 
 ```r w=9 h=8
 lt <- log(tour)
-(acf_pair(lt, "log") / acf_pair(diff(lt, lag = 12), "log, seasonal difference") /
-   acf_pair(diff(diff(lt, lag = 12)), "log, seasonal + first difference")) +
-  plot_layout(heights = c(1, 1, 1))
+acf_pair(lt, "log") / acf_pair(diff(lt, lag = 12), "log, seasonal difference") /
+  acf_pair(diff(diff(lt, lag = 12)), "log, seasonal + first difference")
 c(ndiffs = ndiffs(lt), nsdiffs = nsdiffs(lt))
 ```
 
@@ -148,7 +147,7 @@ coef_tab
 checkresiduals(fit_air, lag = 36, plot = FALSE)
 ```
 
-`lambda = 0`은 로그 변환을 모형 안에서 처리한다. 예측할 때 자동으로 원래 단위로 되돌려 준다. R의 `ma1`, `sma1`은 부호가 교재와 반대이므로 교재의 $\hat\theta = -$`ma1`, $\hat\Theta = -$`sma1`이다.
+`lambda = 0`은 로그 변환을 모형 안에서 처리한다. 예측할 때 자동으로 원래 단위로 되돌려 준다. R의 `ma1`, `sma1`은 부호가 교재와 반대이므로 교재의 $\hat\theta = -$`ma1`, $\hat\Theta = -$`sma1`이다. 이 자료에서는 $\hat\theta \approx 0.58$, $\hat\Theta \approx 0.55$이고 둘 다 크게 유의하다. 시차 36까지의 Ljung-Box 검정도 $p \approx 0.51$로 잔차가 백색잡음이라는 가정을 기각하지 않는다.
 
 ```r w=9 h=5
 res <- residuals(fit_air)
@@ -169,6 +168,8 @@ cands <- list(
 )
 map_dfr(cands, \(f) tibble(AIC = f$aic, BIC = f$bic, sigma2 = f$sigma2), .id = "model")
 ```
+
+AIC는 (1,1,1)(0,1,1)이 약간 작지만 BIC는 항공 모형과 같고 잔차 분산도 거의 줄지 않는다. 항공 모형이 이미 잔차 진단을 통과했으므로 간결성의 원칙에 따라 항공 모형을 유지한다.
 
 ### 예측
 

@@ -117,7 +117,7 @@ dw <- function(fit) {
 c(linear = dw(fit1), quadratic = dw(fit2))
 ```
 
-둘 다 2보다 훨씬 작다. 잔차에 강한 양의 자기상관이 남아 있으므로 회귀 추론($t$검정, 신뢰구간)은 믿기 어렵다. 이 잔차를 AR 모형으로 다시 모델링하는 방법은 6~8편에서 다룬다.
+선형 0.04, 2차 0.30으로 둘 다 2보다 훨씬 작다. 잔차에 강한 양의 자기상관이 남아 있으므로 회귀 추론($t$검정, 신뢰구간)은 믿기 어렵다. 이 잔차를 AR 모형으로 다시 모델링하는 방법은 6~8편에서 다룬다.
 
 ## 5. 계절 추세모형
 
@@ -182,11 +182,11 @@ fit_trig <- lm(log_z ~ t + sin(2*pi*t/12) + cos(2*pi*t/12) + sin(4*pi*t/12) + co
                  sin(6*pi*t/12) + cos(6*pi*t/12), data = dept)
 
 coef(fit_ind)
-c(adjR2_indicator = summary(fit_ind)$adj.r.squared, adjR2_trig = summary(fit_trig)$adj.r.squared)
+c(sigma_indicator = sigma(fit_ind), sigma_trig = sigma(fit_trig))
 c(dw_indicator = dw(fit_ind), dw_trig = dw(fit_trig))
 ```
 
-`month`를 factor로 넣고 `0 +`로 절편을 빼면 12개 월별 절편이 바로 나온다. `month12` 계수가 다른 달보다 크게 나오는 것이 12월 효과다. 추세 계수는 로그 척도이므로 $e^{\hat\beta_1} - 1$이 월평균 증가율이다.
+`month`를 factor로 넣고 `0 +`로 절편을 빼면 12개 월별 절편이 바로 나온다. 절편을 뺀 모형의 $R^2$는 평균 대신 0을 기준으로 계산되어 0.9999처럼 부풀려 나오므로 비교에 쓰지 않는다. 대신 잔차 표준오차 `sigma()`를 비교한다. 지시함수 모형의 잔차 표준오차가 삼각함수 모형보다 훨씬 작다. `month12` 계수가 다른 달보다 크게 나오는 것이 12월 효과다. 추세 계수는 로그 척도이므로 $e^{\hat\beta_1} - 1$이 월평균 증가율이다.
 
 ```r w=9 h=4
 dept |>
