@@ -1,0 +1,1712 @@
+{
+ "type": "excalidraw",
+ "version": 2,
+ "source": "https://excalidraw.com",
+ "elements": [
+  {
+   "id": "mi-cournot-0",
+   "type": "arrow",
+   "x": 60,
+   "y": 350,
+   "width": 478,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1550496657,
+   "version": 1,
+   "versionNonce": 149041603,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     478,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-cournot-1",
+   "type": "arrow",
+   "x": 60,
+   "y": 350,
+   "width": 0,
+   "height": 318,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1748873829,
+   "version": 1,
+   "versionNonce": 2057104655,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     -318
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-cournot-2",
+   "type": "text",
+   "x": 542,
+   "y": 340,
+   "width": 15.456,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 10043835,
+   "version": 1,
+   "versionNonce": 832178961,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "q1",
+   "originalText": "q1",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-cournot-3",
+   "type": "text",
+   "x": 44.088,
+   "y": 10,
+   "width": 19.823999999999998,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 950781723,
+   "version": 1,
+   "versionNonce": 216317776,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "q2",
+   "originalText": "q2",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-cournot-4",
+   "type": "line",
+   "x": 60.0,
+   "y": 50.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1469132675,
+   "version": 1,
+   "versionNonce": 1633539374,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     3.8333333333333357,
+     5.0
+    ],
+    [
+     7.666666666666671,
+     10.0
+    ],
+    [
+     11.5,
+     15.0
+    ],
+    [
+     15.333333333333329,
+     20.0
+    ],
+    [
+     19.166666666666657,
+     25.0
+    ],
+    [
+     23.0,
+     30.0
+    ],
+    [
+     26.83333333333333,
+     35.0
+    ],
+    [
+     30.66666666666667,
+     40.0
+    ],
+    [
+     34.5,
+     45.0
+    ],
+    [
+     38.33333333333333,
+     50.0
+    ],
+    [
+     42.16666666666666,
+     55.0
+    ],
+    [
+     46.0,
+     60.0
+    ],
+    [
+     49.83333333333334,
+     65.0
+    ],
+    [
+     53.66666666666666,
+     69.99999999999997
+    ],
+    [
+     57.5,
+     75.0
+    ],
+    [
+     61.33333333333334,
+     80.00000000000003
+    ],
+    [
+     65.16666666666667,
+     85.0
+    ],
+    [
+     69.0,
+     90.0
+    ],
+    [
+     72.83333333333331,
+     95.0
+    ],
+    [
+     76.66666666666666,
+     100.0
+    ],
+    [
+     80.5,
+     105.0
+    ],
+    [
+     84.33333333333331,
+     110.0
+    ],
+    [
+     88.16666666666669,
+     115.0
+    ],
+    [
+     92.0,
+     120.0
+    ],
+    [
+     95.83333333333334,
+     125.0
+    ],
+    [
+     99.66666666666669,
+     130.0
+    ],
+    [
+     103.5,
+     135.0
+    ],
+    [
+     107.33333333333331,
+     140.0
+    ],
+    [
+     111.16666666666669,
+     144.99999999999997
+    ],
+    [
+     115.0,
+     150.0
+    ],
+    [
+     118.83333333333334,
+     155.0
+    ],
+    [
+     122.66666666666669,
+     160.0
+    ],
+    [
+     126.5,
+     165.0
+    ],
+    [
+     130.33333333333334,
+     170.0
+    ],
+    [
+     134.16666666666669,
+     175.0
+    ],
+    [
+     138.0,
+     180.0
+    ],
+    [
+     141.83333333333334,
+     185.0
+    ],
+    [
+     145.66666666666666,
+     190.0
+    ],
+    [
+     149.5,
+     195.0
+    ],
+    [
+     153.33333333333331,
+     200.0
+    ],
+    [
+     157.16666666666666,
+     205.0
+    ],
+    [
+     161.0,
+     210.0
+    ],
+    [
+     164.83333333333334,
+     215.0
+    ],
+    [
+     168.66666666666666,
+     220.0
+    ],
+    [
+     172.5,
+     225.0
+    ],
+    [
+     176.33333333333334,
+     230.0
+    ],
+    [
+     180.16666666666666,
+     235.0
+    ],
+    [
+     184.0,
+     240.0
+    ],
+    [
+     187.83333333333334,
+     245.0
+    ],
+    [
+     191.66666666666669,
+     250.0
+    ],
+    [
+     195.5,
+     255.0
+    ],
+    [
+     199.33333333333337,
+     260.0
+    ],
+    [
+     203.16666666666663,
+     265.0
+    ],
+    [
+     207.0,
+     270.0
+    ],
+    [
+     210.83333333333331,
+     275.0
+    ],
+    [
+     214.66666666666663,
+     280.0
+    ],
+    [
+     218.5,
+     285.0
+    ],
+    [
+     222.33333333333337,
+     290.0
+    ],
+    [
+     226.16666666666663,
+     295.0
+    ],
+    [
+     230.0,
+     300.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-cournot-5",
+   "type": "text",
+   "x": 104.33333333333333,
+   "y": 81.0,
+   "width": 97.51499999999999,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 821122220,
+   "version": 1,
+   "versionNonce": 1256582817,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "기업 1 반응곡선",
+   "originalText": "기업 1 반응곡선",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-cournot-6",
+   "type": "line",
+   "x": 60.0,
+   "y": 200.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 568088328,
+   "version": 1,
+   "versionNonce": 1129051691,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     7.666666666666671,
+     2.5
+    ],
+    [
+     15.333333333333329,
+     5.0
+    ],
+    [
+     23.0,
+     7.5
+    ],
+    [
+     30.66666666666667,
+     10.0
+    ],
+    [
+     38.33333333333333,
+     12.5
+    ],
+    [
+     46.0,
+     15.0
+    ],
+    [
+     53.66666666666666,
+     17.5
+    ],
+    [
+     61.33333333333334,
+     20.0
+    ],
+    [
+     69.0,
+     22.5
+    ],
+    [
+     76.66666666666666,
+     25.0
+    ],
+    [
+     84.33333333333331,
+     27.5
+    ],
+    [
+     92.0,
+     30.0
+    ],
+    [
+     99.66666666666669,
+     32.5
+    ],
+    [
+     107.33333333333331,
+     35.0
+    ],
+    [
+     115.0,
+     37.5
+    ],
+    [
+     122.66666666666669,
+     40.0
+    ],
+    [
+     130.33333333333334,
+     42.5
+    ],
+    [
+     138.0,
+     45.0
+    ],
+    [
+     145.66666666666666,
+     47.5
+    ],
+    [
+     153.33333333333331,
+     50.0
+    ],
+    [
+     161.0,
+     52.5
+    ],
+    [
+     168.66666666666666,
+     55.0
+    ],
+    [
+     176.33333333333334,
+     57.5
+    ],
+    [
+     184.0,
+     60.0
+    ],
+    [
+     191.66666666666669,
+     62.5
+    ],
+    [
+     199.33333333333337,
+     65.0
+    ],
+    [
+     207.0,
+     67.5
+    ],
+    [
+     214.66666666666663,
+     70.0
+    ],
+    [
+     222.33333333333337,
+     72.5
+    ],
+    [
+     230.0,
+     75.0
+    ],
+    [
+     237.66666666666669,
+     77.5
+    ],
+    [
+     245.33333333333337,
+     80.0
+    ],
+    [
+     253.0,
+     82.5
+    ],
+    [
+     260.6666666666667,
+     85.0
+    ],
+    [
+     268.33333333333337,
+     87.5
+    ],
+    [
+     276.0,
+     90.0
+    ],
+    [
+     283.6666666666667,
+     92.5
+    ],
+    [
+     291.3333333333333,
+     95.0
+    ],
+    [
+     299.0,
+     97.5
+    ],
+    [
+     306.66666666666663,
+     100.0
+    ],
+    [
+     314.3333333333333,
+     102.5
+    ],
+    [
+     322.0,
+     105.0
+    ],
+    [
+     329.6666666666667,
+     107.5
+    ],
+    [
+     337.3333333333333,
+     110.0
+    ],
+    [
+     345.0,
+     112.5
+    ],
+    [
+     352.6666666666667,
+     115.0
+    ],
+    [
+     360.3333333333333,
+     117.5
+    ],
+    [
+     368.0,
+     120.0
+    ],
+    [
+     375.6666666666667,
+     122.5
+    ],
+    [
+     383.33333333333337,
+     125.0
+    ],
+    [
+     391.0,
+     127.5
+    ],
+    [
+     398.6666666666667,
+     130.0
+    ],
+    [
+     406.3333333333333,
+     132.5
+    ],
+    [
+     414.0,
+     135.0
+    ],
+    [
+     421.66666666666663,
+     137.5
+    ],
+    [
+     429.3333333333333,
+     140.0
+    ],
+    [
+     437.0,
+     142.5
+    ],
+    [
+     444.6666666666667,
+     145.0
+    ],
+    [
+     452.33333333333326,
+     147.5
+    ],
+    [
+     460.0,
+     150.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-cournot-7",
+   "type": "text",
+   "x": 480.0,
+   "y": 308.0,
+   "width": 101.60999999999999,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1179332612,
+   "version": 1,
+   "versionNonce": 574738027,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "기업 2 반응곡선",
+   "originalText": "기업 2 반응곡선",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-cournot-8",
+   "type": "line",
+   "x": 60.0,
+   "y": 200.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#2f9e44",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 595665764,
+   "version": 1,
+   "versionNonce": 1649062949,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     3.8333333333333357,
+     2.5
+    ],
+    [
+     7.666666666666671,
+     5.0
+    ],
+    [
+     11.5,
+     7.5
+    ],
+    [
+     15.333333333333329,
+     10.0
+    ],
+    [
+     19.166666666666657,
+     12.5
+    ],
+    [
+     23.0,
+     15.0
+    ],
+    [
+     26.83333333333333,
+     17.5
+    ],
+    [
+     30.66666666666667,
+     20.0
+    ],
+    [
+     34.5,
+     22.5
+    ],
+    [
+     38.33333333333333,
+     25.0
+    ],
+    [
+     42.16666666666666,
+     27.5
+    ],
+    [
+     46.0,
+     30.0
+    ],
+    [
+     49.83333333333334,
+     32.5
+    ],
+    [
+     53.66666666666666,
+     35.0
+    ],
+    [
+     57.5,
+     37.5
+    ],
+    [
+     61.33333333333334,
+     40.0
+    ],
+    [
+     65.16666666666667,
+     42.5
+    ],
+    [
+     69.0,
+     45.0
+    ],
+    [
+     72.83333333333331,
+     47.5
+    ],
+    [
+     76.66666666666666,
+     50.0
+    ],
+    [
+     80.5,
+     52.5
+    ],
+    [
+     84.33333333333331,
+     55.0
+    ],
+    [
+     88.16666666666669,
+     57.5
+    ],
+    [
+     92.0,
+     60.0
+    ],
+    [
+     95.83333333333334,
+     62.5
+    ],
+    [
+     99.66666666666669,
+     65.0
+    ],
+    [
+     103.5,
+     67.5
+    ],
+    [
+     107.33333333333331,
+     70.0
+    ],
+    [
+     111.16666666666669,
+     72.5
+    ],
+    [
+     115.0,
+     75.0
+    ],
+    [
+     118.83333333333334,
+     77.5
+    ],
+    [
+     122.66666666666669,
+     80.0
+    ],
+    [
+     126.5,
+     82.5
+    ],
+    [
+     130.33333333333334,
+     85.0
+    ],
+    [
+     134.16666666666669,
+     87.5
+    ],
+    [
+     138.0,
+     90.0
+    ],
+    [
+     141.83333333333334,
+     92.5
+    ],
+    [
+     145.66666666666666,
+     95.0
+    ],
+    [
+     149.5,
+     97.5
+    ],
+    [
+     153.33333333333331,
+     100.0
+    ],
+    [
+     157.16666666666666,
+     102.5
+    ],
+    [
+     161.0,
+     105.0
+    ],
+    [
+     164.83333333333334,
+     107.5
+    ],
+    [
+     168.66666666666666,
+     110.0
+    ],
+    [
+     172.5,
+     112.5
+    ],
+    [
+     176.33333333333334,
+     115.0
+    ],
+    [
+     180.16666666666666,
+     117.5
+    ],
+    [
+     184.0,
+     120.0
+    ],
+    [
+     187.83333333333334,
+     122.5
+    ],
+    [
+     191.66666666666669,
+     125.0
+    ],
+    [
+     195.5,
+     127.5
+    ],
+    [
+     199.33333333333337,
+     130.0
+    ],
+    [
+     203.16666666666663,
+     132.5
+    ],
+    [
+     207.0,
+     135.0
+    ],
+    [
+     210.83333333333331,
+     137.5
+    ],
+    [
+     214.66666666666663,
+     140.0
+    ],
+    [
+     218.5,
+     142.5
+    ],
+    [
+     222.33333333333337,
+     145.0
+    ],
+    [
+     226.16666666666663,
+     147.5
+    ],
+    [
+     230.0,
+     150.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-cournot-9",
+   "type": "text",
+   "x": 81.33333333333333,
+   "y": 209.0,
+   "width": 100.08000000000001,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#2f9e44",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 263464296,
+   "version": 1,
+   "versionNonce": 1365165723,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "담합(독점) 산출",
+   "originalText": "담합(독점) 산출",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-cournot-10",
+   "type": "line",
+   "x": 60.0,
+   "y": 50.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#adb5bd",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 2083577918,
+   "version": 1,
+   "versionNonce": 863152788,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     7.666666666666671,
+     5.0
+    ],
+    [
+     15.333333333333329,
+     10.0
+    ],
+    [
+     23.0,
+     15.0
+    ],
+    [
+     30.66666666666667,
+     20.0
+    ],
+    [
+     38.33333333333333,
+     25.0
+    ],
+    [
+     46.0,
+     30.0
+    ],
+    [
+     53.66666666666666,
+     35.0
+    ],
+    [
+     61.33333333333334,
+     40.0
+    ],
+    [
+     69.0,
+     45.0
+    ],
+    [
+     76.66666666666666,
+     50.0
+    ],
+    [
+     84.33333333333331,
+     55.0
+    ],
+    [
+     92.0,
+     60.0
+    ],
+    [
+     99.66666666666669,
+     65.0
+    ],
+    [
+     107.33333333333331,
+     69.99999999999997
+    ],
+    [
+     115.0,
+     75.0
+    ],
+    [
+     122.66666666666669,
+     80.00000000000003
+    ],
+    [
+     130.33333333333334,
+     85.0
+    ],
+    [
+     138.0,
+     90.0
+    ],
+    [
+     145.66666666666666,
+     95.0
+    ],
+    [
+     153.33333333333331,
+     100.0
+    ],
+    [
+     161.0,
+     105.0
+    ],
+    [
+     168.66666666666666,
+     110.0
+    ],
+    [
+     176.33333333333334,
+     115.0
+    ],
+    [
+     184.0,
+     120.0
+    ],
+    [
+     191.66666666666669,
+     125.0
+    ],
+    [
+     199.33333333333337,
+     130.0
+    ],
+    [
+     207.0,
+     135.0
+    ],
+    [
+     214.66666666666663,
+     140.0
+    ],
+    [
+     222.33333333333337,
+     144.99999999999997
+    ],
+    [
+     230.0,
+     150.0
+    ],
+    [
+     237.66666666666669,
+     155.0
+    ],
+    [
+     245.33333333333337,
+     160.0
+    ],
+    [
+     253.0,
+     165.0
+    ],
+    [
+     260.6666666666667,
+     170.0
+    ],
+    [
+     268.33333333333337,
+     175.0
+    ],
+    [
+     276.0,
+     180.0
+    ],
+    [
+     283.6666666666667,
+     185.0
+    ],
+    [
+     291.3333333333333,
+     190.0
+    ],
+    [
+     299.0,
+     195.0
+    ],
+    [
+     306.66666666666663,
+     200.0
+    ],
+    [
+     314.3333333333333,
+     205.0
+    ],
+    [
+     322.0,
+     210.0
+    ],
+    [
+     329.6666666666667,
+     215.0
+    ],
+    [
+     337.3333333333333,
+     220.0
+    ],
+    [
+     345.0,
+     225.0
+    ],
+    [
+     352.6666666666667,
+     230.0
+    ],
+    [
+     360.3333333333333,
+     235.0
+    ],
+    [
+     368.0,
+     240.0
+    ],
+    [
+     375.6666666666667,
+     245.0
+    ],
+    [
+     383.33333333333337,
+     250.0
+    ],
+    [
+     391.0,
+     255.0
+    ],
+    [
+     398.6666666666667,
+     260.0
+    ],
+    [
+     406.3333333333333,
+     265.0
+    ],
+    [
+     414.0,
+     270.0
+    ],
+    [
+     421.66666666666663,
+     275.0
+    ],
+    [
+     429.3333333333333,
+     280.0
+    ],
+    [
+     437.0,
+     285.0
+    ],
+    [
+     444.6666666666667,
+     290.0
+    ],
+    [
+     452.33333333333326,
+     295.0
+    ],
+    [
+     460.0,
+     300.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-cournot-11",
+   "type": "text",
+   "x": 403.3333333333333,
+   "y": 241.0,
+   "width": 87.105,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#adb5bd",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1988026864,
+   "version": 1,
+   "versionNonce": 989667118,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "완전경쟁 산출",
+   "originalText": "완전경쟁 산출",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-cournot-12",
+   "type": "line",
+   "x": 213.33333333333331,
+   "y": 250.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1756314275,
+   "version": 1,
+   "versionNonce": 1907777621,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     100.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-cournot-13",
+   "type": "line",
+   "x": 213.33333333333331,
+   "y": 250.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 454289139,
+   "version": 1,
+   "versionNonce": 556574704,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     -153.33333333333331,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-cournot-14",
+   "type": "ellipse",
+   "x": 208.33333333333331,
+   "y": 245.0,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "#e03131",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 726662662,
+   "version": 1,
+   "versionNonce": 965923642,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-cournot-15",
+   "type": "text",
+   "x": 221.33333333333331,
+   "y": 227.0,
+   "width": 100.035,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1444610688,
+   "version": 1,
+   "versionNonce": 1676150255,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "쿠르노 (10, 10)",
+   "originalText": "쿠르노 (10, 10)",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-cournot-16",
+   "type": "text",
+   "x": 205.6963333333333,
+   "y": 358,
+   "width": 15.274,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1886420085,
+   "version": 1,
+   "versionNonce": 902801907,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "10",
+   "originalText": "10",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-cournot-17",
+   "type": "text",
+   "x": 36.726,
+   "y": 241.0,
+   "width": 15.274,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 567106941,
+   "version": 1,
+   "versionNonce": 1712456932,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "10",
+   "originalText": "10",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-cournot-18",
+   "type": "ellipse",
+   "x": 285.0,
+   "y": 270.0,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#7048e8",
+   "backgroundColor": "#7048e8",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 1074022632,
+   "version": 1,
+   "versionNonce": 1211992101,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-cournot-19",
+   "type": "text",
+   "x": 300.0,
+   "y": 248.0,
+   "width": 146.055,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#7048e8",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1876634311,
+   "version": 1,
+   "versionNonce": 259388834,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "슈타켈베르크 (15, 7.5)",
+   "originalText": "슈타켈베르크 (15, 7.5)",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  }
+ ],
+ "appState": {
+  "gridSize": 20,
+  "viewBackgroundColor": "#ffffff"
+ },
+ "files": {}
+}

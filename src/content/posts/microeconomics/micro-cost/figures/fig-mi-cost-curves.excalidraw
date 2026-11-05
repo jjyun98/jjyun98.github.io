@@ -1,0 +1,1558 @@
+{
+ "type": "excalidraw",
+ "version": 2,
+ "source": "https://excalidraw.com",
+ "elements": [
+  {
+   "id": "mi-cost-curves-0",
+   "type": "arrow",
+   "x": 60,
+   "y": 350,
+   "width": 518,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1101998774,
+   "version": 1,
+   "versionNonce": 159437612,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     518,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-cost-curves-1",
+   "type": "arrow",
+   "x": 60,
+   "y": 350,
+   "width": 0,
+   "height": 318,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 503467201,
+   "version": 1,
+   "versionNonce": 194739950,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     -318
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-cost-curves-2",
+   "type": "text",
+   "x": 582,
+   "y": 340,
+   "width": 8.624,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 760530754,
+   "version": 1,
+   "versionNonce": 1539358427,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "q",
+   "originalText": "q",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-cost-curves-3",
+   "type": "text",
+   "x": 39.448,
+   "y": 10,
+   "width": 29.104,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1719986914,
+   "version": 1,
+   "versionNonce": 1424518173,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "비용",
+   "originalText": "비용",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-cost-curves-4",
+   "type": "line",
+   "x": 87.77777777777777,
+   "y": 233.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1540251550,
+   "version": 1,
+   "versionNonce": 867672907,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     7.175925925925924,
+     7.549791666666692
+    ],
+    [
+     14.351851851851848,
+     14.699166666666656
+    ],
+    [
+     21.527777777777786,
+     21.448125000000005
+    ],
+    [
+     28.70370370370371,
+     27.79666666666668
+    ],
+    [
+     35.87962962962965,
+     33.744791666666686
+    ],
+    [
+     43.05555555555554,
+     39.29249999999996
+    ],
+    [
+     50.231481481481495,
+     44.43979166666668
+    ],
+    [
+     57.40740740740742,
+     49.18666666666667
+    ],
+    [
+     64.58333333333334,
+     53.53312500000004
+    ],
+    [
+     71.75925925925927,
+     57.479166666666686
+    ],
+    [
+     78.93518518518519,
+     61.02479166666666
+    ],
+    [
+     86.11111111111109,
+     64.17000000000002
+    ],
+    [
+     93.28703703703707,
+     66.91479166666664
+    ],
+    [
+     100.46296296296299,
+     69.25916666666666
+    ],
+    [
+     107.63888888888889,
+     71.203125
+    ],
+    [
+     114.81481481481484,
+     72.74666666666667
+    ],
+    [
+     121.99074074074076,
+     73.88979166666667
+    ],
+    [
+     129.16666666666666,
+     74.63250000000005
+    ],
+    [
+     136.34259259259258,
+     74.9747916666667
+    ],
+    [
+     143.51851851851853,
+     74.91666666666669
+    ],
+    [
+     150.69444444444446,
+     74.458125
+    ],
+    [
+     157.87037037037038,
+     73.59916666666669
+    ],
+    [
+     165.0462962962963,
+     72.33979166666666
+    ],
+    [
+     172.22222222222223,
+     70.68
+    ],
+    [
+     179.39814814814815,
+     68.61979166666669
+    ],
+    [
+     186.57407407407408,
+     66.15916666666664
+    ],
+    [
+     193.75,
+     63.29812499999997
+    ],
+    [
+     200.92592592592598,
+     60.03666666666663
+    ],
+    [
+     208.1018518518519,
+     56.37479166666668
+    ],
+    [
+     215.27777777777777,
+     52.3125
+    ],
+    [
+     222.45370370370364,
+     47.84979166666665
+    ],
+    [
+     229.62962962962962,
+     42.98666666666668
+    ],
+    [
+     236.80555555555554,
+     37.72312499999998
+    ],
+    [
+     243.98148148148147,
+     32.05916666666667
+    ],
+    [
+     251.1574074074074,
+     25.994791666666742
+    ],
+    [
+     258.33333333333337,
+     19.529999999999973
+    ],
+    [
+     265.5092592592593,
+     12.664791666666645
+    ],
+    [
+     272.68518518518516,
+     5.39916666666673
+    ],
+    [
+     279.8611111111111,
+     -2.2668750000000273
+    ],
+    [
+     287.03703703703707,
+     -10.333333333333371
+    ],
+    [
+     294.212962962963,
+     -18.800208333333387
+    ],
+    [
+     301.3888888888889,
+     -27.66749999999999
+    ],
+    [
+     308.56481481481484,
+     -36.93520833333335
+    ],
+    [
+     315.74074074074076,
+     -46.60333333333338
+    ],
+    [
+     322.91666666666663,
+     -56.671875
+    ],
+    [
+     330.09259259259255,
+     -67.14083333333326
+    ],
+    [
+     337.26851851851853,
+     -78.01020833333331
+    ],
+    [
+     344.44444444444446,
+     -89.27999999999997
+    ],
+    [
+     351.6203703703704,
+     -100.95020833333331
+    ],
+    [
+     358.7962962962963,
+     -113.02083333333326
+    ],
+    [
+     365.9722222222223,
+     -125.491875
+    ],
+    [
+     373.14814814814815,
+     -138.3633333333334
+    ],
+    [
+     380.3240740740741,
+     -151.6352083333333
+    ],
+    [
+     387.5,
+     -165.30749999999995
+    ],
+    [
+     394.6759259259259,
+     -179.38020833333337
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-cost-curves-5",
+   "type": "text",
+   "x": 488.4537037037037,
+   "y": 28.61979166666663,
+   "width": 20.925,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1081330047,
+   "version": 1,
+   "versionNonce": 1252033683,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "MC",
+   "originalText": "MC",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-cost-curves-6",
+   "type": "line",
+   "x": 145.69444444444446,
+   "y": 51.52330984602918,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 483382324,
+   "version": 1,
+   "versionNonce": 1203692019,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     7.268518518518533,
+     18.23364385029663
+    ],
+    [
+     14.53703703703701,
+     34.12486551322155
+    ],
+    [
+     21.805555555555543,
+     48.12103046404832
+    ],
+    [
+     29.07407407407402,
+     60.55617399714234
+    ],
+    [
+     36.34259259259255,
+     71.68475091944038
+    ],
+    [
+     43.611111111111086,
+     81.7040024257216
+    ],
+    [
+     50.87962962962962,
+     90.76918073777492
+    ],
+    [
+     58.148148148148124,
+     99.00415784073545
+    ],
+    [
+     65.41666666666663,
+     106.50897250691199
+    ],
+    [
+     72.68518518518516,
+     113.36529918560547
+    ],
+    [
+     79.95370370370367,
+     119.64047706782713
+    ],
+    [
+     87.2222222222222,
+     125.39052298529612
+    ],
+    [
+     94.4907407407407,
+     130.66241508259935
+    ],
+    [
+     101.75925925925924,
+     135.4958451929379
+    ],
+    [
+     109.02777777777771,
+     139.92457874170265
+    ],
+    [
+     116.2962962962963,
+     143.9775210380465
+    ],
+    [
+     123.56481481481478,
+     147.67956134374467
+    ],
+    [
+     130.83333333333331,
+     151.05224693716517
+    ],
+    [
+     138.1018518518518,
+     154.11432582261423
+    ],
+    [
+     145.37037037037032,
+     156.88218700886517
+    ],
+    [
+     152.6388888888888,
+     159.37022022390087
+    ],
+    [
+     159.9074074074074,
+     161.5911117557092
+    ],
+    [
+     167.17592592592587,
+     163.5560892711033
+    ],
+    [
+     174.4444444444444,
+     165.27512559177114
+    ],
+    [
+     181.71296296296293,
+     166.7571092367655
+    ],
+    [
+     188.9814814814814,
+     168.0099878874577
+    ],
+    [
+     196.24999999999994,
+     169.04088966135998
+    ],
+    [
+     203.51851851851848,
+     169.85622609877987
+    ],
+    [
+     210.787037037037,
+     170.46178000059444
+    ],
+    [
+     218.0555555555555,
+     170.86278065465666
+    ],
+    [
+     225.32407407407402,
+     171.06396851393248
+    ],
+    [
+     232.5925925925925,
+     171.06965101255673
+    ],
+    [
+     239.8611111111111,
+     170.88375090482407
+    ],
+    [
+     247.12962962962962,
+     170.5098482701514
+    ],
+    [
+     254.3981481481481,
+     169.95121713161552
+    ],
+    [
+     261.66666666666663,
+     169.21085747704163
+    ],
+    [
+     268.93518518518516,
+     168.29152334225046
+    ],
+    [
+     276.2037037037037,
+     167.19574751008923
+    ],
+    [
+     283.4722222222222,
+     165.92586329166835
+    ],
+    [
+     290.7407407407407,
+     164.48402378417896
+    ],
+    [
+     298.0092592592592,
+     162.87221893989962
+    ],
+    [
+     305.27777777777777,
+     161.09229073123544
+    ],
+    [
+     312.54629629629625,
+     159.14594665504293
+    ],
+    [
+     319.8148148148148,
+     157.03477178461105
+    ],
+    [
+     327.0833333333333,
+     154.76023954831805
+    ],
+    [
+     334.35185185185185,
+     152.32372138919862
+    ],
+    [
+     341.6203703703704,
+     149.72649543867044
+    ],
+    [
+     348.88888888888886,
+     146.96975431983853
+    ],
+    [
+     356.1574074074074,
+     144.0546121806077
+    ],
+    [
+     363.42592592592587,
+     140.98211104385615
+    ],
+    [
+     370.69444444444446,
+     137.75322655080586
+    ],
+    [
+     377.96296296296293,
+     134.36887316417778
+    ],
+    [
+     385.2314814814814,
+     130.82990888949752
+    ],
+    [
+     392.4999999999999,
+     127.13713956582092
+    ],
+    [
+     399.7685185185186,
+     123.29132277100521
+    ],
+    [
+     407.03703703703707,
+     119.29317138132947
+    ],
+    [
+     414.30555555555554,
+     115.14335682063748
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-cost-curves-7",
+   "type": "text",
+   "x": 552.1111111111111,
+   "y": 149.46428571428575,
+   "width": 32.43,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1914557891,
+   "version": 1,
+   "versionNonce": 2086032760,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "ATC",
+   "originalText": "ATC",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-cost-curves-8",
+   "type": "line",
+   "x": 68.33333333333333,
+   "y": 205.31,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#2f9e44",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1187822931,
+   "version": 1,
+   "versionNonce": 733380585,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     8.194444444444443,
+     5.0459749999999985
+    ],
+    [
+     16.388888888888886,
+     9.917900000000003
+    ],
+    [
+     24.58333333333333,
+     14.615774999999985
+    ],
+    [
+     32.777777777777786,
+     19.1396
+    ],
+    [
+     40.97222222222224,
+     23.489374999999995
+    ],
+    [
+     49.16666666666667,
+     27.665099999999995
+    ],
+    [
+     57.361111111111114,
+     31.666775
+    ],
+    [
+     65.55555555555556,
+     35.494399999999985
+    ],
+    [
+     73.74999999999999,
+     39.147975
+    ],
+    [
+     81.94444444444444,
+     42.6275
+    ],
+    [
+     90.1388888888889,
+     45.932975
+    ],
+    [
+     98.3333333333333,
+     49.06439999999998
+    ],
+    [
+     106.52777777777779,
+     52.02177499999999
+    ],
+    [
+     114.72222222222221,
+     54.80509999999998
+    ],
+    [
+     122.91666666666664,
+     57.41437500000001
+    ],
+    [
+     131.1111111111111,
+     59.84960000000001
+    ],
+    [
+     139.30555555555554,
+     62.11077499999999
+    ],
+    [
+     147.5,
+     64.1979
+    ],
+    [
+     155.69444444444446,
+     66.110975
+    ],
+    [
+     163.8888888888889,
+     67.84999999999997
+    ],
+    [
+     172.08333333333331,
+     69.41497500000003
+    ],
+    [
+     180.27777777777777,
+     70.80590000000001
+    ],
+    [
+     188.47222222222223,
+     72.02277499999997
+    ],
+    [
+     196.66666666666669,
+     73.06559999999996
+    ],
+    [
+     204.86111111111114,
+     73.93437499999999
+    ],
+    [
+     213.0555555555556,
+     74.6291
+    ],
+    [
+     221.25000000000006,
+     75.14977499999998
+    ],
+    [
+     229.44444444444446,
+     75.4964
+    ],
+    [
+     237.6388888888889,
+     75.66897499999999
+    ],
+    [
+     245.83333333333331,
+     75.66750000000002
+    ],
+    [
+     254.02777777777777,
+     75.49197499999997
+    ],
+    [
+     262.22222222222223,
+     75.14240000000001
+    ],
+    [
+     270.41666666666674,
+     74.61877499999997
+    ],
+    [
+     278.61111111111114,
+     73.92109999999997
+    ],
+    [
+     286.8055555555556,
+     73.049375
+    ],
+    [
+     295.00000000000006,
+     72.0036
+    ],
+    [
+     303.19444444444446,
+     70.78377499999999
+    ],
+    [
+     311.3888888888889,
+     69.38989999999995
+    ],
+    [
+     319.5833333333333,
+     67.82197500000001
+    ],
+    [
+     327.7777777777778,
+     66.07999999999998
+    ],
+    [
+     335.97222222222223,
+     64.16397500000005
+    ],
+    [
+     344.1666666666667,
+     62.07390000000004
+    ],
+    [
+     352.36111111111114,
+     59.809775
+    ],
+    [
+     360.55555555555554,
+     57.3716
+    ],
+    [
+     368.75000000000006,
+     54.759375000000034
+    ],
+    [
+     376.94444444444446,
+     51.97309999999999
+    ],
+    [
+     385.1388888888889,
+     49.012775000000005
+    ],
+    [
+     393.3333333333333,
+     45.8784
+    ],
+    [
+     401.5277777777778,
+     42.56997499999994
+    ],
+    [
+     409.72222222222223,
+     39.08749999999998
+    ],
+    [
+     417.91666666666663,
+     35.43097499999999
+    ],
+    [
+     426.11111111111114,
+     31.60039999999998
+    ],
+    [
+     434.30555555555554,
+     27.595775000000003
+    ],
+    [
+     442.50000000000006,
+     23.417099999999948
+    ],
+    [
+     450.6944444444445,
+     19.064374999999956
+    ],
+    [
+     458.88888888888886,
+     14.537600000000026
+    ],
+    [
+     467.0833333333334,
+     9.836774999999989
+    ],
+    [
+     475.27777777777777,
+     4.961900000000071
+    ],
+    [
+     483.4722222222221,
+     -0.08702499999995439
+    ],
+    [
+     491.6666666666667,
+     -5.310000000000002
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-cost-curves-9",
+   "type": "text",
+   "x": 552.1111111111111,
+   "y": 201.75000000000003,
+   "width": 28.455000000000005,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#2f9e44",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1675771375,
+   "version": 1,
+   "versionNonce": 217499376,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "AVC",
+   "originalText": "AVC",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-cost-curves-10",
+   "type": "line",
+   "x": 310.0,
+   "y": 281.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 90430865,
+   "version": 1,
+   "versionNonce": 2132557726,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     69.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-cost-curves-11",
+   "type": "line",
+   "x": 310.0,
+   "y": 281.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1559467328,
+   "version": 1,
+   "versionNonce": 1298948602,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     -250.0,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-cost-curves-12",
+   "type": "ellipse",
+   "x": 305.0,
+   "y": 276.0,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#2f9e44",
+   "backgroundColor": "#2f9e44",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 685200063,
+   "version": 1,
+   "versionNonce": 1807778292,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-cost-curves-13",
+   "type": "text",
+   "x": 318.0,
+   "y": 282.0,
+   "width": 68.31,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#2f9e44",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1063160293,
+   "version": 1,
+   "versionNonce": 747697114,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "조업중단점",
+   "originalText": "조업중단점",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-cost-curves-14",
+   "type": "text",
+   "x": 305.597,
+   "y": 358,
+   "width": 8.806,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 108015063,
+   "version": 1,
+   "versionNonce": 1163095908,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "9",
+   "originalText": "9",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-cost-curves-15",
+   "type": "text",
+   "x": 33.688,
+   "y": 272.0,
+   "width": 18.312,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 953895833,
+   "version": 1,
+   "versionNonce": 582084431,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "23",
+   "originalText": "23",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-cost-curves-16",
+   "type": "line",
+   "x": 374.8601931196804,
+   "y": 222.6143828533286,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 329092526,
+   "version": 1,
+   "versionNonce": 96823345,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     127.3856171466714
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-cost-curves-17",
+   "type": "line",
+   "x": 374.8601931196804,
+   "y": 222.6143828533286,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 968827078,
+   "version": 1,
+   "versionNonce": 2047625382,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     -314.8601931196804,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-cost-curves-18",
+   "type": "ellipse",
+   "x": 369.8601931196804,
+   "y": 217.6143828533286,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "#1971c2",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 1661747678,
+   "version": 1,
+   "versionNonce": 973352971,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-cost-curves-19",
+   "type": "text",
+   "x": 384.8601931196804,
+   "y": 199.6143828533286,
+   "width": 68.025,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 773512068,
+   "version": 1,
+   "versionNonce": 1620717472,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "손익분기점",
+   "originalText": "손익분기점",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-cost-curves-20",
+   "type": "text",
+   "x": 362.7081931196804,
+   "y": 358,
+   "width": 24.304000000000002,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 663906360,
+   "version": 1,
+   "versionNonce": 280533736,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "11.3",
+   "originalText": "11.3",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-cost-curves-21",
+   "type": "text",
+   "x": 21.522,
+   "y": 213.6143828533286,
+   "width": 30.478,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1731064661,
+   "version": 1,
+   "versionNonce": 417123563,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "42.5",
+   "originalText": "42.5",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-cost-curves-22",
+   "type": "text",
+   "x": 93.33333333333334,
+   "y": 60.0,
+   "width": 221.54999999999998,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 401984152,
+   "version": 1,
+   "versionNonce": 1339285844,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "MC는 AVC와 ATC의 최저점을 지난다",
+   "originalText": "MC는 AVC와 ATC의 최저점을 지난다",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  }
+ ],
+ "appState": {
+  "gridSize": 20,
+  "viewBackgroundColor": "#ffffff"
+ },
+ "files": {}
+}
