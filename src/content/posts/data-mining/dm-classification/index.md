@@ -2,9 +2,9 @@
 title: '데이터 마이닝 - 분류, LDA/QDA와 KNN'
 published: 2022-03-23
 draft: false
-description: '베이즈 분류기, 판별분석(LDA, QDA)의 가정과 판별함수, KNN과 K 선택을 iris 데이터로 정리한다.'
+description: '베이즈 분류기, 판별분석(LDA, QDA)의 가정과 판별함수, 나이브 베이즈, KNN과 K 선택, ROC 곡선과 AUC를 iris와 Default 데이터로 정리한다.'
 series: '데이터 마이닝'
-tags: ['데이터 마이닝', '분류', 'LDA', 'QDA', 'KNN', 'R', 'ISLR']
+tags: ['데이터 마이닝', '분류', 'LDA', 'QDA', 'KNN', '나이브 베이즈', 'ROC', 'R', 'ISLR']
 ---
 
 ISLR 2·4장과 이영미 교수님 데이터마이닝 강의의 분류 부분을 정리했다. 로지스틱 회귀가 $P(Y = k \mid X)$를 직접 모델링한다면, 판별분석은 범주별 $X$의 분포를 모델링한 뒤 베이즈 정리로 뒤집는다. KNN은 분포 가정 없이 가까운 관측값으로 추정한다.
@@ -153,6 +153,69 @@ mean(pred == test$Species)
 
 정확도가 같은 $K$가 여럿이면 `which.max`는 가장 작은 $K$를 고른다. 비슷하다면 더 큰 $K$(더 단순한 경계)를 고르는 것도 방법이다.
 
+## 나이브 베이즈
+
+베이즈 분류기의 $f_k(x)$를 추정하는 또 다른 방법이다. **범주 안에서 설명 변수들이 서로 독립**이라고 가정한다.
+
+$$
+f_k(x) = f_{k1}(x_1) \times f_{k2}(x_2) \times \cdots \times f_{kp}(x_p)
+$$
+
+$p$차원 결합밀도 대신 1차원 밀도 $p$개만 추정하면 된다. 각 $f_{kj}$는 연속형이면 정규분포나 커널 밀도로, 범주형이면 범주별 비율로 추정한다. 독립 가정은 대부분 틀리지만, 추정할 모수가 크게 줄어 분산이 작아지므로 $n$이 $p$에 비해 작을 때 의외로 잘 작동한다. 정규분포를 쓰는 나이브 베이즈는 공분산행렬이 대각행렬인 QDA와 같다.
+
+```r
+library(e1071)
+
+nb_fit <- naiveBayes(Species ~ ., data = train)
+nb_fit$tables$Petal.Length
+mean(predict(nb_fit, test) == test$Species)
+```
+
+`tables`에는 범주별로 각 변수의 평균(첫 열)과 표준편차(둘째 열)가 들어 있다.
+
+## ROC 곡선과 AUC
+
+이진 분류기는 예측확률에 기준값을 적용해 범주를 정한다. 기준값을 0에서 1까지 움직이며 **참양성률(민감도)** 과 **거짓양성률(1 - 특이도)** 을 그린 것이 ROC 곡선이다. 곡선 아래 면적(AUC)은 기준값과 무관한 성능 요약이며, "무작위로 뽑은 양성 관측값의 점수가 무작위로 뽑은 음성 관측값의 점수보다 클 확률"과 같다.
+
+`ISLR2::Default`에서 로지스틱 회귀와 LDA를 비교한다.
+
+```r
+library(ISLR2)
+
+set.seed(1)
+d_idx <- sample(nrow(Default), 5000)
+d_train <- Default[d_idx, ]
+d_test  <- Default[-d_idx, ]
+y_test <- d_test$default == "Yes"
+
+scores <- list(
+  logistic = predict(glm(default ~ ., data = d_train, family = binomial), d_test, type = "response"),
+  LDA      = predict(lda(default ~ ., data = d_train), d_test)$posterior[, "Yes"]
+)
+
+roc_df <- function(score, name) {
+  cuts <- sort(unique(c(0, score, 1)), decreasing = TRUE)
+  tibble(cut = cuts,
+         tpr = map_dbl(cuts, \(c) mean(score[y_test] >= c)),
+         fpr = map_dbl(cuts, \(c) mean(score[!y_test] >= c)),
+         model = name)
+}
+auc <- function(score) mean(outer(score[y_test], score[!y_test], ">") + 0.5 * outer(score[y_test], score[!y_test], "=="))
+
+map_dbl(scores, auc)
+
+imap_dfr(scores, roc_df) |>
+  ggplot(aes(fpr, tpr, color = model)) +
+  geom_path() +
+  geom_abline(linetype = "dashed", color = "grey60") +
+  coord_equal() +
+  labs(x = "false positive rate (1 - specificity)", y = "true positive rate (sensitivity)", color = NULL)
+```
+
+![Default 데이터의 ROC 곡선](./images/dm-cls-04.png)
+
+`auc()`는 양성·음성 점수의 모든 쌍을 비교해 위의 확률 해석을 그대로 계산한다(동점은 0.5). 두 모형의 AUC가 약 0.95로 거의 같다. 대각선은 무작위 분류기(AUC = 0.5)다. 연체 비율이 3%대로 불균형하므로 정확도보다 ROC/AUC나 민감도를 보는 것이 의미 있다.
+
 ## 방법 비교
 
 | 방법 | 경계 | 가정 | 잘 맞는 상황 |
@@ -160,4 +223,5 @@ mean(pred == test$Species)
 | 로지스틱 | 선형 | $P(Y \mid X)$의 로짓이 선형 | 이진, 해석 필요 |
 | LDA | 선형 | 정규, 공통 공분산 | $n$ 작음, 다범주 |
 | QDA | 이차 | 정규, 범주별 공분산 | $n$ 큼, 범주별 퍼짐이 다름 |
+| 나이브 베이즈 | 비선형 가능 | 범주 내 변수 독립 | $p$가 크고 $n$이 작음 |
 | KNN | 비모수 | 없음 (거리) | 경계가 복잡, $p$ 작음 |

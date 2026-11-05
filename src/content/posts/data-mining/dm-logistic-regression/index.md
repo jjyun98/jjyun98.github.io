@@ -172,6 +172,41 @@ $$
 
 R에서는 `nnet::multinom()`으로 적합한다. 다범주에서는 다음 글의 LDA도 자주 쓴다.
 
+## 포아송 회귀와 GLM
+
+반응 변수가 **횟수**(0, 1, 2, ...)일 때 선형회귀를 쓰면 음수 예측이 나오고, 평균이 클수록 분산도 커지는 성질을 반영하지 못한다. 포아송 회귀는 $Y \sim \text{Poisson}(\lambda(X))$로 두고 로그 평균을 선형식으로 모델링한다.
+
+$$
+\log \lambda(X) = \beta_0 + \beta_1 X_1 + \cdots + \beta_p X_p
+$$
+
+$X_j$가 한 단위 늘면 평균 횟수가 $e^{\beta_j}$배가 된다. 포아송 분포는 평균과 분산이 같으므로($E(Y) = Var(Y) = \lambda$) 평균이 큰 곳에서 변동도 크다는 것을 자연스럽게 반영한다.
+
+선형회귀, 로지스틱 회귀, 포아송 회귀는 모두 **일반화선형모형(GLM)** 이다.
+
+| 모형 | $Y$의 분포 | 연결함수 $\eta(\mu) = \beta_0 + \beta^T X$ | R |
+|---|---|---|---|
+| 선형회귀 | 정규 | 항등 $\mu$ | `family = gaussian` |
+| 로지스틱 | 베르누이 | 로짓 $\log\frac{\mu}{1 - \mu}$ | `family = binomial` |
+| 포아송 | 포아송 | 로그 $\log \mu$ | `family = poisson` |
+
+`ISLR2::Bikeshare`는 워싱턴 D.C. 공유 자전거의 시간대별 대여 수(`bikers`)다.
+
+```r
+bike <- as_tibble(Bikeshare)
+fit_pois <- glm(bikers ~ mnth + hr + workingday + temp + weathersit,
+                data = bike, family = poisson)
+
+tibble(hr = 0:23, coef = c(0, coef(fit_pois)[paste0("hr", 1:23)])) |>
+  ggplot(aes(hr, exp(coef))) +
+  geom_line() + geom_point() +
+  labs(x = "hour", y = "rate ratio vs. hour 0")
+```
+
+![포아송 회귀의 시간대별 대여 수 배율](./images/dm-logit-04.png)
+
+`hr`은 범주형이라 0시가 기준 범주다. $e^{\hat\beta}$는 같은 조건에서 0시 대비 평균 대여 수의 배율이다. 출퇴근 시간인 8시와 17~18시에 크게 높다. 실제 횟수 자료는 분산이 평균보다 큰 **과대산포**가 흔하므로, 표준오차가 과소추정되지 않았는지 `family = quasipoisson`이나 음이항 회귀와 비교해 본다.
+
 ## 요약
 
 | 항목 | 내용 |
@@ -182,3 +217,4 @@ R에서는 `nnet::multinom()`으로 적합한다. 다범주에서는 다음 글�
 | 교란 | 단순 모형과 다중 모형의 계수 부호가 바뀔 수 있다 |
 | 평가 | 불균형 자료에서는 정확도보다 민감도·특이도·AUC |
 | 기준값 | 0.5는 관습, 오분류 비용으로 정한다 |
+| GLM | 포아송 회귀(로그 연결)로 횟수 자료까지 같은 틀 |
