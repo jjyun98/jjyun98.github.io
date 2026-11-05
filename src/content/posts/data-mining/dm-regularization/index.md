@@ -158,6 +158,8 @@ c(ols = mean((y[-train] - predict(ols, hitters[-train, ]))^2),
   lasso_1se = test_mse(cv_lasso, "lambda.1se"))
 ```
 
+이 분할에서는 Ridge와 Lasso(`lambda.min`)의 테스트 MSE가 최소제곱보다 15~18% 작다. `lambda.1se`의 Lasso는 변수를 몇 개만 남기는 대신 최소제곱과 비슷한 수준이다. 단순함과 예측력을 맞바꾼 결과다.
+
 `cv.glmnet()`은 $\lambda$ 격자마다 10겹 교차검증 오차를 계산한다. `lambda.min`은 오차가 가장 작은 $\lambda$, `lambda.1se`는 최소 오차에서 1 표준오차 이내인 가장 큰(가장 단순한) $\lambda$다.
 
 ```r

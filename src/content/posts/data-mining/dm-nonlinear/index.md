@@ -163,7 +163,7 @@ gam_fit <- gam(wage ~ s(year, k = 5) + s(age) + education, data = wage, method =
 summary(gam_fit)
 ```
 
-`mgcv::gam()`의 `s()`는 벌점 회귀 스플라인이고, 평활 정도를 REML로 자동 선택한다. `summary`의 `edf`가 각 항의 유효 자유도다. `year`는 값이 7개뿐이라 기저 차원 `k`를 작게 둔다. `edf`가 1에 가까우면 사실상 선형이다.
+`mgcv::gam()`의 `s()`는 벌점 회귀 스플라인이고, 평활 정도를 REML로 자동 선택한다. `summary`의 `edf`가 각 항의 유효 자유도다. `year`는 값이 7개뿐이라 기저 차원 `k`를 작게 둔다. `edf`가 1에 가까우면 사실상 선형이다. 실제로 `s(year)`의 edf는 1.0으로 연도 효과는 선형이고, `s(age)`는 약 5로 뚜렷한 곡선이다.
 
 ```r
 newd <- tibble(year = 2006, age = 18:80,

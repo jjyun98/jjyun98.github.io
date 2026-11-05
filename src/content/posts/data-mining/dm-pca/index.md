@@ -123,7 +123,7 @@ tibble(PC = seq_along(pve), PVE = pve, cumulative = cumsum(pve)) |>
   pivot_longer(-PC) |>
   ggplot(aes(PC, value, color = name)) +
   geom_line() + geom_point() +
-  scale_y_continuous(limits = c(0, 1)) +
+  expand_limits(y = 0) +
   labs(x = "principal component", y = "proportion of variance", color = NULL)
 ```
 
