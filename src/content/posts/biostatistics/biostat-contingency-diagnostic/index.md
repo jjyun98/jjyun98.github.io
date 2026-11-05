@@ -1,11 +1,13 @@
 ---
 title: '생명과학통계 - 분할표 분석과 진단법 평가'
-published: 2026-05-29
+published: 2026-05-24
 draft: false
 description: '2x2 분할표, 상대위험률, 오즈비, 카이제곱 검정, Fisher 정확검정, McNemar 검정, CMH 검정, 민감도와 특이도, ROC 곡선 정리'
 series: '생명과학통계'
 tags: ['생명과학통계', '분할표', '오즈비', '진단법', 'ROC']
 ---
+
+『생명과학연구를 위한 통계적 방법』(이재원·박미라·유한나)과 전북대학교 최혜미 교수님 강의를 바탕으로 정리했다.
 
 분할표 분석은 두 범주형 변수 사이의 연관성을 보는 기본 방법이다. 생명과학 연구에서는 처리와 반응, 노출과 질병, 검사 결과와 실제 질병 상태를 표로 정리하는 경우가 많다.
 
@@ -230,7 +232,17 @@ proc freq data=ex34;
 run;
 ```
 
-TODO: 원본 코드에는 `tables treat*rep/exact;`처럼 보이는 부분이 있는데, 변수명은 `resp`가 맞다. 원본 표기와 SAS 실행 코드를 책 기준으로 확인한다.
+`fisher` 옵션은 단측(왼쪽·오른쪽)과 양측 $p$값을 모두 출력한다. 위의 대립가설은 처리 a의 반응 수가 적은 쪽이므로 왼쪽 단측 $p$값(0.262)을 본다. 양측 $p$값은 관측 표보다 확률이 같거나 작은 모든 표의 확률을 더한 값이다. `exact` 문을 쓰면 오즈비의 정확 신뢰구간도 얻을 수 있다.
+
+```sas
+proc freq data=ex34;
+  weight count;
+  tables treat*resp;
+  exact fisher or;
+run;
+```
+
+카이제곱 근사는 기대도수가 5 미만인 칸이 전체의 20%를 넘으면 부정확하다. 이 예제는 모든 칸의 기대도수가 2~3이라 Fisher 정확검정을 쓴다.
 
 ## 8. McNemar 검정
 
@@ -306,6 +318,20 @@ Cochran-Mantel-Haenszel 검정은 세 개의 범주형 변수가 있을 때, 하
 
 SAS 코드는 다음과 같다.
 
+![층화 분할표와 CMH 검정](./figures/fig-bio-cmh.svg)
+
+각 층(병원)의 2×2 표에서 $n_{11k}$의 관측값과 기대값의 차이를 모두 더해 하나의 검정통계량으로 만든다.
+
+$$
+Q_{CMH} = \frac{\left[\sum_k (n_{11k} - E(n_{11k}))\right]^2}{\sum_k Var(n_{11k})}, \qquad E(n_{11k}) = \frac{n_{1+k} n_{+1k}}{n_{++k}}
+$$
+
+층을 합쳐 하나의 표로 분석하면 층(병원)의 효과가 섞여 연관성의 방향이 뒤집힐 수도 있다(심슨의 역설). 공통 오즈비는 Mantel-Haenszel 추정량으로 구한다.
+
+$$
+\hat{OR}_{MH} = \frac{\sum_k n_{11k} n_{22k} / n_{++k}}{\sum_k n_{12k} n_{21k} / n_{++k}}
+$$
+
 ```sas
 data ex36;
   do hospital = 'A', 'B', 'C', 'D';
@@ -326,6 +352,12 @@ proc freq data=ex36;
   tables hospital*trt*recovery / cmh norow nocol;
 run;
 ```
+
+`tables 층*행*열` 순서로 쓴다. 출력에서 볼 것은 세 가지다.
+
+- `Cochran-Mantel-Haenszel Statistics`의 `Nonzero Correlation` 행: 병원을 보정한 치료-호전 연관성 검정
+- `Common Odds Ratio`의 Mantel-Haenszel 추정값과 신뢰구간: 보정된 공통 오즈비
+- `Breslow-Day Test`: 병원별 오즈비가 같은지(동질성) 검정. 유의하면 병원마다 치료 효과가 달라 공통 오즈비 하나로 요약하기 어렵다
 
 ## 10. 진단법의 평가
 
@@ -396,18 +428,123 @@ $$
 
 민감도와 특이도를 퍼센트로 쓰면 $\text{sensitivity} + \text{specificity} - 100$이다.
 
-## 12. 절단값 예제
+## 12. 예제: 간 스캔 진단
 
-원본 진단법 자료의 마지막 예제는 어떤 혈액 검사 수치의 절단값을 정하는 상황이다. 텍스트로 추출된 핵심 결과는 다음과 같다.
+간 질환이 의심되는 환자 344명에게 간 스캔을 시행하고, 병리 검사(부검·생검)를 기준(gold standard)으로 비교한 자료다(Altman & Bland, 1994).
 
-- AUC = 0.96: 판별 성능이 매우 높음
-- 기존 절단값 20mg/dL: 민감도 93.4%, 특이도 84.2%
-- 대안 절단값 16.6mg/dL: 민감도 91.2%, 특이도 94.9%, 위양성률 5.1%
+| 간 스캔 | 병리 이상 | 병리 정상 | 합 |
+|---|---:|---:|---:|
+| 이상 | 231 | 32 | 263 |
+| 정상 | 27 | 54 | 81 |
+| 합 | 258 | 86 | 344 |
 
-기존 기준은 민감도가 더 높고, 대안 기준은 특이도가 더 높다. 어떤 절단값이 더 적절한지는 질병을 놓치는 비용과 불필요하게 양성으로 분류하는 비용 중 무엇이 더 큰지에 따라 달라진다.
+| 측도 | 계산 | 값 |
+|---|---|---:|
+| 민감도 | 231 / 258 | 0.895 |
+| 특이도 | 54 / 86 | 0.628 |
+| 양성예측도 | 231 / 263 | 0.878 |
+| 음성예측도 | 54 / 81 | 0.667 |
+| 유병률 (이 표본) | 258 / 344 | 0.750 |
 
-## 보충 메모
+```sas
+data liver;
+  input scan $ path $ count;
+  datalines;
+abnormal abnormal 231
+abnormal normal    32
+normal   abnormal  27
+normal   normal    54
+;
+run;
 
-TODO: 원본 `3장-분할표_분석.pdf`의 예제 3.7 간 스캔 자료와 예제 3.8 흉부 X-ray 결핵 진단 자료는 표의 수치가 텍스트로 추출되지 않았다. 책의 표 3.22, 표 3.23을 보고 민감도, 특이도, 양성예측도, 음성예측도 계산 예제를 추가한다.
+proc freq data=liver order=data;
+  weight count;
+  tables path*scan / nopercent nocol;               /* 행 백분율 = 민감도, 특이도 */
+  tables scan*path / nopercent norow;
+  tables scan / binomial(level='abnormal');
+run;
+```
 
-TODO: 진단법 평가 별도 PDF의 마지막 예제는 배경 설명 일부가 깨져 있다. 어떤 질환과 어떤 검사 수치인지 원문을 확인해 예제 제목과 임상적 해석을 보강한다.
+`path*scan` 표의 행 백분율에서 병리 이상 행의 `abnormal` 비율이 민감도, 병리 정상 행의 `normal` 비율이 특이도다. 각 비율의 신뢰구간이 필요하면 해당 행만 골라 `binomial` 옵션을 쓴다.
+
+### 예측도는 유병률에 따라 바뀐다
+
+민감도와 특이도는 검사 자체의 성질이지만, 예측도는 대상 집단의 유병률 $\pi$에 따라 달라진다. 베이즈 정리로 쓰면 다음과 같다.
+
+$$
+PPV = \frac{Se \cdot \pi}{Se \cdot \pi + (1 - Sp)(1 - \pi)}, \qquad
+NPV = \frac{Sp (1 - \pi)}{Sp (1 - \pi) + (1 - Se)\pi}
+$$
+
+간 스캔을 유병률 10%인 일반 검진 집단에 쓰면 $PPV = \frac{0.895 \times 0.1}{0.895 \times 0.1 + 0.372 \times 0.9} \approx 0.21$로, 양성 판정의 약 80%가 위양성이다. 유병률이 낮은 집단의 선별검사에서 특이도가 중요한 이유다.
+
+### 우도비
+
+$$
+LR^+ = \frac{Se}{1 - Sp}, \qquad LR^- = \frac{1 - Se}{Sp}
+$$
+
+검사 전 오즈에 우도비를 곱하면 검사 후 오즈가 된다. 간 스캔은 $LR^+ = 0.895 / 0.372 \approx 2.4$, $LR^- = 0.105 / 0.628 \approx 0.17$이다. 유병률과 무관하게 검사의 정보량을 비교할 수 있다.
+
+## 13. ROC 곡선 실습
+
+연속형 검사값이나 로지스틱 모형의 예측확률로 ROC 곡선을 그린다. SAS 내장 `sashelp.heart`(프레이밍햄 심장 연구 자료)에서 사망 여부를 콜레스테롤만으로 예측할 때와, 나이·혈압·흡연을 더했을 때를 비교한다.
+
+```sas
+data heart;
+  set sashelp.heart;
+  dead = (Status = 'Dead');
+  if nmiss(Cholesterol, AgeAtStart, Systolic, Smoking) = 0;
+run;
+
+proc logistic data=heart plots(only)=roc;
+  model dead(event='1') = Cholesterol AgeAtStart Systolic Smoking;
+  roc 'Cholesterol only' Cholesterol;
+  roccontrast reference('Cholesterol only') / estimate e;
+run;
+```
+
+- `model` 문의 전체 모형 ROC와 `roc` 문으로 지정한 부분 모형의 ROC가 한 그림에 겹쳐 그려진다.
+- `roccontrast`는 두 AUC의 차이를 검정한다(DeLong 방법).
+- 연속형 검사값 하나의 절단값별 민감도·특이도 표가 필요하면 `model` 문에 `/ outroc=roc_out`을 주고, 저장된 `_SENSIT_`, `_1MSPEC_`로 Youden 지수 $J = Se + Sp - 1$이 최대인 절단값을 찾는다.
+
+## 14. 일치도: 카파 통계량
+
+두 평가자(또는 두 검사)가 같은 대상을 범주로 판정했을 때 얼마나 일치하는지 본다. 단순 일치율 $p_o$는 우연히 일치하는 부분까지 포함하므로, 우연 일치 $p_e$를 뺀 **Cohen의 카파**를 쓴다.
+
+$$
+\kappa = \frac{p_o - p_e}{1 - p_e}, \qquad p_e = \sum_i p_{i+} p_{+i}
+$$
+
+| $\kappa$ | 일치 정도 (Landis & Koch) |
+|---|---|
+| < 0.20 | 낮음 |
+| 0.21 ~ 0.40 | 약간 |
+| 0.41 ~ 0.60 | 보통 |
+| 0.61 ~ 0.80 | 상당 |
+| > 0.80 | 거의 완벽 |
+
+순서형 범주(예: 경증·중등도·중증)는 불일치 정도에 가중치를 주는 **가중 카파**를 쓴다. 연속형 측정값의 일치도는 급내상관계수(ICC)나 Bland-Altman 그림으로 본다.
+
+```sas
+proc freq data=ex35 order=data;
+  weight count;
+  tables before*after / agree;
+  test kappa;
+run;
+```
+
+`agree` 옵션은 McNemar 검정(2×2) 또는 Bowker 대칭성 검정($k \times k$)과 함께 단순·가중 카파와 신뢰구간을 출력한다. McNemar 검정은 "두 판정의 양성률이 같은가", 카파는 "개별 대상에서 판정이 얼마나 일치하는가"를 보는 서로 다른 질문이다.
+
+## 요약
+
+| 질문 | 자료 | 방법 | SAS `proc freq` |
+|---|---|---|---|
+| 두 범주형 변수의 연관성 | 독립 표본 | 카이제곱 | `tables a*b / chisq` |
+| 칸 기대도수가 작음 | 독립 표본 | Fisher 정확검정 | `/ fisher`, `exact` |
+| 위험의 비교 | 코호트·실험 | 상대위험률, 오즈비 | `/ relrisk` |
+| 전후 비교 | 짝지은 표본 | McNemar | `/ agree` |
+| 층 보정 | 층화 자료 | CMH, Breslow-Day | `tables s*a*b / cmh` |
+| 검사 정확도 | 기준 검사와 비교 | 민감도, 특이도, 예측도 | 행 백분율, `binomial` |
+| 연속형 검사 | 예측값 | ROC, AUC | `proc logistic` + `roc` |
+| 판정 일치 | 같은 대상 반복 판정 | 카파 | `/ agree` |

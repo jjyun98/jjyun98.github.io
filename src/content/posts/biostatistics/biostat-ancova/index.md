@@ -1,11 +1,13 @@
 ---
 title: '생명과학통계 - 공분산분석'
-published: 2026-05-29
+published: 2026-05-28
 draft: false
 description: '공분산분석(ANCOVA)의 목적, 공변량 보정, 조정평균, 평행기울기 가정, Type I/III 제곱합과 SAS PROC GLM 문법 정리'
 series: '생명과학통계'
 tags: ['생명과학통계', '공분산분석', 'ANCOVA', 'SAS']
 ---
+
+『생명과학연구를 위한 통계적 방법』(이재원·박미라·유한나)과 전북대학교 최혜미 교수님 강의를 바탕으로 정리했다.
 
 공분산분석(ANCOVA)은 분산분석과 회귀분석을 결합한 방법이다. 반응변수는 연속형이고, 주요 설명변수는 처리군 같은 범주형 변수이며, 반응변수에 영향을 줄 수 있는 연속형 공변량을 함께 보정하고 싶을 때 사용한다.
 
@@ -53,6 +55,34 @@ y_{ij} = \alpha_{0i} + \beta x_{ij} + \epsilon_{ij}
 $$
 
 처리군마다 절편은 다르지만 기울기 $\beta$는 같다는 것이 기본 ANCOVA의 핵심이다.
+
+![평행기울기 ANCOVA와 조정평균](./figures/fig-bio-ancova.svg)
+
+### 조정평균
+
+조정평균(least squares mean)은 모든 처리군의 공변량이 전체 평균 $\bar x_{\cdot\cdot}$이라고 했을 때의 예측 평균이다.
+
+$$
+\bar y_{i}^{\,adj} = \bar y_{i\cdot} - \hat\beta (\bar x_{i\cdot} - \bar x_{\cdot\cdot})
+$$
+
+공변량 평균이 전체 평균보다 큰 처리군은 그만큼 반응값을 깎고, 작은 처리군은 더해 준다. 그림에서 세로 점선 위치($\bar x_{\cdot\cdot}$)에서 각 처리군 직선의 높이가 조정평균이다. 두 처리군의 조정평균 차이는 두 평행선 사이의 세로 거리 $\alpha_1 - \alpha_2$와 같고, 이것이 공변량을 보정한 처리 효과다.
+
+### 공분산분석이 정밀도를 높이는 이유
+
+$\beta$를 통해 공변량이 설명하는 변동을 오차에서 빼므로 오차분산이 $\sigma^2(1 - \rho^2)$ 정도로 줄어든다. $\rho$는 공변량과 반응변수의 군내 상관이다. 무작위 배정한 실험에서도 공변량을 넣으면 처리 효과의 표준오차가 작아져 검정력이 올라간다.
+
+### 사전-사후 설계: 변화량 분석과의 비교
+
+치료 전 값 $x$와 치료 후 값 $y$가 있을 때 세 가지 분석이 가능하다.
+
+| 분석 | 모형 | 암묵적 가정 |
+|---|---|---|
+| 사후 값 비교 | $y = \mu + \alpha_i$ | 기저값을 무시 |
+| 변화량 비교 | $y - x = \mu + \alpha_i$ | $\beta = 1$ |
+| ANCOVA | $y = \mu + \alpha_i + \beta x$ | $\beta$를 자료로 추정 |
+
+변화량 분석은 ANCOVA에서 $\beta = 1$로 고정한 특수한 경우다. 무작위 배정 임상시험에서는 기저값을 공변량으로 넣는 ANCOVA가 가장 효율적이라는 것이 일반적인 권고다. 기저값이 높은 사람이 다음 측정에서 평균 쪽으로 돌아오는 **평균으로의 회귀**도 $\beta$ 추정을 통해 자연스럽게 반영된다.
 
 ## 4. 핵심 가정
 
@@ -124,53 +154,61 @@ Type III SS는 다른 효과들을 보정한 뒤 해당 효과가 추가로 설�
 
 ANCOVA에서 보통 관심 있는 질문은 "공변량을 보정한 뒤 처리 효과가 있는가"이므로 Type III SS의 `trt` 효과를 확인하는 경우가 많다.
 
-## 8. 예제 5.1: 처리 효과와 초기값 보정
+## 8. 예제: 키를 보정한 성별 체중 비교
 
-원본 예제 5.1은 20명의 대상자를 여러 치료군에 무작위 배정하고, 처리 후 반응변수를 비교하는 상황이다. 다만 처리 전 측정값이 처리 후 반응변수에 영향을 줄 수 있어 이를 공변량으로 보정한다.
-
-분석 질문은 두 가지다.
-
-1. 초기값을 보정한 뒤에도 치료군에 따른 처리 후 반응변수 차이가 있는가?
-2. 치료군 차이를 보정한 뒤 초기값은 처리 후 반응변수에 영향을 주는가?
-
-분석 구조는 다음과 같다.
+SAS 내장 `sashelp.class`는 학생 19명의 성별(`Sex`), 키(`Height`, 인치), 체중(`Weight`, 파운드)이다. 남학생이 평균적으로 키가 크므로, 체중의 성별 차이를 단순 비교하면 키 차이까지 섞인다.
 
 ```sas
-proc glm data=ex51;
-  class trt;
-  model y = trt x / solution;
-  lsmeans trt / pdiff cl;
+proc means data=sashelp.class mean std;
+  class Sex;
+  var Height Weight;
+run;
+
+proc sgplot data=sashelp.class;
+  reg x=Height y=Weight / group=Sex;
+run;
+
+proc glm data=sashelp.class;
+  class Sex;
+  model Weight = Sex Height Sex*Height;     /* 1단계: 평행기울기 확인 */
+run;
+quit;
+
+proc glm data=sashelp.class plots=ancovaplot;
+  class Sex;
+  model Weight = Sex Height / solution ss3;  /* 2단계: 평행기울기 ANCOVA */
+  lsmeans Sex / pdiff cl stderr;
 run;
 quit;
 ```
 
-여기서 `x`는 처리 전 측정값, `y`는 처리 후 측정값으로 보면 된다.
+읽는 순서는 다음과 같다.
 
-TODO: 원본 표 5.3의 실제 데이터가 텍스트로 추출되지 않았다. 책에서 치료군, 초기값, 반응변수 값을 확인해 `data ex51;` 입력 코드와 실제 결론을 추가한다.
+1. 1단계의 `Sex*Height` 행이 유의하지 않으면 평행기울기 가정을 받아들이고 2단계로 간다.
+2. 2단계 Type III SS 표에서 `Height` 행은 성별을 보정한 키 효과($H_0: \beta = 0$), `Sex` 행은 키를 보정한 성별 효과($H_0: \alpha_1 = \alpha_2$)다.
+3. `lsmeans`의 조정평균과 그 차이, 신뢰구간으로 효과 크기를 보고한다.
+4. `proc means`의 단순 평균 차이와 조정평균 차이를 비교한다. 단순 평균 차이의 상당 부분이 키 차이로 설명된다면 조정평균 차이는 작아진다.
+
+`plots=ancovaplot`은 집단별 평행 회귀선을 그려 준다.
 
 ## 9. 공변량이 여러 개인 경우
 
-공변량이 둘 이상이면 회귀항을 여러 개 넣는다.
-
 $$
-y_{ij}
-= \beta_0 + \alpha_i + \beta_1x_{1ij} + \beta_2x_{2ij} + \epsilon_{ij}
+y_{ij} = \mu + \alpha_i + \beta_1 (x_{1ij} - \bar x_{1}) + \beta_2 (x_{2ij} - \bar x_{2}) + \epsilon_{ij}
 $$
 
-SAS 문법은 다음과 같다.
+조정평균은 모든 공변량을 전체 평균에 두었을 때의 예측값이다. SAS 내장 `sashelp.bweight`는 미국 출생아 50,000명의 출생체중(`Weight`, g)과 산모 특성이다. 산모 흡연(`MomSmoke`)에 따른 출생체중 차이를 산모 나이와 임신 중 체중 증가로 보정한다.
 
 ```sas
-proc glm data=ex52;
-  class group;
-  model y = group x1 x2 / solution;
-  lsmeans group / pdiff cl;
+proc glm data=sashelp.bweight;
+  class MomSmoke;
+  model Weight = MomSmoke MomAge MomWtGain / solution ss3;
+  lsmeans MomSmoke / pdiff cl;
 run;
 quit;
 ```
 
-예제 5.2는 여러 공변량을 보정해 집단 간 반응변수를 비교하는 형태다. 원본 설명에 따르면 반응변수는 연속형이고, 집단변수 외에 적어도 두 개의 연속형 공변량을 함께 고려한다.
-
-TODO: 원본 예제 5.2의 변수명과 실제 수치가 텍스트로 추출되지 않았다. 책에서 표를 확인해 예제 데이터와 해석을 추가한다.
+`MomAge`, `MomWtGain`은 이 자료에서 이미 평균 중심화된 변수다. 표본이 매우 크면 작은 차이도 유의하게 나오므로, $p$값보다 조정평균 차이(g)의 크기로 임상적 의미를 판단한다.
 
 ## 10. 기울기가 다른 ANCOVA
 
@@ -201,18 +239,35 @@ $$
 
 상호작용이 유의하지 않으면 평행기울기 모형으로 단순화할 수 있다. 상호작용이 유의하면 특정 공변량 값에서의 처리 효과를 따로 해석하거나, 공변량 범위별 예측값을 제시해야 한다.
 
-## 11. 예제 5.3: 처리군별 기울기 비교
+## 11. 예제: 기울기가 다른 경우의 해석
 
-원본 예제 5.3은 세 치료군을 비교하면서 반응변수에 영향을 줄 수 있는 연속형 변수를 공변량으로 넣는 상황이다. 연구자의 관심은 치료군에 따라 반응변수가 다른지이고, 공변량의 영향이 처리군별로 같은지도 확인해야 한다.
+상호작용이 유의하면 "처리 효과"가 공변량 값마다 다르다. 이때는 조정평균 하나로 요약하지 않고, 공변량의 여러 값에서 처리군 차이를 따로 제시한다.
 
-분석 흐름은 다음과 같다.
+```sas
+proc glm data=sashelp.class;
+  class Sex;
+  model Weight = Sex Sex*Height / noint solution;   /* 집단별 절편과 기울기를 직접 추정 */
+run;
+quit;
 
-1. `trt*x` 상호작용을 포함해 평행기울기 가정을 검정한다.
-2. 상호작용이 유의하지 않으면 `model y = trt x`로 줄인다.
-3. 줄인 모형에서 `trt`의 Type III SS를 확인한다.
-4. 유의하면 `lsmeans trt / pdiff`로 조정평균 차이를 본다.
+proc glm data=sashelp.class;
+  class Sex;
+  model Weight = Sex Height Sex*Height;
+  lsmeans Sex / at Height=55 pdiff cl;
+  lsmeans Sex / at Height=60 pdiff cl;
+  lsmeans Sex / at Height=65 pdiff cl;
+run;
+quit;
+```
 
-TODO: 원본 예제 5.3의 변수명과 수치가 텍스트로 추출되지 않았다. 책의 예제 자료를 보고 입력 코드, 상호작용 검정 결과, 최종 모형 결과를 추가한다.
+- 첫 모형은 `noint`와 `Sex*Height`로 집단별 절편과 기울기를 바로 출력한다.
+- `lsmeans ... / at Height=`는 지정한 공변량 값에서의 집단 평균과 차이를 계산한다. 자료 범위 밖의 값은 외삽이므로 쓰지 않는다.
+
+분석 흐름을 정리하면 다음과 같다.
+
+1. `trt*x` 상호작용으로 평행기울기 가정을 검정한다.
+2. 유의하지 않으면 `model y = trt x`로 줄이고 Type III SS의 `trt`와 조정평균 차이를 본다.
+3. 유의하면 기울기가 다르다는 것 자체를 결과로 보고하고, 의미 있는 공변량 값 몇 곳에서 처리 효과를 제시한다.
 
 ## 12. 해석할 때 주의할 점
 
@@ -226,6 +281,13 @@ TODO: 원본 예제 5.3의 변수명과 수치가 텍스트로 추출되지 않�
 
 특히 처리군별 공변량 범위가 거의 겹치지 않으면 조정평균은 외삽에 가까워질 수 있다.
 
-## 보충 메모
+## 요약
 
-TODO: 공분산분석 단원은 원본 슬라이드에서 예제 데이터 표와 SAS 출력이 이미지로 들어간 부분이 많다. 실제 블로그 완성도를 높이려면 예제 5.1, 5.2, 5.3의 원자료 표와 Type III SS 출력표를 책 기준으로 추가한다.
+| 단계 | 확인할 것 | SAS |
+|---|---|---|
+| 그림 | 집단별 산점도와 회귀선 | `sgplot reg / group=` |
+| 평행기울기 | `trt*x` 상호작용 | `glm model y = trt x trt*x` |
+| 처리 효과 | 공변량 보정 후 `trt`의 Type III SS | `glm model y = trt x / ss3` |
+| 효과 크기 | 조정평균과 차이의 신뢰구간 | `lsmeans trt / pdiff cl` |
+| 기울기 다름 | 공변량 값별 처리 효과 | `lsmeans trt / at x=` |
+| 주의 | 공변량은 처리 전 측정, 집단 간 공변량 범위가 겹칠 것 | |

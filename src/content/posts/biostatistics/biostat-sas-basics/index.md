@@ -1,13 +1,13 @@
 ---
 title: '생명과학통계 - SAS 기초'
-published: 2026-05-29
+published: 2026-05-21
 draft: false
 description: 'SAS의 DATA step, PROC step, 데이터 입력, 라이브러리, 데이터셋 결합, 기초 통계량과 그래프 작성 문법 정리'
 series: '생명과학통계'
 tags: ['생명과학통계', 'SAS', '통계프로그래밍']
 ---
 
-SAS는 생명과학, 보건의학, 임상시험 자료 분석에서 오래 사용되어 온 통계 분석 시스템이다. 이 글에서는 원본 `sas_start2023.pdf`의 흐름을 따라 SAS 프로그램의 기본 구조와 자주 쓰는 절차를 정리한다.
+SAS는 생명과학, 보건의학, 임상시험 자료 분석에서 오래 사용되어 온 통계 분석 시스템이다. 전북대학교 최혜미 교수님 생명과학통계 강의의 SAS 실습 흐름을 따라 SAS 프로그램의 기본 구조와 자주 쓰는 절차를 정리했다. 이 시리즈의 모든 코드는 SAS로 작성한다. SAS가 설치되어 있지 않으면 무료 웹 환경인 SAS OnDemand for Academics에서 그대로 실행할 수 있다.
 
 ## 1. SAS 프로그램의 큰 구조
 
@@ -73,6 +73,36 @@ SAS 데이터셋은 에디터에서 직접 입력할 수도 있고, `txt`, `csv`
 - 문자형과 숫자형이 올바르게 인식되었는지
 - 결측값이 어떻게 표시되어 있는지
 - 작업 디렉터리가 의도한 폴더인지
+
+메뉴 대신 코드로 읽으면 재실행이 쉽다.
+
+```sas
+proc import datafile="/home/user/data/mower.xlsx" out=mower dbms=xlsx replace;
+  sheet="Sheet1";
+  getnames=yes;
+run;
+
+proc import datafile="/home/user/data/bweight.csv" out=bweight dbms=csv replace;
+  getnames=yes;
+  guessingrows=max;
+run;
+```
+
+- `dbms=`: 파일 형식(`xlsx`, `csv`, `tab`, `dlm`)
+- `replace`: 같은 이름의 데이터셋이 있으면 덮어쓴다.
+- `getnames=yes`: 첫 행을 변수명으로 쓴다.
+- `guessingrows=max`: CSV의 모든 행을 보고 변수 형식과 길이를 정한다. 기본값(20행)만 보면 뒤쪽의 긴 문자열이 잘리거나 문자형 숫자를 잘못 읽을 수 있다.
+
+형식을 직접 통제하려면 DATA 단계의 `infile`을 쓴다.
+
+```sas
+data bweight;
+  infile "/home/user/data/bweight.csv" dsd firstobs=2 truncover;
+  input Weight Black Married Boy MomAge MomSmoke CigsPerDay MomWtGain Visit MomEdLevel;
+run;
+```
+
+`dsd`는 쉼표 구분과 따옴표 처리를, `firstobs=2`는 첫 행(변수명)을 건너뛰는 것을 뜻한다.
 
 ## 4. 임시 라이브러리와 영구 라이브러리
 
@@ -388,27 +418,56 @@ run;
 | `Visit` | 산전 병원 방문 여부 |
 | `MomEdLevel` | 어머니 교육수준 |
 
-분석 흐름은 다음처럼 잡으면 된다.
+이 자료는 SAS에 `sashelp.bweight`로 내장되어 있어 파일 없이 바로 연습할 수 있다. 분석 흐름은 다음처럼 잡는다.
 
 ```sas
-proc contents data=bweight;
+data bweight;
+  set sashelp.bweight;
 run;
 
-proc means data=bweight n mean std min median max;
-  var Weight MomAge;
+proc contents data=bweight varnum;
+run;
+
+proc means data=bweight n nmiss mean std min median max maxdec=1;
+  var Weight MomAge MomWtGain;
 run;
 
 proc freq data=bweight;
-  tables Black Married MomSmoke Boy;
+  tables Black Married MomSmoke Boy / nocum;
+  tables MomSmoke*Boy / chisq;
 run;
 
 proc sgplot data=bweight;
-  histogram Weight;
+  histogram Weight / binwidth=100;
+  density Weight / type=normal;
 run;
 
 proc sgplot data=bweight;
   vbox Weight / category=MomSmoke;
 run;
+
+proc means data=bweight mean std;
+  class MomSmoke Married;
+  var Weight;
+run;
 ```
 
-TODO: 원본에는 `mower.xlsx`와 `bweight.csv`의 실제 파일 내용은 포함되어 있지 않다. 데이터를 확보하면 `PROC IMPORT` 코드와 실제 출력표를 이 글에 추가한다.
+- `proc contents ... varnum`: 변수를 데이터셋에 들어 있는 순서대로 보여 준다.
+- `nmiss`: 결측 수. 분석 전에 반드시 확인한다.
+- `histogram` + `density type=normal`: 분포와 정규분포 곡선을 겹쳐 그린다.
+- `class` 문이 있는 `proc means`: 집단 조합별 요약통계량. 정렬(`proc sort`) 없이 집단별 요약을 낼 수 있어 `by`보다 편하다.
+
+`MomAge`와 `MomWtGain`은 이 자료에서 이미 평균 중심화되어 있어 음수 값이 있다. 원래 단위로 해석하려면 SAS 도움말의 중심화 기준값을 더해 준다.
+
+## 요약
+
+| 작업 | SAS |
+|---|---|
+| 데이터 직접 입력 | `data ...; input ...; datalines;` |
+| 파일 읽기 | `proc import`, `infile` + `input` |
+| 라이브러리 | `libname` (영구), `work` (임시) |
+| 결합 | `set`(세로), `merge ... by`(가로) |
+| 구조 확인 | `proc contents`, `proc print (obs=)` |
+| 요약 | `proc means`, `proc freq`, `proc univariate` |
+| 그래프 | `proc sgplot`, `proc sgpanel` |
+| 결과 저장 | `ods output`, `ods pdf/rtf` |
