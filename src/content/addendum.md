@@ -1,7 +1,7 @@
 ---
 avatarImage:
   src: './avatar.jpg'
-  alt: 'My avatar'
+  alt: 'jjyun98 로고'
 ---
 
-Thanks for reading my blog post! Feel free to check out my other posts or contact me via the social links in the footer.
+공부하면서 정리한 노트라 틀린 부분이 있을 수 있다. 오류를 발견하면 아래 이메일이나 GitHub으로 알려주면 고친다. 같은 시리즈의 다른 글은 글 상단의 시리즈 목록에서 이어서 볼 수 있다.

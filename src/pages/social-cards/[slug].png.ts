@@ -9,10 +9,16 @@ import fs from 'fs'
 import type { ReactNode } from 'react'
 
 // Load the font file as binary data
-const fontPath = path.resolve(
+// 한글 제목을 그리기 위해 Noto Sans KR을 우선 사용하고, 없으면 JetBrains Mono로 대체
+const koreanFontPath = path.resolve(
+  './node_modules/@expo-google-fonts/noto-sans-kr/700Bold/NotoSansKR_700Bold.ttf',
+)
+const monoFontPath = path.resolve(
   './node_modules/@expo-google-fonts/jetbrains-mono/400Regular/JetBrainsMono_400Regular.ttf',
 )
-const fontData = fs.readFileSync(fontPath) // Reads the file as a Buffer
+const hasKoreanFont = fs.existsSync(koreanFontPath)
+const fontData = fs.readFileSync(hasKoreanFont ? koreanFontPath : monoFontPath)
+const fontName = hasKoreanFont ? 'Noto Sans KR' : 'JetBrains Mono'
 
 const avatarPath = path.resolve(siteConfig.socialCardAvatarImage)
 let avatarData: Buffer | undefined
@@ -48,9 +54,9 @@ const ogOptions: SatoriOptions = {
   fonts: [
     {
       data: fontData,
-      name: 'JetBrains Mono',
+      name: fontName,
       style: 'normal',
-      weight: 400,
+      weight: hasKoreanFont ? 700 : 400,
     },
   ],
   height: 630,

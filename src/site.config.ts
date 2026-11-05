@@ -7,11 +7,11 @@ const config: SiteConfig = {
   title: 'jjyun98',
   // The description of your site, used for SEO and RSS feed.
   description:
-    '통계, 데이터 분석, 데이터 파이프라인과 엔지니어링을 정리하는 개인 블로그',
+    '통계학 전공 수업과 교재, 데이터 분석과 파이프라인 작업을 정리하는 개인 노트',
   // The author of the site, used in the footer, SEO, and RSS feed.
   author: 'jjyun98',
   // Keywords for SEO, used in the meta tags.
-  tags: ['statistics', 'data-analysis', 'data-engineering', 'Python', 'R', 'SQL'],
+  tags: ['통계학', '데이터 분석', '데이터 마이닝', '시계열', '생명과학통계', '미시경제학', 'R', 'SAS', 'Python'],
   // Path to the image used for generating social media previews.
   // Needs to be a square JPEG file due to limitations of the social card generator.
   // Try https://squoosh.app/ to easily convert images to JPEG.
@@ -42,7 +42,7 @@ const config: SiteConfig = {
     },
     {
       name: 'GitHub',
-      url: 'https://github.com/jjyun98/jjyun98.github.io',
+      url: 'https://github.com/jjyun98',
       external: true,
     },
   ],
@@ -153,8 +153,6 @@ const config: SiteConfig = {
   socialLinks: {
     github: 'https://github.com/jjyun98',
     linkedin: 'https://www.linkedin.com/in/jjyun98',
-    bluesky: 'https://bsky.app/profile/jjyun98.bsky.social',
-    twitter: 'https://x.com/jjyun98',
     email: 'jyn9815@gmail.com',
     rss: true, // Set to true to include an RSS feed link in the footer
   },
