@@ -126,7 +126,63 @@ $$
 
 구간이 1을 포함하지 않으면 5% 유의수준에서 유의하다. 연속형 변수는 한 단위가 너무 작으면 오즈비가 1에 가까워 해석이 어렵다. 나이 10세, 혈압 10mmHg처럼 의미 있는 단위로 바꿔 보고한다(`units` 문).
 
-## 5. 예제: 프레이밍햄 심장 연구
+## 5. 예제 4.1: 백혈병 환자의 재발
+
+백혈병 환자 102명을 무작위로 두 군으로 나눠 처리 A와 B를 하고 재발 여부를 조사했다. 재발에는 처리 외에 호전기간(remission time, 개월)도 영향을 줄 수 있다.
+
+| 변수 | 내용 |
+|---|---|
+| `trt` | 처리 A, B (질적 변수, 가변수 1개) |
+| `remission` | 호전기간(개월) |
+| `y` | 재발 여부 (1 = 재발, 0 = 재발 안 함) |
+
+$$
+\log \frac{p}{1 - p} = \alpha + \beta_1 \text{trt}_A + \beta_2 \text{remission}
+$$
+
+자료는 교재 표 4.2에 있다. 탭으로 구분된 텍스트 파일로 저장했다면 다음처럼 읽고 탐색한다.
+
+```sas
+data liver;
+  infile '예제4_1.txt' expandtabs;
+  input trt $ remission y;
+run;
+
+proc means data=liver mean std;
+  class trt;
+  var remission;
+run;
+
+proc freq data=liver;
+  tables trt*y / chisq;
+run;
+
+proc sgplot data=liver;
+  scatter x=remission y=y / jitter group=trt;
+run;
+```
+
+`expandtabs`는 탭을 공백으로 바꿔 읽는다. 0/1 반응을 산점도로 그리면 점이 겹치므로 `jitter`로 흩뜨린다.
+
+```sas
+proc logistic data=liver plots(only)=(effect oddsratio(type=horizontalstat));
+  class trt (ref='B') / param=ref;
+  model y(event='1') = trt remission / scale=none aggregate lackfit clodds=both;
+  units remission=12;
+  output out=estimated predicted=estprob l=lower95 u=upper95;
+run;
+```
+
+- `class trt (ref='B')`: 처리 B를 기준으로 처리 A의 오즈비를 추정한다.
+- `scale=none aggregate`: 같은 공변량 조합끼리 묶어 이탈도와 피어슨 적합도 통계량을 출력한다.
+- `lackfit`: Hosmer-Lemeshow 적합도 검정
+- `clodds=both`: 오즈비의 Wald와 프로파일 가능도 신뢰구간을 모두 출력한다.
+- `units remission=12`: 호전기간 1년(12개월) 증가당 오즈비
+- `output`: 관측값마다 예측확률과 신뢰한계를 저장한다.
+
+`trt`의 오즈비는 "같은 호전기간에서 처리 A의 재발 오즈가 B의 몇 배인가"이고, `remission`의 오즈비는 "같은 처리에서 호전기간이 1개월(또는 12개월) 길 때 재발 오즈가 몇 배인가"다.
+
+## 6. 예제: 프레이밍햄 심장 연구
 
 SAS 내장 `sashelp.heart`는 프레이밍햄 심장 연구 참가자 5,209명의 추적 결과다. 사망 여부(`Status`)를 성별, 연구 시작 나이, 수축기 혈압, 콜레스테롤로 설명한다.
 
@@ -167,7 +223,7 @@ $$
 
 표본이 아주 크면 작은 불일치도 유의하게 나오고, 작으면 검정력이 낮다. 보정 그림(calibration plot)과 함께 본다.
 
-## 6. 예제 4.2: 두 설명변수와 이진 결과
+## 7. 예제 4.2: 두 설명변수와 이진 결과
 
 예제 4.2는 질병 유형과 치료법에 따라 치료 성공 여부를 비교하는 형태의 집계자료다.
 
@@ -236,7 +292,7 @@ run;
 
 `oddsratio trt / at(type=all)`은 질병 유형별로 치료 오즈비를 따로 출력한다.
 
-## 7. 작은 표본과 짝지은 자료
+## 8. 작은 표본과 짝지은 자료
 
 ### 정확 로지스틱 회귀
 
@@ -263,7 +319,7 @@ run;
 
 1:1 짝짓기에서 이진 노출 하나만 있으면 이 모형의 오즈비는 [McNemar 검정](/posts/biostat-contingency-diagnostic)의 불일치 쌍 비 $n_{12}/n_{21}$와 같다.
 
-## 8. 순서형 반응변수
+## 9. 순서형 반응변수
 
 반응변수가 세 범주 이상이고 순서가 있으면 순서형 로지스틱 회귀를 고려한다. 예를 들어 증상 정도가 "없음, 경함, 중등도"처럼 순서를 가진다면 순서형 반응변수다.
 
@@ -293,7 +349,7 @@ $$
 
 비례오즈 가정 아래에서 $e^{\beta_k}$는 "어떤 기준점에서 나누든" $x_k$가 한 단위 늘 때 더 낮은 범주($Y \le j$)에 속할 오즈의 배율이다. SAS의 누적 로짓은 기본적으로 $P(Y \le j)$를 모델링하므로, 순서가 "나쁨 → 좋음"으로 코딩되어 있으면 $\beta > 0$이 나쁜 쪽으로 이동한다는 뜻이 된다. `descending`으로 방향을 바꾸면 해석도 반대가 된다.
 
-## 9. 예제: 관절염 치료 효과
+## 10. 예제: 관절염 치료 효과
 
 Koch & Edwards(1988)의 류머티스 관절염 임상시험 자료로, 성별과 처리(활성 약물 Active, 위약 Placebo)에 따른 증상 개선 정도(None < Some < Marked)다. 범주형 자료분석 교재에서 비례오즈모형의 대표 예제로 쓰인다.
 
@@ -324,7 +380,7 @@ run;
 - 출력의 `Score Test for the Proportional Odds Assumption`이 비례오즈 가정 검정이다. 유의하지 않으면 가정을 받아들인다. 유의하면 부분 비례오즈 모형(`unequalslopes` 옵션)이나 일반화 로짓을 검토한다.
 - 절편은 범주 경계 수만큼($J - 1 = 2$개) 나온다.
 
-## 10. 명목형 반응변수
+## 11. 명목형 반응변수
 
 반응변수가 세 범주 이상이지만 순서가 없으면 일반화 로짓모형을 쓴다. 기준범주를 $J$로 두면 다음과 같다.
 
@@ -336,7 +392,7 @@ $$
 
 범주마다 별도의 계수 벡터가 생긴다. 따라서 순서형 모형보다 모수가 많고 해석도 기준범주 대비로 이루어진다.
 
-## 11. 예제: 성별과 인종에 따른 정당 지지
+## 12. 예제: 성별과 인종에 따른 정당 지지
 
 Agresti의 범주형 자료분석 교재에 나오는 미국 종합사회조사(GSS) 자료로, 성별과 인종(White, Black)에 따른 지지 정당(Democrat, Republican, Independent)이다. 정당에는 순서가 없으므로 일반화 로짓모형을 쓴다.
 
@@ -367,7 +423,7 @@ run;
 
 기준범주를 Independent로 두면 계수가 두 벌 나온다. 하나는 $\log(\pi_D / \pi_I)$, 다른 하나는 $\log(\pi_R / \pi_I)$에 대한 계수다. 표만 봐도 흑인 응답자에서 Republican 비율이 매우 낮으므로, `race`의 R 대 I 계수가 크게 음수로 나올 것으로 예상할 수 있다. 두 비교의 계수를 빼면 Democrat 대 Republican 비교도 얻는다.
 
-## 12. 해석할 때 주의할 점
+## 13. 해석할 때 주의할 점
 
 로지스틱 회귀 결과를 해석할 때는 다음을 확인한다.
 

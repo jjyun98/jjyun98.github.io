@@ -154,61 +154,97 @@ Type III SS는 다른 효과들을 보정한 뒤 해당 효과가 추가로 설�
 
 ANCOVA에서 보통 관심 있는 질문은 "공변량을 보정한 뒤 처리 효과가 있는가"이므로 Type III SS의 `trt` 효과를 확인하는 경우가 많다.
 
-## 8. 예제: 키를 보정한 성별 체중 비교
+## 8. 예제 5.1: 저혈당 치료법 비교
 
-SAS 내장 `sashelp.class`는 학생 19명의 성별(`Sex`), 키(`Height`, 인치), 체중(`Weight`, 파운드)이다. 남학생이 평균적으로 키가 크므로, 체중의 성별 차이를 단순 비교하면 키 차이까지 섞인다.
+저혈당 환자 20명을 5개 치료법에 4명씩 무작위로 배정하고, 1달 후 혈당 수치($y$)를 측정했다. 1달 후 수치는 초기 혈당 수치($x$)의 영향을 받을 것으로 보고 초기값을 공변량으로 둔다.
 
 ```sas
-proc means data=sashelp.class mean std;
-  class Sex;
-  var Height Weight;
+data medicine;
+  input trt x y @@;
+  datalines;
+1 27.2 32.6  1 22.0 36.6
+1 33.0 37.7  1 26.8 31.0
+2 28.6 33.8  2 26.8 31.7
+2 26.5 30.7  2 26.8 30.4
+3 28.6 35.2  3 22.4 29.1
+3 23.2 28.9  3 24.4 30.2
+4 29.3 35.0  4 21.8 27.0
+4 30.3 36.4  4 24.3 30.5
+5 20.4 24.6  5 19.6 23.4
+5 25.1 30.3  5 18.1 21.8
+;
 run;
 
-proc sgplot data=sashelp.class;
-  reg x=Height y=Weight / group=Sex;
+proc sgplot data=medicine;
+  reg x=x y=y / group=trt;
 run;
 
-proc glm data=sashelp.class;
-  class Sex;
-  model Weight = Sex Height Sex*Height;     /* 1단계: 평행기울기 확인 */
+proc glm data=medicine;
+  class trt;
+  model y = trt x trt*x;                  /* 1단계: 기울기 동일성 검정 */
 run;
 quit;
 
-proc glm data=sashelp.class plots=ancovaplot;
-  class Sex;
-  model Weight = Sex Height / solution ss3;  /* 2단계: 평행기울기 ANCOVA */
-  lsmeans Sex / pdiff cl stderr;
+proc glm data=medicine;
+  class trt;
+  model y = trt x / solution;             /* 2단계: 평행기울기 ANCOVA */
+  lsmeans trt / stderr pdiff adjust=tukey;
 run;
 quit;
 ```
 
 읽는 순서는 다음과 같다.
 
-1. 1단계의 `Sex*Height` 행이 유의하지 않으면 평행기울기 가정을 받아들이고 2단계로 간다.
-2. 2단계 Type III SS 표에서 `Height` 행은 성별을 보정한 키 효과($H_0: \beta = 0$), `Sex` 행은 키를 보정한 성별 효과($H_0: \alpha_1 = \alpha_2$)다.
-3. `lsmeans`의 조정평균과 그 차이, 신뢰구간으로 효과 크기를 보고한다.
-4. `proc means`의 단순 평균 차이와 조정평균 차이를 비교한다. 단순 평균 차이의 상당 부분이 키 차이로 설명된다면 조정평균 차이는 작아진다.
+1. 1단계의 `trt*x` 행이 유의하지 않으면 처리 간 회귀계수 $\beta$가 같다는 가정을 받아들이고 2단계로 간다.
+2. 2단계 Type III SS에서 `x` 행은 처리를 보정한 초기값 효과($H_0: \beta = 0$), `trt` 행은 초기값을 보정한 치료법 효과($H_0: \alpha_1 = \cdots = \alpha_5$)다.
+3. `lsmeans`는 모든 환자의 초기값이 전체 평균이라고 했을 때의 치료법별 조정평균이다. `pdiff adjust=tukey`는 모든 쌍의 차이를 Tukey 방법으로 보정해 검정한다. 대조군 하나와만 비교한다면 `pdiff=control('1') adjust=dunnett`을 쓴다.
+4. 5번 치료법은 초기값이 낮은 환자가 몰려 단순 평균이 낮게 나온다. 조정평균에서는 이 차이가 보정된다.
 
-`plots=ancovaplot`은 집단별 평행 회귀선을 그려 준다.
-
-## 9. 공변량이 여러 개인 경우
+## 9. 예제 5.2: 공변량이 두 개인 경우
 
 $$
-y_{ij} = \mu + \alpha_i + \beta_1 (x_{1ij} - \bar x_{1}) + \beta_2 (x_{2ij} - \bar x_{2}) + \epsilon_{ij}
+y_{ij} = \beta_0 + \alpha_i + \beta_1 x_{1ij} + \beta_2 x_{2ij} + \epsilon_{ij}
 $$
 
-조정평균은 모든 공변량을 전체 평균에 두었을 때의 예측값이다. SAS 내장 `sashelp.bweight`는 미국 출생아 50,000명의 출생체중(`Weight`, g)과 산모 특성이다. 산모 흡연(`MomSmoke`)에 따른 출생체중 차이를 산모 나이와 임신 중 체중 증가로 보정한다.
+약물의 체내 배출 연구다. 약의 형태(`type`, 6가지)에 따라 배출되는 약물량($y$)이 다른지 보려 하는데, 배출량은 항신진대사 점수($x_1$)와 측정 시간($x_2$)의 영향도 받는다.
 
 ```sas
-proc glm data=sashelp.bweight;
-  class MomSmoke;
-  model Weight = MomSmoke MomAge MomWtGain / solution ss3;
-  lsmeans MomSmoke / pdiff cl;
+data elimination;
+  do type = 1 to 6;
+    input x1 x2 y @@;
+    output;
+  end;
+  datalines;
+37 61 11.3208 37 37 12.9151 45 53 18.8947
+41 41 14.6739 57 41 8.6493 49 33 9.5238
+49 49 7.6923 53 53 0.0017 53 45 8.0477
+61 37 6.1441 49 65 21.7939 53 53 6.7358
+53 45 4.2553 57 57 0.0017 49 49 11.0196
+53 53 6.2762 53 45 13.2316 53 53 5.0676
+57 57 5.6235 49 49 14.9893 53 53 13.7233
+53 45 6.0669 53 53 8.1602 61 37 1.5523
+45 45 6.9971 53 45 5.2308 57 57 8.256
+49 49 14.5 53 53 20.7627 53 45 3.6115
+53 53 11.3475 53 45 9.465 53 53 22.6103
+61 37 0.002 49 65 20.5997 37 37 28.1828
+;
+run;
+
+proc glm data=elimination;
+  class type;
+  model y = type x1 x2 / solution;
+  lsmeans type / stderr pdiff;
 run;
 quit;
 ```
 
-`MomAge`, `MomWtGain`은 이 자료에서 이미 평균 중심화된 변수다. 표본이 매우 크면 작은 차이도 유의하게 나오므로, $p$값보다 조정평균 차이(g)의 크기로 임상적 의미를 판단한다.
+`do type = 1 to 6; input ... @@; output; end;`는 한 줄에 들어 있는 관측값을 `type` 1~6에 차례로 배정한다. 각 줄이 6개 형태의 관측값 하나씩이다. 적합된 식은 형태마다 절편만 다르고 $x_1$, $x_2$의 기울기는 같다.
+
+$$
+\hat y_{ij} = \hat\beta_0 + \hat\alpha_i + \hat\beta_1 x_{1ij} + \hat\beta_2 x_{2ij}
+$$
+
+조정평균은 $x_1$, $x_2$를 모두 전체 평균에 두었을 때의 형태별 예측값이다.
 
 ## 10. 기울기가 다른 ANCOVA
 
@@ -239,35 +275,56 @@ $$
 
 상호작용이 유의하지 않으면 평행기울기 모형으로 단순화할 수 있다. 상호작용이 유의하면 특정 공변량 값에서의 처리 효과를 따로 해석하거나, 공변량 범위별 예측값을 제시해야 한다.
 
-## 11. 예제: 기울기가 다른 경우의 해석
+## 11. 예제 5.3: 처리별 기울기 비교
 
-상호작용이 유의하면 "처리 효과"가 공변량 값마다 다르다. 이때는 조정평균 하나로 요약하지 않고, 공변량의 여러 값에서 처리군 차이를 따로 제시한다.
+흡연자를 대상으로 산소운반 능력을 개선하는 서로 다른 치료법 3개를 적용해 산소운반 능력($y$)을 조사했다. 산소운반 능력은 1인당 담배 소비량($x$)의 영향을 받으므로 이를 공변량으로 둔다.
 
 ```sas
-proc glm data=sashelp.class;
-  class Sex;
-  model Weight = Sex Sex*Height / noint solution;   /* 집단별 절편과 기울기를 직접 추정 */
+data oxygen;
+  input trt x y @@;
+  datalines;
+1 40 165 1 54 85  1 85 9   1 95 43  1 81 94
+1 26 226 1 90 7   1 95 9   1 83 12  1 83 145
+2 85 11  2 83 6   2 65 51  2 98 18  2 47 189
+2 74 90  2 75 10  2 97 12  2 79 35  2 91 27
+3 65 89  3 25 64  3 34 87  3 20 45  3 30 56
+3 29 87  3 100 59 3 85 39  3 24 87  3 26 67
+;
 run;
-quit;
 
-proc glm data=sashelp.class;
-  class Sex;
-  model Weight = Sex Height Sex*Height;
-  lsmeans Sex / at Height=55 pdiff cl;
-  lsmeans Sex / at Height=60 pdiff cl;
-  lsmeans Sex / at Height=65 pdiff cl;
+proc glm data=oxygen;
+  class trt;
+  model y = trt x trt*x / solution;
+  estimate 'slope: trt 1' x 1 x*trt 1 0 0;
+  estimate 'slope: trt 2' x 1 x*trt 0 1 0;
+  estimate 'slope: trt 3' x 1 x*trt 0 0 1;
 run;
 quit;
 ```
 
-- 첫 모형은 `noint`와 `Sex*Height`로 집단별 절편과 기울기를 바로 출력한다.
-- `lsmeans ... / at Height=`는 지정한 공변량 값에서의 집단 평균과 차이를 계산한다. 자료 범위 밖의 값은 외삽이므로 쓰지 않는다.
+- `trt*x`의 Type III 검정이 처리별 기울기가 같은지($H_0: \beta_1 = \beta_2 = \beta_3$)에 대한 검정이다.
+- `estimate 'slope: trt 1' x 1 x*trt 1 0 0;`은 공통 기울기 $\beta$에 1번 처리의 기울기 편차를 더한, 1번 처리의 기울기 $\beta + (\alpha\beta)_1$이다. 처리별로 담배 소비량이 1단위 늘 때 산소운반 능력이 얼마나 변하는지를 보여 준다.
+
+치료법 1, 2에서는 담배 소비량이 많을수록 산소운반 능력이 크게 떨어지는 반면 치료법 3은 그 관계가 약해 보인다. 상호작용이 유의하면 "어느 치료법이 낫다"를 하나로 말할 수 없고, 담배 소비량 수준에 따라 처리 효과를 따로 제시해야 한다.
+
+```sas
+proc glm data=oxygen;
+  class trt;
+  model y = trt x trt*x;
+  lsmeans trt / at x=30 pdiff;
+  lsmeans trt / at x=60 pdiff;
+  lsmeans trt / at x=90 pdiff;
+run;
+quit;
+```
+
+`lsmeans ... / at x=`는 지정한 공변량 값에서의 처리 평균과 차이를 계산한다. 자료 범위 밖의 값은 외삽이므로 쓰지 않는다.
 
 분석 흐름을 정리하면 다음과 같다.
 
 1. `trt*x` 상호작용으로 평행기울기 가정을 검정한다.
 2. 유의하지 않으면 `model y = trt x`로 줄이고 Type III SS의 `trt`와 조정평균 차이를 본다.
-3. 유의하면 기울기가 다르다는 것 자체를 결과로 보고하고, 의미 있는 공변량 값 몇 곳에서 처리 효과를 제시한다.
+3. 유의하면 처리별 기울기를 `estimate`로 보고하고, 의미 있는 공변량 값 몇 곳에서 처리 효과를 제시한다.
 
 ## 12. 해석할 때 주의할 점
 
