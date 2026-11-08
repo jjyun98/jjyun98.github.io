@@ -2,7 +2,7 @@
 title: '데이터 마이닝 - 선형회귀'
 published: 2022-03-09
 draft: false
-description: '단순·다중 선형회귀, 최소제곱 추정, 계수 검정, RSE와 결정계수, 질적 변수와 상호작용을 Boston 데이터로 정리한다.'
+description: '단순·다중 선형회귀의 최소제곱 추정, 계수의 정확도와 적합도, 전체 F 검정, 질적 변수와 상호작용, 잔차 진단을 Boston 자료로 정리하고, 모수적 방법인 선형회귀와 비모수적 방법인 KNN 회귀를 참 함수의 형태와 차원에 따라 비교한다.'
 series: '데이터 마이닝'
 tags: ['데이터 마이닝', '회귀분석', 'R']
 ---
@@ -182,6 +182,63 @@ map_dbl(models, \(f) {
 ```
 
 학습 데이터의 $R^2$는 변수를 넣을수록 커지기만 하므로 모델 비교에 쓸 수 없다. 테스트 MSE, 교차검증, 수정 $R^2$, AIC·BIC처럼 복잡도를 반영한 기준을 쓴다. 각 기준의 식과 변수 선택 방법은 [변수선택과 정규화](/posts/dm-regularization)에서, 교차검증은 [리샘플링](/posts/dm-resampling)에서 다룬다.
+
+## 모수적 방법과 비모수적 방법: 선형회귀와 KNN 회귀
+
+선형회귀는 $f$가 선형이라고 가정하는 모수적 방법이다. 같은 회귀 문제를 가정 없이 푸는 대표적인 비모수적 방법이 KNN 회귀로, $x_0$에서 가장 가까운 학습 관측값 $K$개의 반응값 평균을 예측값으로 쓴다.
+
+$$
+\hat f(x_0) = \frac1K\sum_{i \in N_0}y_i
+$$
+
+두 방법 중 어느 쪽이 나은지는 (1) 참 $f$가 선형에 가까운지, (2) 설명 변수가 몇 개인지에 달려 있다. 이를 확인하기 위해 $X_1$만 반응과 관련 있고 나머지는 잡음인 자료를 만들고, 설명 변수 수 $p$를 1에서 10까지 늘리며 테스트 MSE를 비교한다.
+
+```r
+knn_reg <- function(xtr, ytr, xte, k) {
+  d <- as.matrix(dist(rbind(xte, xtr)))[seq_len(nrow(xte)), -seq_len(nrow(xte)), drop = FALSE]
+  apply(d, 1, \(r) mean(ytr[order(r)[1:k]]))
+}
+
+sim_lk <- function(shape, p, n = 100) {
+  gen_x <- function(m) matrix(runif(m * p, -1, 1), m)
+  fx <- function(x) if (shape == "선형") 3 * x[, 1] else 3 * sin(3 * x[, 1])
+  xtr <- gen_x(n); xte <- gen_x(500)
+  ytr <- fx(xtr) + rnorm(n, sd = 0.5); yte <- fx(xte) + rnorm(500, sd = 0.5)
+  c(선형회귀 = mean((yte - cbind(1, xte) %*% coef(lm(ytr ~ xtr)))^2),
+    KNN = mean((yte - knn_reg(xtr, ytr, xte, k = 9))^2))
+}
+
+set.seed(31)
+lk <- expand_grid(형태 = c("선형", "비선형"), p = c(1, 2, 3, 5, 10), rep = 1:20) |>
+  mutate(res = pmap(list(형태, p), sim_lk)) |>
+  unnest_wider(res) |>
+  group_by(형태, p) |>
+  summarise(across(c(선형회귀, KNN), mean), .groups = "drop")
+lk
+
+lk |>
+  pivot_longer(c(선형회귀, KNN), names_to = "방법", values_to = "MSE") |>
+  ggplot(aes(p, MSE, color = 방법)) +
+  geom_line() + geom_point() +
+  facet_wrap(~형태, scales = "free_y") +
+  scale_x_continuous(breaks = c(1, 2, 3, 5, 10)) +
+  labs(x = "설명 변수 수 p (X1만 관련, 나머지는 잡음)", y = "테스트 MSE (20회 평균)", color = NULL)
+```
+
+![참 함수의 형태와 차원에 따른 선형회귀와 KNN 회귀의 테스트 MSE](./images/dm-lr-03.png)
+
+| 참 함수 | $p$ | 선형회귀 | KNN ($K = 9$) |
+|---|---|---|---|
+| 선형 | 1 | **0.260** | 0.292 |
+| 선형 | 10 | **0.284** | 1.290 |
+| 비선형 ($3\sin 3x_1$) | 1 | 1.75 | **0.318** |
+| 비선형 | 3 | 1.82 | **1.04** |
+| 비선형 | 5 | 1.87 | **1.80** |
+| 비선형 | 10 | **1.96** | 2.71 |
+
+잡음 분산이 0.25이므로 0.25가 도달할 수 있는 최소 테스트 MSE다. 참 함수가 선형이면 선형회귀는 $p$가 늘어도 거의 최솟값을 유지하지만, KNN은 $p = 1$에서도 선형회귀보다 약간 나쁘고 $p$가 늘면 급격히 나빠진다. 참 함수가 비선형이면 선형회귀는 편향 때문에 1.75 아래로 내려가지 못하고, KNN이 $p = 1$에서 0.32로 훨씬 낫다. 그러나 $p$가 늘면 KNN의 장점이 빠르게 사라져 $p = 10$에서는 선형회귀보다 나빠진다.
+
+KNN이 차원에 이토록 민감한 이유는 잡음 변수 때문에 "가까운 이웃"이 실제로는 $X_1$ 방향으로 멀리 떨어진 관측값이 되기 때문이다. 표본 100개로 10차원 공간을 채우면 이웃 9개가 차지하는 영역이 각 축 방향으로 매우 넓어진다. 선형회귀는 함수 형태를 가정한 덕분에 잡음 변수의 계수만 추가로 추정하면 되므로 영향을 거의 받지 않는다. 모수적 방법은 가정이 맞으면 차원이 늘어도 견고하고, 비모수적 방법은 가정이 없는 대신 자료가 많이 필요하다.
 
 ## 요약
 
