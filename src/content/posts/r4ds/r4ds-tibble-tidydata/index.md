@@ -4,7 +4,7 @@ published: 2022-07-29
 draft: false
 description: 'tibble, read_csv와 열 타입 지정, parse_* 함수, tidy data 세 가지 규칙, pivot_longer와 pivot_wider, 열 나누기·합치기, 결측값 다루기를 실습으로 정리'
 series: 'R for Data Science'
-tags: ['R', 'tidyverse', 'tidyr', 'readr', '데이터 전처리']
+tags: ['R', 'tidyverse', '데이터 전처리']
 ---
 
 분석은 데이터를 불러와서 분석하기 좋은 모양으로 바꾸는 데서 시작한다. R4DS(2판) Data import, Data tidying, Missing values 장을 따라 tibble과 readr, 그리고 tidyr로 데이터를 정돈하는 방법을 정리한다.

@@ -4,7 +4,7 @@ published: 2022-08-19
 draft: false
 description: 'forcats로 범주형 변수의 수준 순서 바꾸기(fct_infreq, fct_reorder, fct_reorder2, fct_relevel), 수준 이름 바꾸기와 묶기(fct_recode, fct_collapse, fct_lump)를 gss_cat 실습으로 정리'
 series: 'R for Data Science'
-tags: ['R', 'tidyverse', 'forcats']
+tags: ['R', 'tidyverse', '데이터 전처리']
 ---
 
 factor는 가질 수 있는 값(수준, level)이 정해진 범주형 변수다. 문자열과 달리 **순서**를 가질 수 있어서, 그래프의 범주 순서나 모델의 기준 범주를 정할 때 쓴다. R4DS(2판) Factors 장을 따라 forcats 사용법을 정리한다. 데이터는 미국 종합사회조사 일부인 `forcats::gss_cat`을 쓴다.

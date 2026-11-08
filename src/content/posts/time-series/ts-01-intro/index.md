@@ -4,7 +4,7 @@ published: 2022-09-05
 draft: false
 description: '시계열 자료의 정의와 종류, 시계열 그림, 불규칙·추세·계절·순환 성분, 분석 목적, 모형 적합의 3단계와 예측력 척도를 R로 정리한다.'
 series: '시계열 분석'
-tags: ['시계열', 'R', '통계학']
+tags: ['시계열', '통계학', 'R']
 ---
 
 『SAS/ETS를 이용한 시계열분석』(조신섭·손영숙·성병찬)과 전북대학교 이영미 교수님 시계열분석 강의를 바탕으로 정리한 시리즈다. 수업은 R로 진행했고, 예제 데이터는 교재 예제 코드를 정리한 [GitHub 저장소](https://github.com/Bricoler/time-series-analysis)의 `timedata` 폴더에서 바로 읽는다.

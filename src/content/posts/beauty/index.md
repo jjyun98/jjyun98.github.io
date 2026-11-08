@@ -4,7 +4,7 @@ published: 2026-02-06
 draft: false
 description: '화장품 시장 트렌드 분석을 위한 올리브영 데이터 수집 및 데이터베이스 스키마 설계 과정을 소개합니다.'
 series: '화장품 성분 분석 프로젝트'
-tags: ['portfolio', 'data-analysis', 'sql', 'athena', 'web-scraping']
+tags: ['데이터 분석', 'AWS', '포트폴리오']
 ---
 
 # 프로젝트 목표

@@ -4,7 +4,7 @@ published: 2022-08-12
 draft: false
 description: 'stringr의 문자열 함수(길이, 자르기, 합치기, 탐지, 추출, 치환, 분할)와 정규표현식 문법을 실습으로 정리'
 series: 'R for Data Science'
-tags: ['R', 'tidyverse', 'stringr', '정규표현식']
+tags: ['R', 'tidyverse', '데이터 전처리']
 ---
 
 R4DS(2판) Strings, Regular expressions 장을 실습하며 정리했다. stringr 함수는 모두 `str_`로 시작하고 첫 인자가 문자열 벡터라서, 자동완성으로 찾기 쉽고 파이프로 잇기 좋다. 예제 데이터는 stringr에 들어 있는 `fruit`, `words`, `sentences`를 쓴다.

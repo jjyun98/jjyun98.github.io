@@ -4,7 +4,7 @@ published: 2022-07-08
 draft: false
 description: '분석용 그래프를 전달용으로 다듬는 방법. labs, 주석과 ggrepel, 축·색 스케일, 범례, 테마, 저장까지 실습 코드로 정리'
 series: 'R for Data Science'
-tags: ['R', 'tidyverse', 'ggplot2', '시각화']
+tags: ['R', 'tidyverse', '시각화']
 ---
 
 분석하면서 그리는 그래프는 나만 알아보면 되지만, 보고서나 발표에 넣을 그래프는 처음 보는 사람도 바로 읽혀야 한다. 이 글은 R4DS(2판) Communication 장을 따라 라벨, 주석, 스케일, 테마로 그래프를 다듬는 방법을 정리한다.

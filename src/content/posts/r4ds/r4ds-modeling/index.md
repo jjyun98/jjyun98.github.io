@@ -4,7 +4,7 @@ published: 2022-09-02
 draft: false
 description: 'lm으로 모델 적합, broom으로 계수·적합도·예측·잔차 정리, 범주형 변수와 교호작용, formula 문법, 잔차로 패턴 찾기(diamonds, 일별 항공편), nest와 map으로 그룹별 모델을 실습으로 정리'
 series: 'R for Data Science'
-tags: ['R', 'tidyverse', 'broom', '회귀분석']
+tags: ['R', 'tidyverse', '회귀분석']
 ---
 
 R4DS 1판의 Model 파트(모델 기초, 모델 만들기, 여러 모델)를 실습했던 내용을 현재 방식으로 옮겨 정리했다. 2판에서는 이 파트가 빠졌는데, 지면이 부족해 모델링을 제대로 다룰 수 없고 더 좋은 자료(tidymodels, *Tidy Modeling with R*)가 있기 때문이라고 한다. 1판에서 쓰던 modelr 패키지는 지금 거의 쓰지 않으므로 기본 `lm()`과 broom으로 바꿨다. 여기서 모델은 예측보다 **데이터의 패턴을 이해하는 도구**로 쓴다.

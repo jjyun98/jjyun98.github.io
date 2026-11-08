@@ -4,7 +4,7 @@ published: 2022-07-22
 draft: false
 description: '기본키와 외래키, join_by, mutating join(left/inner/right/full), filtering join(semi/anti), 키 중복과 집합 연산을 nycflights13으로 정리'
 series: 'R for Data Science'
-tags: ['R', 'tidyverse', 'dplyr', '데이터 전처리']
+tags: ['R', 'tidyverse', '데이터 전처리']
 ---
 
 실제 데이터는 여러 테이블에 나뉘어 있다. R4DS(2판) Joins 장을 따라 키의 개념, join 종류와 선택 기준, 키가 중복될 때의 동작을 정리한다. SQL의 JOIN과 같은 개념이다.
