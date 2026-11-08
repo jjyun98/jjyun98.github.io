@@ -194,6 +194,55 @@ c(airline_AICc = fit_air$aicc, regression_AR1_AICc = fit_reg$aicc)
 
 두 모형은 차분 여부가 달라 반응변수가 같지 않으므로 AIC를 직접 비교하는 것은 엄밀하지 않다. 마지막 1~2년을 떼어 두고 예측오차(9편)로 비교하는 것이 공정하다. 결정적 모형은 계절 패턴이 바뀌지 않는다고 가정하므로, 패턴이 서서히 변하는 자료에서는 장기 예측이 빗나가기 쉽다.
 
+## 6. 계절 시계열 예측 방법의 비교
+
+| 구분 | 계절 단순예측 | 회귀 + ARMA 오차 | Winters 승법 | SARIMA |
+|---|---|---|---|---|
+| 계절성 | 작년 같은 달 그대로 | 고정 (지시함수) | 서서히 변함 (평활) | 확률적 (계절 차분) |
+| 추세 | 없음 | 고정 (시간 회귀) | 서서히 변함 | 확률적 (차분) |
+| 오차의 자기상관 | 고려 안 함 | ARMA로 모형화 | 암묵적 | ARMA로 모형화 |
+| 예측구간 | 시차와 무관하게 일정 폭 근사 | 거의 일정 | 넓어짐 | 넓어짐 |
+
+관광객 수 자료의 마지막 24개월을 떼어 두고 네 방법의 예측오차를 비교한다.
+
+```r
+n_t <- length(tour)
+tr_t <- subset(tour, end = n_t - 24)
+te_t <- subset(tour, start = n_t - 23)
+
+fc_list <- list(
+  `계절 단순예측` = snaive(tr_t, h = 24),
+  `회귀 + AR(1)` = forecast(Arima(tr_t, order = c(1, 0, 0), lambda = 0,
+                                  xreg = cbind(t = seq_along(tr_t), seasonaldummy(tr_t))),
+                            xreg = cbind(t = length(tr_t) + 1:24, seasonaldummy(tr_t, h = 24))),
+  `Winters 승법` = hw(tr_t, seasonal = "multiplicative", h = 24),
+  `SARIMA (항공 모형)` = forecast(Arima(tr_t, order = c(0, 1, 1), seasonal = c(0, 1, 1), lambda = 0), h = 24)
+)
+map_dfr(fc_list, \(f) as_tibble(accuracy(f, te_t)["Test set", c("RMSE", "MAE", "MAPE"), drop = FALSE]),
+        .id = "방법")
+
+imap_dfr(fc_list, \(f, nm) tibble(시점 = as.numeric(time(f$mean)), 값 = as.numeric(f$mean), 방법 = nm)) |>
+  ggplot(aes(시점, 값, color = 방법)) +
+  geom_line(data = tibble(시점 = as.numeric(time(tour)), 값 = as.numeric(tour)) |>
+              filter(시점 >= max(시점) - 4),
+            color = "black", linewidth = 0.8) +
+  geom_line(linewidth = 0.8) +
+  labs(x = NULL, y = "관광객 수", color = NULL)
+```
+
+![시험 구간 24개월에 대한 방법별 예측 (검은 선: 실제값)](./images/ts10-07.png)
+
+| 방법 | RMSE | MAE | MAPE (%) |
+|---|---|---|---|
+| 계절 단순예측 | 33,718 | 29,575 | 11.4 |
+| 회귀 + AR(1) | **17,921** | **12,922** | **5.10** |
+| Winters 승법 | 22,325 | 19,190 | 7.33 |
+| SARIMA (항공 모형) | 28,346 | 23,549 | 8.88 |
+
+이 자료에서는 결정적 추세와 고정 계절을 가정한 회귀 + AR(1)이 가장 정확하고, SARIMA는 계절 단순예측보다만 낫다. 그림을 보면 SARIMA와 Winters는 1991년 예측이 실제보다 크게 높다. 두 방법은 학습 구간 마지막 부분의 성장률을 기울기로 삼아 연장하는데, 1989년의 빠른 증가가 1990~1991년에 둔화되었기 때문이다. 회귀 모형은 전 기간의 평균 기울기를 쓰므로 최근의 가속에 덜 반응하고, 결과적으로 성장 둔화를 더 잘 맞췄다. 계절 단순예측은 추세를 반영하지 않아 전 구간에서 과소예측한다.
+
+앞 절에서 AICc가 회귀 + AR(1)을 조금 더 지지했던 것(−336.0 대 −331.9)과 같은 방향의 결과다. 다만 시험 구간 24개월 한 번의 비교이므로 일반적인 우열로 해석할 수는 없다. 추세가 안정적인 시기에는 결정적 모형이, 추세와 계절이 계속 변하는 시기에는 확률적 모형이 유리하다. 실제 분석에서는 시험 구간을 이동하며 반복 비교하는 시계열 교차검증(`tsCV`)으로 판단하는 것이 바람직하다.
+
 ## 시리즈 정리
 
 | 편 | 방법 | 핵심 가정 | R |

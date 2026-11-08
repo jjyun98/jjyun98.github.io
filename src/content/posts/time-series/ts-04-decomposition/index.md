@@ -202,6 +202,64 @@ autoplot(food, series = "original") +
 
 계절조정을 하면 "이번 달 출하가 지난달보다 줄었다"가 계절 때문인지 실제 경기 때문인지 판단할 수 있다. 통계청과 한국은행은 이동평균을 여러 번 반복하는 X-13ARIMA-SEATS를 쓴다. R에서는 `seasonal` 패키지가 이를 감싸 준다.
 
+## 7. 분해 방법의 비교
+
+| 구분 | 추세모형에 의한 분해 | 고전적 분해 (`decompose`) | STL |
+|---|---|---|---|
+| 추세 추정 | 시간의 회귀식 (전역적) | 중심이동평균 (국소적) | loess (국소적) |
+| 계절 추정 | 지시함수 회귀 | 월별 평균 | 계절 부분수열에 loess |
+| 계절 패턴의 변화 | 고정 | 고정 | 허용 (`s.window`) |
+| 양 끝 | 추세값 존재 | 6개월씩 결측 | 결측 없음 |
+| 이상값 | 민감 | 민감 | `robust = TRUE`로 강건 |
+| 승법 분해 | 로그 변환 후 가법 | `type = "multiplicative"` | 로그 변환 후 가법 |
+
+같은 로그 식료품 출하지수에 세 방법을 적용해 월별 계절 성분과 불규칙 성분의 크기를 비교한다.
+
+```r
+stl_comp <- fit_stl$time.series
+season_cmp <- tibble(
+  월 = rep(1:12, 3),
+  방법 = rep(c("추세모형 회귀", "고전적 분해", "STL (평균)"), each = 12),
+  계절 = c(tapply(d$seasonal - mean(d$seasonal), cycle(log_food), mean),
+           tapply(dec$seasonal, cycle(log_food), mean),
+           tapply(stl_comp[, "seasonal"], cycle(log_food), mean))
+)
+ggplot(season_cmp, aes(월, 계절, color = 방법)) +
+  geom_line() + geom_point() +
+  scale_x_continuous(breaks = 1:12) +
+  labs(y = "계절 성분 (로그)", color = NULL)
+
+```
+
+![세 분해 방법의 월별 계절 성분](./images/ts04-07.png)
+
+불규칙 성분의 표준편차와, STL에서 계절 성분이 해마다 어떻게 변했는지를 본다.
+
+```r
+c(추세모형 = sd(d$irregular), 고전적 = sd(dec$random, na.rm = TRUE), STL = sd(stl_comp[, "remainder"]))
+
+tibble(연도 = floor(time(log_food)), 월 = cycle(log_food), 계절 = as.numeric(stl_comp[, "seasonal"])) |>
+  filter(월 %in% c(1, 2, 9, 12)) |>
+  ggplot(aes(연도, 계절, color = factor(월))) +
+  geom_line() +
+  scale_x_continuous(breaks = seq(1981, 1993, 2)) +
+  labs(y = "STL 계절 성분", color = "월")
+```
+
+![STL 계절 성분의 연도별 변화](./images/ts04-08.png)
+
+세 방법의 평균 계절 성분은 거의 겹친다. 차이가 가장 큰 1월과 12월에도 0.01(약 1%p) 정도다. 이 자료처럼 계절 패턴이 뚜렷하고 안정적이면 어떤 방법으로 분해해도 계절 성분의 평균적인 모양은 같다.
+
+| 방법 | 불규칙 성분의 표준편차 |
+|---|---|
+| 추세모형 회귀 | 0.0474 |
+| 고전적 분해 | **0.0373** |
+| STL | 0.0388 |
+
+차이는 추세와 시간에 따른 변화에서 생긴다. 추세모형 회귀는 추세를 전 기간에 걸친 하나의 식으로 고정하므로, 추세의 국소적인 굴곡이 불규칙 성분에 남아 표준편차가 가장 크다. 이동평균이나 loess로 추세를 국소적으로 추정하는 두 방법은 이 굴곡을 추세가 흡수한다. 고전적 분해의 표준편차가 조금 더 작은 것은 양 끝 6개월씩이 결측이어서 추정이 불안정한 끝 구간이 계산에서 빠지기 때문이다.
+
+STL의 계절 성분은 해마다 달라진다. 1월은 −0.084에서 −0.061로, 2월은 −0.154에서 −0.141로 계절적 감소 폭이 줄었고, 12월의 계절적 증가는 0.039에서 0.019로 절반가량 작아졌다. 9월은 거의 변하지 않았다. 계절 성분을 고정하는 두 방법은 이런 변화를 평균해 하나의 값으로 나타내므로, 1월과 12월에서 STL의 평균과 약간 다른 값을 준다. 계절 패턴이 바뀌는 시계열을 계절조정할 때 STL이 선호되는 이유다.
+
 ## 요약
 
 | 단계 | 추세모형 분해 | 이동평균 분해 |

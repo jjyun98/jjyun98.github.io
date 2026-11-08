@@ -210,6 +210,70 @@ ggAcf(residuals(fit_mult)) + labs(title = "ACF of residuals (multiplicative)")
 
 `checkresiduals()`는 잔차의 Ljung-Box 검정을 출력한다(8편). 잔차에 상관이 남아 있으면 평활법이 잡지 못한 구조가 있다는 뜻이다.
 
+## 5. 평활법 간의 비교
+
+### 예측함수와 대응하는 ARIMA 모형
+
+| 방법 | 추적하는 성분 | $h$시차 예측함수 | 동등한 ARIMA 모형 |
+|---|---|---|---|
+| 단순지수평활 | 수준 | 상수 $\ell_n$ | ARIMA(0,1,1) |
+| Holt (이중지수평활) | 수준 + 기울기 | 직선 $\ell_n + hb_n$ | ARIMA(0,2,2) |
+| Winters 가법 | 수준 + 기울기 + 계절 | 직선 + 고정 진폭 계절 | SARIMA의 특수한 경우 |
+| Winters 승법 | 수준 + 기울기 + 계절 | (직선) × 계절 지수 | 대응하는 선형 ARIMA 없음 |
+
+평활법은 성분을 하나씩 추가하면서 예측함수의 형태가 상수, 직선, 직선 + 계절로 확장된다. 단순지수평활은 ARIMA(0,1,1)과 같은 예측을 주며, 평활상수와 MA 계수 사이에 $\alpha = 1 + \theta$ (R의 부호 기준)의 관계가 있다.
+
+```r
+fit_ses_est <- ses(mindex, h = 1)
+fit_011 <- Arima(mindex, order = c(0, 1, 1))
+c(ses_alpha = unname(fit_ses_est$model$par["alpha"]),
+  arima_1_plus_theta = unname(1 + coef(fit_011)["ma1"]))
+```
+
+단순지수평활의 추정 평활상수는 0.9031이고, ARIMA(0,1,1)로 추정한 $1 + \theta$는 0.9038이다. 두 값은 최적화 방법의 차이만큼만 다르며, 두 모형이 같은 예측식을 갖는다는 것을 확인할 수 있다. 평활상수가 1에 가까운 것은 주가지수가 확률보행에 가까워 최근 관측값 하나가 예측의 대부분을 결정한다는 뜻이다.
+
+### 같은 자료에서의 예측력
+
+항공 승객 수 자료의 마지막 24개월을 떼어 두고, 나머지로 각 방법을 적합해 시험 구간의 예측오차를 비교한다. 비교 기준으로 1년 전 같은 달의 값을 그대로 쓰는 계절 단순예측을 함께 넣는다.
+
+```r
+n_p <- length(pass)
+train_p <- subset(pass, end = n_p - 24)
+test_p <- subset(pass, start = n_p - 23)
+
+fcs <- list(
+  `계절 단순예측` = snaive(train_p, h = 24),
+  `단순지수평활` = ses(train_p, h = 24),
+  Holt = holt(train_p, h = 24),
+  `Winters 가법` = hw(train_p, seasonal = "additive", h = 24),
+  `Winters 승법` = hw(train_p, seasonal = "multiplicative", h = 24)
+)
+map_dfr(fcs, \(f) as_tibble(accuracy(f, test_p)["Test set", c("RMSE", "MAE", "MAPE"), drop = FALSE]),
+        .id = "방법")
+
+imap_dfr(fcs, \(f, nm) tibble(시점 = as.numeric(time(f$mean)), 값 = as.numeric(f$mean), 방법 = nm)) |>
+  ggplot(aes(시점, 값, color = 방법)) +
+  geom_line(data = tibble(시점 = as.numeric(time(pass)), 값 = as.numeric(pass)) |>
+              filter(시점 >= max(시점) - 6),
+            color = "black", linewidth = 0.8) +
+  geom_line(linewidth = 0.8) +
+  labs(x = NULL, y = "승객 수", color = NULL)
+```
+
+![시험 구간 24개월에 대한 평활법별 예측 (검은 선: 실제값)](./images/ts03-07.png)
+
+| 방법 | RMSE | MAE | MAPE (%) |
+|---|---|---|---|
+| 계절 단순예측 | 90,770 | 78,895 | 24.4 |
+| 단순지수평활 | 121,434 | 108,982 | 33.8 |
+| Holt | 105,844 | 94,846 | 29.4 |
+| Winters 가법 | 87,101 | 77,351 | 24.0 |
+| Winters 승법 | **84,851** | **74,413** | **23.0** |
+
+계절 성분이 없는 단순지수평활과 Holt는 예측이 직선이어서 계절 변동을 전혀 따라가지 못하고, 오차가 가장 크다. 계절을 반영하는 세 방법 중에서는 Winters 승법이 가장 낫다. 계절 진폭이 수준에 비례해 커지는 자료이므로 승법 계절이 가법 계절보다 적합하다.
+
+그러나 가장 좋은 방법도 MAPE가 23%로 크고, Winters 가법은 계절 단순예측과 거의 차이가 없다. 그림에서 보듯 1988년 이후 승객 수가 학습 구간의 추세를 크게 웃돌며 증가했기 때문이다. 이 시기는 서울 올림픽(1988)과 해외여행 전면 자유화(1989)와 겹친다. 모든 평활법은 학습 구간의 수준과 기울기를 연장하므로, 시험 구간에서 수준이 구조적으로 바뀌면 방법 간의 차이보다 공통의 과소예측이 오차의 대부분을 차지한다. 평활법의 비교는 시계열의 구조가 시험 구간에서도 유지된다는 전제 위에서만 의미가 있다.
+
 ## 요약
 
 | 방법 | 성분 | 평활상수 | R |

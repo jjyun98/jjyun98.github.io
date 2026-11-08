@@ -215,6 +215,18 @@ acf_pair(diff(diff(log(pass), 12)), "log passengers after lag-1 and lag-12 diffe
 | 시차 12, 24에서 큰 값이 반복 | 월별 계절성 → 계절 차분 |
 | 빠르게 0으로 감소 | 정상 시계열 → ARMA로 모델링 |
 
+## 8. 기본 확률과정의 비교
+
+| 과정 | 식 | 평균 | 분산 | 정상성 | ACF |
+|---|---|---|---|---|---|
+| 백색잡음 | $Z_t = \varepsilon_t$ | 0 | $\sigma^2$ | 정상 | 시차 0에서만 1 |
+| AR(1) ($\lvert\phi\rvert < 1$) | $Z_t = \phi Z_{t-1} + \varepsilon_t$ | 0 | $\sigma^2/(1 - \phi^2)$ | 정상 | $\phi^k$로 지수적 감소 |
+| MA(1) | $Z_t = \varepsilon_t - \theta\varepsilon_{t-1}$ | 0 | $(1 + \theta^2)\sigma^2$ | 항상 정상 | 시차 1 이후 0 |
+| 확률보행 | $Z_t = Z_{t-1} + \varepsilon_t$ | $Z_0$ | $t\sigma^2$ (증가) | 비정상 | 1에 가깝게 매우 천천히 감소 |
+| 표류 있는 확률보행 | $Z_t = \delta + Z_{t-1} + \varepsilon_t$ | $Z_0 + \delta t$ | $t\sigma^2$ | 비정상 | 매우 천천히 감소 |
+
+AR(1)은 $\phi \to 1$이면 확률보행에 가까워진다. 두 과정의 표본 경로는 짧은 구간에서 구분하기 어렵지만, AR(1)은 평균으로 되돌아가는 성질이 있고 확률보행은 충격이 영구히 누적된다는 점이 본질적인 차이다. 이 차이가 [7편](/posts/ts-07-arima)의 단위근 검정과 차분의 근거가 된다.
+
 ## 요약
 
 | 개념 | 핵심 |
