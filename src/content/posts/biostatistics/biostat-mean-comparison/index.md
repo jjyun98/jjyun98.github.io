@@ -523,6 +523,118 @@ $$
 Q = \frac{12}{b k (k + 1)} \sum_{j=1}^{k} R_j^2 - 3 b (k + 1) \;\dot\sim\; \chi^2_{k-1}
 $$
 
+## 14. 방법 간 비교
+
+| 상황 | 모수적 방법 | 비모수적 방법 | 가정의 차이 |
+|---|---|---|---|
+| 독립 두 집단 | 합동 $t$검정, Welch $t$검정 | Mann-Whitney $U$ | 합동 $t$는 등분산, Welch는 정규성만, $U$는 분포 형태가 같음 |
+| 짝지은 두 집단 | 짝지은 $t$검정 | Wilcoxon 부호순위 | 차이의 정규성 vs 차이의 대칭성 |
+| 독립 세 집단 이상 | 일원분산분석 | Kruskal-Wallis | 정규성·등분산 vs 분포 형태가 같음 |
+| 블록이 있는 세 집단 이상 | 이원분산분석 (블록) | Friedman | 정규성 vs 블록 내 순위 |
+
+모수적 방법은 평균을, 순위 기반 방법은 한 집단의 관측값이 다른 집단보다 클 확률 $P(X > Y)$를 비교한다. 분포의 형태가 같고 위치만 다르면 두 가설은 같은 것을 뜻하지만, 분산이나 치우침이 다르면 서로 다른 질문이 된다. 아래에서는 같은 상황에서 각 방법의 제1종 오류와 검정력을 모의실험으로 비교한다.
+
+### 독립 두 집단: 합동 t, Welch t, Mann-Whitney
+
+네 가지 상황에서 차이가 없을 때(제1종 오류)와 위치가 1만큼 다를 때(검정력)의 기각 비율을 2,000번 반복으로 구한다.
+
+```r
+library(tidyverse)
+set.seed(2023)
+
+scen <- list(
+  `정규, 등분산` = list(x = \(n) rnorm(n), y = \(n) rnorm(n), n1 = 20, n2 = 20),
+  `정규, 이분산·불균형` = list(x = \(n) rnorm(n, sd = 1), y = \(n) rnorm(n, sd = 3), n1 = 30, n2 = 10),
+  `두꺼운 꼬리 (t, 자유도 2)` = list(x = \(n) rt(n, 2), y = \(n) rt(n, 2), n1 = 20, n2 = 20),
+  `치우친 분포 (로그정규)` = list(x = \(n) rlnorm(n), y = \(n) rlnorm(n), n1 = 20, n2 = 20)
+)
+reject <- function(s, delta, R = 2000) {
+  p <- replicate(R, {
+    x <- s$x(s$n1); y <- s$y(s$n2) + delta
+    c(`합동 t` = t.test(x, y, var.equal = TRUE)$p.value,
+      `Welch t` = t.test(x, y)$p.value,
+      `Mann-Whitney` = wilcox.test(x, y)$p.value)
+  })
+  as_tibble_row(rowMeans(p < 0.05))
+}
+res_mean <- imap_dfr(scen, \(s, nm) bind_rows(
+  reject(s, 0) |> mutate(구분 = "제1종 오류"),
+  reject(s, 1) |> mutate(구분 = "검정력 (차이 1)")
+) |> mutate(상황 = nm, .before = 1))
+res_mean
+
+res_mean |>
+  pivot_longer(c(`합동 t`, `Welch t`, `Mann-Whitney`), names_to = "방법", values_to = "기각률") |>
+  mutate(상황 = fct_inorder(상황)) |>
+  ggplot(aes(상황, 기각률, fill = 방법)) +
+  geom_col(position = "dodge") +
+  geom_hline(data = tibble(구분 = "제1종 오류", y = 0.05), aes(yintercept = y), linetype = 2) +
+  facet_wrap(~구분, scales = "free_y") +
+  labs(x = NULL, fill = NULL) +
+  theme(axis.text.x = element_text(angle = 20, hjust = 1))
+```
+
+![상황별 세 검정의 제1종 오류와 검정력 (점선: 유의수준 0.05)](./images/bio-mean-01.png)
+
+| 상황 | 구분 | 합동 $t$ | Welch $t$ | Mann-Whitney |
+|---|---|---|---|---|
+| 정규, 등분산 | 제1종 오류 | 0.053 | 0.052 | 0.051 |
+| | 검정력 | 0.860 | 0.859 | 0.842 |
+| 정규, 이분산·불균형 | 제1종 오류 | 0.210 | **0.057** | 0.130 |
+| | 검정력 | 0.417 | 0.155 | 0.279 |
+| 두꺼운 꼬리 ($t_2$) | 제1종 오류 | 0.046 | 0.045 | 0.054 |
+| | 검정력 | 0.358 | 0.353 | **0.572** |
+| 로그정규 | 제1종 오류 | 0.041 | 0.038 | 0.054 |
+| | 검정력 | 0.440 | 0.438 | **0.834** |
+
+정규분포이고 분산이 같으면 세 검정 모두 유의수준을 지키고 검정력도 비슷하다. Mann-Whitney 검정의 검정력 손실은 0.02 정도로, 정규분포에서 $t$검정 대비 점근 상대효율이 $3/\pi \approx 0.955$라는 이론과 맞는다.
+
+분산이 다르고 표본크기도 다르면 결과가 크게 갈린다. 작은 집단(10명)의 분산이 큰 경우 합동 $t$검정은 합동분산이 작은 집단의 분산을 과소평가하게 되어 제1종 오류가 0.21까지 커진다. Mann-Whitney 검정도 0.13으로 유의수준을 지키지 못한다. 두 분포의 중앙값이 같아도 퍼짐이 다르면 분포 형태가 같다는 가정이 깨지기 때문이다. Welch 검정만 유의수준을 지킨다. 이 상황에서 합동 $t$검정과 Mann-Whitney 검정의 높은 검정력은 제1종 오류가 커진 결과이므로 의미가 없다.
+
+꼬리가 두껍거나 치우친 분포에서는 $t$검정이 유의수준은 대체로 지키지만, 검정력이 Mann-Whitney 검정의 절반 수준으로 떨어진다. 극단값이 표본분산을 키워 $t$통계량을 작게 만드는 반면, 순위는 극단값의 크기에 영향을 받지 않는다. 정리하면 등분산 여부를 모를 때는 Welch 검정을, 분포가 정규분포에서 크게 벗어나 보이면 순위 검정을 쓰는 것이 안전하다.
+
+### 짝지은 자료를 독립 표본으로 분석하면
+
+같은 환자 15명의 투약 전후 혈압(상관계수 0.7, 평균 강하 5)을 짝지은 $t$검정과 독립 $t$검정으로 각각 분석한다.
+
+```r
+pw <- replicate(2000, {
+  pre <- rnorm(15, 120, 10)
+  post <- 120 - 5 + 0.7 * (pre - 120) + rnorm(15, 0, 10 * sqrt(1 - 0.7^2))
+  c(짝지은 = t.test(pre, post, paired = TRUE)$p.value, 독립 = t.test(pre, post)$p.value)
+})
+rowMeans(pw < 0.05)
+```
+
+| 분석 | 검정력 |
+|---|---|
+| 짝지은 $t$검정 | **0.633** |
+| 독립 $t$검정 | 0.155 |
+
+같은 자료인데 검정력이 네 배 차이 난다. 짝지은 $t$검정은 차이 $D = X_{\text{전}} - X_{\text{후}}$의 분산 $\sigma^2(2 - 2\rho) = 0.6\sigma^2$을 쓰지만, 독립 $t$검정은 두 측정값의 상관을 무시하고 $2\sigma^2$을 쓴다. 환자 간 혈압 차이라는 큰 변동이 짝지은 분석에서는 상쇄되고, 독립 분석에서는 오차로 남는다. 짝지어진 설계의 이점은 분석에서 짝을 반영할 때만 얻어진다.
+
+### 다중비교 방법
+
+다섯 집단(각 10개)의 평균이 모두 같을 때, 10개 쌍을 비교해서 하나라도 유의하게 나오는 비율(FWER)을 구한다.
+
+```r
+fwer <- replicate(2000, {
+  d <- tibble(g = factor(rep(1:5, each = 10)), y = rnorm(50))
+  c(`보정 없음` = min(pairwise.t.test(d$y, d$g, p.adjust.method = "none")$p.value, na.rm = TRUE),
+    Bonferroni = min(pairwise.t.test(d$y, d$g, p.adjust.method = "bonferroni")$p.value, na.rm = TRUE),
+    Tukey = min(TukeyHSD(aov(y ~ g, d))$g[, "p adj"]))
+})
+rowMeans(fwer < 0.05)
+```
+
+| 방법 | FWER |
+|---|---|
+| 보정 없음 | 0.288 |
+| Bonferroni | 0.043 |
+| Tukey | 0.052 |
+
+10개 쌍을 보정 없이 검정하면 차이가 없는데도 29%의 확률로 하나 이상의 쌍이 유의하게 나온다. Bonferroni와 Tukey 모두 FWER을 유의수준 근처로 통제하지만, Bonferroni는 0.043으로 보수적이고 Tukey는 0.052로 거의 정확하다. Tukey 방법은 모든 쌍별 비교의 최댓값 분포(스튜던트화 범위 분포)를 직접 사용하므로 쌍별 비교에 대해서는 정확한 방법이고, Bonferroni는 검정 간 상관을 무시한 부등식에 기댄 상한이기 때문이다. 비교하는 쌍이 일부일 때는 Bonferroni가, 모든 쌍을 비교할 때는 Tukey가 효율적이다.
+
 ## 요약
 
 | 상황 | 모수 | 비모수 | SAS |
