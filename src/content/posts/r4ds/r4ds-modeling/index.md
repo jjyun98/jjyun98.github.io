@@ -25,7 +25,7 @@ set.seed(1)
 sim1 <- tibble(x = rep(1:10, each = 3), y = 4 + 2 * x + rnorm(30, sd = 2))
 ```
 
-모델 `y = a1 + a2 * x`의 "가까움"을 잔차 제곱합의 제곱근(RMSE)으로 정의하고, 이를 최소로 하는 `a1`, `a2`를 수치 최적화로 직접 찾아본다.
+모델 `y = a1 + a2 * x`의 "가까움"을 잔차 제곱의 평균의 제곱근(RMSE)으로 정의하고, 이를 최소로 하는 `a1`, `a2`를 수치 최적화로 직접 찾아본다.
 
 ```r
 measure_distance <- function(a, data) {

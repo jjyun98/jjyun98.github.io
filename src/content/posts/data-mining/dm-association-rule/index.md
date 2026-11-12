@@ -4,6 +4,7 @@ published: 2022-05-18
 draft: false
 description: '지지도, 신뢰도, 향상도의 정의와 해석, Apriori 알고리즘의 가지치기 원리, arules로 장바구니 예제와 Groceries 데이터를 분석한다.'
 series: '데이터 마이닝'
+seriesOrder: 17
 tags: ['데이터 마이닝', '비지도학습', 'R']
 ---
 
@@ -160,37 +161,13 @@ inspect(head(sort(milk_rules, by = "lift"), 5))
 
 ## 측도의 비교
 
-규칙을 평가하는 측도는 목적에 따라 다른 규칙을 상위에 올린다. 지지도·신뢰도·향상도 외에 자주 쓰는 측도까지 비교하면 다음과 같다.
+| 측도 | 식 | 독립일 때 | 방향 | 보는 것 |
+|---|---|---|---|---|
+| 지지도 | $P(A \cap B)$ | $P(A)P(B)$ | 대칭 | 규칙이 얼마나 자주 나타나는가 |
+| 신뢰도 | $P(B \mid A)$ | $P(B)$ | 비대칭 | $A$가 있을 때 $B$가 얼마나 따라오는가 |
+| 향상도 | $P(B \mid A) / P(B)$ | 1 | 대칭 | 독립일 때보다 얼마나 자주 함께 나타나는가 |
 
-| 측도 | 식 | 범위 | 독립일 때 | 대칭성 | 특징 |
-|---|---|---|---|---|---|
-| 지지도 | $P(A \cap B)$ | $[0, 1]$ | — | 대칭 | 규칙의 빈도. 희귀한 규칙을 걸러냄 |
-| 신뢰도 | $P(B \mid A)$ | $[0, 1]$ | $P(B)$ | 비대칭 | $B$ 자체가 흔하면 높게 나옴 |
-| 향상도 | $\frac{P(B\mid A)}{P(B)}$ | $[0, \infty)$ | 1 | 대칭 | 독립 대비 연관 강도. 희귀 항목에서 과장됨 |
-| 레버리지 | $P(A \cap B) - P(A)P(B)$ | $[-0.25, 0.25]$ | 0 | 대칭 | 독립 대비 초과 빈도. 빈도가 큰 규칙을 선호 |
-| 확신도 | $\frac{1 - P(B)}{1 - P(B\mid A)}$ | $[0, \infty)$ | 1 | 비대칭 | 규칙이 틀릴 확률이 독립 대비 얼마나 줄었는가 |
-
-신뢰도는 결과 항목 $B$의 기본 빈도를 보정하지 않으므로, `whole milk`처럼 원래 흔한 항목이 결과인 규칙을 상위에 올린다. 향상도는 이를 보정하지만, 지지도가 아주 작은 규칙에서는 몇 번의 우연한 동시 구매만으로도 큰 값이 나온다. 그래서 실무에서는 최소 지지도로 희귀 규칙을 먼저 거른 뒤 향상도나 확신도로 순위를 매긴다.
-
-```r
-measures <- interestMeasure(g_rules, c("support", "confidence", "lift", "leverage", "conviction"),
-                            transactions = Groceries)
-rule_tbl <- bind_cols(tibble(rule = labels(g_rules)), as_tibble(measures))
-
-top_by <- function(m) rule_tbl |> slice_max(.data[[m]], n = 5, with_ties = FALSE) |> pull(rule)
-map(c(confidence = "confidence", lift = "lift", leverage = "leverage", conviction = "conviction"), top_by)
-
-cor(measures, method = "spearman") |> round(2)
-```
-
-| 기준 | 상위 규칙의 특징 | 예 |
-|---|---|---|
-| 신뢰도 | 결과가 모두 `whole milk` | {tropical fruit, root vegetables, yogurt} => {whole milk} |
-| 향상도 | 결과가 `root vegetables`, `tropical fruit` 등 상대적으로 덜 흔한 항목 | {herbs} => {root vegetables} |
-| 레버리지 | 조건과 결과가 모두 흔한 짧은 규칙 | {root vegetables} => {other vegetables} |
-| 확신도 | 신뢰도 상위와 거의 같음 | {butter, whipped/sour cream} => {whole milk} |
-
-측도 간 스피어만 순위상관은 신뢰도와 확신도가 0.88, 지지도와 레버리지가 0.81로 높고, 지지도와 향상도는 −0.28이다. 신뢰도 기준 상위 5개가 모두 `whole milk`로 끝나는 것은 `whole milk`가 전체 거래의 약 26%에 들어 있는 가장 흔한 항목이기 때문이다. 향상도는 이 기본 빈도를 나누어 보정하므로 결과 항목이 다양해진다. 레버리지는 독립 대비 초과 **빈도**이므로 지지도와 비슷하게 흔한 항목 쌍을 선호한다. 같은 규칙 집합에서도 어떤 측도로 정렬하느냐에 따라 전혀 다른 "흥미로운 규칙"이 나온다.
+신뢰도는 $B$ 자체가 흔하면 높게 나오고, 향상도는 그 점을 보정하지만 지지도가 작은 규칙에서 커지기 쉽다. 그래서 최소 지지도로 먼저 거른 뒤 향상도로 순위를 매긴다.
 
 ## 해석할 때 주의할 점
 

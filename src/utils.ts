@@ -246,11 +246,10 @@ abstract class PostsCollationGroup implements CollationGroup<'posts'> {
   }
 
   sortCollationsMostRecent(): Collation<'posts'>[] {
-    this.collations.sort((a, b) => {
-      const aDate = a.entries[a.entries.length - 1].data.published
-      const bDate = b.entries[b.entries.length - 1].data.published
-      return aDate < bDate ? 1 : -1
-    })
+    // 항목 순서가 seriesOrder로 바뀔 수 있으므로 마지막 항목이 아니라 가장 최근 날짜를 쓴다
+    const latest = (c: Collation<'posts'>) =>
+      Math.max(...c.entries.map((e) => e.data.published.valueOf()))
+    this.collations.sort((a, b) => latest(b) - latest(a))
     return this.collations
   }
 
@@ -295,6 +294,17 @@ export class SeriesGroup extends PostsCollationGroup {
       if (frontmatterSeries) {
         seriesGroup.add(post, frontmatterSeries)
       }
+    })
+    // 시리즈 안 순서: seriesOrder가 있는 글을 그 값 순으로, 나머지는 published 순으로 뒤에 둔다
+    seriesGroup.collations.forEach((series) => {
+      series.entries.sort((a, b) => {
+        const ao = a.data.seriesOrder
+        const bo = b.data.seriesOrder
+        if (ao !== undefined && bo !== undefined) return ao - bo
+        if (ao !== undefined) return -1
+        if (bo !== undefined) return 1
+        return a.data.published.valueOf() - b.data.published.valueOf()
+      })
     })
     return seriesGroup
   }

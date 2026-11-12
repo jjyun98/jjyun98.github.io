@@ -4,6 +4,7 @@ published: 2022-05-25
 draft: false
 description: '여러 가설을 동시에 검정할 때의 문제, FWER과 본페로니·홀름 보정, FDR과 벤자미니-호크버그 절차를 시뮬레이션으로 짧게 정리한다.'
 series: '데이터 마이닝'
+seriesOrder: 18
 tags: ['데이터 마이닝', '통계학', 'R']
 ---
 
@@ -83,41 +84,26 @@ tibble(rank = 1:m, p = sort(p)) |>
 
 빨간 선은 BH 기준선 $qj/m$, 파란 점선은 본페로니 기준 $\alpha/m$이다. BH는 빨간 선 아래에 있는 마지막 점까지 모두 기각한다.
 
-## 반복 시뮬레이션에 의한 비교
-
-위의 시뮬레이션은 한 번의 결과다. FWER과 FDR은 기댓값(확률)이므로 반복해서 평균내야 각 방법이 실제로 무엇을 통제하는지 확인할 수 있다. 같은 설정($m = 1000$, 참 대립가설 100개)을 200번 반복하고, 계산을 줄이기 위해 $t$검정 대신 표준정규 검정통계량을 바로 생성한다.
+FWER과 FDR은 기댓값이므로 한 번의 결과로는 확인할 수 없다. 같은 설정을 200번 반복한다.
 
 ```r
 one_rep <- function() {
-  z <- rnorm(m, mean = if_else(truth, 0.8 * sqrt(20), 0))
-  pv <- 2 * pnorm(-abs(z))
+  x <- matrix(rnorm(m * 20, mean = rep(if_else(truth, 0.8, 0), 20)), m, 20)
+  t_stat <- rowMeans(x) / (apply(x, 1, sd) / sqrt(20))
+  pv <- 2 * pt(-abs(t_stat), df = 19)
   map_dfr(methods, \(meth) {
-    rej <- p.adjust(pv, method = meth) <= 0.05
-    V <- sum(rej & !truth); R <- sum(rej)
-    tibble(방법 = meth, V = V, R = R, 검정력 = sum(rej & truth) / m1)
-  })
+    reject <- p.adjust(pv, method = meth) <= 0.05
+    tibble(R = sum(reject), V = sum(reject & !truth), power = sum(reject & truth) / m1)
+  }, .id = "method")
 }
 
 set.seed(2)
-mt_rep <- map_dfr(1:200, \(r) one_rep())
-mt_rep |>
-  group_by(방법) |>
-  summarise(FWER = mean(V > 0),
-            FDR = mean(if_else(R > 0, V / R, 0)),
-            평균_거짓기각 = mean(V),
-            검정력 = mean(검정력))
+map_dfr(1:200, \(r) one_rep()) |>
+  group_by(method) |>
+  summarise(FWER = mean(V > 0), FDR = mean(if_else(R > 0, V / R, 0)), power = mean(power))
 ```
 
-| 방법 | FWER | FDR | 평균 거짓 기각 수 | 검정력 |
-|---|---|---|---|---|
-| 보정 없음 | 1.000 | 0.318 | 44.6 | 0.948 |
-| 본페로니 | 0.040 | 0.001 | 0.04 | 0.322 |
-| 홀름 | 0.040 | 0.001 | 0.04 | 0.326 |
-| BH ($q = 0.05$) | 0.945 | 0.043 | 3.48 | 0.758 |
-
-각 방법은 통제하겠다고 한 양을 정확히 통제한다. 본페로니와 홀름은 FWER을 0.05 이하(0.04)로, BH는 FDR을 0.05 이하(0.043)로 유지한다. 그러나 무엇을 통제하느냐에 따라 결과는 크게 다르다. BH는 200번 중 189번(94.5%)에서 거짓 양성을 하나 이상 포함하므로 FWER 기준으로는 실패지만, 발견의 96% 가까이가 참이고 참 대립가설의 76%를 찾아낸다. 본페로니와 홀름은 거짓 양성을 거의 내지 않는 대신 참 대립가설의 3분의 1만 찾는다. 보정하지 않으면 검정력은 가장 높지만 매번 거짓 양성이 평균 45개씩 섞여 발견의 32%가 거짓이다.
-
-홀름은 본페로니보다 검정력이 항상 같거나 크다는 이론대로 0.326으로 근소하게 높다. 차이가 작은 것은 참 대립가설이 100개뿐이어서 단계적으로 기준이 완화되는 효과가 크지 않기 때문이다.
+본페로니(0.045)와 홀름(0.05)은 FWER을, BH는 FDR을(0.045) 약속한 0.05 수준으로 통제한다. BH는 거의 매번(0.95) 거짓 양성을 하나 이상 포함하지만 실제 효과의 59%를 찾고, 본페로니와 홀름은 12%만 찾는다. 보정하지 않으면 92%를 찾는 대신 발견의 32%가 거짓이다.
 
 ## 요약
 

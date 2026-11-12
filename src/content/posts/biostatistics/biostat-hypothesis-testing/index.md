@@ -217,7 +217,7 @@ proc freq data=resp order=data;
 run;
 ```
 
-`binomial` 옵션은 점수 검정 기반의 $z$검정과 신뢰구간을, `exact binomial`은 이항분포의 정확 $p$값을 준다.
+`binomial` 옵션의 $z$검정은 분산을 $p_0$에서 계산하는 점수 검정이다. 함께 나오는 기본 신뢰구간은 분산을 $\hat p$에서 계산하는 Wald 구간이며, `binomial(cl=wilson)`처럼 다른 구간을 지정할 수 있다. `exact binomial`은 이항분포의 정확 $p$값과 Clopper-Pearson 구간을 준다.
 
 ### 축소모형 대 전체모형
 
@@ -269,42 +269,7 @@ run;
 | 가능도비 (LR) | $2[\ell(\hat\theta) - \ell(\theta_0)]$ | 두 모형을 모두 적합 | 모수 변환에 불변. 작은 표본에서 대체로 안정적 |
 | 점수 (Score) | $\frac{U(\theta_0)^2}{I(\theta_0)}$ | 귀무가설 아래의 값만 | 귀무모형만 적합하면 됨 |
 
-세 검정은 표본이 크면 모두 같은 $\chi^2_1$ 분포로 수렴하지만, 작은 표본에서는 차이가 난다. 이항비율 $H_0: p = 0.1$을 검정할 때 각 검정의 실제 제1종 오류를 이항분포로 정확히 계산한다.
-
-```r
-library(tidyverse)
-set.seed(2023)
-
-size_exact <- function(n, p0 = 0.1, alpha = 0.05) {
-  x <- 0:n; ph <- x / n
-  wald <- ifelse(ph %in% c(0, 1), Inf, (ph - p0)^2 / (ph * (1 - ph) / n))
-  score <- (ph - p0)^2 / (p0 * (1 - p0) / n)
-  ll <- \(p) ifelse(x == 0, 0, x * log(p)) + ifelse(x == n, 0, (n - x) * log(1 - p))
-  lr <- 2 * (ll(ph) - ll(rep(p0, n + 1)))
-  crit <- qchisq(1 - alpha, 1)
-  w <- dbinom(x, n, p0)
-  c(n = n, Wald = sum(w[wald > crit]), LR = sum(w[lr > crit]), Score = sum(w[score > crit]))
-}
-size_tab <- map_dfr(10:200, \(n) as_tibble_row(size_exact(n)))
-size_tab |> filter(n %in% c(10, 20, 50, 100, 200))
-
-size_tab |>
-  pivot_longer(-n, names_to = "검정", values_to = "제1종 오류") |>
-  ggplot(aes(n, `제1종 오류`, color = 검정)) +
-  geom_line() +
-  geom_hline(yintercept = 0.05, linetype = 2) +
-  labs(x = "표본크기", color = NULL)
-```
-
-![표본크기에 따른 세 검정의 실제 제1종 오류 (H0: p = 0.1)](./images/bio-ht-01.png)
-
-| 표본크기 구간 | Wald | LR | Score |
-|---|---|---|---|
-| 10~50 (평균) | 0.133 | 0.061 | 0.042 |
-| 51~100 (평균) | 0.078 | 0.053 | 0.048 |
-| 101~200 (평균) | 0.064 | 0.051 | 0.049 |
-
-이항분포는 이산형이어서 세 검정 모두 실제 제1종 오류가 $n$에 따라 톱니처럼 오르내린다. 그 가운데서도 Wald 검정은 일관되게 유의수준보다 크고, $n = 10$에서는 0.35에 이른다. $x = 0$이면 $\hat p = 0$이 되어 추정 분산이 0이 되므로 검정통계량이 무한대가 되기 때문이다. 일반적으로 Wald 검정은 분산을 $\hat p$에서 계산하므로 $\hat p$가 경계에 가까울 때 분산을 과소평가한다. 점수 검정은 분산을 귀무가설 값 $p_0$에서 계산하므로 이런 문제가 없고, 평균적으로 유의수준에 가장 가깝다. 가능도비 검정은 그 중간이다. $n$이 200에 가까워지면 셋의 차이가 줄지만, $p_0 = 0.1$처럼 경계에 가까운 모수에서는 Wald 검정이 여전히 0.06 이상이다. 로지스틱 회귀의 계수 검정에서 Wald 검정보다 가능도비 검정을 권하는 것도 같은 이유다.
+세 검정은 표본이 크면 같은 $\chi^2_1$ 분포로 수렴한다. 작은 표본이나 모수가 경계에 가까울 때는 Wald 검정이 분산을 $\hat p$에서 계산해 과소평가하므로 제1종 오류가 유의수준을 넘기 쉽고, $\hat p = 0$이면 통계량이 무한대가 된다. 로지스틱 회귀의 계수 검정에서 Wald 검정보다 가능도비 검정을 권하는 이유다.
 
 ## 요약
 

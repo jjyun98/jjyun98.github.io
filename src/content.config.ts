@@ -23,6 +23,8 @@ const postsCollection = defineCollection({
       description: z.string().optional(),
       author: z.string().optional(),
       series: z.string().optional(),
+      // 시리즈 안에서의 순서. 없으면 published 순서를 따른다.
+      seriesOrder: z.number().optional(),
       tags: z.array(z.string()).optional().default([]),
       coverImage: z
         .strictObject({
