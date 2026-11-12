@@ -25,10 +25,14 @@ const renderKatex = (expression: string) =>
     strict: 'warn',
   })
 
+// 제목 텍스트의 $...$ 구간은 KaTeX로, 나머지는 이스케이프해서 출력한다 (rehype-math-headings가 $...$를 남긴다)
 const renderInlineMath = (value: string) =>
-  escapeHtml(value)
-    .replace(/\$([^$]+)\$/g, (_match, expression: string) => renderKatex(expression))
-    .replace(/\\mathbb\{[^}]+\}(?:\^[A-Za-z0-9{}]+)?/g, (expression: string) => renderKatex(expression))
+  value
+    .split(/(\$[^$]+\$)/g)
+    .map((part) =>
+      part.length > 2 && part.startsWith('$') && part.endsWith('$') ? renderKatex(part.slice(1, -1)) : escapeHtml(part),
+    )
+    .join('')
 
 const renderedText = renderInlineMath(text)
 ---

@@ -24,6 +24,7 @@ import remarkMath from 'remark-math' /* for latex math support */
 import rehypeKatex from 'rehype-katex' /* again, for latex math support */
 import remarkGemoji from './src/plugins/remark-gemoji' /* for shortcode emoji support */
 import rehypePixelated from './src/plugins/rehype-pixelated' /* Custom plugin to handle pixelated images */
+import rehypeMathHeadings from './src/plugins/rehype-math-headings' /* TOC에 수식 구분자 유지 */
 
 // https://astro.build/config
 export default defineConfig({
@@ -44,6 +45,7 @@ export default defineConfig({
     ],
     rehypePlugins: [
       [rehypeHeadingIds, { headingIdCompat: true }],
+      rehypeMathHeadings,
       [rehypeAutolinkHeadings, { behavior: 'wrap' }],
       rehypeTitleFigure,
       [
