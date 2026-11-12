@@ -1,0 +1,726 @@
+{
+ "type": "excalidraw",
+ "version": 2,
+ "source": "https://excalidraw.com",
+ "elements": [
+  {
+   "id": "mi-backward-labor-0",
+   "type": "arrow",
+   "x": 70,
+   "y": 360,
+   "width": 478,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 311227663,
+   "version": 1,
+   "versionNonce": 690964554,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     478,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-backward-labor-1",
+   "type": "arrow",
+   "x": 70,
+   "y": 360,
+   "width": 0,
+   "height": 318,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1001305753,
+   "version": 1,
+   "versionNonce": 2047928952,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     -318
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-backward-labor-2",
+   "type": "text",
+   "x": 552,
+   "y": 350,
+   "width": 29.392000000000003,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 62134695,
+   "version": 1,
+   "versionNonce": 614350954,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "시간",
+   "originalText": "시간",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-backward-labor-3",
+   "type": "text",
+   "x": 41.367999999999995,
+   "y": 20,
+   "width": 45.264,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1786027654,
+   "version": 1,
+   "versionNonce": 1611933562,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "임금 w",
+   "originalText": "임금 w",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-backward-labor-4",
+   "type": "line",
+   "x": 141.47187450068145,
+   "y": 348.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1571928107,
+   "version": 1,
+   "versionNonce": 280951748,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     15.743816745450346,
+     -3.0
+    ],
+    [
+     30.719798487669777,
+     -6.0
+    ],
+    [
+     44.96539298165442,
+     -9.0
+    ],
+    [
+     58.51622163383789,
+     -12.0
+    ],
+    [
+     71.4061685741622,
+     -15.0
+    ],
+    [
+     83.66746538405167,
+     -18.0
+    ],
+    [
+     95.33077169215525,
+     -21.0
+    ],
+    [
+     106.42525183938812,
+     -24.0
+    ],
+    [
+     116.97864780497503,
+     -27.0
+    ],
+    [
+     127.01734857584847,
+     -30.0
+    ],
+    [
+     136.56645613286133,
+     -33.0
+    ],
+    [
+     145.64984821881404,
+     -36.0
+    ],
+    [
+     154.29023804524917,
+     -39.0
+    ],
+    [
+     162.50923108731092,
+     -42.0
+    ],
+    [
+     170.3273791086866,
+     -45.0
+    ],
+    [
+     177.7642315517213,
+     -48.0
+    ],
+    [
+     184.8383844212059,
+     -51.0
+    ],
+    [
+     191.56752678407577,
+     -54.0
+    ],
+    [
+     197.96848500129187,
+     -57.0
+    ],
+    [
+     204.0572648025074,
+     -60.0
+    ],
+    [
+     209.84909130872927,
+     -63.0
+    ],
+    [
+     215.35844710305076,
+     -66.0
+    ],
+    [
+     220.59910844465276,
+     -69.0
+    ],
+    [
+     225.584179716628,
+     -72.0
+    ],
+    [
+     230.32612619376408,
+     -75.0
+    ],
+    [
+     234.8368052122234,
+     -78.0
+    ],
+    [
+     239.12749581905985,
+     -81.0
+    ],
+    [
+     243.20892697571156,
+     -84.0
+    ],
+    [
+     247.09130438599266,
+     -87.0
+    ],
+    [
+     250.78433601566888,
+     -90.0
+    ],
+    [
+     254.29725636742876,
+     -93.0
+    ],
+    [
+     257.6388495719502,
+     -96.0
+    ],
+    [
+     260.81747135280256,
+     -99.0
+    ],
+    [
+     263.8410699201081,
+     -102.0
+    ],
+    [
+     266.71720584520745,
+     -105.0
+    ],
+    [
+     269.45307096602556,
+     -108.0
+    ],
+    [
+     272.02593494184146,
+     -111.0
+    ],
+    [
+     274.4127337881428,
+     -114.0
+    ],
+    [
+     276.6196575771969,
+     -117.0
+    ],
+    [
+     278.652594487884,
+     -120.0
+    ],
+    [
+     280.5171455292121,
+     -123.0
+    ],
+    [
+     282.2186385457559,
+     -126.0
+    ],
+    [
+     283.7621415400447,
+     -129.0
+    ],
+    [
+     285.15247534520745,
+     -132.0
+    ],
+    [
+     286.3942256795668,
+     -135.0
+    ],
+    [
+     287.49175461332413,
+     -138.0
+    ],
+    [
+     288.4492114760068,
+     -141.0
+    ],
+    [
+     289.27054323195256,
+     -144.0
+    ],
+    [
+     289.9595043497778,
+     -147.0
+    ],
+    [
+     290.519666190503,
+     -150.0
+    ],
+    [
+     290.95442593781667,
+     -153.0
+    ],
+    [
+     291.26701509280406,
+     -156.00000000000003
+    ],
+    [
+     291.4605075543823,
+     -158.99999999999997
+    ],
+    [
+     291.5378273056494,
+     -162.0
+    ],
+    [
+     291.50175572536523,
+     -165.0
+    ],
+    [
+     291.3549385428465,
+     -168.0
+    ],
+    [
+     291.0998924536687,
+     -171.0
+    ],
+    [
+     290.7390114127158,
+     -174.0
+    ],
+    [
+     290.27457262031413,
+     -177.0
+    ],
+    [
+     289.7087422164199,
+     -180.0
+    ],
+    [
+     289.04358069709673,
+     -183.0
+    ],
+    [
+     288.2810480668296,
+     -186.0
+    ],
+    [
+     287.4230087395568,
+     -189.0
+    ],
+    [
+     286.4712362006757,
+     -192.00000000000003
+    ],
+    [
+     285.42741744168035,
+     -194.99999999999997
+    ],
+    [
+     284.29315717851875,
+     -198.0
+    ],
+    [
+     283.0699818642184,
+     -201.0
+    ],
+    [
+     281.7593435058147,
+     -204.0
+    ],
+    [
+     280.36262329512357,
+     -207.0
+    ],
+    [
+     278.8811350624419,
+     -210.0
+    ],
+    [
+     277.3161285618064,
+     -213.0
+    ],
+    [
+     275.66879259603036,
+     -216.0
+    ],
+    [
+     273.9402579893298,
+     -219.0
+    ],
+    [
+     272.13160041497287,
+     -222.0
+    ],
+    [
+     270.2438430850231,
+     -225.0
+    ],
+    [
+     268.2779593089033,
+     -228.0
+    ],
+    [
+     266.23487492717544,
+     -231.00000000000003
+    ],
+    [
+     264.11547062662413,
+     -233.99999999999997
+    ],
+    [
+     261.92058414243303,
+     -237.0
+    ],
+    [
+     259.6510123529588,
+     -240.0
+    ],
+    [
+     257.30751327234174,
+     -243.0
+    ],
+    [
+     254.8908079459365,
+     -246.0
+    ],
+    [
+     252.40158225330077,
+     -249.0
+    ],
+    [
+     249.8404886232516,
+     -252.0
+    ],
+    [
+     247.2081476652769,
+     -255.0
+    ],
+    [
+     244.50514972138302,
+     -258.0
+    ],
+    [
+     241.73205634225673,
+     -261.0
+    ],
+    [
+     238.8894016914345,
+     -264.0
+    ],
+    [
+     235.97769388099,
+     -267.0
+    ],
+    [
+     232.9974162420785,
+     -270.0
+    ],
+    [
+     229.94902853351675,
+     -273.0
+    ],
+    [
+     226.83296809141916,
+     -276.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-backward-labor-5",
+   "type": "text",
+   "x": 374.3048425921006,
+   "y": 49.0,
+   "width": 55.410000000000004,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 811862506,
+   "version": 1,
+   "versionNonce": 932039103,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "노동공급",
+   "originalText": "노동공급",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-backward-labor-6",
+   "type": "line",
+   "x": 70.0,
+   "y": 186.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 235079952,
+   "version": 1,
+   "versionNonce": 937034985,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     460.0,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-backward-labor-7",
+   "type": "text",
+   "x": 96.28571428571428,
+   "y": 190.0,
+   "width": 166.866,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#2f9e44",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 90076317,
+   "version": 1,
+   "versionNonce": 1773329540,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "대체효과 > 소득효과: 우상향",
+   "originalText": "대체효과 > 소득효과: 우상향",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-backward-labor-8",
+   "type": "text",
+   "x": 96.28571428571428,
+   "y": 148.0,
+   "width": 179.256,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1225746876,
+   "version": 1,
+   "versionNonce": 1145341679,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "소득효과 > 대체효과: 후방굴절",
+   "originalText": "소득효과 > 대체효과: 후방굴절",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  }
+ ],
+ "appState": {
+  "gridSize": 20,
+  "viewBackgroundColor": "#ffffff"
+ },
+ "files": {}
+}

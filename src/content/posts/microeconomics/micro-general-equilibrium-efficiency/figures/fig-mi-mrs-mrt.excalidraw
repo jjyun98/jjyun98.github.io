@@ -1,0 +1,1398 @@
+{
+ "type": "excalidraw",
+ "version": 2,
+ "source": "https://excalidraw.com",
+ "elements": [
+  {
+   "id": "mi-mrs-mrt-0",
+   "type": "arrow",
+   "x": 80,
+   "y": 400,
+   "width": 418,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1043606202,
+   "version": 1,
+   "versionNonce": 769296707,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     418,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-mrs-mrt-1",
+   "type": "arrow",
+   "x": 80,
+   "y": 400,
+   "width": 0,
+   "height": 358,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 532980606,
+   "version": 1,
+   "versionNonce": 1585894164,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     -358
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-mrs-mrt-2",
+   "type": "text",
+   "x": 502,
+   "y": 390,
+   "width": 44.56,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 564541832,
+   "version": 1,
+   "versionNonce": 1984111291,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "식품 F",
+   "originalText": "식품 F",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-mrs-mrt-3",
+   "type": "text",
+   "x": 52.0,
+   "y": 20,
+   "width": 44.0,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 2100994305,
+   "version": 1,
+   "versionNonce": 1437763853,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "의복 C",
+   "originalText": "의복 C",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-mrs-mrt-4",
+   "type": "line",
+   "x": 80.0,
+   "y": 90.90909090909093,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1168276068,
+   "version": 1,
+   "versionNonce": 157838362,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     6.060606060606062,
+     0.04293227454428461
+    ],
+    [
+     12.121212121212125,
+     0.17176489744946366
+    ],
+    [
+     18.181818181818187,
+     0.38660541595544373
+    ],
+    [
+     24.242424242424235,
+     0.6876335749963687
+    ],
+    [
+     30.30303030303031,
+     1.0751020716306243
+    ],
+    [
+     36.363636363636374,
+     1.5493376215901549
+    ],
+    [
+     42.42424242424242,
+     2.1107423485177037
+    ],
+    [
+     48.48484848484847,
+     2.7597955098004263
+    ],
+    [
+     54.54545454545453,
+     3.497055576501566
+    ],
+    [
+     60.60606060606062,
+     4.323162688807599
+    ],
+    [
+     66.66666666666666,
+     5.2388415127312555
+    ],
+    [
+     72.72727272727275,
+     6.244904528625284
+    ],
+    [
+     78.78787878787878,
+     7.342255787482372
+    ],
+    [
+     84.84848484848484,
+     8.531895177149124
+    ],
+    [
+     90.9090909090909,
+     9.814923247608647
+    ],
+    [
+     96.96969696969694,
+     11.192546652586259
+    ],
+    [
+     103.03030303030303,
+     12.66608427409858
+    ],
+    [
+     109.09090909090907,
+     14.236974107489516
+    ],
+    [
+     115.15151515151513,
+     15.906780997275916
+    ],
+    [
+     121.21212121212122,
+     17.677205329180367
+    ],
+    [
+     127.27272727272725,
+     19.55009280152882
+    ],
+    [
+     133.33333333333331,
+     21.52744542036521
+    ],
+    [
+     139.3939393939394,
+     23.61143388793215
+    ],
+    [
+     145.45454545454547,
+     25.804411584548063
+    ],
+    [
+     151.51515151515153,
+     28.108930380595268
+    ],
+    [
+     157.57575757575756,
+     30.527758559844585
+    ],
+    [
+     163.63636363636365,
+     33.06390118967295
+    ],
+    [
+     169.6969696969697,
+     35.72062334040339
+    ],
+    [
+     175.75757575757575,
+     38.50147663833786
+    ],
+    [
+     181.8181818181818,
+     41.41032973935529
+    ],
+    [
+     187.87878787878788,
+     44.45140343793639
+    ],
+    [
+     193.93939393939388,
+     47.629311287706855
+    ],
+    [
+     200.0,
+     50.94910681424443
+    ],
+    [
+     206.06060606060606,
+     54.41633866273855
+    ],
+    [
+     212.12121212121212,
+     58.037115360981204
+    ],
+    [
+     218.18181818181813,
+     61.818181818181785
+    ],
+    [
+     224.24242424242425,
+     65.76701025874877
+    ],
+    [
+     230.30303030303025,
+     69.89190905921657
+    ],
+    [
+     236.36363636363637,
+     74.20215399027154
+    ],
+    [
+     242.42424242424244,
+     78.70814777274893
+    ],
+    [
+     248.4848484848485,
+     83.42161579711413
+    ],
+    [
+     254.5454545454545,
+     88.35584857231188
+    ],
+    [
+     260.6060606060606,
+     93.52600533367846
+    ],
+    [
+     266.66666666666663,
+     98.94949883375187
+    ],
+    [
+     272.7272727272727,
+     104.64648959955434
+    ],
+    [
+     278.7878787878788,
+     110.64053040461226
+    ],
+    [
+     284.8484848484848,
+     116.95942098029343
+    ],
+    [
+     290.90909090909093,
+     123.63636363636363
+    ],
+    [
+     296.96969696969694,
+     130.71156073692515
+    ],
+    [
+     303.03030303030306,
+     138.23448049684305
+    ],
+    [
+     309.09090909090907,
+     146.26716927409402
+    ],
+    [
+     315.1515151515151,
+     154.88927133295266
+    ],
+    [
+     321.21212121212125,
+     164.20597643804305
+    ],
+    [
+     327.2727272727273,
+     174.36130538147006
+    ],
+    [
+     333.3333333333333,
+     185.56191530861173
+    ],
+    [
+     339.3939393939394,
+     198.12387670147086
+    ],
+    [
+     345.45454545454544,
+     212.57730366111565
+    ],
+    [
+     351.5151515151515,
+     229.95183168862633
+    ],
+    [
+     357.5757575757576,
+     252.89451334884643
+    ],
+    [
+     363.6363636363636,
+     309.09090909090907
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-mrs-mrt-5",
+   "type": "line",
+   "x": 207.27272727272725,
+   "y": 65.15175869530503,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#f08c00",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1134739225,
+   "version": 1,
+   "versionNonce": 1997226425,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     4.545454545454561,
+     6.544719857138716
+    ],
+    [
+     9.090909090909093,
+     12.746027953040766
+    ],
+    [
+     13.636363636363654,
+     18.632516974170073
+    ],
+    [
+     18.181818181818215,
+     24.2295739670451
+    ],
+    [
+     22.727272727272748,
+     29.55982659045793
+    ],
+    [
+     27.27272727272728,
+     34.64351586991501
+    ],
+    [
+     31.81818181818184,
+     39.49880932530863
+    ],
+    [
+     36.3636363636364,
+     44.14206541033508
+    ],
+    [
+     40.909090909090935,
+     48.588057952554436
+    ],
+    [
+     45.45454545454547,
+     52.850167543346345
+    ],
+    [
+     50.0,
+     56.94054547156878
+    ],
+    [
+     54.54545454545456,
+     60.87025473110231
+    ],
+    [
+     59.09090909090912,
+     64.64939179220539
+    ],
+    [
+     63.636363636363626,
+     68.28719215859223
+    ],
+    [
+     68.18181818181824,
+     71.79212219785376
+    ],
+    [
+     72.72727272727275,
+     75.17195930307338
+    ],
+    [
+     77.27272727272725,
+     78.43386209590409
+    ],
+    [
+     81.81818181818187,
+     81.58443209881293
+    ],
+    [
+     86.36363636363637,
+     84.62976807336642
+    ],
+    [
+     90.90909090909088,
+     87.57551403196769
+    ],
+    [
+     95.4545454545455,
+     90.42690177425553
+    ],
+    [
+     100.0,
+     93.18878867004875
+    ],
+    [
+     104.54545454545462,
+     95.86569130319782
+    ],
+    [
+     109.09090909090912,
+     98.46181550097026
+    ],
+    [
+     113.63636363636363,
+     100.98108319841751
+    ],
+    [
+     118.18181818181824,
+     103.42715652396532
+    ],
+    [
+     122.72727272727275,
+     105.80345943914216
+    ],
+    [
+     127.27272727272725,
+     108.11319722022179
+    ],
+    [
+     131.8181818181818,
+     110.35937403122315
+    ],
+    [
+     136.36363636363637,
+     112.54480880506085
+    ],
+    [
+     140.90909090909093,
+     114.67214962174518
+    ],
+    [
+     145.45454545454544,
+     116.74388674863084
+    ],
+    [
+     150.00000000000006,
+     118.76236448718475
+    ],
+    [
+     154.54545454545456,
+     120.72979195305462
+    ],
+    [
+     159.09090909090912,
+     122.64825290094907
+    ],
+    [
+     163.63636363636368,
+     124.51971469261608
+    ],
+    [
+     168.1818181818182,
+     126.34603649473192
+    ],
+    [
+     172.72727272727275,
+     128.12897678353198
+    ],
+    [
+     177.2727272727273,
+     129.8702002243131
+    ],
+    [
+     181.8181818181818,
+     131.57128398633617
+    ],
+    [
+     186.36363636363637,
+     133.23372354700015
+    ],
+    [
+     190.90909090909093,
+     134.85893803332277
+    ],
+    [
+     195.45454545454544,
+     136.44827514362768
+    ],
+    [
+     200.00000000000006,
+     138.0030156878205
+    ],
+    [
+     204.54545454545456,
+     139.5243777806455
+    ],
+    [
+     209.09090909090912,
+     141.01352071879086
+    ],
+    [
+     213.63636363636368,
+     142.47154856958815
+    ],
+    [
+     218.1818181818182,
+     143.89951349628225
+    ],
+    [
+     222.72727272727275,
+     145.29841884238857
+    ],
+    [
+     227.2727272727273,
+     146.669221995464
+    ],
+    [
+     231.8181818181818,
+     148.01283704866867
+    ],
+    [
+     236.36363636363637,
+     149.33013727675026
+    ],
+    [
+     240.90909090909093,
+     150.62195744152945
+    ],
+    [
+     245.45454545454544,
+     151.88909594056713
+    ],
+    [
+     250.00000000000006,
+     153.1323168114468
+    ],
+    [
+     254.54545454545456,
+     154.35235160298134
+    ],
+    [
+     259.0909090909091,
+     155.54990112364587
+    ],
+    [
+     263.6363636363637,
+     156.72563707662914
+    ],
+    [
+     268.1818181818182,
+     157.8802035900784
+    ],
+    [
+     272.72727272727275,
+     159.01421865037256
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-mrs-mrt-6",
+   "type": "text",
+   "x": 412.49,
+   "y": 315,
+   "width": 132.51000000000002,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 300462004,
+   "version": 1,
+   "versionNonce": 871933388,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "PPF: F2 + C2 = 100",
+   "originalText": "PPF: F2 + C2 = 100",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-mrs-mrt-7",
+   "type": "text",
+   "x": 476.12,
+   "y": 339,
+   "width": 68.88,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#f08c00",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 807297337,
+   "version": 1,
+   "versionNonce": 1583385820,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "무차별곡선",
+   "originalText": "무차별곡선",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-mrs-mrt-8",
+   "type": "line",
+   "x": 152.72727272727275,
+   "y": 60.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.5,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 441910337,
+   "version": 1,
+   "versionNonce": 2037773782,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     5.151515151515127,
+     3.284090909090878
+    ],
+    [
+     10.303030303030255,
+     6.56818181818187
+    ],
+    [
+     15.454545454545439,
+     9.852272727272691
+    ],
+    [
+     20.606060606060566,
+     13.136363636363683
+    ],
+    [
+     25.75757575757575,
+     16.42045454545456
+    ],
+    [
+     30.909090909090878,
+     19.70454545454544
+    ],
+    [
+     36.060606060606034,
+     22.988636363636374
+    ],
+    [
+     41.21212121212119,
+     26.272727272727252
+    ],
+    [
+     46.363636363636346,
+     29.556818181818187
+    ],
+    [
+     51.5151515151515,
+     32.840909090909065
+    ],
+    [
+     56.66666666666666,
+     36.125
+    ],
+    [
+     61.818181818181785,
+     39.409090909090935
+    ],
+    [
+     66.96969696969694,
+     42.69318181818181
+    ],
+    [
+     72.1212121212121,
+     45.97727272727275
+    ],
+    [
+     77.27272727272725,
+     49.261363636363626
+    ],
+    [
+     82.42424242424241,
+     52.545454545454504
+    ],
+    [
+     87.57575757575756,
+     55.82954545454544
+    ],
+    [
+     92.72727272727272,
+     59.113636363636374
+    ],
+    [
+     97.87878787878785,
+     62.39772727272731
+    ],
+    [
+     103.03030303030303,
+     65.68181818181819
+    ],
+    [
+     108.18181818181813,
+     68.96590909090907
+    ],
+    [
+     113.33333333333337,
+     72.25
+    ],
+    [
+     118.48484848484844,
+     75.53409090909093
+    ],
+    [
+     123.63636363636363,
+     78.81818181818187
+    ],
+    [
+     128.78787878787875,
+     82.10227272727275
+    ],
+    [
+     133.93939393939394,
+     85.38636363636363
+    ],
+    [
+     139.09090909090907,
+     88.67045454545456
+    ],
+    [
+     144.24242424242425,
+     91.95454545454544
+    ],
+    [
+     149.39393939393938,
+     95.23863636363637
+    ],
+    [
+     154.5454545454545,
+     98.52272727272728
+    ],
+    [
+     159.6969696969697,
+     101.80681818181819
+    ],
+    [
+     164.84848484848482,
+     105.0909090909091
+    ],
+    [
+     170.0,
+     108.375
+    ],
+    [
+     175.15151515151513,
+     111.6590909090909
+    ],
+    [
+     180.30303030303025,
+     114.94318181818181
+    ],
+    [
+     185.45454545454538,
+     118.22727272727269
+    ],
+    [
+     190.60606060606057,
+     121.5113636363636
+    ],
+    [
+     195.75757575757575,
+     124.79545454545456
+    ],
+    [
+     200.90909090909088,
+     128.0795454545455
+    ],
+    [
+     206.06060606060606,
+     131.36363636363637
+    ],
+    [
+     211.2121212121212,
+     134.64772727272725
+    ],
+    [
+     216.36363636363637,
+     137.93181818181822
+    ],
+    [
+     221.5151515151515,
+     141.21590909090907
+    ],
+    [
+     226.66666666666669,
+     144.50000000000003
+    ],
+    [
+     231.8181818181818,
+     147.7840909090909
+    ],
+    [
+     236.96969696969694,
+     151.06818181818178
+    ],
+    [
+     242.12121212121212,
+     154.35227272727272
+    ],
+    [
+     247.27272727272725,
+     157.63636363636368
+    ],
+    [
+     252.42424242424238,
+     160.92045454545453
+    ],
+    [
+     257.5757575757575,
+     164.20454545454544
+    ],
+    [
+     262.7272727272727,
+     167.48863636363635
+    ],
+    [
+     267.8787878787879,
+     170.77272727272728
+    ],
+    [
+     273.030303030303,
+     174.05681818181816
+    ],
+    [
+     278.1818181818182,
+     177.34090909090912
+    ],
+    [
+     283.33333333333337,
+     180.62500000000003
+    ],
+    [
+     288.4848484848485,
+     183.90909090909093
+    ],
+    [
+     293.6363636363636,
+     187.1931818181818
+    ],
+    [
+     298.7878787878788,
+     190.47727272727272
+    ],
+    [
+     303.9393939393939,
+     193.7613636363636
+    ],
+    [
+     309.09090909090907,
+     197.0454545454545
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-mrs-mrt-9",
+   "type": "text",
+   "x": 140.54545454545453,
+   "y": 25.409090909090878,
+   "width": 140.625,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 714227816,
+   "version": 1,
+   "versionNonce": 1722143647,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "기울기 -0.75 (가격비)",
+   "originalText": "기울기 -0.75 (가격비)",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-mrs-mrt-10",
+   "type": "line",
+   "x": 298.18181818181813,
+   "y": 152.72727272727272,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1632821762,
+   "version": 1,
+   "versionNonce": 943648939,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     247.27272727272728
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-mrs-mrt-11",
+   "type": "line",
+   "x": 298.18181818181813,
+   "y": 152.72727272727272,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 830148417,
+   "version": 1,
+   "versionNonce": 4685408,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     -218.18181818181813,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-mrs-mrt-12",
+   "type": "ellipse",
+   "x": 293.18181818181813,
+   "y": 147.72727272727272,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "#e03131",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 2139195294,
+   "version": 1,
+   "versionNonce": 853341405,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-mrs-mrt-13",
+   "type": "text",
+   "x": 308.18181818181813,
+   "y": 125.72727272727272,
+   "width": 196.69500000000002,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 933638733,
+   "version": 1,
+   "versionNonce": 1909194015,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "A (6, 8): MRS = MRT = 0.75",
+   "originalText": "A (6, 8): MRS = MRT = 0.75",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-mrs-mrt-14",
+   "type": "text",
+   "x": 293.7018181818181,
+   "y": 408,
+   "width": 8.96,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1209725271,
+   "version": 1,
+   "versionNonce": 975363673,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "6",
+   "originalText": "6",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-mrs-mrt-15",
+   "type": "text",
+   "x": 63.096000000000004,
+   "y": 143.72727272727272,
+   "width": 8.904,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 165521432,
+   "version": 1,
+   "versionNonce": 1633145380,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "8",
+   "originalText": "8",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-mrs-mrt-16",
+   "type": "ellipse",
+   "x": 220.45454545454547,
+   "y": 271.3636363636364,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#adb5bd",
+   "backgroundColor": "#adb5bd",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 247734123,
+   "version": 1,
+   "versionNonce": 455151045,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-mrs-mrt-17",
+   "type": "text",
+   "x": 235.45454545454547,
+   "y": 253.36363636363637,
+   "width": 104.1,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#adb5bd",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 928480515,
+   "version": 1,
+   "versionNonce": 1075446927,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "B (4, 4): 비효율",
+   "originalText": "B (4, 4): 비효율",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  }
+ ],
+ "appState": {
+  "gridSize": 20,
+  "viewBackgroundColor": "#ffffff"
+ },
+ "files": {}
+}

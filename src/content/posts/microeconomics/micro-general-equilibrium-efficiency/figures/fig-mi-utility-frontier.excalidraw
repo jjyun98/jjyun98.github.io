@@ -1,0 +1,853 @@
+{
+ "type": "excalidraw",
+ "version": 2,
+ "source": "https://excalidraw.com",
+ "elements": [
+  {
+   "id": "mi-utility-frontier-0",
+   "type": "arrow",
+   "x": 80,
+   "y": 420,
+   "width": 418,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1239273601,
+   "version": 1,
+   "versionNonce": 1135346213,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     418,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-utility-frontier-1",
+   "type": "arrow",
+   "x": 80,
+   "y": 420,
+   "width": 0,
+   "height": 378,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 494113176,
+   "version": 1,
+   "versionNonce": 1287173799,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     -378
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-utility-frontier-2",
+   "type": "text",
+   "x": 502,
+   "y": 410,
+   "width": 18.38592,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 763807077,
+   "version": 1,
+   "versionNonce": 1919962058,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "UA",
+   "originalText": "UA",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-utility-frontier-3",
+   "type": "text",
+   "x": 64.38544,
+   "y": 20,
+   "width": 19.22912,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1817341163,
+   "version": 1,
+   "versionNonce": 1795517045,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "UB",
+   "originalText": "UB",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-utility-frontier-4",
+   "type": "line",
+   "x": 80.0,
+   "y": 92.72727272727275,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 906222003,
+   "version": 1,
+   "versionNonce": 599883610,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.14545454545454106,
+     12.959999999999923
+    ],
+    [
+     0.5818181818181785,
+     25.658181818181788
+    ],
+    [
+     1.3090909090909122,
+     38.094545454545425
+    ],
+    [
+     2.327272727272728,
+     50.26909090909095
+    ],
+    [
+     3.6363636363636402,
+     62.18181818181819
+    ],
+    [
+     5.2363636363636346,
+     73.83272727272723
+    ],
+    [
+     7.127272727272725,
+     85.22181818181821
+    ],
+    [
+     9.309090909090912,
+     96.34909090909088
+    ],
+    [
+     11.781818181818181,
+     107.21454545454546
+    ],
+    [
+     14.545454545454547,
+     117.81818181818181
+    ],
+    [
+     17.599999999999994,
+     128.16
+    ],
+    [
+     20.945454545454538,
+     138.23999999999998
+    ],
+    [
+     24.581818181818193,
+     148.05818181818177
+    ],
+    [
+     28.509090909090915,
+     157.61454545454546
+    ],
+    [
+     32.72727272727272,
+     166.90909090909088
+    ],
+    [
+     37.23636363636365,
+     175.94181818181818
+    ],
+    [
+     42.036363636363646,
+     184.7127272727273
+    ],
+    [
+     47.127272727272725,
+     193.2218181818181
+    ],
+    [
+     52.5090909090909,
+     201.46909090909088
+    ],
+    [
+     58.18181818181819,
+     209.45454545454544
+    ],
+    [
+     64.14545454545456,
+     217.17818181818177
+    ],
+    [
+     70.4,
+     224.64
+    ],
+    [
+     76.94545454545457,
+     231.84000000000003
+    ],
+    [
+     83.78181818181818,
+     238.7781818181818
+    ],
+    [
+     90.9090909090909,
+     245.45454545454544
+    ],
+    [
+     98.32727272727274,
+     251.86909090909091
+    ],
+    [
+     106.03636363636366,
+     258.02181818181816
+    ],
+    [
+     114.03636363636366,
+     263.91272727272724
+    ],
+    [
+     122.32727272727271,
+     269.54181818181814
+    ],
+    [
+     130.9090909090909,
+     274.9090909090909
+    ],
+    [
+     139.7818181818182,
+     280.01454545454544
+    ],
+    [
+     148.9454545454546,
+     284.85818181818183
+    ],
+    [
+     158.40000000000003,
+     289.44
+    ],
+    [
+     168.14545454545458,
+     293.76
+    ],
+    [
+     178.1818181818182,
+     297.8181818181818
+    ],
+    [
+     188.5090909090909,
+     301.6145454545454
+    ],
+    [
+     199.12727272727273,
+     305.1490909090909
+    ],
+    [
+     210.0363636363636,
+     308.42181818181814
+    ],
+    [
+     221.23636363636365,
+     311.4327272727273
+    ],
+    [
+     232.72727272727275,
+     314.1818181818182
+    ],
+    [
+     244.5090909090909,
+     316.66909090909087
+    ],
+    [
+     256.5818181818182,
+     318.89454545454544
+    ],
+    [
+     268.9454545454545,
+     320.8581818181818
+    ],
+    [
+     281.6,
+     322.56
+    ],
+    [
+     294.5454545454545,
+     324.0
+    ],
+    [
+     307.78181818181827,
+     325.1781818181818
+    ],
+    [
+     321.3090909090908,
+     326.0945454545454
+    ],
+    [
+     335.1272727272727,
+     326.7490909090909
+    ],
+    [
+     349.2363636363637,
+     327.14181818181817
+    ],
+    [
+     363.6363636363636,
+     327.27272727272725
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-utility-frontier-5",
+   "type": "text",
+   "x": 449.6363636363636,
+   "y": 397.0,
+   "width": 82.56,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1845763718,
+   "version": 1,
+   "versionNonce": 1391403483,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "효용가능곡선",
+   "originalText": "효용가능곡선",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-utility-frontier-6",
+   "type": "line",
+   "x": 138.1818181818182,
+   "y": 367.6363636363636,
+   "width": 72.72727272727272,
+   "height": 65.45454545454544,
+   "angle": 0,
+   "strokeColor": "#f08c00",
+   "backgroundColor": "#ffec99",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1303522002,
+   "version": 1,
+   "versionNonce": 1260396236,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     -65.45454545454544
+    ],
+    [
+     1.4636363636363683,
+     -63.49909090909091
+    ],
+    [
+     2.945454545454538,
+     -61.56
+    ],
+    [
+     4.445454545454538,
+     -59.637272727272716
+    ],
+    [
+     5.963636363636368,
+     -57.73090909090911
+    ],
+    [
+     7.5,
+     -55.84090909090912
+    ],
+    [
+     9.054545454545433,
+     -53.96727272727276
+    ],
+    [
+     10.627272727272725,
+     -52.110000000000014
+    ],
+    [
+     12.218181818181819,
+     -50.26909090909089
+    ],
+    [
+     13.827272727272714,
+     -48.44454545454545
+    ],
+    [
+     15.454545454545439,
+     -46.636363636363626
+    ],
+    [
+     17.099999999999966,
+     -44.84454545454548
+    ],
+    [
+     18.76363636363635,
+     -43.0690909090909
+    ],
+    [
+     20.445454545454538,
+     -41.309999999999945
+    ],
+    [
+     22.145454545454555,
+     -39.56727272727272
+    ],
+    [
+     23.863636363636374,
+     -37.840909090909065
+    ],
+    [
+     25.599999999999994,
+     -36.130909090909086
+    ],
+    [
+     27.354545454545416,
+     -34.43727272727273
+    ],
+    [
+     29.127272727272725,
+     -32.75999999999999
+    ],
+    [
+     30.918181818181807,
+     -31.099090909090876
+    ],
+    [
+     32.72727272727272,
+     -29.45454545454544
+    ],
+    [
+     34.55454545454546,
+     -27.826363636363624
+    ],
+    [
+     36.39999999999998,
+     -26.214545454545487
+    ],
+    [
+     38.26363636363635,
+     -24.619090909090914
+    ],
+    [
+     40.145454545454555,
+     -23.039999999999964
+    ],
+    [
+     42.04545454545453,
+     -21.477272727272748
+    ],
+    [
+     43.96363636363634,
+     -19.930909090909097
+    ],
+    [
+     45.89999999999998,
+     -18.400909090909067
+    ],
+    [
+     47.85454545454547,
+     -16.887272727272716
+    ],
+    [
+     49.827272727272714,
+     -15.389999999999986
+    ],
+    [
+     51.81818181818181,
+     -13.909090909090878
+    ],
+    [
+     53.827272727272714,
+     -12.444545454545448
+    ],
+    [
+     55.854545454545445,
+     -10.99636363636364
+    ],
+    [
+     57.900000000000006,
+     -9.564545454545453
+    ],
+    [
+     59.96363636363637,
+     -8.149090909090887
+    ],
+    [
+     62.04545454545456,
+     -6.75
+    ],
+    [
+     64.14545454545453,
+     -5.367272727272734
+    ],
+    [
+     66.26363636363635,
+     -4.00090909090909
+    ],
+    [
+     68.4,
+     -2.6509090909090673
+    ],
+    [
+     70.55454545454546,
+     -1.317272727272723
+    ],
+    [
+     72.72727272727272,
+     0.0
+    ],
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null,
+   "polygon": true
+  },
+  {
+   "id": "mi-utility-frontier-7",
+   "type": "ellipse",
+   "x": 133.1818181818182,
+   "y": 362.6363636363636,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "#e03131",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 244832261,
+   "version": 1,
+   "versionNonce": 1004997363,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-utility-frontier-8",
+   "type": "text",
+   "x": 9.246818181818199,
+   "y": 344.6363636363636,
+   "width": 118.93499999999999,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 31792730,
+   "version": 1,
+   "versionNonce": 769225812,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "W (16, 16): 비효율",
+   "originalText": "W (16, 16): 비효율",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-utility-frontier-9",
+   "type": "ellipse",
+   "x": 165.9090909090909,
+   "y": 333.1818181818182,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#2f9e44",
+   "backgroundColor": "#2f9e44",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 1095127832,
+   "version": 1,
+   "versionNonce": 1212427723,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-utility-frontier-10",
+   "type": "text",
+   "x": 180.9090909090909,
+   "y": 315.1818181818182,
+   "width": 119.835,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#2f9e44",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 639641123,
+   "version": 1,
+   "versionNonce": 385311240,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "경쟁균형 (25, 25)",
+   "originalText": "경쟁균형 (25, 25)",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-utility-frontier-11",
+   "type": "text",
+   "x": 189.09090909090907,
+   "y": 249.90909090909088,
+   "width": 205.14000000000001,
+   "height": 16.25,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 2141928565,
+   "version": 1,
+   "versionNonce": 563074264,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "노란 영역: 둘 다 W보다 나아지는 배분",
+   "originalText": "노란 영역: 둘 다 W보다 나아지는 배분",
+   "fontSize": 13,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-utility-frontier-12",
+   "type": "text",
+   "x": 189.09090909090907,
+   "y": 276.0909090909091,
+   "width": 169.715,
+   "height": 16.25,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1820531052,
+   "version": 1,
+   "versionNonce": 677389742,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "(곡선 위 구간이 효율적인 부분)",
+   "originalText": "(곡선 위 구간이 효율적인 부분)",
+   "fontSize": 13,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  }
+ ],
+ "appState": {
+  "gridSize": 20,
+  "viewBackgroundColor": "#ffffff"
+ },
+ "files": {}
+}

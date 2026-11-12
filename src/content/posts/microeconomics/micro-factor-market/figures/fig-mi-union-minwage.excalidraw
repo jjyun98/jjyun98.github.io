@@ -1,0 +1,3233 @@
+{
+ "type": "excalidraw",
+ "version": 2,
+ "source": "https://excalidraw.com",
+ "elements": [
+  {
+   "id": "mi-union-minwage-0",
+   "type": "arrow",
+   "x": 70,
+   "y": 360,
+   "width": 398,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 838683148,
+   "version": 1,
+   "versionNonce": 544677854,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     398,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-union-minwage-1",
+   "type": "arrow",
+   "x": 70,
+   "y": 360,
+   "width": 0,
+   "height": 308,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 454734356,
+   "version": 1,
+   "versionNonce": 572781081,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     -308
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-union-minwage-2",
+   "type": "text",
+   "x": 472,
+   "y": 350,
+   "width": 8.688,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 2023814191,
+   "version": 1,
+   "versionNonce": 104985907,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "L",
+   "originalText": "L",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-union-minwage-3",
+   "type": "text",
+   "x": 58.456,
+   "y": 30,
+   "width": 11.088,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1819817351,
+   "version": 1,
+   "versionNonce": 1040215136,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "w",
+   "originalText": "w",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-union-minwage-4",
+   "type": "text",
+   "x": 139.2065,
+   "y": 19,
+   "width": 241.587,
+   "height": 21.25,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1153141147,
+   "version": 1,
+   "versionNonce": 227417553,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "지대 극대화 노조: L = 30, w = 70",
+   "originalText": "지대 극대화 노조: L = 30, w = 70",
+   "fontSize": 17,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-union-minwage-5",
+   "type": "line",
+   "x": 184.0,
+   "y": 175.45454545454547,
+   "width": 57.0,
+   "height": 79.0909090909091,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "#ffc9c9",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 2128175270,
+   "version": 1,
+   "versionNonce": 343043124,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     57.0,
+     39.54545454545453
+    ],
+    [
+     0.0,
+     79.0909090909091
+    ],
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null,
+   "polygon": true
+  },
+  {
+   "id": "mi-union-minwage-6",
+   "type": "line",
+   "x": 70.0,
+   "y": 96.36363636363637,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1735935189,
+   "version": 1,
+   "versionNonce": 1074790620,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     6.333333333333329,
+     4.393939393939377
+    ],
+    [
+     12.666666666666671,
+     8.787878787878782
+    ],
+    [
+     19.0,
+     13.181818181818159
+    ],
+    [
+     25.33333333333333,
+     17.575757575757592
+    ],
+    [
+     31.66666666666667,
+     21.96969696969694
+    ],
+    [
+     38.0,
+     26.363636363636346
+    ],
+    [
+     44.33333333333333,
+     30.75757575757575
+    ],
+    [
+     50.66666666666666,
+     35.15151515151513
+    ],
+    [
+     57.0,
+     39.54545454545453
+    ],
+    [
+     63.33333333333334,
+     43.93939393939394
+    ],
+    [
+     69.66666666666666,
+     48.333333333333314
+    ],
+    [
+     76.0,
+     52.72727272727272
+    ],
+    [
+     82.33333333333334,
+     57.121212121212125
+    ],
+    [
+     88.66666666666666,
+     61.5151515151515
+    ],
+    [
+     95.0,
+     65.9090909090909
+    ],
+    [
+     101.33333333333331,
+     70.30303030303031
+    ],
+    [
+     107.66666666666666,
+     74.69696969696966
+    ],
+    [
+     114.0,
+     79.0909090909091
+    ],
+    [
+     120.33333333333331,
+     83.48484848484847
+    ],
+    [
+     126.66666666666669,
+     87.8787878787879
+    ],
+    [
+     133.0,
+     92.27272727272725
+    ],
+    [
+     139.33333333333331,
+     96.66666666666666
+    ],
+    [
+     145.66666666666669,
+     101.06060606060606
+    ],
+    [
+     152.0,
+     105.45454545454547
+    ],
+    [
+     158.33333333333331,
+     109.84848484848484
+    ],
+    [
+     164.66666666666669,
+     114.24242424242425
+    ],
+    [
+     171.0,
+     118.63636363636363
+    ],
+    [
+     177.33333333333331,
+     123.030303030303
+    ],
+    [
+     183.66666666666666,
+     127.42424242424244
+    ],
+    [
+     190.0,
+     131.8181818181818
+    ],
+    [
+     196.33333333333331,
+     136.2121212121212
+    ],
+    [
+     202.66666666666663,
+     140.60606060606062
+    ],
+    [
+     209.0,
+     145.0
+    ],
+    [
+     215.33333333333331,
+     149.39393939393938
+    ],
+    [
+     221.66666666666669,
+     153.78787878787878
+    ],
+    [
+     228.0,
+     158.1818181818182
+    ],
+    [
+     234.33333333333337,
+     162.57575757575756
+    ],
+    [
+     240.66666666666663,
+     166.969696969697
+    ],
+    [
+     247.0,
+     171.36363636363637
+    ],
+    [
+     253.33333333333337,
+     175.75757575757575
+    ],
+    [
+     259.66666666666663,
+     180.15151515151513
+    ],
+    [
+     266.0,
+     184.54545454545456
+    ],
+    [
+     272.3333333333333,
+     188.93939393939394
+    ],
+    [
+     278.66666666666663,
+     193.33333333333331
+    ],
+    [
+     285.0,
+     197.72727272727275
+    ],
+    [
+     291.33333333333337,
+     202.12121212121212
+    ],
+    [
+     297.6666666666667,
+     206.5151515151515
+    ],
+    [
+     304.0,
+     210.90909090909088
+    ],
+    [
+     310.33333333333337,
+     215.3030303030303
+    ],
+    [
+     316.66666666666663,
+     219.6969696969697
+    ],
+    [
+     323.0,
+     224.09090909090907
+    ],
+    [
+     329.33333333333337,
+     228.4848484848485
+    ],
+    [
+     335.66666666666663,
+     232.87878787878788
+    ],
+    [
+     342.0,
+     237.27272727272725
+    ],
+    [
+     348.33333333333337,
+     241.66666666666669
+    ],
+    [
+     354.66666666666663,
+     246.06060606060606
+    ],
+    [
+     361.0,
+     250.45454545454544
+    ],
+    [
+     367.3333333333333,
+     254.84848484848487
+    ],
+    [
+     373.66666666666663,
+     259.2424242424242
+    ],
+    [
+     380.0,
+     263.6363636363636
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-union-minwage-7",
+   "type": "text",
+   "x": 349.59999999999997,
+   "y": 261.1818181818182,
+   "width": 105.375,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 203446970,
+   "version": 1,
+   "versionNonce": 506000311,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "노동수요 (MRP)",
+   "originalText": "노동수요 (MRP)",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-union-minwage-8",
+   "type": "line",
+   "x": 70.0,
+   "y": 96.36363636363637,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 693009395,
+   "version": 1,
+   "versionNonce": 74685452,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     3.1666666666666714,
+     4.393939393939377
+    ],
+    [
+     6.333333333333329,
+     8.787878787878782
+    ],
+    [
+     9.5,
+     13.181818181818159
+    ],
+    [
+     12.666666666666671,
+     17.575757575757592
+    ],
+    [
+     15.833333333333343,
+     21.96969696969694
+    ],
+    [
+     19.0,
+     26.363636363636346
+    ],
+    [
+     22.166666666666657,
+     30.75757575757575
+    ],
+    [
+     25.33333333333333,
+     35.15151515151513
+    ],
+    [
+     28.5,
+     39.54545454545453
+    ],
+    [
+     31.66666666666667,
+     43.93939393939394
+    ],
+    [
+     34.83333333333333,
+     48.333333333333314
+    ],
+    [
+     38.0,
+     52.72727272727272
+    ],
+    [
+     41.16666666666667,
+     57.121212121212125
+    ],
+    [
+     44.33333333333333,
+     61.5151515151515
+    ],
+    [
+     47.5,
+     65.9090909090909
+    ],
+    [
+     50.66666666666666,
+     70.30303030303031
+    ],
+    [
+     53.83333333333333,
+     74.69696969696966
+    ],
+    [
+     57.0,
+     79.0909090909091
+    ],
+    [
+     60.16666666666666,
+     83.48484848484847
+    ],
+    [
+     63.33333333333334,
+     87.8787878787879
+    ],
+    [
+     66.5,
+     92.27272727272725
+    ],
+    [
+     69.66666666666666,
+     96.66666666666666
+    ],
+    [
+     72.83333333333334,
+     101.06060606060606
+    ],
+    [
+     76.0,
+     105.45454545454547
+    ],
+    [
+     79.16666666666666,
+     109.84848484848484
+    ],
+    [
+     82.33333333333334,
+     114.24242424242425
+    ],
+    [
+     85.5,
+     118.63636363636363
+    ],
+    [
+     88.66666666666666,
+     123.030303030303
+    ],
+    [
+     91.83333333333331,
+     127.42424242424244
+    ],
+    [
+     95.0,
+     131.8181818181818
+    ],
+    [
+     98.16666666666666,
+     136.2121212121212
+    ],
+    [
+     101.33333333333331,
+     140.60606060606062
+    ],
+    [
+     104.5,
+     145.0
+    ],
+    [
+     107.66666666666666,
+     149.39393939393938
+    ],
+    [
+     110.83333333333334,
+     153.78787878787878
+    ],
+    [
+     114.0,
+     158.1818181818182
+    ],
+    [
+     117.16666666666669,
+     162.57575757575756
+    ],
+    [
+     120.33333333333331,
+     166.969696969697
+    ],
+    [
+     123.5,
+     171.36363636363637
+    ],
+    [
+     126.66666666666669,
+     175.75757575757575
+    ],
+    [
+     129.83333333333331,
+     180.15151515151513
+    ],
+    [
+     133.0,
+     184.54545454545456
+    ],
+    [
+     136.16666666666666,
+     188.93939393939394
+    ],
+    [
+     139.33333333333331,
+     193.33333333333331
+    ],
+    [
+     142.5,
+     197.72727272727275
+    ],
+    [
+     145.66666666666669,
+     202.12121212121212
+    ],
+    [
+     148.83333333333334,
+     206.5151515151515
+    ],
+    [
+     152.0,
+     210.90909090909088
+    ],
+    [
+     155.16666666666669,
+     215.3030303030303
+    ],
+    [
+     158.33333333333331,
+     219.6969696969697
+    ],
+    [
+     161.5,
+     224.09090909090907
+    ],
+    [
+     164.66666666666669,
+     228.4848484848485
+    ],
+    [
+     167.83333333333331,
+     232.87878787878788
+    ],
+    [
+     171.0,
+     237.27272727272725
+    ],
+    [
+     174.16666666666669,
+     241.66666666666669
+    ],
+    [
+     177.33333333333331,
+     246.06060606060606
+    ],
+    [
+     180.5,
+     250.45454545454544
+    ],
+    [
+     183.66666666666666,
+     254.84848484848487
+    ],
+    [
+     186.83333333333331,
+     259.2424242424242
+    ],
+    [
+     190.0,
+     263.6363636363636
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-union-minwage-9",
+   "type": "text",
+   "x": 250.8,
+   "y": 313.90909090909093,
+   "width": 22.53,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 668355007,
+   "version": 1,
+   "versionNonce": 948203828,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "MR",
+   "originalText": "MR",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-union-minwage-10",
+   "type": "line",
+   "x": 70.0,
+   "y": 333.6363636363636,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1141800877,
+   "version": 1,
+   "versionNonce": 1961688053,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     6.016666666666666,
+     -4.174242424242436
+    ],
+    [
+     12.033333333333331,
+     -8.348484848484816
+    ],
+    [
+     18.049999999999997,
+     -12.522727272727252
+    ],
+    [
+     24.066666666666663,
+     -16.69696969696969
+    ],
+    [
+     30.08333333333333,
+     -20.871212121212125
+    ],
+    [
+     36.099999999999994,
+     -25.04545454545456
+    ],
+    [
+     42.116666666666674,
+     -29.21969696969694
+    ],
+    [
+     48.133333333333326,
+     -33.39393939393938
+    ],
+    [
+     54.150000000000006,
+     -37.56818181818181
+    ],
+    [
+     60.16666666666666,
+     -41.74242424242425
+    ],
+    [
+     66.18333333333334,
+     -45.91666666666663
+    ],
+    [
+     72.19999999999999,
+     -50.090909090909065
+    ],
+    [
+     78.21666666666664,
+     -54.2651515151515
+    ],
+    [
+     84.23333333333335,
+     -58.43939393939394
+    ],
+    [
+     90.25,
+     -62.613636363636374
+    ],
+    [
+     96.26666666666665,
+     -66.78787878787875
+    ],
+    [
+     102.28333333333333,
+     -70.96212121212119
+    ],
+    [
+     108.30000000000001,
+     -75.13636363636363
+    ],
+    [
+     114.31666666666666,
+     -79.31060606060603
+    ],
+    [
+     120.33333333333331,
+     -83.4848484848485
+    ],
+    [
+     126.35000000000002,
+     -87.6590909090909
+    ],
+    [
+     132.36666666666667,
+     -91.83333333333331
+    ],
+    [
+     138.38333333333333,
+     -96.00757575757575
+    ],
+    [
+     144.4,
+     -100.18181818181816
+    ],
+    [
+     150.41666666666669,
+     -104.3560606060606
+    ],
+    [
+     156.4333333333333,
+     -108.53030303030303
+    ],
+    [
+     162.45,
+     -112.70454545454544
+    ],
+    [
+     168.46666666666667,
+     -116.87878787878788
+    ],
+    [
+     174.48333333333332,
+     -121.05303030303028
+    ],
+    [
+     180.5,
+     -125.22727272727272
+    ],
+    [
+     186.51666666666665,
+     -129.40151515151513
+    ],
+    [
+     192.5333333333333,
+     -133.57575757575756
+    ],
+    [
+     198.54999999999995,
+     -137.75
+    ],
+    [
+     204.56666666666666,
+     -141.9242424242424
+    ],
+    [
+     210.58333333333337,
+     -146.09848484848482
+    ],
+    [
+     216.60000000000002,
+     -150.27272727272728
+    ],
+    [
+     222.61666666666667,
+     -154.4469696969697
+    ],
+    [
+     228.63333333333333,
+     -158.6212121212121
+    ],
+    [
+     234.64999999999998,
+     -162.79545454545453
+    ],
+    [
+     240.66666666666663,
+     -166.96969696969697
+    ],
+    [
+     246.68333333333334,
+     -171.1439393939394
+    ],
+    [
+     252.70000000000005,
+     -175.3181818181818
+    ],
+    [
+     258.71666666666664,
+     -179.49242424242422
+    ],
+    [
+     264.73333333333335,
+     -183.66666666666666
+    ],
+    [
+     270.75,
+     -187.8409090909091
+    ],
+    [
+     276.76666666666665,
+     -192.01515151515147
+    ],
+    [
+     282.78333333333336,
+     -196.18939393939394
+    ],
+    [
+     288.8,
+     -200.36363636363637
+    ],
+    [
+     294.81666666666666,
+     -204.53787878787875
+    ],
+    [
+     300.83333333333337,
+     -208.71212121212122
+    ],
+    [
+     306.85,
+     -212.88636363636363
+    ],
+    [
+     312.8666666666666,
+     -217.06060606060603
+    ],
+    [
+     318.8833333333334,
+     -221.2348484848485
+    ],
+    [
+     324.9,
+     -225.4090909090909
+    ],
+    [
+     330.91666666666663,
+     -229.58333333333331
+    ],
+    [
+     336.93333333333334,
+     -233.75757575757575
+    ],
+    [
+     342.95,
+     -237.9318181818182
+    ],
+    [
+     348.96666666666664,
+     -242.10606060606057
+    ],
+    [
+     354.98333333333335,
+     -246.280303030303
+    ],
+    [
+     361.0,
+     -250.45454545454544
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-union-minwage-11",
+   "type": "text",
+   "x": 418.0,
+   "y": 71.36363636363637,
+   "width": 27.81,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1599166023,
+   "version": 1,
+   "versionNonce": 1389449218,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "공급",
+   "originalText": "공급",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-union-minwage-12",
+   "type": "line",
+   "x": 184.0,
+   "y": 175.45454545454547,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 989050538,
+   "version": 1,
+   "versionNonce": 1663072859,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     184.54545454545453
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-union-minwage-13",
+   "type": "line",
+   "x": 184.0,
+   "y": 175.45454545454547,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1020971354,
+   "version": 1,
+   "versionNonce": 1183105289,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     -114.0,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-union-minwage-14",
+   "type": "ellipse",
+   "x": 179.0,
+   "y": 170.45454545454547,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "#e03131",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 227312964,
+   "version": 1,
+   "versionNonce": 1576709279,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-union-minwage-15",
+   "type": "text",
+   "x": 175.096,
+   "y": 368,
+   "width": 17.808,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1116368228,
+   "version": 1,
+   "versionNonce": 1829718550,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "30",
+   "originalText": "30",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-union-minwage-16",
+   "type": "text",
+   "x": 44.891999999999996,
+   "y": 166.45454545454547,
+   "width": 17.108,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1798785483,
+   "version": 1,
+   "versionNonce": 2145411431,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "70",
+   "originalText": "70",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-union-minwage-17",
+   "type": "ellipse",
+   "x": 236.0,
+   "y": 210.0,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#adb5bd",
+   "backgroundColor": "#adb5bd",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 1894053853,
+   "version": 1,
+   "versionNonce": 1172470343,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-union-minwage-18",
+   "type": "text",
+   "x": 178.0245,
+   "y": 209.9090909090909,
+   "width": 57.551,
+   "height": 16.25,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1685236321,
+   "version": 1,
+   "versionNonce": 1825476849,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "DWL 225",
+   "originalText": "DWL 225",
+   "fontSize": 13,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-union-minwage-19",
+   "type": "arrow",
+   "x": 550,
+   "y": 360,
+   "width": 398,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1338906642,
+   "version": 1,
+   "versionNonce": 720068652,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     398,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-union-minwage-20",
+   "type": "arrow",
+   "x": 550,
+   "y": 360,
+   "width": 0,
+   "height": 308,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1232867125,
+   "version": 1,
+   "versionNonce": 1781667470,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     -308
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-union-minwage-21",
+   "type": "text",
+   "x": 952,
+   "y": 350,
+   "width": 8.688,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1516390162,
+   "version": 1,
+   "versionNonce": 1080275017,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "L",
+   "originalText": "L",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-union-minwage-22",
+   "type": "text",
+   "x": 538.456,
+   "y": 30,
+   "width": 11.088,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1738787720,
+   "version": 1,
+   "versionNonce": 91291698,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "w",
+   "originalText": "w",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-union-minwage-23",
+   "type": "text",
+   "x": 625.6410000000001,
+   "y": 19,
+   "width": 228.71799999999996,
+   "height": 21.25,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 2036967414,
+   "version": 1,
+   "versionNonce": 655504739,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "수요독점 + 최저임금 55: L = 45",
+   "originalText": "수요독점 + 최저임금 55: L = 45",
+   "fontSize": 17,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-union-minwage-24",
+   "type": "line",
+   "x": 550.0,
+   "y": 96.36363636363637,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1154029959,
+   "version": 1,
+   "versionNonce": 1972722959,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     6.333333333333371,
+     4.393939393939377
+    ],
+    [
+     12.666666666666629,
+     8.787878787878782
+    ],
+    [
+     19.0,
+     13.181818181818159
+    ],
+    [
+     25.33333333333337,
+     17.575757575757592
+    ],
+    [
+     31.66666666666663,
+     21.96969696969694
+    ],
+    [
+     38.0,
+     26.363636363636346
+    ],
+    [
+     44.33333333333337,
+     30.75757575757575
+    ],
+    [
+     50.66666666666663,
+     35.15151515151513
+    ],
+    [
+     57.0,
+     39.54545454545453
+    ],
+    [
+     63.33333333333337,
+     43.93939393939394
+    ],
+    [
+     69.66666666666663,
+     48.333333333333314
+    ],
+    [
+     76.0,
+     52.72727272727272
+    ],
+    [
+     82.33333333333337,
+     57.121212121212125
+    ],
+    [
+     88.66666666666663,
+     61.5151515151515
+    ],
+    [
+     95.0,
+     65.9090909090909
+    ],
+    [
+     101.33333333333337,
+     70.30303030303031
+    ],
+    [
+     107.66666666666663,
+     74.69696969696966
+    ],
+    [
+     114.0,
+     79.0909090909091
+    ],
+    [
+     120.33333333333337,
+     83.48484848484847
+    ],
+    [
+     126.66666666666674,
+     87.8787878787879
+    ],
+    [
+     133.0,
+     92.27272727272725
+    ],
+    [
+     139.33333333333326,
+     96.66666666666666
+    ],
+    [
+     145.66666666666674,
+     101.06060606060606
+    ],
+    [
+     152.0,
+     105.45454545454547
+    ],
+    [
+     158.33333333333326,
+     109.84848484848484
+    ],
+    [
+     164.66666666666674,
+     114.24242424242425
+    ],
+    [
+     171.0,
+     118.63636363636363
+    ],
+    [
+     177.33333333333326,
+     123.030303030303
+    ],
+    [
+     183.66666666666663,
+     127.42424242424244
+    ],
+    [
+     190.0,
+     131.8181818181818
+    ],
+    [
+     196.33333333333326,
+     136.2121212121212
+    ],
+    [
+     202.66666666666663,
+     140.60606060606062
+    ],
+    [
+     209.0,
+     145.0
+    ],
+    [
+     215.33333333333326,
+     149.39393939393938
+    ],
+    [
+     221.66666666666674,
+     153.78787878787878
+    ],
+    [
+     228.0,
+     158.1818181818182
+    ],
+    [
+     234.33333333333337,
+     162.57575757575756
+    ],
+    [
+     240.66666666666663,
+     166.969696969697
+    ],
+    [
+     247.0,
+     171.36363636363637
+    ],
+    [
+     253.33333333333337,
+     175.75757575757575
+    ],
+    [
+     259.66666666666663,
+     180.15151515151513
+    ],
+    [
+     266.0,
+     184.54545454545456
+    ],
+    [
+     272.33333333333326,
+     188.93939393939394
+    ],
+    [
+     278.66666666666663,
+     193.33333333333331
+    ],
+    [
+     285.0,
+     197.72727272727275
+    ],
+    [
+     291.33333333333337,
+     202.12121212121212
+    ],
+    [
+     297.66666666666674,
+     206.5151515151515
+    ],
+    [
+     304.0,
+     210.90909090909088
+    ],
+    [
+     310.33333333333337,
+     215.3030303030303
+    ],
+    [
+     316.66666666666663,
+     219.6969696969697
+    ],
+    [
+     323.0,
+     224.09090909090907
+    ],
+    [
+     329.33333333333337,
+     228.4848484848485
+    ],
+    [
+     335.66666666666663,
+     232.87878787878788
+    ],
+    [
+     342.0,
+     237.27272727272725
+    ],
+    [
+     348.33333333333337,
+     241.66666666666669
+    ],
+    [
+     354.66666666666663,
+     246.06060606060606
+    ],
+    [
+     361.0,
+     250.45454545454544
+    ],
+    [
+     367.33333333333326,
+     254.84848484848487
+    ],
+    [
+     373.66666666666663,
+     259.2424242424242
+    ],
+    [
+     380.0,
+     263.6363636363636
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-union-minwage-25",
+   "type": "text",
+   "x": 905.6,
+   "y": 313.90909090909093,
+   "width": 33.0,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1952338745,
+   "version": 1,
+   "versionNonce": 935083576,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "MRP",
+   "originalText": "MRP",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-union-minwage-26",
+   "type": "line",
+   "x": 550.0,
+   "y": 333.6363636363636,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 640579451,
+   "version": 1,
+   "versionNonce": 1250655107,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     6.0166666666666515,
+     -4.174242424242436
+    ],
+    [
+     12.033333333333303,
+     -8.348484848484816
+    ],
+    [
+     18.049999999999955,
+     -12.522727272727252
+    ],
+    [
+     24.066666666666606,
+     -16.69696969696969
+    ],
+    [
+     30.08333333333337,
+     -20.871212121212125
+    ],
+    [
+     36.10000000000002,
+     -25.04545454545456
+    ],
+    [
+     42.116666666666674,
+     -29.21969696969694
+    ],
+    [
+     48.133333333333326,
+     -33.39393939393938
+    ],
+    [
+     54.14999999999998,
+     -37.56818181818181
+    ],
+    [
+     60.16666666666663,
+     -41.74242424242425
+    ],
+    [
+     66.1833333333334,
+     -45.91666666666663
+    ],
+    [
+     72.20000000000005,
+     -50.090909090909065
+    ],
+    [
+     78.2166666666667,
+     -54.2651515151515
+    ],
+    [
+     84.23333333333335,
+     -58.43939393939394
+    ],
+    [
+     90.25,
+     -62.613636363636374
+    ],
+    [
+     96.26666666666665,
+     -66.78787878787875
+    ],
+    [
+     102.2833333333333,
+     -70.96212121212119
+    ],
+    [
+     108.29999999999995,
+     -75.13636363636363
+    ],
+    [
+     114.3166666666666,
+     -79.31060606060603
+    ],
+    [
+     120.33333333333337,
+     -83.4848484848485
+    ],
+    [
+     126.35000000000002,
+     -87.6590909090909
+    ],
+    [
+     132.36666666666667,
+     -91.83333333333331
+    ],
+    [
+     138.38333333333333,
+     -96.00757575757575
+    ],
+    [
+     144.39999999999998,
+     -100.18181818181816
+    ],
+    [
+     150.41666666666674,
+     -104.3560606060606
+    ],
+    [
+     156.43333333333328,
+     -108.53030303030303
+    ],
+    [
+     162.45000000000005,
+     -112.70454545454544
+    ],
+    [
+     168.4666666666667,
+     -116.87878787878788
+    ],
+    [
+     174.48333333333335,
+     -121.05303030303028
+    ],
+    [
+     180.5,
+     -125.22727272727272
+    ],
+    [
+     186.51666666666665,
+     -129.40151515151513
+    ],
+    [
+     192.5333333333333,
+     -133.57575757575756
+    ],
+    [
+     198.54999999999995,
+     -137.75
+    ],
+    [
+     204.5666666666666,
+     -141.9242424242424
+    ],
+    [
+     210.58333333333337,
+     -146.09848484848482
+    ],
+    [
+     216.60000000000002,
+     -150.27272727272728
+    ],
+    [
+     222.61666666666667,
+     -154.4469696969697
+    ],
+    [
+     228.63333333333333,
+     -158.6212121212121
+    ],
+    [
+     234.64999999999998,
+     -162.79545454545453
+    ],
+    [
+     240.66666666666663,
+     -166.96969696969697
+    ],
+    [
+     246.6833333333334,
+     -171.1439393939394
+    ],
+    [
+     252.70000000000005,
+     -175.3181818181818
+    ],
+    [
+     258.7166666666667,
+     -179.49242424242422
+    ],
+    [
+     264.73333333333335,
+     -183.66666666666666
+    ],
+    [
+     270.75,
+     -187.8409090909091
+    ],
+    [
+     276.76666666666665,
+     -192.01515151515147
+    ],
+    [
+     282.7833333333333,
+     -196.18939393939394
+    ],
+    [
+     288.79999999999995,
+     -200.36363636363637
+    ],
+    [
+     294.8166666666666,
+     -204.53787878787875
+    ],
+    [
+     300.83333333333337,
+     -208.71212121212122
+    ],
+    [
+     306.85,
+     -212.88636363636363
+    ],
+    [
+     312.86666666666656,
+     -217.06060606060603
+    ],
+    [
+     318.88333333333344,
+     -221.2348484848485
+    ],
+    [
+     324.9,
+     -225.4090909090909
+    ],
+    [
+     330.91666666666663,
+     -229.58333333333331
+    ],
+    [
+     336.9333333333334,
+     -233.75757575757575
+    ],
+    [
+     342.95000000000005,
+     -237.9318181818182
+    ],
+    [
+     348.9666666666667,
+     -242.10606060606057
+    ],
+    [
+     354.98333333333335,
+     -246.280303030303
+    ],
+    [
+     361.0,
+     -250.45454545454544
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-union-minwage-27",
+   "type": "text",
+   "x": 890.4,
+   "y": 76.63636363636363,
+   "width": 65.69999999999999,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1289739820,
+   "version": 1,
+   "versionNonce": 1829957769,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "AE (공급)",
+   "originalText": "AE (공급)",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-union-minwage-28",
+   "type": "line",
+   "x": 550.0,
+   "y": 333.6363636363636,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#f08c00",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.6,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1445404798,
+   "version": 1,
+   "versionNonce": 1468290617,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     3.0399999999999636,
+     -4.21818181818179
+    ],
+    [
+     6.080000000000041,
+     -8.436363636363637
+    ],
+    [
+     9.120000000000005,
+     -12.654545454545428
+    ],
+    [
+     12.159999999999968,
+     -16.872727272727275
+    ],
+    [
+     15.200000000000045,
+     -21.090909090909065
+    ],
+    [
+     18.24000000000001,
+     -25.309090909090912
+    ],
+    [
+     21.279999999999973,
+     -29.527272727272702
+    ],
+    [
+     24.32000000000005,
+     -33.74545454545455
+    ],
+    [
+     27.360000000000014,
+     -37.96363636363634
+    ],
+    [
+     30.399999999999977,
+     -42.18181818181819
+    ],
+    [
+     33.440000000000055,
+     -46.39999999999998
+    ],
+    [
+     36.48000000000002,
+     -50.618181818181824
+    ],
+    [
+     39.51999999999998,
+     -54.836363636363615
+    ],
+    [
+     42.559999999999945,
+     -59.05454545454546
+    ],
+    [
+     45.60000000000002,
+     -63.27272727272725
+    ],
+    [
+     48.639999999999986,
+     -67.4909090909091
+    ],
+    [
+     51.680000000000064,
+     -71.70909090909089
+    ],
+    [
+     54.72000000000003,
+     -75.92727272727274
+    ],
+    [
+     57.75999999999999,
+     -80.14545454545453
+    ],
+    [
+     60.799999999999955,
+     -84.36363636363637
+    ],
+    [
+     63.84000000000003,
+     -88.58181818181816
+    ],
+    [
+     66.88,
+     -92.80000000000001
+    ],
+    [
+     69.91999999999996,
+     -97.0181818181818
+    ],
+    [
+     72.96000000000004,
+     -101.23636363636362
+    ],
+    [
+     76.0,
+     -105.45454545454544
+    ],
+    [
+     79.03999999999996,
+     -109.67272727272726
+    ],
+    [
+     82.08000000000004,
+     -113.89090909090908
+    ],
+    [
+     85.12,
+     -118.1090909090909
+    ],
+    [
+     88.15999999999997,
+     -122.32727272727271
+    ],
+    [
+     91.20000000000005,
+     -126.54545454545453
+    ],
+    [
+     94.24000000000001,
+     -130.76363636363638
+    ],
+    [
+     97.27999999999997,
+     -134.98181818181817
+    ],
+    [
+     100.32000000000005,
+     -139.2
+    ],
+    [
+     103.36000000000001,
+     -143.41818181818184
+    ],
+    [
+     106.39999999999998,
+     -147.63636363636363
+    ],
+    [
+     109.44000000000005,
+     -151.85454545454544
+    ],
+    [
+     112.48000000000002,
+     -156.0727272727273
+    ],
+    [
+     115.51999999999998,
+     -160.29090909090905
+    ],
+    [
+     118.55999999999995,
+     -164.5090909090909
+    ],
+    [
+     121.60000000000002,
+     -168.72727272727272
+    ],
+    [
+     124.63999999999999,
+     -172.94545454545454
+    ],
+    [
+     127.68000000000006,
+     -177.16363636363639
+    ],
+    [
+     130.72000000000003,
+     -181.38181818181815
+    ],
+    [
+     133.76,
+     -185.6
+    ],
+    [
+     136.79999999999995,
+     -189.8181818181818
+    ],
+    [
+     139.84000000000003,
+     -194.0363636363636
+    ],
+    [
+     142.88,
+     -198.25454545454545
+    ],
+    [
+     145.92000000000007,
+     -202.47272727272724
+    ],
+    [
+     148.96000000000004,
+     -206.6909090909091
+    ],
+    [
+     152.0,
+     -210.9090909090909
+    ],
+    [
+     155.03999999999996,
+     -215.1272727272727
+    ],
+    [
+     158.08000000000004,
+     -219.34545454545454
+    ],
+    [
+     161.12,
+     -223.56363636363636
+    ],
+    [
+     164.16000000000008,
+     -227.7818181818182
+    ],
+    [
+     167.20000000000005,
+     -232.0
+    ],
+    [
+     170.24,
+     -236.2181818181818
+    ],
+    [
+     173.27999999999997,
+     -240.43636363636364
+    ],
+    [
+     176.31999999999994,
+     -244.65454545454543
+    ],
+    [
+     179.36,
+     -248.87272727272727
+    ],
+    [
+     182.39999999999998,
+     -253.09090909090907
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-union-minwage-29",
+   "type": "text",
+   "x": 730.8,
+   "y": 66.09090909090912,
+   "width": 22.095,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#f08c00",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1506300196,
+   "version": 1,
+   "versionNonce": 366291463,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "ME",
+   "originalText": "ME",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-union-minwage-30",
+   "type": "line",
+   "x": 550.0,
+   "y": 215.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#7048e8",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 4,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 342060593,
+   "version": 1,
+   "versionNonce": 1801198623,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     171.0,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-union-minwage-31",
+   "type": "line",
+   "x": 721.0,
+   "y": 215.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#7048e8",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 2004211213,
+   "version": 1,
+   "versionNonce": 1121722378,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     -118.63636363636363
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-union-minwage-32",
+   "type": "line",
+   "x": 721.0,
+   "y": 96.36363636363637,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#7048e8",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 4,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 884838818,
+   "version": 1,
+   "versionNonce": 1542929666,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.18999999999994088,
+     -0.26363636363635123
+    ],
+    [
+     0.37999999999999545,
+     -0.5272727272727593
+    ],
+    [
+     0.5699999999999363,
+     -0.7909090909090537
+    ],
+    [
+     0.7599999999999909,
+     -1.0545454545455186
+    ],
+    [
+     0.9500000000000455,
+     -1.3181818181818699
+    ],
+    [
+     1.1399999999999864,
+     -1.5818181818181642
+    ],
+    [
+     1.330000000000041,
+     -1.8454545454545723
+    ],
+    [
+     1.5199999999999818,
+     -2.1090909090909236
+    ],
+    [
+     1.7100000000000364,
+     -2.3727272727273316
+    ],
+    [
+     1.8999999999999773,
+     -2.636363636363683
+    ],
+    [
+     2.089999999999918,
+     -2.8999999999999773
+    ],
+    [
+     2.2799999999999727,
+     -3.1636363636363853
+    ],
+    [
+     2.4700000000000273,
+     -3.4272727272727366
+    ],
+    [
+     2.659999999999968,
+     -3.6909090909091447
+    ],
+    [
+     2.8500000000000227,
+     -3.954545454545439
+    ],
+    [
+     3.0399999999999636,
+     -4.21818181818179
+    ],
+    [
+     3.230000000000018,
+     -4.481818181818198
+    ],
+    [
+     3.419999999999959,
+     -4.74545454545455
+    ],
+    [
+     3.6100000000000136,
+     -5.009090909090901
+    ],
+    [
+     3.7999999999999545,
+     -5.272727272727252
+    ],
+    [
+     3.990000000000009,
+     -5.536363636363603
+    ],
+    [
+     4.180000000000064,
+     -5.800000000000011
+    ],
+    [
+     4.3700000000000045,
+     -6.063636363636363
+    ],
+    [
+     4.559999999999945,
+     -6.327272727272714
+    ],
+    [
+     4.75,
+     -6.590909090909065
+    ],
+    [
+     4.940000000000055,
+     -6.854545454545416
+    ],
+    [
+     5.1299999999999955,
+     -7.118181818181824
+    ],
+    [
+     5.319999999999936,
+     -7.381818181818176
+    ],
+    [
+     5.509999999999991,
+     -7.645454545454584
+    ],
+    [
+     5.7000000000000455,
+     -7.909090909090935
+    ],
+    [
+     5.889999999999986,
+     -8.172727272727286
+    ],
+    [
+     6.080000000000041,
+     -8.436363636363637
+    ],
+    [
+     6.269999999999982,
+     -8.699999999999989
+    ],
+    [
+     6.460000000000036,
+     -8.963636363636397
+    ],
+    [
+     6.649999999999977,
+     -9.227272727272748
+    ],
+    [
+     6.839999999999918,
+     -9.4909090909091
+    ],
+    [
+     7.029999999999973,
+     -9.75454545454545
+    ],
+    [
+     7.220000000000027,
+     -10.018181818181802
+    ],
+    [
+     7.410000000000082,
+     -10.28181818181821
+    ],
+    [
+     7.600000000000023,
+     -10.545454545454561
+    ],
+    [
+     7.789999999999964,
+     -10.809090909090912
+    ],
+    [
+     7.980000000000018,
+     -11.072727272727263
+    ],
+    [
+     8.169999999999959,
+     -11.336363636363615
+    ],
+    [
+     8.360000000000014,
+     -11.600000000000023
+    ],
+    [
+     8.549999999999955,
+     -11.863636363636374
+    ],
+    [
+     8.740000000000009,
+     -12.127272727272725
+    ],
+    [
+     8.930000000000064,
+     -12.390909090909133
+    ],
+    [
+     9.120000000000005,
+     -12.654545454545485
+    ],
+    [
+     9.309999999999945,
+     -12.918181818181836
+    ],
+    [
+     9.5,
+     -13.181818181818187
+    ],
+    [
+     9.690000000000055,
+     -13.445454545454538
+    ],
+    [
+     9.879999999999995,
+     -13.709090909090946
+    ],
+    [
+     10.069999999999936,
+     -13.972727272727298
+    ],
+    [
+     10.259999999999991,
+     -14.236363636363649
+    ],
+    [
+     10.450000000000045,
+     -14.5
+    ],
+    [
+     10.639999999999986,
+     -14.763636363636351
+    ],
+    [
+     10.830000000000041,
+     -15.02727272727276
+    ],
+    [
+     11.019999999999982,
+     -15.29090909090911
+    ],
+    [
+     11.210000000000036,
+     -15.554545454545462
+    ],
+    [
+     11.399999999999977,
+     -15.818181818181813
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-union-minwage-33",
+   "type": "text",
+   "x": 561.169,
+   "y": 191.45454545454544,
+   "width": 129.66200000000003,
+   "height": 16.25,
+   "angle": 0,
+   "strokeColor": "#7048e8",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 67413613,
+   "version": 1,
+   "versionNonce": 609427097,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "최저임금 아래 ME = 55",
+   "originalText": "최저임금 아래 ME = 55",
+   "fontSize": 13,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-union-minwage-34",
+   "type": "line",
+   "x": 721.0,
+   "y": 215.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 308781674,
+   "version": 1,
+   "versionNonce": 2036363987,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     145.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-union-minwage-35",
+   "type": "line",
+   "x": 721.0,
+   "y": 215.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 572491696,
+   "version": 1,
+   "versionNonce": 1141362938,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     -171.0,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-union-minwage-36",
+   "type": "ellipse",
+   "x": 716.0,
+   "y": 210.0,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "#e03131",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 456317815,
+   "version": 1,
+   "versionNonce": 1617589692,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-union-minwage-37",
+   "type": "text",
+   "x": 712.579,
+   "y": 368,
+   "width": 16.842,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1310702166,
+   "version": 1,
+   "versionNonce": 1702176600,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "45",
+   "originalText": "45",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-union-minwage-38",
+   "type": "text",
+   "x": 524.696,
+   "y": 206.0,
+   "width": 17.304,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1509348037,
+   "version": 1,
+   "versionNonce": 1181291391,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "55",
+   "originalText": "55",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-union-minwage-39",
+   "type": "ellipse",
+   "x": 659.0,
+   "y": 249.54545454545456,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#adb5bd",
+   "backgroundColor": "#adb5bd",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 839296770,
+   "version": 1,
+   "versionNonce": 1410349557,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-union-minwage-40",
+   "type": "text",
+   "x": 674.0,
+   "y": 257.54545454545456,
+   "width": 132.36,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#adb5bd",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 760350884,
+   "version": 1,
+   "versionNonce": 936766631,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "수요독점만 (30, 40)",
+   "originalText": "수요독점만 (30, 40)",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  }
+ ],
+ "appState": {
+  "gridSize": 20,
+  "viewBackgroundColor": "#ffffff"
+ },
+ "files": {}
+}

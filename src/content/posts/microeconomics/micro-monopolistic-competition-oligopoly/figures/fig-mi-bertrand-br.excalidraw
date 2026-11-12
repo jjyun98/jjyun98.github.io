@@ -1,0 +1,890 @@
+{
+ "type": "excalidraw",
+ "version": 2,
+ "source": "https://excalidraw.com",
+ "elements": [
+  {
+   "id": "mi-bertrand-br-0",
+   "type": "arrow",
+   "x": 80,
+   "y": 420,
+   "width": 418,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 366509607,
+   "version": 1,
+   "versionNonce": 1009176298,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     418,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-bertrand-br-1",
+   "type": "arrow",
+   "x": 80,
+   "y": 420,
+   "width": 0,
+   "height": 378,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1748563482,
+   "version": 1,
+   "versionNonce": 905111414,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     -378
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-bertrand-br-2",
+   "type": "text",
+   "x": 502,
+   "y": 410,
+   "width": 15.403839999999999,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1865907046,
+   "version": 1,
+   "versionNonce": 859648753,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "P1",
+   "originalText": "P1",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-bertrand-br-3",
+   "type": "text",
+   "x": 64.944,
+   "y": 20,
+   "width": 18.112,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 761526786,
+   "version": 1,
+   "versionNonce": 1975420052,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "P2",
+   "originalText": "P2",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-bertrand-br-4",
+   "type": "line",
+   "x": 80.0,
+   "y": 285.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 222996657,
+   "version": 1,
+   "versionNonce": 1655404722,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     6.666666666666671,
+     -1.5
+    ],
+    [
+     13.333333333333329,
+     -3.0
+    ],
+    [
+     20.0,
+     -4.5
+    ],
+    [
+     26.66666666666667,
+     -6.0
+    ],
+    [
+     33.33333333333333,
+     -7.5
+    ],
+    [
+     40.0,
+     -9.0
+    ],
+    [
+     46.66666666666666,
+     -10.5
+    ],
+    [
+     53.33333333333334,
+     -12.0
+    ],
+    [
+     60.0,
+     -13.5
+    ],
+    [
+     66.66666666666666,
+     -15.0
+    ],
+    [
+     73.33333333333331,
+     -16.5
+    ],
+    [
+     80.0,
+     -18.0
+    ],
+    [
+     86.66666666666669,
+     -19.5
+    ],
+    [
+     93.33333333333331,
+     -21.0
+    ],
+    [
+     100.0,
+     -22.5
+    ],
+    [
+     106.66666666666669,
+     -24.0
+    ],
+    [
+     113.33333333333331,
+     -25.5
+    ],
+    [
+     120.0,
+     -27.0
+    ],
+    [
+     126.66666666666666,
+     -28.5
+    ],
+    [
+     133.33333333333331,
+     -30.0
+    ],
+    [
+     140.0,
+     -31.5
+    ],
+    [
+     146.66666666666666,
+     -33.0
+    ],
+    [
+     153.33333333333334,
+     -34.5
+    ],
+    [
+     160.0,
+     -36.0
+    ],
+    [
+     166.66666666666669,
+     -37.5
+    ],
+    [
+     173.33333333333334,
+     -39.0
+    ],
+    [
+     180.0,
+     -40.5
+    ],
+    [
+     186.66666666666663,
+     -42.0
+    ],
+    [
+     193.33333333333337,
+     -43.5
+    ],
+    [
+     200.0,
+     -45.0
+    ],
+    [
+     206.66666666666669,
+     -46.5
+    ],
+    [
+     213.33333333333337,
+     -48.0
+    ],
+    [
+     220.0,
+     -49.49999999999997
+    ],
+    [
+     226.66666666666663,
+     -50.99999999999997
+    ],
+    [
+     233.33333333333337,
+     -52.5
+    ],
+    [
+     240.0,
+     -54.0
+    ],
+    [
+     246.66666666666669,
+     -55.5
+    ],
+    [
+     253.33333333333331,
+     -57.0
+    ],
+    [
+     260.0,
+     -58.5
+    ],
+    [
+     266.66666666666663,
+     -60.0
+    ],
+    [
+     273.3333333333333,
+     -61.50000000000003
+    ],
+    [
+     280.0,
+     -63.00000000000003
+    ],
+    [
+     286.6666666666667,
+     -64.5
+    ],
+    [
+     293.3333333333333,
+     -66.0
+    ],
+    [
+     300.0,
+     -67.5
+    ],
+    [
+     306.6666666666667,
+     -69.0
+    ],
+    [
+     313.3333333333333,
+     -70.5
+    ],
+    [
+     320.0,
+     -71.99999999999997
+    ],
+    [
+     326.6666666666667,
+     -73.49999999999997
+    ],
+    [
+     333.33333333333337,
+     -75.0
+    ],
+    [
+     340.0,
+     -76.5
+    ],
+    [
+     346.6666666666667,
+     -78.0
+    ],
+    [
+     353.3333333333333,
+     -79.5
+    ],
+    [
+     360.0,
+     -81.0
+    ],
+    [
+     366.66666666666663,
+     -82.5
+    ],
+    [
+     373.3333333333333,
+     -84.00000000000003
+    ],
+    [
+     380.0,
+     -85.50000000000003
+    ],
+    [
+     386.6666666666667,
+     -87.0
+    ],
+    [
+     393.3333333333333,
+     -88.5
+    ],
+    [
+     400.0,
+     -90.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-bertrand-br-5",
+   "type": "line",
+   "x": 230.0,
+   "y": 420.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 580767693,
+   "version": 1,
+   "versionNonce": 298339863,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     100.0,
+     -360.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-bertrand-br-6",
+   "type": "text",
+   "x": 299.20564,
+   "y": 162.99999999999997,
+   "width": 175.79435999999998,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 291070593,
+   "version": 1,
+   "versionNonce": 1606999143,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "기업 2의 반응: P2 = 3 + P1/4",
+   "originalText": "기업 2의 반응: P2 = 3 + P1/4",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-bertrand-br-7",
+   "type": "text",
+   "x": 335.0,
+   "y": 64.0,
+   "width": 171.97235999999998,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1208635276,
+   "version": 1,
+   "versionNonce": 1213862809,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "기업 1의 반응: P1 = 3 + P2/4",
+   "originalText": "기업 1의 반응: P1 = 3 + P2/4",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-bertrand-br-8",
+   "type": "line",
+   "x": 280.0,
+   "y": 240.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1585320604,
+   "version": 1,
+   "versionNonce": 1839186423,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     180.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-bertrand-br-9",
+   "type": "line",
+   "x": 280.0,
+   "y": 240.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1183674898,
+   "version": 1,
+   "versionNonce": 1314596012,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     -200.0,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-bertrand-br-10",
+   "type": "ellipse",
+   "x": 275.0,
+   "y": 235.0,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "#e03131",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 1359438596,
+   "version": 1,
+   "versionNonce": 1736637728,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-bertrand-br-11",
+   "type": "text",
+   "x": 290.0,
+   "y": 243.0,
+   "width": 155.40000000000003,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1785775555,
+   "version": 1,
+   "versionNonce": 874055980,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "내쉬균형 (4, 4): 이윤 12",
+   "originalText": "내쉬균형 (4, 4): 이윤 12",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-bertrand-br-12",
+   "type": "text",
+   "x": 275.905,
+   "y": 428,
+   "width": 8.19,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1932635984,
+   "version": 1,
+   "versionNonce": 966724003,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "4",
+   "originalText": "4",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-bertrand-br-13",
+   "type": "text",
+   "x": 63.81,
+   "y": 231.0,
+   "width": 8.19,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1143414021,
+   "version": 1,
+   "versionNonce": 1616053890,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "4",
+   "originalText": "4",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-bertrand-br-14",
+   "type": "ellipse",
+   "x": 375.0,
+   "y": 145.0,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#f08c00",
+   "backgroundColor": "#f08c00",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 590813159,
+   "version": 1,
+   "versionNonce": 1604913603,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-bertrand-br-15",
+   "type": "text",
+   "x": 390.0,
+   "y": 127.0,
+   "width": 129.225,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#f08c00",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 731480405,
+   "version": 1,
+   "versionNonce": 983399581,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "담합 (6, 6): 이윤 16",
+   "originalText": "담합 (6, 6): 이윤 16",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-bertrand-br-16",
+   "type": "line",
+   "x": 80.0,
+   "y": 420.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#adb5bd",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 596023948,
+   "version": 1,
+   "versionNonce": 1236674750,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     400.0,
+     -360.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  }
+ ],
+ "appState": {
+  "gridSize": 20,
+  "viewBackgroundColor": "#ffffff"
+ },
+ "files": {}
+}
