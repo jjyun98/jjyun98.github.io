@@ -1,0 +1,2394 @@
+{
+ "type": "excalidraw",
+ "version": 2,
+ "source": "https://excalidraw.com",
+ "elements": [
+  {
+   "id": "mi-risk-attitudes-0",
+   "type": "arrow",
+   "x": 60,
+   "y": 300,
+   "width": 258,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1505190766,
+   "version": 1,
+   "versionNonce": 1225041282,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     258,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-risk-attitudes-1",
+   "type": "arrow",
+   "x": 60,
+   "y": 300,
+   "width": 0,
+   "height": 238,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 74554656,
+   "version": 1,
+   "versionNonce": 1820636177,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     -238
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-risk-attitudes-2",
+   "type": "text",
+   "x": 322,
+   "y": 290,
+   "width": 12.576,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 98844372,
+   "version": 1,
+   "versionNonce": 1848245245,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "W",
+   "originalText": "W",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-3",
+   "type": "text",
+   "x": 48.16,
+   "y": 40,
+   "width": 11.68,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1735665678,
+   "version": 1,
+   "versionNonce": 1921626043,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "U",
+   "originalText": "U",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-4",
+   "type": "text",
+   "x": 128.7025,
+   "y": 19,
+   "width": 102.595,
+   "height": 21.25,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 801092982,
+   "version": 1,
+   "versionNonce": 1351075281,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "위험기피: 오목",
+   "originalText": "위험기피: 오목",
+   "fontSize": 17,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-5",
+   "type": "line",
+   "x": 60.0,
+   "y": 300.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1774263817,
+   "version": 1,
+   "versionNonce": 1980012846,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     4.0,
+     -28.401877872187697
+    ],
+    [
+     8.0,
+     -40.16632088371216
+    ],
+    [
+     12.0,
+     -49.19349550499538
+    ],
+    [
+     16.0,
+     -56.80375574437545
+    ],
+    [
+     20.0,
+     -63.50852961085883
+    ],
+    [
+     24.0,
+     -69.57010852370433
+    ],
+    [
+     28.0,
+     -75.14430561703705
+    ],
+    [
+     32.0,
+     -80.33264176742438
+    ],
+    [
+     36.0,
+     -85.20563361656318
+    ],
+    [
+     40.0,
+     -89.81462390204985
+    ],
+    [
+     44.0,
+     -94.19837224354427
+    ],
+    [
+     48.0,
+     -98.38699100999074
+    ],
+    [
+     52.0,
+     -102.40442698763889
+    ],
+    [
+     56.0,
+     -106.27009613872252
+    ],
+    [
+     60.0,
+     -110.0
+    ],
+    [
+     64.0,
+     -113.6075114887509
+    ],
+    [
+     68.0,
+     -117.10394243292296
+    ],
+    [
+     72.0,
+     -120.49896265113654
+    ],
+    [
+     76.0,
+     -123.80091545165033
+    ],
+    [
+     80.0,
+     -127.01705922171769
+    ],
+    [
+     84.0,
+     -130.15375522819156
+    ],
+    [
+     88.0,
+     -133.2166155802896
+    ],
+    [
+     92.0,
+     -136.21062122071586
+    ],
+    [
+     96.0,
+     -139.1402170474087
+    ],
+    [
+     100.0,
+     -142.00938936093863
+    ],
+    [
+     104.0,
+     -144.82172949296432
+    ],
+    [
+     108.0,
+     -147.58048651498612
+    ],
+    [
+     112.0,
+     -150.2886112340741
+    ],
+    [
+     116.0,
+     -152.94879317383754
+    ],
+    [
+     120.0,
+     -155.56349186104046
+    ],
+    [
+     124.0,
+     -158.1349634542174
+    ],
+    [
+     128.0,
+     -160.66528353484873
+    ],
+    [
+     132.0,
+     -163.1563667161046
+    ],
+    [
+     136.0,
+     -165.60998359599785
+    ],
+    [
+     139.99999999999997,
+     -168.02777548171412
+    ],
+    [
+     144.0,
+     -170.41126723312635
+    ],
+    [
+     148.0,
+     -172.76187851104964
+    ],
+    [
+     152.0,
+     -175.0809336659287
+    ],
+    [
+     156.0,
+     -177.3696704625681
+    ],
+    [
+     160.00000000000003,
+     -179.6292478040997
+    ],
+    [
+     164.0,
+     -181.86075259201291
+    ],
+    [
+     168.0,
+     -184.06520583749662
+    ],
+    [
+     172.0,
+     -186.2435681216043
+    ],
+    [
+     176.0,
+     -188.3967444870885
+    ],
+    [
+     180.0,
+     -190.52558883257652
+    ],
+    [
+     184.0,
+     -192.6309078696009
+    ],
+    [
+     188.0,
+     -194.7134646944924
+    ],
+    [
+     192.0,
+     -196.77398201998147
+    ],
+    [
+     196.0,
+     -198.81314510531402
+    ],
+    [
+     200.0,
+     -200.83160441856091
+    ],
+    [
+     204.0,
+     -202.82997806044355
+    ],
+    [
+     208.0,
+     -204.8088539752778
+    ],
+    [
+     212.0,
+     -206.76879197145138
+    ],
+    [
+     216.0,
+     -208.710325571113
+    ],
+    [
+     220.0,
+     -210.63396370639438
+    ],
+    [
+     224.0,
+     -212.54019227744507
+    ],
+    [
+     228.0,
+     -214.4294755857972
+    ],
+    [
+     232.0,
+     -216.3022576550385
+    ],
+    [
+     236.0,
+     -218.15896344943823
+    ],
+    [
+     240.0,
+     -220.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-risk-attitudes-6",
+   "type": "line",
+   "x": 120.0,
+   "y": 190.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#adb5bd",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.6,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 997236754,
+   "version": 1,
+   "versionNonce": 1687139346,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     120.0,
+     -80.52558883257652
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-risk-attitudes-7",
+   "type": "ellipse",
+   "x": 175.0,
+   "y": 139.43650813895954,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "#1971c2",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 977605037,
+   "version": 1,
+   "versionNonce": 675517017,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-risk-attitudes-8",
+   "type": "text",
+   "x": 127.945,
+   "y": 121.43650813895954,
+   "width": 44.055,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1928227957,
+   "version": 1,
+   "versionNonce": 117988868,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "U(20)",
+   "originalText": "U(20)",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-9",
+   "type": "ellipse",
+   "x": 175.0,
+   "y": 144.73720558371176,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "#e03131",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 1037865413,
+   "version": 1,
+   "versionNonce": 1976070539,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-risk-attitudes-10",
+   "type": "text",
+   "x": 188.0,
+   "y": 148.73720558371176,
+   "width": 36.09,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 398216298,
+   "version": 1,
+   "versionNonce": 19964463,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "E[U]",
+   "originalText": "E[U]",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-11",
+   "type": "line",
+   "x": 180.0,
+   "y": 300.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 2037032526,
+   "version": 1,
+   "versionNonce": 1757516497,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     -155.56349186104046
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-risk-attitudes-12",
+   "type": "text",
+   "x": 171.13400000000001,
+   "y": 309.0,
+   "width": 17.732,
+   "height": 16.25,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 425263648,
+   "version": 1,
+   "versionNonce": 1238221344,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "20",
+   "originalText": "20",
+   "fontSize": 13,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-13",
+   "type": "text",
+   "x": 112.9085,
+   "y": 309.0,
+   "width": 14.183,
+   "height": 16.25,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1728592245,
+   "version": 1,
+   "versionNonce": 1499245692,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "10",
+   "originalText": "10",
+   "fontSize": 13,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-14",
+   "type": "text",
+   "x": 231.732,
+   "y": 309.0,
+   "width": 16.536,
+   "height": 16.25,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1246257907,
+   "version": 1,
+   "versionNonce": 69588866,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "30",
+   "originalText": "30",
+   "fontSize": 13,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-15",
+   "type": "arrow",
+   "x": 375,
+   "y": 300,
+   "width": 258,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1241309792,
+   "version": 1,
+   "versionNonce": 1530572057,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     258,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-risk-attitudes-16",
+   "type": "arrow",
+   "x": 375,
+   "y": 300,
+   "width": 0,
+   "height": 238,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 2047988661,
+   "version": 1,
+   "versionNonce": 450907997,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     -238
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-risk-attitudes-17",
+   "type": "text",
+   "x": 637,
+   "y": 290,
+   "width": 12.576,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 716267682,
+   "version": 1,
+   "versionNonce": 71174745,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "W",
+   "originalText": "W",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-18",
+   "type": "text",
+   "x": 363.16,
+   "y": 40,
+   "width": 11.68,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1012749933,
+   "version": 1,
+   "versionNonce": 355788701,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "U",
+   "originalText": "U",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-19",
+   "type": "text",
+   "x": 443.9745,
+   "y": 19,
+   "width": 102.051,
+   "height": 21.25,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1138337462,
+   "version": 1,
+   "versionNonce": 232750486,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "위험중립: 직선",
+   "originalText": "위험중립: 직선",
+   "fontSize": 17,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-20",
+   "type": "line",
+   "x": 375.0,
+   "y": 300.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1350152166,
+   "version": 1,
+   "versionNonce": 1212632785,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     4.0,
+     -3.6666666666666856
+    ],
+    [
+     8.0,
+     -7.333333333333314
+    ],
+    [
+     12.0,
+     -11.0
+    ],
+    [
+     16.0,
+     -14.666666666666686
+    ],
+    [
+     20.0,
+     -18.333333333333314
+    ],
+    [
+     24.0,
+     -22.0
+    ],
+    [
+     28.0,
+     -25.666666666666686
+    ],
+    [
+     32.0,
+     -29.333333333333314
+    ],
+    [
+     36.0,
+     -33.0
+    ],
+    [
+     40.0,
+     -36.666666666666686
+    ],
+    [
+     44.0,
+     -40.333333333333314
+    ],
+    [
+     48.0,
+     -44.0
+    ],
+    [
+     52.0,
+     -47.666666666666686
+    ],
+    [
+     56.0,
+     -51.333333333333314
+    ],
+    [
+     60.0,
+     -55.0
+    ],
+    [
+     64.0,
+     -58.66666666666666
+    ],
+    [
+     68.0,
+     -62.333333333333314
+    ],
+    [
+     72.0,
+     -66.0
+    ],
+    [
+     76.0,
+     -69.66666666666666
+    ],
+    [
+     80.0,
+     -73.33333333333331
+    ],
+    [
+     84.0,
+     -77.0
+    ],
+    [
+     88.0,
+     -80.66666666666669
+    ],
+    [
+     92.0,
+     -84.33333333333331
+    ],
+    [
+     96.0,
+     -88.0
+    ],
+    [
+     100.0,
+     -91.66666666666669
+    ],
+    [
+     104.0,
+     -95.33333333333334
+    ],
+    [
+     108.0,
+     -99.0
+    ],
+    [
+     112.0,
+     -102.66666666666666
+    ],
+    [
+     116.0,
+     -106.33333333333331
+    ],
+    [
+     120.0,
+     -110.0
+    ],
+    [
+     124.0,
+     -113.66666666666669
+    ],
+    [
+     128.0,
+     -117.33333333333331
+    ],
+    [
+     132.0,
+     -121.0
+    ],
+    [
+     136.0,
+     -124.66666666666666
+    ],
+    [
+     140.0,
+     -128.33333333333334
+    ],
+    [
+     144.0,
+     -132.0
+    ],
+    [
+     148.0,
+     -135.66666666666669
+    ],
+    [
+     152.0,
+     -139.33333333333331
+    ],
+    [
+     156.0,
+     -143.0
+    ],
+    [
+     160.0,
+     -146.66666666666666
+    ],
+    [
+     164.0,
+     -150.33333333333331
+    ],
+    [
+     168.0,
+     -154.00000000000003
+    ],
+    [
+     172.0,
+     -157.66666666666666
+    ],
+    [
+     176.0,
+     -161.33333333333334
+    ],
+    [
+     180.0,
+     -165.0
+    ],
+    [
+     184.0,
+     -168.66666666666666
+    ],
+    [
+     188.0,
+     -172.33333333333334
+    ],
+    [
+     192.0,
+     -175.99999999999997
+    ],
+    [
+     196.0,
+     -179.66666666666669
+    ],
+    [
+     200.0,
+     -183.33333333333334
+    ],
+    [
+     204.0,
+     -187.0
+    ],
+    [
+     208.0,
+     -190.66666666666669
+    ],
+    [
+     212.0,
+     -194.33333333333331
+    ],
+    [
+     216.0,
+     -198.0
+    ],
+    [
+     220.0,
+     -201.66666666666666
+    ],
+    [
+     224.0,
+     -205.33333333333331
+    ],
+    [
+     228.0,
+     -209.00000000000003
+    ],
+    [
+     232.0,
+     -212.66666666666666
+    ],
+    [
+     236.0,
+     -216.33333333333334
+    ],
+    [
+     240.0,
+     -220.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-risk-attitudes-21",
+   "type": "line",
+   "x": 435.0,
+   "y": 245.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#adb5bd",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.6,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1009427714,
+   "version": 1,
+   "versionNonce": 1924071338,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     120.0,
+     -110.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-risk-attitudes-22",
+   "type": "ellipse",
+   "x": 490.0,
+   "y": 185.0,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "#1971c2",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 1260651916,
+   "version": 1,
+   "versionNonce": 883620637,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-risk-attitudes-23",
+   "type": "text",
+   "x": 442.945,
+   "y": 167.0,
+   "width": 44.055,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 751094407,
+   "version": 1,
+   "versionNonce": 1645629729,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "U(20)",
+   "originalText": "U(20)",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-24",
+   "type": "ellipse",
+   "x": 490.0,
+   "y": 185.0,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "#e03131",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 1418387591,
+   "version": 1,
+   "versionNonce": 767473215,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-risk-attitudes-25",
+   "type": "text",
+   "x": 503.0,
+   "y": 189.0,
+   "width": 36.09,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 2004100886,
+   "version": 1,
+   "versionNonce": 1262864343,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "E[U]",
+   "originalText": "E[U]",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-26",
+   "type": "line",
+   "x": 495.0,
+   "y": 300.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 774058298,
+   "version": 1,
+   "versionNonce": 1012596044,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     -110.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-risk-attitudes-27",
+   "type": "text",
+   "x": 486.134,
+   "y": 309.0,
+   "width": 17.732,
+   "height": 16.25,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1806466693,
+   "version": 1,
+   "versionNonce": 1678828404,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "20",
+   "originalText": "20",
+   "fontSize": 13,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-28",
+   "type": "text",
+   "x": 427.9085,
+   "y": 309.0,
+   "width": 14.183,
+   "height": 16.25,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 107748615,
+   "version": 1,
+   "versionNonce": 1003298019,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "10",
+   "originalText": "10",
+   "fontSize": 13,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-29",
+   "type": "text",
+   "x": 546.732,
+   "y": 309.0,
+   "width": 16.536,
+   "height": 16.25,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 2146943159,
+   "version": 1,
+   "versionNonce": 248703353,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "30",
+   "originalText": "30",
+   "fontSize": 13,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-30",
+   "type": "arrow",
+   "x": 690,
+   "y": 300,
+   "width": 258,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 536384028,
+   "version": 1,
+   "versionNonce": 1818076408,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     258,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-risk-attitudes-31",
+   "type": "arrow",
+   "x": 690,
+   "y": 300,
+   "width": 0,
+   "height": 238,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1808988829,
+   "version": 1,
+   "versionNonce": 1187824017,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     -238
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-risk-attitudes-32",
+   "type": "text",
+   "x": 952,
+   "y": 290,
+   "width": 12.576,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1708825259,
+   "version": 1,
+   "versionNonce": 616074695,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "W",
+   "originalText": "W",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-33",
+   "type": "text",
+   "x": 678.16,
+   "y": 40,
+   "width": 11.68,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 264950799,
+   "version": 1,
+   "versionNonce": 2017996524,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "U",
+   "originalText": "U",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-34",
+   "type": "text",
+   "x": 758.4135,
+   "y": 19,
+   "width": 103.173,
+   "height": 21.25,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 449670022,
+   "version": 1,
+   "versionNonce": 421310998,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "위험선호: 볼록",
+   "originalText": "위험선호: 볼록",
+   "fontSize": 17,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-35",
+   "type": "line",
+   "x": 690.0,
+   "y": 300.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1097992280,
+   "version": 1,
+   "versionNonce": 1072980054,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     4.0,
+     -0.06111111111113132
+    ],
+    [
+     8.0,
+     -0.24444444444446844
+    ],
+    [
+     12.0,
+     -0.5500000000000114
+    ],
+    [
+     16.0,
+     -0.9777777777777601
+    ],
+    [
+     20.0,
+     -1.5277777777777715
+    ],
+    [
+     24.0,
+     -2.1999999999999886
+    ],
+    [
+     28.0,
+     -2.9944444444444684
+    ],
+    [
+     32.0,
+     -3.911111111111097
+    ],
+    [
+     36.0,
+     -4.949999999999989
+    ],
+    [
+     40.0,
+     -6.111111111111086
+    ],
+    [
+     44.0,
+     -7.394444444444446
+    ],
+    [
+     48.0,
+     -8.800000000000011
+    ],
+    [
+     52.0,
+     -10.327777777777783
+    ],
+    [
+     56.0,
+     -11.97777777777776
+    ],
+    [
+     60.0,
+     -13.75
+    ],
+    [
+     64.0,
+     -15.644444444444446
+    ],
+    [
+     68.0,
+     -17.661111111111097
+    ],
+    [
+     72.0,
+     -19.80000000000001
+    ],
+    [
+     76.0,
+     -22.06111111111113
+    ],
+    [
+     80.0,
+     -24.444444444444457
+    ],
+    [
+     84.0,
+     -26.94999999999999
+    ],
+    [
+     88.0,
+     -29.577777777777783
+    ],
+    [
+     92.0,
+     -32.32777777777778
+    ],
+    [
+     96.0,
+     -35.19999999999999
+    ],
+    [
+     100.0,
+     -38.19444444444446
+    ],
+    [
+     104.0,
+     -41.31111111111113
+    ],
+    [
+     108.0,
+     -44.55000000000001
+    ],
+    [
+     112.0,
+     -47.9111111111111
+    ],
+    [
+     116.0,
+     -51.394444444444446
+    ],
+    [
+     120.0,
+     -55.0
+    ],
+    [
+     124.0,
+     -58.72777777777779
+    ],
+    [
+     128.0,
+     -62.57777777777778
+    ],
+    [
+     132.0,
+     -66.55000000000001
+    ],
+    [
+     136.0,
+     -70.64444444444445
+    ],
+    [
+     140.0,
+     -74.86111111111109
+    ],
+    [
+     144.0,
+     -79.19999999999999
+    ],
+    [
+     148.0,
+     -83.66111111111115
+    ],
+    [
+     152.0,
+     -88.24444444444441
+    ],
+    [
+     156.0,
+     -92.94999999999999
+    ],
+    [
+     160.0,
+     -97.77777777777777
+    ],
+    [
+     164.0,
+     -102.72777777777776
+    ],
+    [
+     168.0,
+     -107.79999999999998
+    ],
+    [
+     172.0,
+     -112.99444444444447
+    ],
+    [
+     176.0,
+     -118.31111111111107
+    ],
+    [
+     180.0,
+     -123.75
+    ],
+    [
+     184.0,
+     -129.31111111111113
+    ],
+    [
+     188.0,
+     -134.99444444444444
+    ],
+    [
+     192.0,
+     -140.80000000000004
+    ],
+    [
+     196.0,
+     -146.7277777777778
+    ],
+    [
+     200.0,
+     -152.7777777777778
+    ],
+    [
+     204.0,
+     -158.94999999999996
+    ],
+    [
+     208.0,
+     -165.2444444444444
+    ],
+    [
+     212.0,
+     -171.66111111111115
+    ],
+    [
+     216.0,
+     -178.20000000000002
+    ],
+    [
+     220.0,
+     -184.8611111111111
+    ],
+    [
+     224.0,
+     -191.64444444444445
+    ],
+    [
+     228.0,
+     -198.54999999999998
+    ],
+    [
+     232.0,
+     -205.57777777777775
+    ],
+    [
+     236.0,
+     -212.72777777777782
+    ],
+    [
+     240.0,
+     -220.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-risk-attitudes-36",
+   "type": "line",
+   "x": 750.0,
+   "y": 286.25,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#adb5bd",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.6,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1255483310,
+   "version": 1,
+   "versionNonce": 586303460,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     120.0,
+     -110.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-risk-attitudes-37",
+   "type": "ellipse",
+   "x": 805.0,
+   "y": 240.0,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "#1971c2",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 1091845765,
+   "version": 1,
+   "versionNonce": 1283191305,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-risk-attitudes-38",
+   "type": "text",
+   "x": 757.945,
+   "y": 222.0,
+   "width": 44.055,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1022440522,
+   "version": 1,
+   "versionNonce": 1404452268,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "U(20)",
+   "originalText": "U(20)",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-39",
+   "type": "ellipse",
+   "x": 805.0,
+   "y": 226.25,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "#e03131",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 1773938826,
+   "version": 1,
+   "versionNonce": 335181021,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-risk-attitudes-40",
+   "type": "text",
+   "x": 818.0,
+   "y": 230.25,
+   "width": 36.09,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1211611180,
+   "version": 1,
+   "versionNonce": 2138437584,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "E[U]",
+   "originalText": "E[U]",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-41",
+   "type": "line",
+   "x": 810.0,
+   "y": 300.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1500542242,
+   "version": 1,
+   "versionNonce": 347751749,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     -68.75
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-risk-attitudes-42",
+   "type": "text",
+   "x": 801.134,
+   "y": 309.0,
+   "width": 17.732,
+   "height": 16.25,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 327576105,
+   "version": 1,
+   "versionNonce": 799362771,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "20",
+   "originalText": "20",
+   "fontSize": 13,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-43",
+   "type": "text",
+   "x": 742.9085,
+   "y": 309.0,
+   "width": 14.183,
+   "height": 16.25,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1348681181,
+   "version": 1,
+   "versionNonce": 2052820656,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "10",
+   "originalText": "10",
+   "fontSize": 13,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-risk-attitudes-44",
+   "type": "text",
+   "x": 861.732,
+   "y": 309.0,
+   "width": 16.536,
+   "height": 16.25,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 2053038743,
+   "version": 1,
+   "versionNonce": 708079153,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "30",
+   "originalText": "30",
+   "fontSize": 13,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  }
+ ],
+ "appState": {
+  "gridSize": 20,
+  "viewBackgroundColor": "#ffffff"
+ },
+ "files": {}
+}

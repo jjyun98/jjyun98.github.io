@@ -1,0 +1,2264 @@
+{
+ "type": "excalidraw",
+ "version": 2,
+ "source": "https://excalidraw.com",
+ "elements": [
+  {
+   "id": "mi-movement-shift-0",
+   "type": "arrow",
+   "x": 70,
+   "y": 340,
+   "width": 378,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1710794921,
+   "version": 1,
+   "versionNonce": 1994127595,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     378,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-movement-shift-1",
+   "type": "arrow",
+   "x": 70,
+   "y": 340,
+   "width": 0,
+   "height": 278,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 425279063,
+   "version": 1,
+   "versionNonce": 1852642174,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     -278
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-movement-shift-2",
+   "type": "text",
+   "x": 452,
+   "y": 330,
+   "width": 12.288,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1938087759,
+   "version": 1,
+   "versionNonce": 810261883,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "Q",
+   "originalText": "Q",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-movement-shift-3",
+   "type": "text",
+   "x": 58.416,
+   "y": 40,
+   "width": 11.168,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1687698935,
+   "version": 1,
+   "versionNonce": 344076899,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "P",
+   "originalText": "P",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-movement-shift-4",
+   "type": "text",
+   "x": 85.02349999999998,
+   "y": 19,
+   "width": 329.95300000000003,
+   "height": 21.25,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 873337925,
+   "version": 1,
+   "versionNonce": 1550440338,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "가격 변화: 수요곡선 위의 이동 (수요량의 변화)",
+   "originalText": "가격 변화: 수요곡선 위의 이동 (수요량의 변화)",
+   "fontSize": 17,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-movement-shift-5",
+   "type": "line",
+   "x": 70.0,
+   "y": 123.33333333333331,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 804173888,
+   "version": 1,
+   "versionNonce": 1211648791,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     6.0,
+     3.6111111111111427
+    ],
+    [
+     12.0,
+     7.2222222222222285
+    ],
+    [
+     18.0,
+     10.833333333333371
+    ],
+    [
+     24.0,
+     14.444444444444457
+    ],
+    [
+     30.0,
+     18.05555555555557
+    ],
+    [
+     36.0,
+     21.666666666666686
+    ],
+    [
+     42.0,
+     25.2777777777778
+    ],
+    [
+     48.0,
+     28.888888888888914
+    ],
+    [
+     54.0,
+     32.5
+    ],
+    [
+     60.0,
+     36.11111111111114
+    ],
+    [
+     66.0,
+     39.72222222222223
+    ],
+    [
+     72.0,
+     43.33333333333337
+    ],
+    [
+     78.0,
+     46.94444444444446
+    ],
+    [
+     84.0,
+     50.55555555555557
+    ],
+    [
+     90.0,
+     54.166666666666686
+    ],
+    [
+     96.0,
+     57.7777777777778
+    ],
+    [
+     102.0,
+     61.388888888888914
+    ],
+    [
+     108.0,
+     65.0
+    ],
+    [
+     114.0,
+     68.61111111111114
+    ],
+    [
+     120.0,
+     72.22222222222226
+    ],
+    [
+     126.0,
+     75.83333333333337
+    ],
+    [
+     132.0,
+     79.44444444444446
+    ],
+    [
+     138.0,
+     83.0555555555556
+    ],
+    [
+     144.0,
+     86.66666666666669
+    ],
+    [
+     150.0,
+     90.2777777777778
+    ],
+    [
+     156.0,
+     93.88888888888891
+    ],
+    [
+     162.0,
+     97.50000000000003
+    ],
+    [
+     167.99999999999997,
+     101.11111111111114
+    ],
+    [
+     174.0,
+     104.72222222222223
+    ],
+    [
+     180.0,
+     108.33333333333334
+    ],
+    [
+     185.99999999999997,
+     111.94444444444446
+    ],
+    [
+     192.0,
+     115.55555555555557
+    ],
+    [
+     198.0,
+     119.16666666666669
+    ],
+    [
+     204.0,
+     122.7777777777778
+    ],
+    [
+     210.0,
+     126.38888888888891
+    ],
+    [
+     216.0,
+     130.00000000000003
+    ],
+    [
+     222.0,
+     133.61111111111114
+    ],
+    [
+     228.0,
+     137.22222222222223
+    ],
+    [
+     234.0,
+     140.83333333333331
+    ],
+    [
+     240.0,
+     144.44444444444446
+    ],
+    [
+     246.0,
+     148.05555555555554
+    ],
+    [
+     252.0,
+     151.66666666666669
+    ],
+    [
+     258.0,
+     155.27777777777783
+    ],
+    [
+     264.0,
+     158.8888888888889
+    ],
+    [
+     270.0,
+     162.5
+    ],
+    [
+     276.0,
+     166.11111111111114
+    ],
+    [
+     282.0,
+     169.72222222222223
+    ],
+    [
+     288.0,
+     173.33333333333337
+    ],
+    [
+     294.00000000000006,
+     176.94444444444446
+    ],
+    [
+     300.0,
+     180.55555555555554
+    ],
+    [
+     306.0,
+     184.16666666666669
+    ],
+    [
+     312.0,
+     187.77777777777783
+    ],
+    [
+     318.0,
+     191.3888888888889
+    ],
+    [
+     324.0,
+     195.0
+    ],
+    [
+     330.0,
+     198.61111111111114
+    ],
+    [
+     335.99999999999994,
+     202.22222222222223
+    ],
+    [
+     342.0,
+     205.83333333333337
+    ],
+    [
+     348.0,
+     209.44444444444446
+    ],
+    [
+     354.0,
+     213.05555555555554
+    ],
+    [
+     360.0,
+     216.66666666666669
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-movement-shift-6",
+   "type": "text",
+   "x": 414.4,
+   "y": 302.0,
+   "width": 11.7,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1661454321,
+   "version": 1,
+   "versionNonce": 860979153,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "D",
+   "originalText": "D",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-movement-shift-7",
+   "type": "line",
+   "x": 214.0,
+   "y": 210.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1677574039,
+   "version": 1,
+   "versionNonce": 1228598851,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     130.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-movement-shift-8",
+   "type": "line",
+   "x": 214.0,
+   "y": 210.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1305225664,
+   "version": 1,
+   "versionNonce": 1888125236,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     -144.0,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-movement-shift-9",
+   "type": "ellipse",
+   "x": 209.0,
+   "y": 205.0,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "#e03131",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 65796033,
+   "version": 1,
+   "versionNonce": 1582884448,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-movement-shift-10",
+   "type": "text",
+   "x": 222.0,
+   "y": 187.0,
+   "width": 10.14,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1521462928,
+   "version": 1,
+   "versionNonce": 1603807918,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "A",
+   "originalText": "A",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-movement-shift-11",
+   "type": "text",
+   "x": 205.257,
+   "y": 348,
+   "width": 17.485999999999997,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1980350259,
+   "version": 1,
+   "versionNonce": 1058932889,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "40",
+   "originalText": "40",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-movement-shift-12",
+   "type": "text",
+   "x": 44.192,
+   "y": 201.0,
+   "width": 17.808,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1535319879,
+   "version": 1,
+   "versionNonce": 1508664390,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "30",
+   "originalText": "30",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-movement-shift-13",
+   "type": "line",
+   "x": 178.0,
+   "y": 188.33333333333331,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1408260711,
+   "version": 1,
+   "versionNonce": 1316042117,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     151.66666666666669
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-movement-shift-14",
+   "type": "line",
+   "x": 178.0,
+   "y": 188.33333333333331,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 2012514143,
+   "version": 1,
+   "versionNonce": 402743854,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     -108.0,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-movement-shift-15",
+   "type": "ellipse",
+   "x": 173.0,
+   "y": 183.33333333333331,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#f08c00",
+   "backgroundColor": "#f08c00",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 1077989191,
+   "version": 1,
+   "versionNonce": 1575347951,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-movement-shift-16",
+   "type": "text",
+   "x": 186.0,
+   "y": 165.33333333333331,
+   "width": 11.415,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#f08c00",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1313259733,
+   "version": 1,
+   "versionNonce": 1989339341,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "B",
+   "originalText": "B",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-movement-shift-17",
+   "type": "text",
+   "x": 169.096,
+   "y": 348,
+   "width": 17.808,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 319216034,
+   "version": 1,
+   "versionNonce": 40784086,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "30",
+   "originalText": "30",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-movement-shift-18",
+   "type": "text",
+   "x": 44.836,
+   "y": 179.33333333333331,
+   "width": 17.164,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1210885370,
+   "version": 1,
+   "versionNonce": 1884913984,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "35",
+   "originalText": "35",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-movement-shift-19",
+   "type": "arrow",
+   "x": 210.4,
+   "y": 203.5,
+   "width": 27.0,
+   "height": 13.0,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 216886904,
+   "version": 1,
+   "versionNonce": 1366427677,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     -27.0,
+     -13.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-movement-shift-20",
+   "type": "text",
+   "x": 232.0,
+   "y": 100.66666666666666,
+   "width": 249.59199999999996,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 278267894,
+   "version": 1,
+   "versionNonce": 214012859,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "가격 30에서 35로, 수요량 40에서 30으로",
+   "originalText": "가격 30에서 35로, 수요량 40에서 30으로",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-movement-shift-21",
+   "type": "arrow",
+   "x": 550,
+   "y": 340,
+   "width": 378,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1852608072,
+   "version": 1,
+   "versionNonce": 1893812532,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     378,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-movement-shift-22",
+   "type": "arrow",
+   "x": 550,
+   "y": 340,
+   "width": 0,
+   "height": 278,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1960925721,
+   "version": 1,
+   "versionNonce": 161667138,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     -278
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-movement-shift-23",
+   "type": "text",
+   "x": 932,
+   "y": 330,
+   "width": 12.288,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 841843078,
+   "version": 1,
+   "versionNonce": 191702479,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "Q",
+   "originalText": "Q",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-movement-shift-24",
+   "type": "text",
+   "x": 538.416,
+   "y": 40,
+   "width": 11.168,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 658444245,
+   "version": 1,
+   "versionNonce": 748583565,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "P",
+   "originalText": "P",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-movement-shift-25",
+   "type": "text",
+   "x": 583.1455,
+   "y": 19,
+   "width": 293.709,
+   "height": 21.25,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 356791422,
+   "version": 1,
+   "versionNonce": 858494065,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "소득 변화: 수요곡선의 이동 (수요의 변화)",
+   "originalText": "소득 변화: 수요곡선의 이동 (수요의 변화)",
+   "fontSize": 17,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-movement-shift-26",
+   "type": "line",
+   "x": 550.0,
+   "y": 123.33333333333331,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 76197161,
+   "version": 1,
+   "versionNonce": 320169468,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     6.0,
+     3.6111111111111427
+    ],
+    [
+     12.0,
+     7.2222222222222285
+    ],
+    [
+     18.0,
+     10.833333333333371
+    ],
+    [
+     24.0,
+     14.444444444444457
+    ],
+    [
+     30.0,
+     18.05555555555557
+    ],
+    [
+     36.0,
+     21.666666666666686
+    ],
+    [
+     42.0,
+     25.2777777777778
+    ],
+    [
+     48.0,
+     28.888888888888914
+    ],
+    [
+     54.0,
+     32.5
+    ],
+    [
+     60.0,
+     36.11111111111114
+    ],
+    [
+     66.0,
+     39.72222222222223
+    ],
+    [
+     72.0,
+     43.33333333333337
+    ],
+    [
+     78.0,
+     46.94444444444446
+    ],
+    [
+     84.0,
+     50.55555555555557
+    ],
+    [
+     90.0,
+     54.166666666666686
+    ],
+    [
+     96.0,
+     57.7777777777778
+    ],
+    [
+     102.0,
+     61.388888888888914
+    ],
+    [
+     108.0,
+     65.0
+    ],
+    [
+     114.0,
+     68.61111111111114
+    ],
+    [
+     120.0,
+     72.22222222222226
+    ],
+    [
+     126.0,
+     75.83333333333337
+    ],
+    [
+     132.0,
+     79.44444444444446
+    ],
+    [
+     138.0,
+     83.0555555555556
+    ],
+    [
+     144.0,
+     86.66666666666669
+    ],
+    [
+     150.0,
+     90.2777777777778
+    ],
+    [
+     156.0,
+     93.88888888888891
+    ],
+    [
+     162.0,
+     97.50000000000003
+    ],
+    [
+     168.0,
+     101.11111111111114
+    ],
+    [
+     174.0,
+     104.72222222222223
+    ],
+    [
+     180.0,
+     108.33333333333334
+    ],
+    [
+     186.0,
+     111.94444444444446
+    ],
+    [
+     192.0,
+     115.55555555555557
+    ],
+    [
+     198.0,
+     119.16666666666669
+    ],
+    [
+     204.0,
+     122.7777777777778
+    ],
+    [
+     210.0,
+     126.38888888888891
+    ],
+    [
+     216.0,
+     130.00000000000003
+    ],
+    [
+     222.0,
+     133.61111111111114
+    ],
+    [
+     228.0,
+     137.22222222222223
+    ],
+    [
+     234.0,
+     140.83333333333331
+    ],
+    [
+     240.0,
+     144.44444444444446
+    ],
+    [
+     246.0,
+     148.05555555555554
+    ],
+    [
+     252.0,
+     151.66666666666669
+    ],
+    [
+     258.0,
+     155.27777777777783
+    ],
+    [
+     264.0,
+     158.8888888888889
+    ],
+    [
+     270.0,
+     162.5
+    ],
+    [
+     276.0,
+     166.11111111111114
+    ],
+    [
+     282.0,
+     169.72222222222223
+    ],
+    [
+     288.0,
+     173.33333333333337
+    ],
+    [
+     294.0,
+     176.94444444444446
+    ],
+    [
+     300.0,
+     180.55555555555554
+    ],
+    [
+     306.0,
+     184.16666666666669
+    ],
+    [
+     312.0,
+     187.77777777777783
+    ],
+    [
+     318.0,
+     191.3888888888889
+    ],
+    [
+     324.0,
+     195.0
+    ],
+    [
+     330.0,
+     198.61111111111114
+    ],
+    [
+     336.0,
+     202.22222222222223
+    ],
+    [
+     342.0,
+     205.83333333333337
+    ],
+    [
+     348.0,
+     209.44444444444446
+    ],
+    [
+     354.0,
+     213.05555555555554
+    ],
+    [
+     360.0,
+     216.66666666666669
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-movement-shift-27",
+   "type": "text",
+   "x": 894.4,
+   "y": 302.0,
+   "width": 11.7,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 203588922,
+   "version": 1,
+   "versionNonce": 1305226397,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "D",
+   "originalText": "D",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-movement-shift-28",
+   "type": "line",
+   "x": 550.0,
+   "y": 80.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 453744708,
+   "version": 1,
+   "versionNonce": 12159763,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     6.0,
+     3.6111111111111427
+    ],
+    [
+     12.0,
+     7.2222222222222285
+    ],
+    [
+     18.0,
+     10.833333333333314
+    ],
+    [
+     24.0,
+     14.444444444444457
+    ],
+    [
+     30.0,
+     18.055555555555543
+    ],
+    [
+     36.0,
+     21.666666666666686
+    ],
+    [
+     42.0,
+     25.27777777777777
+    ],
+    [
+     48.0,
+     28.888888888888886
+    ],
+    [
+     54.0,
+     32.5
+    ],
+    [
+     60.0,
+     36.111111111111114
+    ],
+    [
+     66.0,
+     39.72222222222223
+    ],
+    [
+     72.0,
+     43.333333333333314
+    ],
+    [
+     78.0,
+     46.94444444444446
+    ],
+    [
+     84.0,
+     50.55555555555554
+    ],
+    [
+     90.0,
+     54.166666666666686
+    ],
+    [
+     96.0,
+     57.77777777777777
+    ],
+    [
+     102.0,
+     61.388888888888886
+    ],
+    [
+     108.0,
+     65.0
+    ],
+    [
+     114.0,
+     68.61111111111111
+    ],
+    [
+     120.0,
+     72.22222222222226
+    ],
+    [
+     126.0,
+     75.83333333333331
+    ],
+    [
+     132.0,
+     79.44444444444443
+    ],
+    [
+     138.0,
+     83.05555555555557
+    ],
+    [
+     144.0,
+     86.66666666666669
+    ],
+    [
+     150.0,
+     90.27777777777774
+    ],
+    [
+     156.0,
+     93.88888888888891
+    ],
+    [
+     162.0,
+     97.5
+    ],
+    [
+     168.0,
+     101.11111111111109
+    ],
+    [
+     174.0,
+     104.72222222222226
+    ],
+    [
+     180.0,
+     108.33333333333331
+    ],
+    [
+     186.0,
+     111.94444444444443
+    ],
+    [
+     192.0,
+     115.55555555555557
+    ],
+    [
+     198.0,
+     119.16666666666669
+    ],
+    [
+     204.0,
+     122.77777777777777
+    ],
+    [
+     210.0,
+     126.38888888888891
+    ],
+    [
+     216.0,
+     130.0
+    ],
+    [
+     222.0,
+     133.61111111111111
+    ],
+    [
+     228.0,
+     137.22222222222223
+    ],
+    [
+     234.0,
+     140.83333333333334
+    ],
+    [
+     240.0,
+     144.44444444444446
+    ],
+    [
+     246.0,
+     148.05555555555554
+    ],
+    [
+     252.0,
+     151.66666666666666
+    ],
+    [
+     258.0,
+     155.27777777777777
+    ],
+    [
+     264.0,
+     158.88888888888886
+    ],
+    [
+     270.0,
+     162.5
+    ],
+    [
+     276.0,
+     166.11111111111114
+    ],
+    [
+     282.0,
+     169.72222222222223
+    ],
+    [
+     288.0,
+     173.33333333333334
+    ],
+    [
+     294.0,
+     176.94444444444446
+    ],
+    [
+     300.0,
+     180.55555555555554
+    ],
+    [
+     306.0,
+     184.16666666666663
+    ],
+    [
+     312.0,
+     187.77777777777777
+    ],
+    [
+     318.0,
+     191.38888888888886
+    ],
+    [
+     324.0,
+     195.0
+    ],
+    [
+     330.0,
+     198.61111111111114
+    ],
+    [
+     336.0,
+     202.22222222222223
+    ],
+    [
+     342.0,
+     205.83333333333331
+    ],
+    [
+     348.0,
+     209.44444444444446
+    ],
+    [
+     354.0,
+     213.05555555555554
+    ],
+    [
+     360.0,
+     216.66666666666669
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-movement-shift-29",
+   "type": "text",
+   "x": 916.0,
+   "y": 267.6666666666667,
+   "width": 14.969999999999999,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1244198636,
+   "version": 1,
+   "versionNonce": 1782339464,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "D'",
+   "originalText": "D'",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-movement-shift-30",
+   "type": "line",
+   "x": 694.0,
+   "y": 210.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1646043490,
+   "version": 1,
+   "versionNonce": 724453173,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     130.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-movement-shift-31",
+   "type": "line",
+   "x": 694.0,
+   "y": 210.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1812612947,
+   "version": 1,
+   "versionNonce": 1995705058,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     -144.0,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-movement-shift-32",
+   "type": "ellipse",
+   "x": 689.0,
+   "y": 205.0,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "#e03131",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 1808747346,
+   "version": 1,
+   "versionNonce": 295927652,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-movement-shift-33",
+   "type": "text",
+   "x": 702.0,
+   "y": 187.0,
+   "width": 10.14,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 952731335,
+   "version": 1,
+   "versionNonce": 2122441914,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "A",
+   "originalText": "A",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-movement-shift-34",
+   "type": "text",
+   "x": 685.257,
+   "y": 348,
+   "width": 17.485999999999997,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1892516451,
+   "version": 1,
+   "versionNonce": 468209481,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "40",
+   "originalText": "40",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-movement-shift-35",
+   "type": "text",
+   "x": 524.192,
+   "y": 201.0,
+   "width": 17.808,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1233035838,
+   "version": 1,
+   "versionNonce": 82663963,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "30",
+   "originalText": "30",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-movement-shift-36",
+   "type": "ellipse",
+   "x": 761.0,
+   "y": 205.0,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#f08c00",
+   "backgroundColor": "#f08c00",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 126881240,
+   "version": 1,
+   "versionNonce": 795258578,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-movement-shift-37",
+   "type": "text",
+   "x": 774.0,
+   "y": 187.0,
+   "width": 9.435,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#f08c00",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 391329588,
+   "version": 1,
+   "versionNonce": 1787148381,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "C",
+   "originalText": "C",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-movement-shift-38",
+   "type": "text",
+   "x": 756.872,
+   "y": 348,
+   "width": 18.256,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 2032026350,
+   "version": 1,
+   "versionNonce": 2129744596,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "60",
+   "originalText": "60",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-movement-shift-39",
+   "type": "arrow",
+   "x": 701.2,
+   "y": 210.0,
+   "width": 57.59999999999991,
+   "height": 0.0,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 247158271,
+   "version": 1,
+   "versionNonce": 1477607307,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     57.59999999999991,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-movement-shift-40",
+   "type": "text",
+   "x": 658.0,
+   "y": 87.66666666666669,
+   "width": 242.05999999999997,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 466759876,
+   "version": 1,
+   "versionNonce": 88538358,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "같은 가격 30에서 수요량 40에서 60으로",
+   "originalText": "같은 가격 30에서 수요량 40에서 60으로",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  }
+ ],
+ "appState": {
+  "gridSize": 20,
+  "viewBackgroundColor": "#ffffff"
+ },
+ "files": {}
+}

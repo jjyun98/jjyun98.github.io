@@ -1,0 +1,914 @@
+{
+ "type": "excalidraw",
+ "version": 2,
+ "source": "https://excalidraw.com",
+ "elements": [
+  {
+   "id": "mi-total-revenue-0",
+   "type": "arrow",
+   "x": 80,
+   "y": 320,
+   "width": 478,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1037471669,
+   "version": 1,
+   "versionNonce": 1695505765,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     478,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-total-revenue-1",
+   "type": "arrow",
+   "x": 80,
+   "y": 320,
+   "width": 0,
+   "height": 278,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 881655798,
+   "version": 1,
+   "versionNonce": 1881483647,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     -278
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-total-revenue-2",
+   "type": "text",
+   "x": 562,
+   "y": 310,
+   "width": 44.879999999999995,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 2135723698,
+   "version": 1,
+   "versionNonce": 645174669,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "가격 P",
+   "originalText": "가격 P",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-total-revenue-3",
+   "type": "text",
+   "x": 38.08,
+   "y": 20,
+   "width": 71.84,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 767610671,
+   "version": 1,
+   "versionNonce": 1180283890,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "총수입 PQ",
+   "originalText": "총수입 PQ",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-total-revenue-4",
+   "type": "line",
+   "x": 80.0,
+   "y": 320.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1421054286,
+   "version": 1,
+   "versionNonce": 384126648,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     7.666666666666671,
+     -15.218253968253975
+    ],
+    [
+     15.333333333333329,
+     -29.92063492063494
+    ],
+    [
+     23.0,
+     -44.10714285714289
+    ],
+    [
+     30.66666666666667,
+     -57.77777777777777
+    ],
+    [
+     38.33333333333334,
+     -70.9325396825397
+    ],
+    [
+     46.0,
+     -83.57142857142858
+    ],
+    [
+     53.66666666666666,
+     -95.69444444444446
+    ],
+    [
+     61.33333333333334,
+     -107.30158730158729
+    ],
+    [
+     69.0,
+     -118.39285714285714
+    ],
+    [
+     76.66666666666669,
+     -128.96825396825398
+    ],
+    [
+     84.33333333333331,
+     -139.02777777777777
+    ],
+    [
+     92.0,
+     -148.57142857142856
+    ],
+    [
+     99.66666666666669,
+     -157.59920634920633
+    ],
+    [
+     107.33333333333331,
+     -166.11111111111111
+    ],
+    [
+     115.0,
+     -174.10714285714283
+    ],
+    [
+     122.66666666666669,
+     -181.58730158730157
+    ],
+    [
+     130.33333333333334,
+     -188.55158730158732
+    ],
+    [
+     138.0,
+     -195.0
+    ],
+    [
+     145.66666666666666,
+     -200.93253968253967
+    ],
+    [
+     153.33333333333334,
+     -206.34920634920633
+    ],
+    [
+     161.0,
+     -211.25
+    ],
+    [
+     168.66666666666666,
+     -215.63492063492063
+    ],
+    [
+     176.33333333333337,
+     -219.50396825396828
+    ],
+    [
+     184.0,
+     -222.85714285714283
+    ],
+    [
+     191.66666666666663,
+     -225.69444444444446
+    ],
+    [
+     199.33333333333337,
+     -228.015873015873
+    ],
+    [
+     207.0,
+     -229.82142857142856
+    ],
+    [
+     214.66666666666663,
+     -231.1111111111111
+    ],
+    [
+     222.33333333333337,
+     -231.88492063492063
+    ],
+    [
+     230.0,
+     -232.14285714285717
+    ],
+    [
+     237.66666666666663,
+     -231.88492063492063
+    ],
+    [
+     245.33333333333337,
+     -231.1111111111111
+    ],
+    [
+     253.0,
+     -229.82142857142856
+    ],
+    [
+     260.6666666666667,
+     -228.015873015873
+    ],
+    [
+     268.33333333333337,
+     -225.69444444444446
+    ],
+    [
+     276.0,
+     -222.85714285714283
+    ],
+    [
+     283.6666666666667,
+     -219.50396825396828
+    ],
+    [
+     291.3333333333333,
+     -215.63492063492063
+    ],
+    [
+     299.0,
+     -211.25
+    ],
+    [
+     306.6666666666667,
+     -206.34920634920633
+    ],
+    [
+     314.3333333333333,
+     -200.93253968253973
+    ],
+    [
+     322.0,
+     -195.0
+    ],
+    [
+     329.6666666666667,
+     -188.5515873015873
+    ],
+    [
+     337.3333333333333,
+     -181.5873015873016
+    ],
+    [
+     345.0,
+     -174.10714285714283
+    ],
+    [
+     352.6666666666667,
+     -166.1111111111111
+    ],
+    [
+     360.3333333333333,
+     -157.59920634920636
+    ],
+    [
+     368.0,
+     -148.57142857142856
+    ],
+    [
+     375.6666666666667,
+     -139.02777777777774
+    ],
+    [
+     383.3333333333333,
+     -128.96825396825398
+    ],
+    [
+     391.0,
+     -118.39285714285714
+    ],
+    [
+     398.6666666666667,
+     -107.30158730158726
+    ],
+    [
+     406.3333333333333,
+     -95.69444444444449
+    ],
+    [
+     414.0,
+     -83.57142857142858
+    ],
+    [
+     421.6666666666667,
+     -70.93253968253964
+    ],
+    [
+     429.3333333333333,
+     -57.77777777777783
+    ],
+    [
+     437.0,
+     -44.10714285714289
+    ],
+    [
+     444.66666666666674,
+     -29.920634920634882
+    ],
+    [
+     452.33333333333326,
+     -15.218253968254032
+    ],
+    [
+     460.0,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-total-revenue-5",
+   "type": "text",
+   "x": 98.4,
+   "y": 63.571428571428555,
+   "width": 124.81500000000001,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 263219786,
+   "version": 1,
+   "versionNonce": 1229737791,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "PQ = P(100 - 2P)",
+   "originalText": "PQ = P(100 - 2P)",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-total-revenue-6",
+   "type": "line",
+   "x": 310.0,
+   "y": 87.85714285714283,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1918056248,
+   "version": 1,
+   "versionNonce": 695535553,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     232.14285714285717
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-total-revenue-7",
+   "type": "line",
+   "x": 310.0,
+   "y": 87.85714285714283,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1733524930,
+   "version": 1,
+   "versionNonce": 444975023,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     -230.0,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-total-revenue-8",
+   "type": "ellipse",
+   "x": 305.0,
+   "y": 82.85714285714283,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "#e03131",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 79201597,
+   "version": 1,
+   "versionNonce": 1419169839,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-total-revenue-9",
+   "type": "text",
+   "x": 320.0,
+   "y": 64.85714285714283,
+   "width": 132.32999999999998,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1246093978,
+   "version": 1,
+   "versionNonce": 1705706460,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "최대 1,250 (|E| = 1)",
+   "originalText": "최대 1,250 (|E| = 1)",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-total-revenue-10",
+   "type": "text",
+   "x": 300.774,
+   "y": 328,
+   "width": 18.451999999999998,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 94674830,
+   "version": 1,
+   "versionNonce": 637775760,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "25",
+   "originalText": "25",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-total-revenue-11",
+   "type": "text",
+   "x": 38.274,
+   "y": 78.85714285714283,
+   "width": 33.726,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1659067699,
+   "version": 1,
+   "versionNonce": 118877186,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "1250",
+   "originalText": "1250",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-total-revenue-12",
+   "type": "ellipse",
+   "x": 351.0,
+   "y": 92.14285714285717,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#f08c00",
+   "backgroundColor": "#f08c00",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 730534178,
+   "version": 1,
+   "versionNonce": 1053719091,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-total-revenue-13",
+   "type": "text",
+   "x": 368.0,
+   "y": 104.14285714285717,
+   "width": 152.65500000000003,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#f08c00",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 569084607,
+   "version": 1,
+   "versionNonce": 498533372,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "균형 P = 30 (|E| = 1.5)",
+   "originalText": "균형 P = 30 (|E| = 1.5)",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-total-revenue-14",
+   "type": "text",
+   "x": 135.2,
+   "y": 228.0,
+   "width": 84.77,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#2f9e44",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 186607729,
+   "version": 1,
+   "versionNonce": 633689305,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "비탄력적 구간:",
+   "originalText": "비탄력적 구간:",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-total-revenue-15",
+   "type": "text",
+   "x": 135.2,
+   "y": 250.28571428571428,
+   "width": 102.088,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#2f9e44",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1393433868,
+   "version": 1,
+   "versionNonce": 263646580,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "가격 인상 시 증가",
+   "originalText": "가격 인상 시 증가",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-total-revenue-16",
+   "type": "text",
+   "x": 411.2,
+   "y": 228.0,
+   "width": 72.142,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1887455359,
+   "version": 1,
+   "versionNonce": 1016777161,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "탄력적 구간:",
+   "originalText": "탄력적 구간:",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-total-revenue-17",
+   "type": "text",
+   "x": 411.2,
+   "y": 250.28571428571428,
+   "width": 102.08800000000001,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 439250486,
+   "version": 1,
+   "versionNonce": 1876763795,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "가격 인상 시 감소",
+   "originalText": "가격 인상 시 감소",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  }
+ ],
+ "appState": {
+  "gridSize": 20,
+  "viewBackgroundColor": "#ffffff"
+ },
+ "files": {}
+}

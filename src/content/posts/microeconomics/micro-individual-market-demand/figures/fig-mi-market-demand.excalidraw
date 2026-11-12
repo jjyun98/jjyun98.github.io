@@ -1,0 +1,1611 @@
+{
+ "type": "excalidraw",
+ "version": 2,
+ "source": "https://excalidraw.com",
+ "elements": [
+  {
+   "id": "mi-market-demand-0",
+   "type": "arrow",
+   "x": 80,
+   "y": 350,
+   "width": 498,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 450635859,
+   "version": 1,
+   "versionNonce": 123067866,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     498,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-market-demand-1",
+   "type": "arrow",
+   "x": 80,
+   "y": 350,
+   "width": 0,
+   "height": 308,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 2035714120,
+   "version": 1,
+   "versionNonce": 492190720,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     -308
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-market-demand-2",
+   "type": "text",
+   "x": 582,
+   "y": 340,
+   "width": 12.288,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 824837493,
+   "version": 1,
+   "versionNonce": 1580667795,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "Q",
+   "originalText": "Q",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-market-demand-3",
+   "type": "text",
+   "x": 68.416,
+   "y": 20,
+   "width": 11.168,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 678657339,
+   "version": 1,
+   "versionNonce": 1028754911,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "P",
+   "originalText": "P",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-market-demand-4",
+   "type": "line",
+   "x": 80.0,
+   "y": 86.36363636363637,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#adb5bd",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1931536015,
+   "version": 1,
+   "versionNonce": 769265242,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     5.0,
+     4.393939393939377
+    ],
+    [
+     10.0,
+     8.787878787878782
+    ],
+    [
+     15.0,
+     13.181818181818159
+    ],
+    [
+     20.0,
+     17.575757575757592
+    ],
+    [
+     25.0,
+     21.96969696969694
+    ],
+    [
+     30.0,
+     26.363636363636346
+    ],
+    [
+     35.0,
+     30.75757575757575
+    ],
+    [
+     40.0,
+     35.15151515151513
+    ],
+    [
+     45.0,
+     39.54545454545453
+    ],
+    [
+     50.0,
+     43.93939393939394
+    ],
+    [
+     55.0,
+     48.333333333333314
+    ],
+    [
+     60.0,
+     52.72727272727272
+    ],
+    [
+     65.0,
+     57.121212121212125
+    ],
+    [
+     70.0,
+     61.5151515151515
+    ],
+    [
+     75.0,
+     65.9090909090909
+    ],
+    [
+     80.0,
+     70.30303030303031
+    ],
+    [
+     85.0,
+     74.69696969696966
+    ],
+    [
+     90.0,
+     79.0909090909091
+    ],
+    [
+     95.0,
+     83.48484848484847
+    ],
+    [
+     100.0,
+     87.8787878787879
+    ],
+    [
+     105.0,
+     92.27272727272725
+    ],
+    [
+     110.0,
+     96.66666666666666
+    ],
+    [
+     115.0,
+     101.06060606060606
+    ],
+    [
+     120.0,
+     105.45454545454547
+    ],
+    [
+     125.0,
+     109.84848484848484
+    ],
+    [
+     130.00000000000003,
+     114.24242424242425
+    ],
+    [
+     135.0,
+     118.63636363636363
+    ],
+    [
+     139.99999999999997,
+     123.030303030303
+    ],
+    [
+     145.00000000000003,
+     127.42424242424244
+    ],
+    [
+     150.0,
+     131.8181818181818
+    ],
+    [
+     154.99999999999997,
+     136.2121212121212
+    ],
+    [
+     160.00000000000003,
+     140.60606060606062
+    ],
+    [
+     165.0,
+     145.0
+    ],
+    [
+     169.99999999999997,
+     149.39393939393938
+    ],
+    [
+     175.00000000000003,
+     153.78787878787878
+    ],
+    [
+     180.0,
+     158.1818181818182
+    ],
+    [
+     185.0,
+     162.57575757575756
+    ],
+    [
+     190.0,
+     166.96969696969697
+    ],
+    [
+     195.0,
+     171.36363636363637
+    ],
+    [
+     200.0,
+     175.75757575757575
+    ],
+    [
+     205.0,
+     180.15151515151513
+    ],
+    [
+     210.0,
+     184.54545454545456
+    ],
+    [
+     215.0,
+     188.93939393939394
+    ],
+    [
+     220.0,
+     193.33333333333331
+    ],
+    [
+     225.0,
+     197.72727272727275
+    ],
+    [
+     230.0,
+     202.12121212121212
+    ],
+    [
+     235.0,
+     206.5151515151515
+    ],
+    [
+     240.0,
+     210.90909090909088
+    ],
+    [
+     245.0,
+     215.3030303030303
+    ],
+    [
+     250.0,
+     219.6969696969697
+    ],
+    [
+     255.0,
+     224.09090909090907
+    ],
+    [
+     260.00000000000006,
+     228.4848484848485
+    ],
+    [
+     264.99999999999994,
+     232.87878787878788
+    ],
+    [
+     270.0,
+     237.27272727272725
+    ],
+    [
+     275.00000000000006,
+     241.66666666666669
+    ],
+    [
+     279.99999999999994,
+     246.06060606060606
+    ],
+    [
+     285.0,
+     250.45454545454544
+    ],
+    [
+     290.00000000000006,
+     254.84848484848487
+    ],
+    [
+     294.99999999999994,
+     259.2424242424242
+    ],
+    [
+     300.0,
+     263.6363636363636
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-market-demand-5",
+   "type": "line",
+   "x": 80.0,
+   "y": 191.81818181818184,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#adb5bd",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1604976506,
+   "version": 1,
+   "versionNonce": 631128387,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     3.0,
+     2.6363636363635976
+    ],
+    [
+     6.0,
+     5.272727272727252
+    ],
+    [
+     9.0,
+     7.909090909090878
+    ],
+    [
+     12.0,
+     10.545454545454533
+    ],
+    [
+     15.0,
+     13.181818181818159
+    ],
+    [
+     18.0,
+     15.818181818181785
+    ],
+    [
+     21.0,
+     18.45454545454544
+    ],
+    [
+     24.0,
+     21.090909090909065
+    ],
+    [
+     27.0,
+     23.72727272727272
+    ],
+    [
+     30.0,
+     26.363636363636346
+    ],
+    [
+     33.0,
+     28.99999999999997
+    ],
+    [
+     36.0,
+     31.636363636363626
+    ],
+    [
+     39.0,
+     34.27272727272725
+    ],
+    [
+     42.0,
+     36.90909090909091
+    ],
+    [
+     45.0,
+     39.54545454545453
+    ],
+    [
+     48.0,
+     42.18181818181816
+    ],
+    [
+     51.0,
+     44.818181818181785
+    ],
+    [
+     54.0,
+     47.45454545454541
+    ],
+    [
+     57.0,
+     50.090909090909065
+    ],
+    [
+     60.0,
+     52.72727272727272
+    ],
+    [
+     63.0,
+     55.363636363636346
+    ],
+    [
+     66.0,
+     57.99999999999997
+    ],
+    [
+     69.0,
+     60.6363636363636
+    ],
+    [
+     72.0,
+     63.27272727272725
+    ],
+    [
+     75.0,
+     65.9090909090909
+    ],
+    [
+     78.0,
+     68.54545454545453
+    ],
+    [
+     81.0,
+     71.18181818181816
+    ],
+    [
+     84.0,
+     73.81818181818178
+    ],
+    [
+     87.0,
+     76.45454545454541
+    ],
+    [
+     90.0,
+     79.0909090909091
+    ],
+    [
+     93.0,
+     81.72727272727272
+    ],
+    [
+     96.0,
+     84.36363636363635
+    ],
+    [
+     99.0,
+     86.99999999999997
+    ],
+    [
+     102.0,
+     89.6363636363636
+    ],
+    [
+     105.0,
+     92.27272727272728
+    ],
+    [
+     108.0,
+     94.9090909090909
+    ],
+    [
+     111.0,
+     97.54545454545453
+    ],
+    [
+     114.0,
+     100.18181818181816
+    ],
+    [
+     117.0,
+     102.81818181818178
+    ],
+    [
+     120.0,
+     105.45454545454541
+    ],
+    [
+     123.0,
+     108.09090909090904
+    ],
+    [
+     126.0,
+     110.72727272727272
+    ],
+    [
+     129.0,
+     113.36363636363635
+    ],
+    [
+     132.0,
+     115.99999999999997
+    ],
+    [
+     135.0,
+     118.6363636363636
+    ],
+    [
+     138.0,
+     121.27272727272728
+    ],
+    [
+     141.0,
+     123.9090909090909
+    ],
+    [
+     144.0,
+     126.54545454545453
+    ],
+    [
+     147.0,
+     129.18181818181816
+    ],
+    [
+     150.0,
+     131.81818181818178
+    ],
+    [
+     153.0,
+     134.4545454545454
+    ],
+    [
+     156.0,
+     137.0909090909091
+    ],
+    [
+     159.0,
+     139.72727272727272
+    ],
+    [
+     162.0,
+     142.36363636363635
+    ],
+    [
+     165.0,
+     144.99999999999997
+    ],
+    [
+     168.0,
+     147.6363636363636
+    ],
+    [
+     171.0,
+     150.27272727272722
+    ],
+    [
+     174.0,
+     152.9090909090909
+    ],
+    [
+     177.0,
+     155.54545454545453
+    ],
+    [
+     180.0,
+     158.18181818181816
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-market-demand-6",
+   "type": "text",
+   "x": 314.0,
+   "y": 267.45454545454544,
+   "width": 48.552,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 149321375,
+   "version": 1,
+   "versionNonce": 1448937135,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "소비자 1",
+   "originalText": "소비자 1",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-market-demand-7",
+   "type": "text",
+   "x": 212.0,
+   "y": 309.6363636363636,
+   "width": 52.373999999999995,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 214052579,
+   "version": 1,
+   "versionNonce": 727001224,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "소비자 2",
+   "originalText": "소비자 2",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-market-demand-8",
+   "type": "line",
+   "x": 80.0,
+   "y": 86.36363636363637,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 3.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1206197437,
+   "version": 1,
+   "versionNonce": 1406376721,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     2.0,
+     1.7575757575757507
+    ],
+    [
+     4.0,
+     3.5151515151515014
+    ],
+    [
+     6.0,
+     5.272727272727252
+    ],
+    [
+     8.0,
+     7.03030303030306
+    ],
+    [
+     10.0,
+     8.787878787878782
+    ],
+    [
+     12.0,
+     10.545454545454561
+    ],
+    [
+     14.0,
+     12.303030303030312
+    ],
+    [
+     16.0,
+     14.060606060606062
+    ],
+    [
+     18.0,
+     15.818181818181813
+    ],
+    [
+     20.0,
+     17.575757575757592
+    ],
+    [
+     22.0,
+     19.333333333333286
+    ],
+    [
+     24.0,
+     21.090909090909093
+    ],
+    [
+     26.0,
+     22.848484848484873
+    ],
+    [
+     28.0,
+     24.606060606060566
+    ],
+    [
+     30.0,
+     26.363636363636346
+    ],
+    [
+     32.0,
+     28.121212121212096
+    ],
+    [
+     34.0,
+     29.878787878787847
+    ],
+    [
+     36.0,
+     31.636363636363626
+    ],
+    [
+     38.0,
+     33.39393939393938
+    ],
+    [
+     40.0,
+     35.15151515151513
+    ],
+    [
+     42.0,
+     36.90909090909088
+    ],
+    [
+     44.0,
+     38.66666666666666
+    ],
+    [
+     46.0,
+     40.42424242424238
+    ],
+    [
+     48.0,
+     42.18181818181816
+    ],
+    [
+     50.0,
+     43.93939393939394
+    ],
+    [
+     52.0,
+     45.69696969696966
+    ],
+    [
+     54.0,
+     47.45454545454544
+    ],
+    [
+     56.0,
+     49.21212121212122
+    ],
+    [
+     58.0,
+     50.96969696969694
+    ],
+    [
+     60.0,
+     52.72727272727272
+    ],
+    [
+     62.0,
+     54.48484848484847
+    ],
+    [
+     64.0,
+     56.24242424242422
+    ],
+    [
+     66.0,
+     57.99999999999997
+    ],
+    [
+     68.0,
+     59.75757575757575
+    ],
+    [
+     70.0,
+     61.5151515151515
+    ],
+    [
+     72.0,
+     63.27272727272725
+    ],
+    [
+     74.0,
+     65.03030303030303
+    ],
+    [
+     76.0,
+     66.78787878787875
+    ],
+    [
+     78.0,
+     68.54545454545453
+    ],
+    [
+     80.0,
+     70.30303030303031
+    ],
+    [
+     82.0,
+     72.06060606060603
+    ],
+    [
+     84.0,
+     73.81818181818181
+    ],
+    [
+     86.0,
+     75.57575757575756
+    ],
+    [
+     88.0,
+     77.33333333333331
+    ],
+    [
+     90.0,
+     79.0909090909091
+    ],
+    [
+     92.0,
+     80.84848484848484
+    ],
+    [
+     94.0,
+     82.6060606060606
+    ],
+    [
+     96.0,
+     84.36363636363635
+    ],
+    [
+     98.0,
+     86.1212121212121
+    ],
+    [
+     100.0,
+     87.8787878787879
+    ],
+    [
+     102.0,
+     89.63636363636363
+    ],
+    [
+     104.0,
+     91.39393939393938
+    ],
+    [
+     106.0,
+     93.15151515151518
+    ],
+    [
+     108.0,
+     94.9090909090909
+    ],
+    [
+     110.0,
+     96.66666666666666
+    ],
+    [
+     112.0,
+     98.42424242424241
+    ],
+    [
+     114.0,
+     100.18181818181819
+    ],
+    [
+     116.0,
+     101.93939393939391
+    ],
+    [
+     118.0,
+     103.69696969696969
+    ],
+    [
+     120.0,
+     105.45454545454547
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-market-demand-9",
+   "type": "line",
+   "x": 200.0,
+   "y": 191.81818181818184,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 3.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1930477992,
+   "version": 1,
+   "versionNonce": 1208810248,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     6.0,
+     2.6363636363635976
+    ],
+    [
+     12.0,
+     5.272727272727252
+    ],
+    [
+     18.0,
+     7.909090909090878
+    ],
+    [
+     24.0,
+     10.545454545454533
+    ],
+    [
+     30.0,
+     13.181818181818159
+    ],
+    [
+     36.0,
+     15.818181818181785
+    ],
+    [
+     42.0,
+     18.45454545454544
+    ],
+    [
+     48.0,
+     21.090909090909065
+    ],
+    [
+     54.0,
+     23.72727272727272
+    ],
+    [
+     60.0,
+     26.363636363636346
+    ],
+    [
+     66.0,
+     28.99999999999997
+    ],
+    [
+     72.0,
+     31.636363636363626
+    ],
+    [
+     78.0,
+     34.27272727272725
+    ],
+    [
+     84.0,
+     36.90909090909091
+    ],
+    [
+     90.0,
+     39.54545454545453
+    ],
+    [
+     96.0,
+     42.18181818181816
+    ],
+    [
+     102.0,
+     44.818181818181785
+    ],
+    [
+     108.0,
+     47.45454545454541
+    ],
+    [
+     114.0,
+     50.090909090909065
+    ],
+    [
+     120.0,
+     52.72727272727272
+    ],
+    [
+     126.0,
+     55.363636363636346
+    ],
+    [
+     132.0,
+     57.99999999999997
+    ],
+    [
+     138.0,
+     60.6363636363636
+    ],
+    [
+     144.0,
+     63.27272727272725
+    ],
+    [
+     150.0,
+     65.9090909090909
+    ],
+    [
+     156.0,
+     68.54545454545453
+    ],
+    [
+     162.0,
+     71.18181818181816
+    ],
+    [
+     168.0,
+     73.81818181818178
+    ],
+    [
+     174.0,
+     76.45454545454541
+    ],
+    [
+     180.0,
+     79.0909090909091
+    ],
+    [
+     186.0,
+     81.72727272727272
+    ],
+    [
+     192.0,
+     84.36363636363635
+    ],
+    [
+     198.0,
+     86.99999999999997
+    ],
+    [
+     204.0,
+     89.6363636363636
+    ],
+    [
+     210.0,
+     92.27272727272728
+    ],
+    [
+     216.0,
+     94.9090909090909
+    ],
+    [
+     222.0,
+     97.54545454545453
+    ],
+    [
+     228.0,
+     100.18181818181816
+    ],
+    [
+     234.0,
+     102.81818181818178
+    ],
+    [
+     240.0,
+     105.45454545454541
+    ],
+    [
+     246.0,
+     108.09090909090904
+    ],
+    [
+     252.0,
+     110.72727272727272
+    ],
+    [
+     258.0,
+     113.36363636363635
+    ],
+    [
+     264.0,
+     115.99999999999997
+    ],
+    [
+     270.0,
+     118.6363636363636
+    ],
+    [
+     276.0,
+     121.27272727272728
+    ],
+    [
+     282.0,
+     123.9090909090909
+    ],
+    [
+     288.0,
+     126.54545454545453
+    ],
+    [
+     294.0,
+     129.18181818181816
+    ],
+    [
+     300.0,
+     131.81818181818178
+    ],
+    [
+     306.0,
+     134.4545454545454
+    ],
+    [
+     312.0,
+     137.0909090909091
+    ],
+    [
+     318.0,
+     139.72727272727272
+    ],
+    [
+     324.0,
+     142.36363636363635
+    ],
+    [
+     330.0,
+     144.99999999999997
+    ],
+    [
+     336.0,
+     147.6363636363636
+    ],
+    [
+     342.0,
+     150.27272727272722
+    ],
+    [
+     348.0,
+     152.9090909090909
+    ],
+    [
+     354.0,
+     155.54545454545453
+    ],
+    [
+     360.0,
+     158.18181818181816
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-market-demand-10",
+   "type": "text",
+   "x": 446.0,
+   "y": 272.27272727272725,
+   "width": 55.35,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 643837525,
+   "version": 1,
+   "versionNonce": 1612888591,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "시장수요",
+   "originalText": "시장수요",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-market-demand-11",
+   "type": "line",
+   "x": 200.0,
+   "y": 191.81818181818184,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1505032074,
+   "version": 1,
+   "versionNonce": 268087771,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     0.0,
+     158.18181818181816
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-market-demand-12",
+   "type": "line",
+   "x": 200.0,
+   "y": 191.81818181818184,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.2,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1884740755,
+   "version": 1,
+   "versionNonce": 1110417909,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     -120.0,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-market-demand-13",
+   "type": "ellipse",
+   "x": 195.0,
+   "y": 186.81818181818184,
+   "width": 10,
+   "height": 10,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "#e03131",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": {
+    "type": 2
+   },
+   "seed": 15043212,
+   "version": 1,
+   "versionNonce": 1272712205,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false
+  },
+  {
+   "id": "mi-market-demand-14",
+   "type": "text",
+   "x": 210.0,
+   "y": 168.81818181818184,
+   "width": 109.155,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1670533475,
+   "version": 1,
+   "versionNonce": 80457747,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "꺾인 점 (40, 60)",
+   "originalText": "꺾인 점 (40, 60)",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-market-demand-15",
+   "type": "text",
+   "x": 191.257,
+   "y": 358,
+   "width": 17.485999999999997,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 132332150,
+   "version": 1,
+   "versionNonce": 731028808,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "40",
+   "originalText": "40",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-market-demand-16",
+   "type": "text",
+   "x": 53.744,
+   "y": 182.81818181818184,
+   "width": 18.256,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 384683705,
+   "version": 1,
+   "versionNonce": 1465873464,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "60",
+   "originalText": "60",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  }
+ ],
+ "appState": {
+  "gridSize": 20,
+  "viewBackgroundColor": "#ffffff"
+ },
+ "files": {}
+}
