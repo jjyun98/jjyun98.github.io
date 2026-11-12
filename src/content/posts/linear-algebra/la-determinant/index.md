@@ -245,6 +245,26 @@ $$
 \text{넓이} = \left|\det\begin{pmatrix} a & b \\ c & d \end{pmatrix}\right| = |ad - bc|
 $$
 
+### 성질의 기하적 의미
+
+1절의 성질은 넓이의 성질로 읽을 수 있다. 두 행 $\mathbf{r}_1 = (1.6, 0.3)$, $\mathbf{r}_2 = (0.4, 1.2)$가 만드는 평행사변형(점선, 넓이 1.80)에 각 연산을 적용한다.
+
+![행 연산에 따른 평행사변형 넓이의 변화](./figures/fig-det-properties.svg)
+
+한 행을 2배 하면 밑변이 2배가 되어 넓이도 2배다(행에 대한 선형성). 한 행의 상수배를 다른 행에 더하면 평행사변형이 $\mathbf{r}_1$ 방향으로 밀릴 뿐 밑변과 높이가 그대로이므로 넓이가 같다(전단). 두 행이 평행하면 평행사변형이 선분으로 납작해져 넓이가 0이고, 이것이 $\det = 0 \iff$ 행들이 일차종속이라는 성질이다. 두 행을 바꾸면 넓이는 같고 두 변을 도는 방향(시계·반시계)만 뒤집히므로 부호가 바뀐다.
+
+행렬식이 넓이의 배율이라는 관점에서는 곱셈 공식도 자연스럽다. $\mathbf{A}$가 넓이를 2배, $\mathbf{B}$가 1.5배 하면, 연달아 적용한 $\mathbf{BA}$는 넓이를 3배 한다.
+
+![두 변환을 연달아 적용할 때 넓이 배율이 곱해진다](./figures/fig-det-product.svg)
+
+$$
+\mathbf{A} = \begin{pmatrix} 2 & 0 \\ 0.5 & 1 \end{pmatrix},\quad
+\mathbf{B} = \begin{pmatrix} 1 & 0.5 \\ 0 & 1.5 \end{pmatrix},\qquad
+\det(\mathbf{BA}) = \det(\mathbf{B})\det(\mathbf{A}) = 1.5 \times 2 = 3
+$$
+
+같은 이유로 $\det(\mathbf{A}^{-1}) = 1/\det(\mathbf{A})$는 넓이를 되돌리는 배율이다.
+
 ### 세 점으로 정해지는 평행사변형
 
 ![세 점 a, b, c로 정해지는 평행사변형](./figures/fig-parallelogram-points.svg)

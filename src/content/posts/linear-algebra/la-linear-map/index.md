@@ -35,6 +35,14 @@ $$
 
 두 조건을 합쳐 $L(a\mathbf{u} + b\mathbf{v}) = aL(\mathbf{u}) + bL(\mathbf{v})$ 하나로 확인해도 된다.
 
+### 기하적 의미
+
+평면의 격자에 사상을 적용해 보면 선형성의 조건이 그림으로 드러난다. 덧셈을 보존하므로 격자선은 직선으로 남고 서로 평행하며, 스칼라배를 보존하므로 격자선의 간격이 일정하게 유지된다. 그리고 $L(\mathbf{0}) = \mathbf{0}$이므로 원점이 움직이지 않는다.
+
+![선형변환, 평행이동, 휘는 변환을 격자에 적용한 결과](./figures/fig-linearity-grid.svg)
+
+평행이동 $\mathbf{v} \mapsto \mathbf{v} + \mathbf{b}$는 격자의 모양을 그대로 두지만 원점을 옮기므로 선형사상이 아니다. 이런 사상은 선형사상과 평행이동의 합성으로, **아핀사상**이라 한다. 격자선을 휘게 하는 변환은 두 조건을 모두 만족하지 않는다. 선형사상은 공간을 늘이고, 기울이고, 회전하고, 뒤집고, 납작하게 할 수는 있어도 휘게 할 수는 없다.
+
 ### 바로 따라오는 성질
 
 $$
@@ -84,6 +92,12 @@ $$
 $$
 \dim N(\mathbf{A}) + \operatorname{rank}(\mathbf{A}) = n \;(\mathbf{A}\text{의 열의 수})
 $$
+
+계수가 1인 $\mathbf{A} = \begin{pmatrix} 1 & 2 \\ 0.5 & 1 \end{pmatrix}$로 차원정리를 그림으로 확인한다. 두 열이 평행하므로 평면 전체가 직선 하나로 납작해진다.
+
+![계수 1인 행렬은 핵 방향의 직선을 한 점으로 모은다](./figures/fig-rank-collapse.svg)
+
+핵공간은 $x + 2y = 0$인 직선이고, 이 직선은 원점으로 간다. 핵공간과 평행한 다른 직선 $x + 2y = c$도 각각 한 점 $(c, 0.5c)$로 모인다. 직선 위의 두 점은 차이가 핵공간에 속하므로 같은 곳으로 가기 때문이다. 결과적으로 정의역의 2차원 중 핵 방향의 1차원은 사라지고, 나머지 1차원만 상공간 $\operatorname{Im}(\mathbf{A})$라는 직선으로 남는다. 같은 그림에서 $\mathbf{A}\mathbf{x} = \mathbf{b}$의 해집합도 읽을 수 있다. $\mathbf{b}$가 상공간 위에 있으면 해집합은 핵공간을 평행이동한 직선 하나이고, 상공간 밖에 있으면 해가 없다.
 
 ## 4. 동형사상과 등장사상
 
@@ -136,6 +150,18 @@ $[L]_{B_V, B_W}$를 기저 $B_V, B_W$에 대한 $L$의 **행렬표현**이라 �
 - 기저를 고정하면 행렬표현은 **유일**하다. 좌표벡터를 아는 것이 벡터를 아는 것과 같기 때문이다.
 - $V = \mathbb{R}^n$, $W = \mathbb{R}^m$에서 표준기저를 쓰면 $j$번째 열은 $L(\mathbf{e}_j)$이다.
 
+행렬의 열이 기저벡터가 가는 곳이라는 사실은 그림으로 보면 더 분명하다. $\mathbf{A} = \begin{pmatrix} 2 & -1 \\ 1 & 1 \end{pmatrix}$에 대해 $\mathbf{v} = (2, 1) = 2\mathbf{e}_1 + \mathbf{e}_2$를 변환한다.
+
+![변환 전후의 격자와 v = 2e1 + e2의 상](./figures/fig-columns-coordinates.svg)
+
+변환 후의 격자는 $\mathbf{A}\mathbf{e}_1 = (2, 1)$과 $\mathbf{A}\mathbf{e}_2 = (-1, 1)$, 즉 $\mathbf{A}$의 두 열이 만드는 격자다. $\mathbf{v}$는 변환 전 격자에서 "$\mathbf{e}_1$ 방향으로 2칸, $\mathbf{e}_2$ 방향으로 1칸"인 점이었고, 선형성에 의해 변환 후에도 새 격자에서 같은 칸 수만큼 간 점으로 옮겨진다.
+
+$$
+\mathbf{A}\mathbf{v} = 2\,\mathbf{A}\mathbf{e}_1 + 1\,\mathbf{A}\mathbf{e}_2 = 2\begin{pmatrix} 2 \\ 1 \end{pmatrix} + \begin{pmatrix} -1 \\ 1 \end{pmatrix} = \begin{pmatrix} 3 \\ 3 \end{pmatrix}
+$$
+
+행렬과 벡터의 곱을 "열들의 선형결합"으로 읽는 관점이 바로 이것이다. 좌표는 그대로 두고 기준이 되는 격자만 바뀐다.
+
 ### 평면 선형변환의 예
 
 $\mathbb{R}^2$에서 행렬의 두 열은 $\mathbf{e}_1 = (1, 0)$, $\mathbf{e}_2 = (0, 1)$이 가는 곳이다. 그래서 단위정사각형이 어떻게 바뀌는지만 보면 행렬을 바로 읽을 수 있다.
@@ -179,6 +205,16 @@ $$
 
 합성은 행렬곱 순서가 사상을 적용하는 순서와 **반대**라는 점에 주의한다.
 
+순서를 바꾸면 결과도 달라진다. $90^\circ$ 회전 $\mathbf{R} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$과 전단 $\mathbf{S} = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$을 두 순서로 합성한다.
+
+![전단 후 회전(RS)과 회전 후 전단(SR)의 결과](./figures/fig-composition-order.svg)
+
+$$
+\mathbf{R}\mathbf{S} = \begin{pmatrix} 0 & -1 \\ 1 & 1 \end{pmatrix}, \qquad \mathbf{S}\mathbf{R} = \begin{pmatrix} 1 & -1 \\ 1 & 0 \end{pmatrix}
+$$
+
+전단을 먼저 하면 세로로 서 있던 도형이 오른쪽으로 기운 뒤 회전하고, 회전을 먼저 하면 가로로 누운 도형이 수평 방향으로 밀린다. 두 결과 모두 넓이는 보존되지만($\det = 1$) 모양이 다르다. 행렬곱이 교환법칙을 만족하지 않는 것은 변환을 적용하는 순서가 결과를 바꾸기 때문이다.
+
 ## 6. 닮음행렬
 
 ### 정의
@@ -198,6 +234,17 @@ $$
 $$
 
 $\mathbf{P}$는 $B_1$ 좌표를 $B_2$ 좌표로 바꾸는 전이행렬이다. 따라서 **닮음행렬은 같은 선형사상을 다른 기저로 본 행렬**이다. $\mathbf{P}$를 잘 고르면 행렬표현이 단순해지고(대각행렬 등) 계산량이 줄어든다. 이것이 다음 글의 대각화로 이어진다.
+
+$\mathbf{A} = \begin{pmatrix} 1.5 & 0.5 \\ 0.5 & 1.5 \end{pmatrix}$를 예로 든다. 표준기저에서는 단위정사각형이 기울어진 평행사변형이 되어 사상의 성질이 잘 보이지 않는다. 기저를 $\mathbf{b}_1 = \tfrac{1}{\sqrt 2}(1, 1)$, $\mathbf{b}_2 = \tfrac{1}{\sqrt 2}(-1, 1)$로 바꾸어 보면, 같은 사상이 $\mathbf{b}_1$ 방향으로 2배 늘이고 $\mathbf{b}_2$ 방향은 그대로 두는 단순한 변환이다.
+
+![같은 선형사상을 표준기저와 고유벡터 기저에서 본 모습](./figures/fig-similar-bases.svg)
+
+$$
+\mathbf{P} = \frac{1}{\sqrt 2}\begin{pmatrix} 1 & -1 \\ 1 & 1 \end{pmatrix}, \qquad
+\mathbf{P}^{-1}\mathbf{A}\mathbf{P} = \begin{pmatrix} 2 & 0 \\ 0 & 1 \end{pmatrix}
+$$
+
+두 행렬은 겉모습이 다르지만 같은 사상이므로, 아래에서 보듯 행렬식($1.5^2 - 0.5^2 = 2 = 2 \times 1$)과 대각합($3 = 2 + 1$)이 같다. 행렬표현이 대각행렬이 되는 기저의 벡터 $\mathbf{b}_1$, $\mathbf{b}_2$는 사상을 적용해도 방향이 바뀌지 않는 벡터로, 다음 글의 고유벡터다.
 
 ### 닮음에서 변하지 않는 값
 
@@ -238,6 +285,11 @@ shear    <- matrix(c(1, 0, 0.6, 1), nrow = 2)
 square <- matrix(c(0, 0, 1, 0, 1, 1, 0, 1), nrow = 2)   # 꼭짓점을 열로
 rotation %*% square
 det(rotation); det(shear)                               # 넓이 배율 1, 1
+
+A <- matrix(c(1.5, 0.5, 0.5, 1.5), nrow = 2)
+P <- matrix(c(1, 1, -1, 1), nrow = 2) / sqrt(2)          # 열: b1, b2
+round(solve(P) %*% A %*% P, 10)                          # diag(2, 1)
+c(det(A), sum(diag(A)))                                 # 2, 3
 ```
 
 ```python
