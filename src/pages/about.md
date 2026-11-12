@@ -17,6 +17,7 @@ title: About
 | [생명과학통계](/series/생명과학통계) | 『생명과학연구를 위한 통계적 방법』(이재원·박미라·유한나), 전북대학교 최혜미 교수 강의 | SAS |
 | [선형대수학](/series/선형대수학) | 『해설이 있는 선형대수학』(하길찬), KOCW 세종대학교 유호석 교수 선형대수학 강의 | |
 | [미시경제학](/series/미시경제학) | Pindyck·Rubinfeld 『미시경제학』 기반 강의 자료 | |
+| [확률과정론](/series/확률과정론) | 전북대학교 최규빈 교수 확률과정론 강의 (2023) | Python |
 | [R for Data Science](/series/r-for-data-science) | 『R for Data Science』 독학 실습 | R |
 
 그 외에 분석 프로젝트와 데이터 분석 환경, AWS 같은 작업 기록을 따로 남긴다.
