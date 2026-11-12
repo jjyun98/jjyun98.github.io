@@ -1,0 +1,1805 @@
+{
+ "type": "excalidraw",
+ "version": 2,
+ "source": "https://excalidraw.com",
+ "elements": [
+  {
+   "id": "mi-two-part-0",
+   "type": "arrow",
+   "x": 70,
+   "y": 360,
+   "width": 398,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 674785166,
+   "version": 1,
+   "versionNonce": 646480085,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     398,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-two-part-1",
+   "type": "arrow",
+   "x": 70,
+   "y": 360,
+   "width": 0,
+   "height": 308,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1399937529,
+   "version": 1,
+   "versionNonce": 605634597,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     -308
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-two-part-2",
+   "type": "text",
+   "x": 472,
+   "y": 350,
+   "width": 12.288,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1549963748,
+   "version": 1,
+   "versionNonce": 901571834,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "Q",
+   "originalText": "Q",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-two-part-3",
+   "type": "text",
+   "x": 58.416,
+   "y": 30,
+   "width": 11.168,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 248481197,
+   "version": 1,
+   "versionNonce": 551613751,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "P",
+   "originalText": "P",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-two-part-4",
+   "type": "text",
+   "x": 147.096,
+   "y": 20,
+   "width": 225.808,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 543483462,
+   "version": 1,
+   "versionNonce": 539783621,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "같은 소비자: P = 20, T = 3,200",
+   "originalText": "같은 소비자: P = 20, T = 3,200",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-two-part-5",
+   "type": "line",
+   "x": 70.0,
+   "y": 70.0,
+   "width": 304.0,
+   "height": 232.0,
+   "angle": 0,
+   "strokeColor": "#f08c00",
+   "backgroundColor": "#ffec99",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1677733887,
+   "version": 1,
+   "versionNonce": 1407181376,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     304.0,
+     232.0
+    ],
+    [
+     0.0,
+     232.0
+    ],
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null,
+   "polygon": true
+  },
+  {
+   "id": "mi-two-part-6",
+   "type": "text",
+   "x": 135.54,
+   "y": 229.0,
+   "width": 58.92,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#f08c00",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 2045422018,
+   "version": 1,
+   "versionNonce": 584135180,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "입장료 T",
+   "originalText": "입장료 T",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-two-part-7",
+   "type": "line",
+   "x": 70.0,
+   "y": 70.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 2046335176,
+   "version": 1,
+   "versionNonce": 1595845974,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     6.333333333333329,
+     4.833333333333371
+    ],
+    [
+     12.666666666666671,
+     9.666666666666686
+    ],
+    [
+     19.0,
+     14.5
+    ],
+    [
+     25.33333333333333,
+     19.33333333333337
+    ],
+    [
+     31.66666666666667,
+     24.16666666666663
+    ],
+    [
+     38.0,
+     29.0
+    ],
+    [
+     44.33333333333333,
+     33.833333333333314
+    ],
+    [
+     50.66666666666666,
+     38.66666666666666
+    ],
+    [
+     57.0,
+     43.5
+    ],
+    [
+     63.33333333333334,
+     48.33333333333334
+    ],
+    [
+     69.66666666666666,
+     53.16666666666663
+    ],
+    [
+     76.0,
+     58.0
+    ],
+    [
+     82.33333333333334,
+     62.83333333333334
+    ],
+    [
+     88.66666666666666,
+     67.66666666666666
+    ],
+    [
+     95.0,
+     72.5
+    ],
+    [
+     101.33333333333331,
+     77.33333333333334
+    ],
+    [
+     107.66666666666666,
+     82.16666666666666
+    ],
+    [
+     114.0,
+     87.0
+    ],
+    [
+     120.33333333333331,
+     91.83333333333337
+    ],
+    [
+     126.66666666666669,
+     96.66666666666671
+    ],
+    [
+     133.0,
+     101.5
+    ],
+    [
+     139.33333333333331,
+     106.33333333333334
+    ],
+    [
+     145.66666666666669,
+     111.16666666666666
+    ],
+    [
+     152.0,
+     116.0
+    ],
+    [
+     158.33333333333331,
+     120.83333333333331
+    ],
+    [
+     164.66666666666669,
+     125.66666666666666
+    ],
+    [
+     171.0,
+     130.5
+    ],
+    [
+     177.33333333333331,
+     135.33333333333334
+    ],
+    [
+     183.66666666666666,
+     140.16666666666669
+    ],
+    [
+     190.0,
+     145.0
+    ],
+    [
+     196.33333333333331,
+     149.83333333333334
+    ],
+    [
+     202.66666666666663,
+     154.66666666666669
+    ],
+    [
+     209.0,
+     159.5
+    ],
+    [
+     215.33333333333331,
+     164.33333333333331
+    ],
+    [
+     221.66666666666669,
+     169.16666666666669
+    ],
+    [
+     228.0,
+     174.0
+    ],
+    [
+     234.33333333333337,
+     178.83333333333331
+    ],
+    [
+     240.66666666666663,
+     183.66666666666669
+    ],
+    [
+     247.0,
+     188.5
+    ],
+    [
+     253.33333333333337,
+     193.33333333333337
+    ],
+    [
+     259.66666666666663,
+     198.16666666666663
+    ],
+    [
+     266.0,
+     203.0
+    ],
+    [
+     272.3333333333333,
+     207.83333333333337
+    ],
+    [
+     278.66666666666663,
+     212.66666666666663
+    ],
+    [
+     285.0,
+     217.5
+    ],
+    [
+     291.33333333333337,
+     222.33333333333337
+    ],
+    [
+     297.6666666666667,
+     227.16666666666663
+    ],
+    [
+     304.0,
+     232.0
+    ],
+    [
+     310.33333333333337,
+     236.83333333333337
+    ],
+    [
+     316.66666666666663,
+     241.66666666666663
+    ],
+    [
+     323.0,
+     246.5
+    ],
+    [
+     329.33333333333337,
+     251.33333333333337
+    ],
+    [
+     335.66666666666663,
+     256.16666666666663
+    ],
+    [
+     342.0,
+     261.0
+    ],
+    [
+     348.33333333333337,
+     265.83333333333337
+    ],
+    [
+     354.66666666666663,
+     270.66666666666663
+    ],
+    [
+     361.0,
+     275.5
+    ],
+    [
+     367.3333333333333,
+     280.33333333333337
+    ],
+    [
+     373.66666666666663,
+     285.16666666666663
+    ],
+    [
+     380.0,
+     290.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-two-part-8",
+   "type": "text",
+   "x": 437.0,
+   "y": 320.5,
+   "width": 11.7,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 331157022,
+   "version": 1,
+   "versionNonce": 872085562,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "D",
+   "originalText": "D",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-two-part-9",
+   "type": "line",
+   "x": 70.0,
+   "y": 302.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 716644112,
+   "version": 1,
+   "versionNonce": 235610869,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     380.0,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-two-part-10",
+   "type": "text",
+   "x": 391.474,
+   "y": 299.6,
+   "width": 54.726000000000006,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1489596387,
+   "version": 1,
+   "versionNonce": 1501829384,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "MC = 20",
+   "originalText": "MC = 20",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-two-part-11",
+   "type": "arrow",
+   "x": 550,
+   "y": 360,
+   "width": 398,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 799936122,
+   "version": 1,
+   "versionNonce": 1519166926,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     398,
+     0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-two-part-12",
+   "type": "arrow",
+   "x": 550,
+   "y": 360,
+   "width": 0,
+   "height": 308,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 657082914,
+   "version": 1,
+   "versionNonce": 2132254063,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     -308
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": "arrow",
+   "elbowed": false
+  },
+  {
+   "id": "mi-two-part-13",
+   "type": "text",
+   "x": 952,
+   "y": 350,
+   "width": 12.288,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1867569395,
+   "version": 1,
+   "versionNonce": 301612609,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "Q",
+   "originalText": "Q",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-two-part-14",
+   "type": "text",
+   "x": 538.416,
+   "y": 30,
+   "width": 11.168,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#495057",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 815925847,
+   "version": 1,
+   "versionNonce": 1446536581,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "P",
+   "originalText": "P",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-two-part-15",
+   "type": "text",
+   "x": 624.96,
+   "y": 20,
+   "width": 230.08000000000004,
+   "height": 20.0,
+   "angle": 0,
+   "strokeColor": "#1e1e1e",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 36432660,
+   "version": 1,
+   "versionNonce": 1054505767,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "다른 두 소비자: P = 40, T = 200",
+   "originalText": "다른 두 소비자: P = 40, T = 200",
+   "fontSize": 16,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-two-part-16",
+   "type": "line",
+   "x": 550.0,
+   "y": 186.0,
+   "width": 76.0,
+   "height": 58.0,
+   "angle": 0,
+   "strokeColor": "#f08c00",
+   "backgroundColor": "#ffec99",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1267258343,
+   "version": 1,
+   "versionNonce": 212611769,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     76.0,
+     58.0
+    ],
+    [
+     0.0,
+     58.0
+    ],
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null,
+   "polygon": true
+  },
+  {
+   "id": "mi-two-part-17",
+   "type": "line",
+   "x": 550.0,
+   "y": 244.0,
+   "width": 228.0,
+   "height": 58.0,
+   "angle": 0,
+   "strokeColor": "#7048e8",
+   "backgroundColor": "#d0bfff",
+   "fillStyle": "hachure",
+   "strokeWidth": 1.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 125568143,
+   "version": 1,
+   "versionNonce": 759934562,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     228.0,
+     0.0
+    ],
+    [
+     228.0,
+     58.0
+    ],
+    [
+     0.0,
+     58.0
+    ],
+    [
+     0.0,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null,
+   "polygon": true
+  },
+  {
+   "id": "mi-two-part-18",
+   "type": "line",
+   "x": 550.0,
+   "y": 70.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 270211711,
+   "version": 1,
+   "versionNonce": 2009645728,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     6.333333333333371,
+     4.833333333333371
+    ],
+    [
+     12.666666666666629,
+     9.666666666666686
+    ],
+    [
+     19.0,
+     14.5
+    ],
+    [
+     25.33333333333337,
+     19.33333333333337
+    ],
+    [
+     31.66666666666663,
+     24.16666666666663
+    ],
+    [
+     38.0,
+     29.0
+    ],
+    [
+     44.33333333333337,
+     33.833333333333314
+    ],
+    [
+     50.66666666666663,
+     38.66666666666666
+    ],
+    [
+     57.0,
+     43.5
+    ],
+    [
+     63.33333333333337,
+     48.33333333333334
+    ],
+    [
+     69.66666666666663,
+     53.16666666666663
+    ],
+    [
+     76.0,
+     58.0
+    ],
+    [
+     82.33333333333337,
+     62.83333333333334
+    ],
+    [
+     88.66666666666663,
+     67.66666666666666
+    ],
+    [
+     95.0,
+     72.5
+    ],
+    [
+     101.33333333333337,
+     77.33333333333334
+    ],
+    [
+     107.66666666666663,
+     82.16666666666666
+    ],
+    [
+     114.0,
+     87.0
+    ],
+    [
+     120.33333333333337,
+     91.83333333333337
+    ],
+    [
+     126.66666666666674,
+     96.66666666666671
+    ],
+    [
+     133.0,
+     101.5
+    ],
+    [
+     139.33333333333326,
+     106.33333333333334
+    ],
+    [
+     145.66666666666674,
+     111.16666666666666
+    ],
+    [
+     152.0,
+     116.0
+    ],
+    [
+     158.33333333333326,
+     120.83333333333331
+    ],
+    [
+     164.66666666666674,
+     125.66666666666666
+    ],
+    [
+     171.0,
+     130.5
+    ],
+    [
+     177.33333333333326,
+     135.33333333333334
+    ],
+    [
+     183.66666666666663,
+     140.16666666666669
+    ],
+    [
+     190.0,
+     145.0
+    ],
+    [
+     196.33333333333326,
+     149.83333333333334
+    ],
+    [
+     202.66666666666663,
+     154.66666666666669
+    ],
+    [
+     209.0,
+     159.5
+    ],
+    [
+     215.33333333333326,
+     164.33333333333331
+    ],
+    [
+     221.66666666666674,
+     169.16666666666669
+    ],
+    [
+     228.0,
+     174.0
+    ],
+    [
+     234.33333333333337,
+     178.83333333333331
+    ],
+    [
+     240.66666666666663,
+     183.66666666666669
+    ],
+    [
+     247.0,
+     188.5
+    ],
+    [
+     253.33333333333337,
+     193.33333333333337
+    ],
+    [
+     259.66666666666663,
+     198.16666666666663
+    ],
+    [
+     266.0,
+     203.0
+    ],
+    [
+     272.33333333333326,
+     207.83333333333337
+    ],
+    [
+     278.66666666666663,
+     212.66666666666663
+    ],
+    [
+     285.0,
+     217.5
+    ],
+    [
+     291.33333333333337,
+     222.33333333333337
+    ],
+    [
+     297.66666666666674,
+     227.16666666666663
+    ],
+    [
+     304.0,
+     232.0
+    ],
+    [
+     310.33333333333337,
+     236.83333333333337
+    ],
+    [
+     316.66666666666663,
+     241.66666666666663
+    ],
+    [
+     323.0,
+     246.5
+    ],
+    [
+     329.33333333333337,
+     251.33333333333337
+    ],
+    [
+     335.66666666666663,
+     256.16666666666663
+    ],
+    [
+     342.0,
+     261.0
+    ],
+    [
+     348.33333333333337,
+     265.83333333333337
+    ],
+    [
+     354.66666666666663,
+     270.66666666666663
+    ],
+    [
+     361.0,
+     275.5
+    ],
+    [
+     367.33333333333326,
+     280.33333333333337
+    ],
+    [
+     373.66666666666663,
+     285.16666666666663
+    ],
+    [
+     380.0,
+     290.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-two-part-19",
+   "type": "text",
+   "x": 917.0,
+   "y": 320.5,
+   "width": 15.6711,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1831932501,
+   "version": 1,
+   "versionNonce": 614513791,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "D1",
+   "originalText": "D1",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-two-part-20",
+   "type": "line",
+   "x": 550.0,
+   "y": 186.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2.5,
+   "strokeStyle": "dashed",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1578801704,
+   "version": 1,
+   "versionNonce": 1876812856,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     3.7999999999999545,
+     2.9000000000000057
+    ],
+    [
+     7.600000000000023,
+     5.800000000000011
+    ],
+    [
+     11.399999999999977,
+     8.700000000000017
+    ],
+    [
+     15.200000000000045,
+     11.599999999999994
+    ],
+    [
+     19.0,
+     14.5
+    ],
+    [
+     22.799999999999955,
+     17.399999999999977
+    ],
+    [
+     26.600000000000023,
+     20.299999999999983
+    ],
+    [
+     30.399999999999977,
+     23.19999999999999
+    ],
+    [
+     34.200000000000045,
+     26.099999999999994
+    ],
+    [
+     38.0,
+     29.0
+    ],
+    [
+     41.799999999999955,
+     31.900000000000006
+    ],
+    [
+     45.60000000000002,
+     34.80000000000001
+    ],
+    [
+     49.39999999999998,
+     37.70000000000002
+    ],
+    [
+     53.200000000000045,
+     40.599999999999994
+    ],
+    [
+     57.0,
+     43.5
+    ],
+    [
+     60.799999999999955,
+     46.400000000000006
+    ],
+    [
+     64.60000000000002,
+     49.30000000000001
+    ],
+    [
+     68.39999999999998,
+     52.19999999999999
+    ],
+    [
+     72.20000000000005,
+     55.10000000000002
+    ],
+    [
+     76.0,
+     58.0
+    ],
+    [
+     79.79999999999995,
+     60.89999999999998
+    ],
+    [
+     83.60000000000002,
+     63.80000000000001
+    ],
+    [
+     87.39999999999998,
+     66.69999999999999
+    ],
+    [
+     91.20000000000005,
+     69.60000000000002
+    ],
+    [
+     95.0,
+     72.5
+    ],
+    [
+     98.79999999999995,
+     75.39999999999998
+    ],
+    [
+     102.60000000000002,
+     78.30000000000001
+    ],
+    [
+     106.39999999999998,
+     81.19999999999999
+    ],
+    [
+     110.20000000000005,
+     84.10000000000002
+    ],
+    [
+     114.0,
+     87.0
+    ],
+    [
+     117.79999999999995,
+     89.89999999999998
+    ],
+    [
+     121.60000000000002,
+     92.80000000000001
+    ],
+    [
+     125.39999999999998,
+     95.69999999999999
+    ],
+    [
+     129.20000000000005,
+     98.60000000000002
+    ],
+    [
+     133.0,
+     101.5
+    ],
+    [
+     136.79999999999995,
+     104.39999999999998
+    ],
+    [
+     140.60000000000002,
+     107.30000000000001
+    ],
+    [
+     144.39999999999998,
+     110.19999999999999
+    ],
+    [
+     148.20000000000005,
+     113.10000000000002
+    ],
+    [
+     152.0,
+     116.0
+    ],
+    [
+     155.79999999999995,
+     118.89999999999998
+    ],
+    [
+     159.60000000000002,
+     121.80000000000001
+    ],
+    [
+     163.39999999999998,
+     124.69999999999999
+    ],
+    [
+     167.20000000000005,
+     127.60000000000002
+    ],
+    [
+     171.0,
+     130.5
+    ],
+    [
+     174.79999999999995,
+     133.39999999999998
+    ],
+    [
+     178.60000000000002,
+     136.3
+    ],
+    [
+     182.39999999999998,
+     139.2
+    ],
+    [
+     186.20000000000005,
+     142.10000000000002
+    ],
+    [
+     190.0,
+     145.0
+    ],
+    [
+     193.79999999999995,
+     147.89999999999998
+    ],
+    [
+     197.60000000000002,
+     150.8
+    ],
+    [
+     201.39999999999998,
+     153.7
+    ],
+    [
+     205.20000000000005,
+     156.60000000000002
+    ],
+    [
+     209.0,
+     159.5
+    ],
+    [
+     212.79999999999995,
+     162.39999999999998
+    ],
+    [
+     216.60000000000002,
+     165.3
+    ],
+    [
+     220.39999999999998,
+     168.2
+    ],
+    [
+     224.20000000000005,
+     171.10000000000002
+    ],
+    [
+     228.0,
+     174.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-two-part-21",
+   "type": "text",
+   "x": 768.8,
+   "y": 323.4,
+   "width": 18.21,
+   "height": 18.75,
+   "angle": 0,
+   "strokeColor": "#1971c2",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1997214497,
+   "version": 1,
+   "versionNonce": 37405898,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "D2",
+   "originalText": "D2",
+   "fontSize": 15,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-two-part-22",
+   "type": "line",
+   "x": 550.0,
+   "y": 302.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#e03131",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 819794094,
+   "version": 1,
+   "versionNonce": 1603687978,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     380.0,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-two-part-23",
+   "type": "line",
+   "x": 550.0,
+   "y": 244.0,
+   "width": 0,
+   "height": 0,
+   "angle": 0,
+   "strokeColor": "#f08c00",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 280114851,
+   "version": 1,
+   "versionNonce": 1725485856,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "points": [
+    [
+     0.0,
+     0.0
+    ],
+    [
+     380.0,
+     0.0
+    ]
+   ],
+   "lastCommittedPoint": null,
+   "startBinding": null,
+   "endBinding": null,
+   "startArrowhead": null,
+   "endArrowhead": null
+  },
+  {
+   "id": "mi-two-part-24",
+   "type": "text",
+   "x": 865.4680000000001,
+   "y": 221.3,
+   "width": 60.732,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#f08c00",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 2121288783,
+   "version": 1,
+   "versionNonce": 2033244401,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "사용료 40",
+   "originalText": "사용료 40",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-two-part-25",
+   "type": "text",
+   "x": 563.001,
+   "y": 218.4,
+   "width": 11.998,
+   "height": 17.5,
+   "angle": 0,
+   "strokeColor": "#f08c00",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1564013193,
+   "version": 1,
+   "versionNonce": 1921947218,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "T",
+   "originalText": "T",
+   "fontSize": 14,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  },
+  {
+   "id": "mi-two-part-26",
+   "type": "text",
+   "x": 575.184,
+   "y": 260.0,
+   "width": 177.63200000000003,
+   "height": 16.25,
+   "angle": 0,
+   "strokeColor": "#7048e8",
+   "backgroundColor": "transparent",
+   "fillStyle": "hachure",
+   "strokeWidth": 2,
+   "strokeStyle": "solid",
+   "roughness": 1,
+   "opacity": 100,
+   "groupIds": [],
+   "frameId": null,
+   "roundness": null,
+   "seed": 1980270731,
+   "version": 1,
+   "versionNonce": 592893353,
+   "isDeleted": false,
+   "boundElements": null,
+   "updated": 1,
+   "link": null,
+   "locked": false,
+   "text": "소비자 1의 사용 이윤 (20 x 60)",
+   "originalText": "소비자 1의 사용 이윤 (20 x 60)",
+   "fontSize": 13,
+   "fontFamily": 5,
+   "textAlign": "left",
+   "verticalAlign": "top",
+   "containerId": null,
+   "autoResize": true,
+   "lineHeight": 1.25
+  }
+ ],
+ "appState": {
+  "gridSize": 20,
+  "viewBackgroundColor": "#ffffff"
+ },
+ "files": {}
+}
