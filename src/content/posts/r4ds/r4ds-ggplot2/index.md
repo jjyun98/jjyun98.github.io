@@ -34,7 +34,7 @@ ggplot(data = <DATA>, mapping = aes(<MAPPINGS>)) +
 | aes | 변수를 위치, 색, 크기, 모양에 연결 | `aes(x, y, color, fill, size, shape, alpha)` |
 | geom | 데이터를 그릴 도형 | `geom_point`, `geom_line`, `geom_bar`, `geom_col`, `geom_histogram`, `geom_boxplot`, `geom_smooth` |
 | facet | 범주별로 작은 그래프 여러 개 | `facet_wrap(~ x)`, `facet_grid(rows ~ cols)` |
-| stat | 그리기 전에 하는 통계 변환 | `after_stat(prop)`, `stat_summary` |
+| stat | 그리기 전에 하는 통계 변환 | `stat_count`, `stat_summary` |
 | position | 겹치는 도형의 배치 | `"stack"`, `"fill"`, `"dodge"`, `"jitter"` |
 | coord | 좌표계 | `coord_cartesian`, `coord_quickmap`, `coord_polar` |
 

@@ -143,21 +143,21 @@ $$
 자료는 교재 표 4.2에 있다. 탭으로 구분된 텍스트 파일로 저장했다면 다음처럼 읽고 탐색한다.
 
 ```sas
-data liver;
+data leukemia;
   infile '예제4_1.txt' expandtabs;
   input trt $ remission y;
 run;
 
-proc means data=liver mean std;
+proc means data=leukemia mean std;
   class trt;
   var remission;
 run;
 
-proc freq data=liver;
+proc freq data=leukemia;
   tables trt*y / chisq;
 run;
 
-proc sgplot data=liver;
+proc sgplot data=leukemia;
   scatter x=remission y=y / jitter group=trt;
 run;
 ```
@@ -165,7 +165,7 @@ run;
 `expandtabs`는 탭을 공백으로 바꿔 읽는다. 0/1 반응을 산점도로 그리면 점이 겹치므로 `jitter`로 흩뜨린다.
 
 ```sas
-proc logistic data=liver plots(only)=(effect oddsratio(type=horizontalstat));
+proc logistic data=leukemia plots(only)=(effect oddsratio(type=horizontalstat));
   class trt (ref='B') / param=ref;
   model y(event='1') = trt remission / scale=none aggregate lackfit clodds=both;
   units remission=12;

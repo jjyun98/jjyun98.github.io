@@ -165,7 +165,7 @@ ggplot(filter(waves, t <= 48), aes(t, value, color = name)) +
 계절 진폭이 수준과 함께 커지므로 로그를 취해 승법 구조를 가법으로 바꾼다.
 
 $$
-\log Z_t = \beta_0 + \beta_1 t + \sum_{i=1}^{12} \delta_i IND_{it} + \epsilon_t
+\log Z_t = \beta_1 t + \sum_{i=1}^{12} \delta_i IND_{it} + \epsilon_t
 $$
 
 ```r

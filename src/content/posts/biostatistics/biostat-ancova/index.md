@@ -260,7 +260,7 @@ $$
 SAS에서는 다음처럼 쓴다.
 
 ```sas
-proc glm data=ex53;
+proc glm data=oxygen;
   class trt;
   model y = trt x trt*x / solution;
 run;
@@ -295,15 +295,15 @@ run;
 proc glm data=oxygen;
   class trt;
   model y = trt x trt*x / solution;
-  estimate 'slope: trt 1' x 1 x*trt 1 0 0;
-  estimate 'slope: trt 2' x 1 x*trt 0 1 0;
-  estimate 'slope: trt 3' x 1 x*trt 0 0 1;
+  estimate 'slope: trt 1' x 1 trt*x 1 0 0;
+  estimate 'slope: trt 2' x 1 trt*x 0 1 0;
+  estimate 'slope: trt 3' x 1 trt*x 0 0 1;
 run;
 quit;
 ```
 
 - `trt*x`의 Type III 검정이 처리별 기울기가 같은지($H_0: \beta_1 = \beta_2 = \beta_3$)에 대한 검정이다.
-- `estimate 'slope: trt 1' x 1 x*trt 1 0 0;`은 공통 기울기 $\beta$에 1번 처리의 기울기 편차를 더한, 1번 처리의 기울기 $\beta + (\alpha\beta)_1$이다. 처리별로 담배 소비량이 1단위 늘 때 산소운반 능력이 얼마나 변하는지를 보여 준다.
+- `estimate 'slope: trt 1' x 1 trt*x 1 0 0;`은 공통 기울기 $\beta$에 1번 처리의 기울기 편차를 더한, 1번 처리의 기울기 $\beta + (\alpha\beta)_1$이다. 처리별로 담배 소비량이 1단위 늘 때 산소운반 능력이 얼마나 변하는지를 보여 준다.
 
 치료법 1, 2에서는 담배 소비량이 많을수록 산소운반 능력이 크게 떨어지는 반면 치료법 3은 그 관계가 약해 보인다. 상호작용이 유의하면 "어느 치료법이 낫다"를 하나로 말할 수 없고, 담배 소비량 수준에 따라 처리 효과를 따로 제시해야 한다.
 

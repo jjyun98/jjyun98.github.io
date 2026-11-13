@@ -19,14 +19,15 @@ Gymnasium의 `LunarLander`는 착륙선을 두 깃발 사이의 착륙장에 부
 | 상태 (8차원 실수) | 위치 $x, y$, 속도 $\dot x, \dot y$, 각도, 각속도, 왼쪽·오른쪽 다리의 접지 여부 |
 | 행동 (4개) | 0 아무것도 안 함, 1 왼쪽 엔진, 2 주 엔진, 3 오른쪽 엔진 |
 | 보상 | 착륙장에 가까워지고 느려질수록 +, 다리 접지 +, 엔진 분사마다 −, 추락 −100, 안착 +100 |
-| 종료 | 추락, 화면 이탈, 또는 정지 |
+| 종료 | 추락, 화면 이탈, 착륙 후 정지, 또는 1000스텝 초과 (truncation) |
 | 해결 기준 | 최근 100판 평균 200점 이상 |
 
 ```python
 import gymnasium as gym
-env = gym.make('LunarLander-v2', render_mode='rgb_array')
+env = gym.make('LunarLander-v3', render_mode='rgb_array')    # v0.29 이전 버전은 'LunarLander-v2'
 state, _ = env.reset()                                       # 길이 8의 실수 벡터
-next_state, reward, terminated, _, _ = env.step(action)      # 행동 0~3
+next_state, reward, terminated, truncated, _ = env.step(action) # 행동 0~3
+done = terminated or truncated
 ```
 
 ## 2. 표에서 함수로
@@ -118,7 +119,7 @@ for each step:
 | 리플레이 버퍼 | 9.6 ~ 9.8 | 22 ~ 26 | 발산 (수천 스텝 만에 $10^5$, 이후 $10^6$) |
 | 리플레이 버퍼 + 목표 네트워크 | 80 ~ 99 | 146 ~ 323 | 40 이하로 유지 |
 
-이 문제에서 $q$의 참값은 $\sum_t 0.99^t \le 100$을 넘을 수 없다.
+이 문제는 보상이 스텝마다 1이므로 $q$의 참값은 $\sum_t 0.99^t = 100$을 넘을 수 없다.
 
 - **목표 네트워크가 없으면 두 구성 모두 무작위보다 못하다.** 무작위 행동의 평균 점수가 약 22인데, 두 구성은 처음에는 그 근처였다가 결국 9.5점으로 떨어진다. 한쪽으로만 계속 미는 정책이다. 리플레이 버퍼만 쓴 구성에서 $q$의 최댓값을 추적해 보면 참값의 상한 100을 훨씬 넘어 $10^6$까지 커진다. 목표값이 추정값을 따라 올라가는 발산이 실제로 일어났다.
 - **목표 네트워크를 쓰면 학습이 된다.** $q$가 참값 범위 안에 머물고 점수가 200~300판 근처부터 올라간다.
@@ -148,9 +149,11 @@ class Agent:
         self.q_target.load_state_dict(self.q_net.state_dict())
         self.optimizer = torch.optim.Adam(self.q_net.parameters(), lr=1e-4)
         self.buffer = collections.deque(maxlen=5000)
+        self.batch_size = 64
         self.eps, self.n_experiences = 1.0, 0
 
     def learn(self):
+        self.n_experiences += 1
         if len(self.buffer) < self.batch_size: return
         S, A, R, S2, D = self.get_batch()
         q_estimated = self.q_net(S).gather(1, A)

@@ -72,7 +72,7 @@ b_1 & b_2 & b_3
 = (a_2b_3 - a_3b_2,\; a_3b_1 - a_1b_3,\; a_1b_2 - a_2b_1)
 $$
 
-- 상수배는 사잇각을 바꾸지 않으므로 $(k\mathbf{a}) \times \mathbf{b} = k(\mathbf{a} \times \mathbf{b}) = \mathbf{a} \times (k\mathbf{b})$
+- 외적의 선형성(행렬식의 행 선형성)에 의해 $(k\mathbf{a}) \times \mathbf{b} = k(\mathbf{a} \times \mathbf{b}) = \mathbf{a} \times (k\mathbf{b})$
 - **스칼라 삼중적**: 세 벡터가 만드는 평행육면체의 (부호 있는) 부피이며, 행렬식과 같다.
 
 $$

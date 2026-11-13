@@ -227,13 +227,13 @@ $L : V \to V$를 두 기저 $B_1, B_2$로 표현해 본다. 항등사상 $\mathr
 
 $$
 \begin{aligned}
-[L]_{B_1} &= [\mathrm{id} \circ L \circ \mathrm{id}]_{B_1, B_1} \\
-&= [\mathrm{id}]_{B_2, B_1}\,[L]_{B_2}\,[\mathrm{id}]_{B_1, B_2} \\
-&= \mathbf{P}^{-1}\,[L]_{B_2}\,\mathbf{P}, \qquad \mathbf{P} = [\mathrm{id}]_{B_1, B_2}
+[L]_{B_2} &= [\mathrm{id} \circ L \circ \mathrm{id}]_{B_2, B_2} \\
+&= [\mathrm{id}]_{B_1, B_2}\,[L]_{B_1}\,[\mathrm{id}]_{B_2, B_1} \\
+&= \mathbf{P}^{-1}\,[L]_{B_1}\,\mathbf{P}, \qquad \mathbf{P} = [\mathrm{id}]_{B_2, B_1}
 \end{aligned}
 $$
 
-$\mathbf{P}$는 $B_1$ 좌표를 $B_2$ 좌표로 바꾸는 전이행렬이다. 따라서 **닮음행렬은 같은 선형사상을 다른 기저로 본 행렬**이다. $\mathbf{P}$를 잘 고르면 행렬표현이 단순해지고(대각행렬 등) 계산량이 줄어든다. 이것이 다음 글의 대각화로 이어진다.
+$\mathbf{P}$는 신기저 $B_2$의 벡터들을 $B_1$ 좌표로 나타낸 전이행렬($B_2 \to B_1$)이며, 그 역행렬 $\mathbf{P}^{-1}$이 $B_1$ 좌표를 $B_2$ 좌표로 바꾼다. 따라서 **닮음행렬은 같은 선형사상을 다른 기저로 본 행렬**이다. $\mathbf{P}$를 잘 고르면 행렬표현이 단순해지고(대각행렬 등) 계산량이 줄어든다. 이것이 다음 글의 대각화로 이어진다.
 
 $\mathbf{A} = \begin{pmatrix} 1.5 & 0.5 \\ 0.5 & 1.5 \end{pmatrix}$를 예로 든다. 표준기저에서는 단위정사각형이 기울어진 평행사변형이 되어 사상의 성질이 잘 보이지 않는다. 기저를 $\mathbf{b}_1 = \tfrac{1}{\sqrt 2}(1, 1)$, $\mathbf{b}_2 = \tfrac{1}{\sqrt 2}(-1, 1)$로 바꾸어 보면, 같은 사상이 $\mathbf{b}_1$ 방향으로 2배 늘이고 $\mathbf{b}_2$ 방향은 그대로 두는 단순한 변환이다.
 

@@ -184,9 +184,9 @@ run;
 
 | 설계 | 공식의 핵심 | SAS `proc power` |
 |---|---|---|
-| 두 독립 평균 | $2(z_{\alpha/2} + z_\beta)^2 \sigma^2 / \Delta^2$ | `twosamplemeans` |
-| 짝지은 평균 | $(z_{\alpha/2} + z_\beta)^2 \sigma_D^2 / \Delta^2$ | `pairedmeans` |
+| 두 독립 평균 | $2(z_{1-\alpha/2} + z_{1-\beta})^2 \sigma^2 / \Delta^2$ | `twosamplemeans` |
+| 짝지은 평균 | $(z_{1-\alpha/2} + z_{1-\beta})^2 \sigma_D^2 / \Delta^2$ | `pairedmeans` |
 | 두 비율 | 비율의 분산 사용 | `twosamplefreq` |
-| 생존 | 사건 수 $4(z_{\alpha/2} + z_\beta)^2 / (\log HR)^2$ | `twosamplesurvival` |
+| 생존 | 사건 수 $4(z_{1-\alpha/2} + z_{1-\beta})^2 / (\log HR)^2$ | `twosamplesurvival` |
 | 세 군 이상 | 군 평균의 분산 | `onewayanova` |
 | 공통 | 탈락률 $r$이면 $n / (1 - r)$ | |

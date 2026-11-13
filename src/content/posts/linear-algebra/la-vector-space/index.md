@@ -85,7 +85,7 @@ $$
 
 - **교집합** $W_1 \cap W_2$는 부분공간이다.
 - **합집합** $W_1 \cup W_2$는 일반적으로 부분공간이 **아니다**. 예를 들어 $x$축과 $y$축의 합집합에서 $(1, 0) + (0, 1) = (1, 1)$은 어느 축에도 없다.
-- 대신 **합공간** $W_1 + W_2 = \{\mathbf{w}_1 + \mathbf{w}_2\}$는 부분공간이고, $W_1 \cup W_2$를 포함하는 가장 작은 부분공간이다.
+- 대신 **합공간** $W_1 + W_2 = \{\mathbf{w}_1 + \mathbf{w}_2 \mid \mathbf{w}_1 \in W_1, \mathbf{w}_2 \in W_2\}$는 부분공간이고, $W_1 \cup W_2$를 포함하는 가장 작은 부분공간이다.
 
 $$
 \dim(W_1 + W_2) = \dim W_1 + \dim W_2 - \dim(W_1 \cap W_2)
@@ -247,7 +247,7 @@ $\mathbf{A}^T$의 영공간 $N(\mathbf{A}^T) = \{\mathbf{y} \mid \mathbf{A}^T\ma
 A <- matrix(c(1, 1, 3, 0, 1, 2, 1, 0, 1, 1, 1, 3), nrow = 3)
 
 qr(A)$rank          # 2
-MASS::Null(t(A))    # N(A)의 기저, 열 2개
+MASS::Null(t(A))    # N(A)의 기저, 열 2개 (MASS::Null(M)은 M^T x = 0을 구하므로 t(A) 전달)
 MASS::Null(A)       # 좌영공간 N(A^T)의 기저, 열 1개
 ```
 

@@ -191,7 +191,7 @@ table5 |>
 | `separate_wider_position(col, widths)` | 글자 수로 나누기 |
 | `separate_wider_regex(col, patterns)` | 정규표현식으로 나누기 |
 | `separate_longer_delim(col, delim)` | 나눈 값을 **행**으로 펼치기 (`"a,b,c"` → 3행) |
-| `unite(new, a, b, sep)` | 합치기 |
+| `unite(new, a, b, sep = "_")` | 합치기 |
 
 예전 `separate()`는 더 이상 개발되지 않는다. 나눈 결과는 문자형이라 숫자로 바꿔 줘야 한다.
 
@@ -219,7 +219,7 @@ treatment <- tribble(
   NA,                 3,         NA,
   "Katherine Burke",  1,         4
 )
-treatment |> fill(everything())                      # 위 값으로 채우기 (보고서식 표)
+treatment |> fill(person)                            # 위 값으로 채우기 (보고서식 표)
 treatment |> mutate(response = coalesce(response, 0))   # 특정 값으로 채우기
 ```
 
@@ -251,7 +251,7 @@ treatment |> mutate(response = coalesce(response, 0))   # 특정 값으로 채�
 | 넓은 표 → 긴 표 | `pivot_longer(cols, names_to, values_to)` |
 | 긴 표 → 넓은 표 | `pivot_wider(names_from, values_from)` |
 | 한 칸을 여러 열로 | `separate_wider_delim(col, delim, names)` |
-| 여러 열을 한 칸으로 | `unite(new, a, b, sep)` |
+| 여러 열을 한 칸으로 | `unite(new, a, b, sep = "_")` |
 | 빠진 조합 채우기 | `complete()`, `fill()`, `coalesce()` |
 
 ## 참고자료

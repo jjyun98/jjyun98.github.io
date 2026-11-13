@@ -258,7 +258,7 @@ run;
 ```sas
 ods pdf file='mower_mean.pdf';
 
-proc means data=mow;
+proc means data=mower;
   var income lotsize;
 run;
 
@@ -268,7 +268,7 @@ ods pdf close;
 특정 출력표를 데이터셋으로 저장할 수도 있다.
 
 ```sas
-proc univariate data=mow;
+proc univariate data=mower;
   var income lotsize;
   ods output BasicMeasures=dmeas;
 run;
