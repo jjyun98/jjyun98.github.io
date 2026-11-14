@@ -19,6 +19,8 @@ title: About
 | [미시경제학](/series/미시경제학) | Pindyck·Rubinfeld 『미시경제학』 기반 강의 자료 | |
 | [딥러닝](/series/딥러닝) | 전북대학교 최규빈 교수 딥러닝 강의 (2022) | Python (PyTorch) |
 | [확률과정론](/series/확률과정론) | 전북대학교 최규빈 교수 확률과정론 강의 (2023) | Python |
+| [데이터 시각화](/series/데이터-시각화) | 전북대학교 최규빈 교수 데이터시각화 강의 (2021) | Python |
+| [기계학습 활용](/series/기계학습-활용) | 전북대학교 최규빈 교수 기계학습활용 강의 (2023) | Python (scikit-learn, AutoGluon) |
 | [R for Data Science](/series/r-for-data-science) | 『R for Data Science』 독학 실습 | R |
 
 그 외에 분석 프로젝트와 데이터 분석 환경, AWS 같은 작업 기록을 따로 남긴다.

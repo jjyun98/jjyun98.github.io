@@ -4,6 +4,7 @@ published: 2026-11-04
 draft: false
 description: '망분리(폐쇄망) 분석 환경이 어떤 구조로 동작하는지, 로그인부터 반출까지의 과정, 그리고 인터넷 없이 Base R만으로 구성하는 전처리 파이프라인을 정리했다.'
 series: '데이터 분석 환경'
+seriesOrder: 1
 tags: ['데이터 분석', '데이터 전처리', 'R']
 ---
 
