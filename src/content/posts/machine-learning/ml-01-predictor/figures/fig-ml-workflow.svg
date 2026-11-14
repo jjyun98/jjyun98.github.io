@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 300" width="920" height="300" font-family="NanumGothic, 'Apple SD Gothic Neo', sans-serif">
+<rect width="920" height="300" fill="#ffffff"/>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" fill="#1e1e1e"/></marker></defs>
+<g stroke="#1e1e1e" stroke-width="2" fill="none">
+<rect x="20" y="40" width="160" height="70" rx="10" fill="#e7f5ff"/>
+<rect x="20" y="190" width="160" height="70" rx="10" fill="#fff4e6"/>
+<rect x="250" y="115" width="140" height="70" rx="10" fill="#f8f9fa"/>
+<rect x="450" y="115" width="140" height="70" rx="10" fill="#ebfbee"/>
+<rect x="650" y="40" width="250" height="70" rx="10" fill="#f8f9fa"/>
+<rect x="650" y="190" width="250" height="70" rx="10" fill="#f8f9fa"/>
+<path d="M390 150H448" marker-end="url(#a)"/>
+<path d="M180 75Q300 75 320 113" marker-end="url(#a)"/>
+<path d="M590 140Q620 75 648 75" marker-end="url(#a)"/>
+<path d="M590 160Q620 225 648 225" marker-end="url(#a)"/>
+<path d="M180 225Q420 285 648 235" marker-end="url(#a)" stroke-dasharray="6 5"/>
+</g>
+<g font-size="17" fill="#1e1e1e" text-anchor="middle">
+<text x="100" y="70">학습 자료 (X, y)</text><text x="100" y="95" font-size="14" fill="#495057">모의고사 문제 + 답</text>
+<text x="100" y="220">시험 자료 (XX, yy)</text><text x="100" y="245" font-size="14" fill="#495057">시험 문제 (답은 채점용)</text>
+<text x="320" y="145">① 생성</text><text x="320" y="170" font-size="14" fill="#495057">LinearRegression()</text>
+<text x="520" y="145">② fit(X, y)</text><text x="520" y="170" font-size="14" fill="#495057">coef_ 등이 생김</text>
+<text x="775" y="70">③ predict(X), predict(XX)</text><text x="775" y="95" font-size="14" fill="#495057">yhat, yyhat</text>
+<text x="775" y="220">④ score(XX, yy)</text><text x="775" y="245" font-size="14" fill="#495057">정확도 또는 R²</text>
+<text x="420" y="282" font-size="14" fill="#495057">시험 자료는 ②에 쓰지 않는다</text>
+</g>
+</svg>
