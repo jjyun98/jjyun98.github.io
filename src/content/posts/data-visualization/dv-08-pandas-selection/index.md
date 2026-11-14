@@ -1,6 +1,6 @@
 ---
 title: '데이터 시각화 - 판다스로 행과 열 고르기'
-published: 2021-10-20
+published: 2021-10-27
 draft: false
 description: '판다스에서 열과 행을 고르는 방법(대괄호, loc, iloc, 불 인덱싱, lambda와 map, query)을 정리하고 헷갈리는 지점(Series와 DataFrame, loc와 iloc의 슬라이싱, and와 &)을 짚는다. FIFA22 선수 자료에서 조건에 맞는 행을 골라 새 변수를 만들고 산점도와 박스플랏을 겹쳐 그린다.'
 series: '데이터 시각화'
@@ -195,10 +195,10 @@ ggplot(fifa22) + geom_point(aes(x='Overall', y='Potential2'), alpha=0.1, positio
 
 ![현재 능력과 성장 여지의 산점도. 성장 여지가 0인 선수가 바닥에 몰려 있다](./images/dv08-02.png)
 
-`Potential2`가 0인 선수가 6,362명으로 바닥에 띠를 이룬다. 이미 성장이 끝난 선수들일 것이다. 이들을 빼고 본다.
+`Potential2`가 0인 선수가 6,362명으로 바닥에 띠를 이룬다. 이미 성장이 끝난 선수들일 것이다. 이들을 빼고 `Potential2 > 0.1`인 10,346명만 남긴다(전체 16,710명 중 나머지 2명은 `0 < Potential2 <= 0.1` 구간에 해당해 함께 제외된다).
 
 ```python
-f2 = fifa22.query('Potential2 > 0.1')    # 10,346명
+f2 = fifa22.query('Potential2 > 0.1').copy()    # 10,346명
 ```
 
 현재 능력이 높을수록 성장 여지가 작고(상관계수 $-0.57$), **퍼짐도 작아 보인다**. 이것을 확인하려고 `Overall`을 사분위수 근처(63, 68, 72)에서 네 구간으로 나눈다. `map`에 구간을 돌려주는 함수를 넣어도 되고, `pd.cut`을 써도 된다.

@@ -4,6 +4,7 @@ published: 2022-08-12
 draft: false
 description: 'stringr의 문자열 함수(길이, 자르기, 합치기, 탐지, 추출, 치환, 분할)와 정규표현식 문법을 실습으로 정리'
 series: 'R for Data Science'
+seriesOrder: 7
 tags: ['R', 'tidyverse', '데이터 전처리']
 ---
 
@@ -155,6 +156,68 @@ str_extract(x[2], "\\d{3}-\\d{4}-\\d{4}")         # 전화번호
 str_squish(x[3])                                 # 앞뒤 공백 제거 + 중복 공백 하나로
 str_detect(c("Banana", "banana"), regex("banana", ignore_case = TRUE))
 ```
+
+## 3. 비교
+
+같은 패턴을 넣어도 함수에 따라 돌려주는 것이 다르다. 한 벡터에 모두 적용해 비교한다.
+
+```r
+x <- c("apple pie", "banana split", "cherry")
+str_detect(x, "an")           # 있나
+str_count(x, "an")            # 몇 번
+str_extract(x, "an+")         # 무엇이 (첫 일치)
+str_match(x, "(an)(a)")       # 전체 일치와 그룹별
+str_replace(x, "an", "AN")    # 첫 일치만 바꿈
+str_replace_all(x, "an", "AN")
+```
+
+```text
+str_detect:       FALSE  TRUE FALSE
+str_count:        0 2 0
+str_extract:      NA   "an"   NA
+str_match:        2행만 "ana" "an" "a" (나머지는 NA)
+str_replace:      "apple pie" "bANana split" "cherry"
+str_replace_all:  "apple pie" "bANANa split" "cherry"
+```
+
+| 함수 | 돌려주는 것 | 일치가 없을 때 | 쓰는 때 |
+|---|---|---|---|
+| `str_detect` | 논리값 | `FALSE` | `filter`, 비율 계산 |
+| `str_count` | 일치 횟수 | `0` | 단어 안의 모음 수 같은 특징 만들기 |
+| `str_extract` | 일치한 문자열 | `NA` | 패턴에 맞는 부분 꺼내기 |
+| `str_match` | 전체와 그룹별 행렬 | `NA` 행 | 한 번에 여러 조각 꺼내기 |
+| `str_replace(_all)` | 바뀐 문자열 | 그대로 | 정리, 치환 |
+
+열을 나눌 때도 방식에 따라 고른다.
+
+| 함수 | 나누는 기준 | 쓰는 때 |
+|---|---|---|
+| `separate_wider_delim` | 구분자 | `"apple pie"` → 두 열 |
+| `separate_wider_position` | 글자 수 | 고정 너비 자료 |
+| `separate_wider_regex` | 정규표현식, 조각마다 이름 | 구분자가 일정하지 않을 때 |
+| `str_split` | 구분자, 결과는 리스트 | 한 칸의 값 개수가 제각각일 때 |
+
+```r
+tibble(x = x) |>
+  separate_wider_delim(x, delim = " ", names = c("fruit", "dish"), too_few = "align_start")
+tibble(code = c("a-12", "b-7")) |>
+  separate_wider_regex(code, c(letter = "[a-z]", "-", num = "\\d+"))
+```
+
+```text
+# 첫 번째
+  fruit  dish
+1 apple  pie
+2 banana split
+3 cherry <NA>
+
+# 두 번째
+  letter num
+1 a      12
+2 b      7
+```
+
+`separate_wider_delim()`은 조각 수가 맞지 않으면 기본적으로 에러를 내므로, 모자란 곳을 `NA`로 채우려면 `too_few = "align_start"`를 준다. 나눈 결과는 모두 문자형이다.
 
 ## 자주 하는 실수
 

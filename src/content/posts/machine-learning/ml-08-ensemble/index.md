@@ -35,6 +35,7 @@ $$
 첫 나무의 부트스트랩 표본 80개에는 서로 다른 관측치가 51개 들어 있다. 10개 나무 평균은 62.6%로, 이론값 $1 - (1 - 1/n)^n \approx 1 - e^{-1} = 0.632$와 맞는다. 저장된 표본 번호로 나무 10개를 직접 다시 키우고 평균하면 `predictr.predict(X)`와 $4\times10^{-15}$까지 같다.
 
 ```python
+# X, y가 NumPy 배열(ndarray)일 때 기준 (DataFrame/Series라면 X.iloc[s], y.iloc[s] 사용)
 trees = [DecisionTreeRegressor(random_state=e.random_state).fit(X[s], y[s])
          for e, s in zip(predictr.estimators_, predictr.estimators_samples_)]
 np.mean([t.predict(X) for t in trees], axis=0)     # == predictr.predict(X)
@@ -121,7 +122,7 @@ Medical Cost 자료에서 시험 $R^2$는 나무 46개에서 최고(0.871), 기�
 
 ## 같은 자료에서의 비교
 
-Medical Cost 자료, 7:3 분할 한 번의 시험 $R^2$와 5겹 교차검증 $R^2$(평균 ± 표준편차)다.
+Medical Cost 자료, 7:3 분할 한 번의 시험 $R^2$와 5겹 교차검증 $R^2$(전체 1,338명 기준, 평균 ± 표준편차)다.
 
 | 방법 | 학습 $R^2$ | 시험 $R^2$ | CV $R^2$ |
 |---|---|---|---|

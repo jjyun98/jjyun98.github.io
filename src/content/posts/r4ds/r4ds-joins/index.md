@@ -1,9 +1,10 @@
 ---
 title: 'R4DS - join으로 테이블 합치기'
-published: 2022-07-22
+published: 2022-08-22
 draft: false
 description: '기본키와 외래키, join_by, mutating join(left/inner/right/full), filtering join(semi/anti), 키 중복과 집합 연산을 nycflights13으로 정리'
 series: 'R for Data Science'
+seriesOrder: 10
 tags: ['R', 'tidyverse', '데이터 전처리']
 ---
 
@@ -71,6 +72,16 @@ x |> semi_join(y, join_by(key))
 x |> anti_join(y, join_by(key))
 ```
 
+```text
+left_join    key=1,2,3  val_x=x1,x2,x3  val_y=y1,y2,NA     (x의 3행 모두, key 3은 짝이 없어 NA)
+inner_join   key=1,2    val_x=x1,x2     val_y=y1,y2        (양쪽에 있는 key 1, 2만)
+full_join    key=1,2,3,4                val_y=y1,y2,NA,y3  (key 3은 val_y가, key 4는 val_x가 NA)
+semi_join    key=1,2    val_x=x1,x2                        (y의 열은 붙지 않는다)
+anti_join    key=3      val_x=x3                           (y에 없는 행)
+```
+
+`left_join`과 `inner_join`의 차이는 key 3이다. 짝이 없는 행을 남기려면 `left_join`, 버리려면 `inner_join`이고, 버려질 행이 얼마나 되는지 모르겠으면 `anti_join`으로 먼저 확인한다.
+
 ## 3. join_by로 키 지정하기
 
 ```r
@@ -88,7 +99,21 @@ flights2 |> left_join(weather |> select(origin, time_hour, temp, wind_speed), jo
 
 - `join_by()`를 생략하면 **이름이 같은 모든 열**을 키로 쓰고 어떤 열을 썼는지 메시지를 띄운다. 의도하지 않은 열(예: `flights`와 `planes`의 `year`, 각각 운항 연도와 제작 연도)이 키가 될 수 있으니 직접 지정하는 습관이 좋다.
 - 예전 문법 `by = c("dest" = "faa")`는 `join_by(dest == faa)`와 같다.
-- 부등호 조건(`join_by(x >= start, x <= end)`)도 가능하다(범위 join).
+- 같음이 아니라 **부등호 조건**으로도 잇는다(부등식 join). 값이 어느 구간에 들어가는지 찾을 때 쓴다.
+
+```r
+events <- tibble(id = 1:4, time = c(3, 8, 12, 20))
+windows <- tibble(window = c("A", "B", "C"), start = c(0, 10, 15), end = c(9, 14, 18))
+
+events |> left_join(windows, join_by(between(time, start, end)))
+```
+
+```text
+id=1 time=3  window=A      id=3 time=12 window=B
+id=2 time=8  window=A      id=4 time=20 window=NA
+```
+
+`between(time, start, end)`는 `time >= start, time <= end`와 같다. time 3과 8은 구간 A에, 12는 B에 들어가고, 20은 어느 구간에도 없어 `NA`다. `inner_join`을 쓰면 `id = 4`가 사라져 3행이 남는다. 이 밖에 `closest()`(가장 가까운 값), `overlaps()`(구간이 겹침)도 `join_by()` 안에서 쓴다.
 
 ## 4. filtering join 활용
 
@@ -160,4 +185,4 @@ setdiff(df1, df2)     # df1에만 있는 행
 - *R for Data Science* (2nd ed.): [19 Joins](https://r4ds.hadley.nz/joins.html)
 - [dplyr: Mutating joins](https://dplyr.tidyverse.org/reference/mutate-joins.html)
 
-다음 글: [R4DS - 데이터 불러오기와 tidy data](/posts/r4ds-tibble-tidydata)
+다음 글: [R4DS - 함수 작성하기](/posts/r4ds-functions)

@@ -117,7 +117,7 @@ $$
 |---|---|
 | 전이행렬 $\mathbf P$가 주어짐 | 전이 $P(s' \mid s, a)$는 환경이 정하고, 정책 $\pi$는 에이전트가 고름 |
 | 질문: 장기적으로 어디에 있는가 | 질문: 어떤 정책이 누적 보상을 최대로 하는가 |
-| 정상분포 $\boldsymbol\pi^\top\mathbf P = \boldsymbol\pi^\top$ | 벨만 방정식 $q^*(s,a) = r(s,a) + \gamma \sum_{s'} P(s'\mid s,a)\max_{a'} q^*(s',a')$ |
+| 정상분포 $\boldsymbol\pi^\top\mathbf P = \boldsymbol\pi^\top$ | 벨만 방정식 $q^\star(s,a) = r(s,a) + \gamma \sum_{s'} P(s'\mid s,a)\max_{a'} q^\star(s',a')$ |
 | MCMC: 원하는 정상분포를 갖는 $\mathbf P$를 **설계** | 강화학습: 원하는 보상을 주는 $P^\pi$를 **학습** |
 
 MCMC와 강화학습은 둘 다 "주어진 체인을 분석"하는 문제를 "목적에 맞는 체인을 만드는" 문제로 뒤집었다는 점에서 닮았다. 차이는 MCMC가 상세 균형이라는 설계도를 갖고 있는 반면 강화학습은 환경의 전이를 모른 채 경험으로 배워야 한다는 데 있다.

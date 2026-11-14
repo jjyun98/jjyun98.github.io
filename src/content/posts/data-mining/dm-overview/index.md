@@ -36,12 +36,15 @@ ISLR(*An Introduction to Statistical Learning*)과 전북대학교 이영미 교
 | 의사결정나무 | 회귀·분류 | 재귀적 이진 분할, 가지치기 | 8장 |
 | 앙상블 | 회귀·분류 | 배깅, 랜덤포레스트, 부스팅 | 8장 |
 | 서포트 벡터 머신 | 분류 | 최대 마진, 커널 | 9장 |
+| 신경망 | 회귀·분류 | 다층 신경망, 역전파, 규제, 이중 하강 | 10장 |
+| 딥러닝 | 회귀·분류 | CNN, RNN, 시계열·문서 분류 | 10장 |
+| 생존분석 | 생존 | Kaplan-Meier, 로그순위, Cox, 벌점 Cox | 11장 |
 | 주성분분석 | 비지도 | 고유값 분해, SVD, PVE | 12장 |
 | 군집분석 | 비지도 | K-means, 계층적 군집, SOM | 12장 |
 | 연관규칙 | 비지도 | 지지도, 신뢰도, 향상도, Apriori | 강의 |
 | 다중검정 | 검정 | FWER, FDR | 13장 |
 
-ISLR 10장(딥러닝)과 11장(생존분석)은 이 시리즈에서 다루지 않는다. 생존분석은 생명과학통계 시리즈에 있다.
+[생존분석](/posts/dm-survival)은 [생명과학통계의 생존분석](/posts/biostat-survival-analysis)을 보완해 ISLR 11장의 예측 모형과 벌점 Cox 회귀 중심으로 다룬다.
 
 ## 통계적 학습의 기본 식
 
@@ -165,12 +168,15 @@ $$
 | [선형회귀](/posts/dm-linear-regression) | 회귀 | 모수적 | 설명 변수의 수 | 계수 |
 | [로지스틱 회귀](/posts/dm-logistic-regression) | 분류 | 모수적, 판별적 | 설명 변수의 수 | 오즈비 |
 | [LDA·QDA·나이브 베이즈](/posts/dm-classification) | 분류 | 모수적, 생성적 | 분포 가정 | 판별축 |
-| [KNN](/posts/dm-classification) | 회귀·분류 | 비모수적 | 이웃 수 $K$ | 어려움 |
+| KNN ([회귀](/posts/dm-linear-regression)·[분류](/posts/dm-classification)) | 회귀·분류 | 비모수적 | 이웃 수 $K$ | 어려움 |
 | [부분집합·Ridge·Lasso·PCR](/posts/dm-regularization) | 회귀 | 모수적 + 제약 | 변수 수, $\lambda$, 성분 수 | 계수 |
 | [스플라인·GAM](/posts/dm-nonlinear) | 회귀 | 준모수적 | 자유도, 평활 모수 | 항별 곡선 |
 | [의사결정나무](/posts/dm-tree) | 회귀·분류 | 비모수적 | 잎의 수 ($\alpha$) | 규칙 |
 | [배깅·랜덤포레스트·부스팅](/posts/dm-ensemble) | 회귀·분류 | 비모수적, 결합 | 나무 수, $m$, $\lambda$, $d$ | 변수 중요도 |
 | [SVM](/posts/dm-svm) | 분류 | 비모수적 (커널) | 비용, 커널 모수 | 어려움 |
+| [신경망](/posts/dm-neural-network) | 회귀·분류 | 비모수적 (모수 다수) | 층·은닉 단위 수, 규제 | 어려움 |
+| [딥러닝(CNN·RNN)](/posts/dm-deep-learning) | 회귀·분류 | 구조 반영 신경망 | 필터·은닉 단위, 드롭아웃 | 어려움 |
+| [생존분석(KM·Cox)](/posts/dm-survival) | 생존 (중도절단) | 비모수·준모수적 | 공변량, 벌점 $\lambda$ | 생존곡선·위험비 |
 | [PCA](/posts/dm-pca) | 비지도 | 차원축소 | 주성분 수 | 적재량 |
 | [군집분석](/posts/dm-clustering) | 비지도 | 거리 기반 | 군집 수, 연결 방법 | 군집 프로파일 |
 | [연관규칙](/posts/dm-association-rule) | 비지도 | 빈도 기반 | 최소 지지도·신뢰도 | 규칙 |

@@ -1,23 +1,23 @@
 ---
-title: '화장품 트렌드 분석 프로젝트 1: 데이터 수집 및 설계'
+title: '화장품 성분 분석 프로젝트: 데이터 수집 및 설계'
 published: 2026-02-06
 draft: false
-description: '화장품 시장 트렌드 분석을 위한 올리브영 데이터 수집 및 데이터베이스 스키마 설계 과정을 소개합니다.'
+description: '화장품 성분 트렌드 분석을 위한 올리브영 데이터 수집과 데이터베이스 스키마 설계 과정을 정리한다.'
 series: '화장품 성분 분석 프로젝트'
 tags: ['데이터 분석', 'AWS', '포트폴리오']
 ---
 
-# 프로젝트 목표
+## 프로젝트 목표
 
-최근 3개월간 급상승한 리뷰 키워드 분석을 통해 **차세대 주력 성분(ingredient) 및 신규 상품군을 제안**하는 것을 목표로 하는 '화장품 성분 분석 프로젝트'의 첫 번째 포스트입니다.
+최근 3개월간 급상승한 리뷰 키워드 분석을 통해 **차세대 주력 성분(ingredient) 및 신규 상품군을 제안**하는 것을 목표로 하는 '화장품 성분 분석 프로젝트'의 데이터 수집 및 설계 기록이다.
 
-이번 포스트에서는 분석의 기반이 될 데이터를 수집하고, 분석에 용이하도록 데이터베이스를 설계하는 과정을 다룹니다.
+이 글에서는 분석의 기반이 될 데이터를 수집하고, 분석에 쓰기 좋도록 데이터베이스를 설계하는 과정을 다룬다.
 
 ## 1. 올리브영 카테고리 데이터 수집
 
-올리브영에서 상품 리뷰를 가져오려면 먼저 상품 ID를 알아야 합니다. 상품 ID는 각 카테고리별 랭킹 페이지에서 수집할 수 있으므로, 우선 올리브영의 전체 상품 카테고리 구조를 파악하는 것부터 시작했습니다.
+올리브영에서 상품 리뷰를 가져오려면 먼저 상품 ID를 알아야 한다. 상품 ID는 각 카테고리별 랭킹 페이지에서 수집할 수 있으므로, 우선 올리브영의 전체 상품 카테고리 구조를 파악하는 것부터 시작했다.
 
-올리브영의 카테고리는 3개의 계층적 구조를 가지고 있습니다. 저는 이를 각각 large, mid, small로 명명했습니다. 아래 표와 같이 **대 → 중 → 소** 순서로 ID가 확장되는 규칙을 가지고 있습니다.
+올리브영의 카테고리는 3개의 계층적 구조를 가지고 있다. 이를 각각 `large`, `mid`, `small`로 명명했다. 아래 표와 같이 **대 → 중 → 소** 순서로 ID가 확장되는 규칙을 따른다.
 
 | **카테고리 레벨** | **카테고리 ID**     | **카테고리 명칭** | **비고**                   |
 | ----------------- | ------------------- | ----------------- | -------------------------- |
@@ -25,13 +25,13 @@ tags: ['데이터 분석', 'AWS', '포트폴리오']
 | mid               | 100000100010010     | 미스트/오일       | 스킨케어 내 세부분류       |
 | small             | 1000001000100100001 | 미스트/픽서       | 최종 상품 리스트 추출 지점 |
 
-각 카테고리 정보를 가져오는 스크래핑 코드는 `category_scraping.ipynb`에 구현되어 있습니다.
+각 카테고리 정보를 가져오는 스크래핑 코드는 `category_scraping.ipynb`에 구현했다.
 
 ## 2. 데이터베이스 설계 (ERD)
 
-수집한 데이터를 효율적으로 관리하고 분석하기 위해 데이터베이스 스키마를 설계했습니다. 데이터는 S3에 저장하고 AWS Athena를 사용해 쿼리할 예정입니다.
+수집한 데이터를 효율적으로 관리하고 분석하기 위해 데이터베이스 스키마를 설계했다. 데이터는 S3에 저장하고 AWS Athena를 사용해 쿼리하는 구조다.
 
-전체 데이터베이스의 구조는 다음과 같습니다.
+전체 데이터베이스의 구조는 다음과 같다.
 
 ![project erd](./cosmetic_erd.svg)
 
@@ -47,10 +47,10 @@ tags: ['데이터 분석', 'AWS', '포트폴리오']
 
 ## 3. 초기 데이터 탐색 (EDA) 및 테이블 생성
 
-본격적인 분석에 앞서, 수집한 카테고리 데이터에 대한 간단한 탐색을 진행했습니다. 어떤 카테고리에 상품이 많이 분포해 있는지 확인하기 위해 Athena에서 다음 쿼리를 실행했습니다.
+본격적인 분석에 앞서, 수집한 카테고리 데이터에 대한 간단한 탐색을 진행했다. 어떤 카테고리에 상품이 많이 분포해 있는지 확인하기 위해 Athena에서 다음 쿼리를 실행했다.
 
 ```sql
-SELECT c.category_name, COUNT(DISTINCT p.goods_id) AS product_count
+SELECT c.category_name, COUNT(DISTINCT p.goodsNumber) AS product_count
 FROM categories AS c
 JOIN products AS p ON c.category_id = p.category_id
 WHERE c.category_type = 'small'
@@ -58,9 +58,9 @@ GROUP BY c.category_name
 ORDER BY product_count DESC;
 ```
 
-분석 결과, '에센스/세럼/앰플' 카테고리에 가장 많은 상품이 등록되어 있었습니다. 모든 카테고리에 대해 프로젝트를 진행하기에는 규모가 너무 크다고 판단하여, 등록 상품 수가 가장 많은 상위 5개 카테고리에 대해서만 분석을 진행하기로 결정했습니다.
+분석 결과, '에센스/세럼/앰플' 카테고리에 가장 많은 상품이 등록되어 있었다. 모든 카테고리에 대해 프로젝트를 진행하기에는 규모가 너무 커서, 등록 상품 수가 가장 많은 상위 5개 카테고리에 대해서만 분석을 진행하기로 결정했다.
 
-이 데이터를 바탕으로 Athena에 테이블을 생성했습니다. `products`와 `profiles` 테이블의 생성 쿼리는 다음과 같습니다.
+이 데이터를 바탕으로 Athena에 테이블을 생성했다. `products`와 `profiles` 테이블의 생성 쿼리는 다음과 같다.
 
 ```sql title="products 테이블 생성"
 CREATE EXTERNAL TABLE IF NOT EXISTS oliveyoung_db.products (
@@ -71,7 +71,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS oliveyoung_db.products (
 )
 STORED AS PARQUET
 LOCATION 's3://oliveyoung-reviews-yn/products/'
-TBLPROPERTIES ('parquet.compress'='SNAPPY');
+TBLPROPERTIES ('parquet.compression'='SNAPPY');
 ```
 
 ```sql title="profiles 테이블 생성"
@@ -98,13 +98,13 @@ CREATE EXTERNAL TABLE IF NOT EXISTS oliveyoung_db.profiles (
 )
 STORED AS PARQUET
 LOCATION 's3://oliveyoung-reviews-yn/profile/'
-TBLPROPERTIES ("parquet.compress"="SNAPPY");
+TBLPROPERTIES ('parquet.compression'='SNAPPY');
 ```
 
-또한, 각 카테고리별 트렌드 키워드를 정규표현식으로 추출하여 별도의 `keyword` 테이블에 저장했습니다. 예를 들어 `cream` 카테고리의 키워드 테이블은 다음과 같이 생성됩니다.
+또한 각 카테고리별 트렌드 키워드를 정규표현식으로 추출해 별도의 `keyword` 테이블에 저장했다. 예를 들어 `cream` 카테고리의 키워드 테이블은 다음과 같이 생성한다.
 
-```sql title="cream_keyword 테이블 생성"
-CREATE EXTERNAL TABLE IF NOT EXISTS oliveyoung_db.cream_keyword (
+```sql title="keyword_cream 테이블 생성"
+CREATE EXTERNAL TABLE IF NOT EXISTS oliveyoung_db.keyword_cream (
     review_id BIGINT,
     is_Barrier INT,
     is_Hyaluronic INT,
@@ -120,7 +120,7 @@ TBLPROPERTIES ('parquet.compression'='SNAPPY');
 
 ## 4. 핵심 지표 산출 로직
 
-구체적인 분석 계획이 세워지지 않았기에 성분에 따른 다양한 지표를 추출해보고 그 중에서 궁금한 것을 알아보고자 합니다. 먼저 가장 관심이 많은 에센스/세럼 카테고리에 해당하는 화장품부터 살펴봅니다. 가지고 있는 정보중에 profiles, 즉 고객 피부속성같은 정보들도 있기 때문에 이를 활용하면 좋을 거 같아 추출하여 정리하고 가겠습니다.
+구체적인 가설을 먼저 정하지 않고 성분에 따른 다양한 지표를 뽑아보며 특징을 탐색하기로 했다. 먼저 관심이 큰 에센스/세럼 카테고리 제품부터 살펴본다. `profiles`에는 고객 피부 속성 정보도 들어 있으므로 함께 집계해 정리했다.
 
 ```sql
 SELECT DISTINCT skintype, COUNT(*) AS cnt
@@ -140,7 +140,7 @@ ORDER BY skintype ASC;
 | 7 | **A07** | 기타 | 643 |
 | 8 | **-** | 정보 미기입(Null) | 113,426 |
 
-전체 약 15만건의 리뷰 데이터 중 정보 제공자는 약 24.8%에 불과합니다. 그리고 그 중 42%가 복합성 피부라고 표시했는데 여기서 복합성 피부란 T존 유분과 U존 건조함
+전체 약 15만 건의 프로필 데이터 중 피부 타입을 기입한 비율은 약 24.8%에 불과하다. 그중 42%가 복합성 피부로 표시했으며, 여기서 복합성 피부는 T존 유분과 U존 건조함이 동시에 나타나는 피부 타입이다.
 
 <iframe 
   src="/charts/beauty/skintype_chart.html" 
@@ -151,10 +151,10 @@ ORDER BY skintype ASC;
 </iframe>
 
 :::note
-피부 타입 명칭은 gemini 결과를 추가한 것입니다. 원본은 A01이 건성을 의미하는 지 알려주지 않습니다.
+피부 타입 명칭은 Gemini를 활용해 매핑한 결과다. 원본 데이터 자체는 `A01`이 건성을 의미하는지 명시하지 않는다.
 :::
 
-skintone도 같은 방식으로 살펴봅니다.
+`skintone`도 같은 방식으로 살펴본다.
 
 <iframe 
   src="/charts/beauty/skintone_chart.html" 
@@ -183,13 +183,13 @@ ORDER BY skintone ASC;
 | 7 | **-** | 정보 미기입(Null) | 115,901 | |
 
 
-분석을 위해 다음과 같은 핵심 지표를 정의했습니다.
+분석을 위해 다음과 같은 핵심 지표를 정의했다.
 
 - **SOV (Share of Voice)**: 전체 리뷰 중 해당 키워드가 차지하는 비중
 - **NSS (Net Sentiment Score)**: (긍정 리뷰 비율 - 부정 리뷰 비율)
 - **MoM (Month-on-Month)**: 키워드 언급량의 월별 성장률
 
-이 지표들을 계산하기 위한 SQL 쿼리의 예시는 다음과 같습니다. 아래는 '에센스/세럼' 카테고리의 월별 키워드 지표를 산출하는 쿼리입니다.
+이 지표들을 계산하기 위한 SQL 쿼리 예시는 다음과 같다. 아래는 '에센스/세럼' 카테고리의 월별 키워드 지표를 산출하는 쿼리다.
 
 ```sql title="에센스/세럼 카테고리 월별 키워드 지표 산출"
 /*
@@ -334,25 +334,4 @@ ORDER BY keyword_name, month;
 
 ## 5. 결론 및 다음 단계
 
-이번 포스트에서는 화장품 트렌드 분석 프로젝트의 첫 단계로, 올리브영의 카테고리 데이터를 수집하고 분석을 위한 데이터베이스 스키마를 설계하는 과정을 살펴보았습니다.
-
-다음 포스트에서는 실제 상품 리뷰 데이터를 수집하고, 오늘 설계한 지표들을 활용하여 유의미한 트렌드를 발견하는 과정을 보여드리겠습니다.
-
-
-
-
-
-$$
-\begin{array}{c|c|l|r}
-\text{순번} & \text{skintype} & \text{피부 타입 명칭} & \text{데이터 수 (cnt)} \\
-\hline
-1 & \text{A01} & \text{건성} & 5{,}819 \\
-2 & \text{A02} & \text{지성} & 9{,}165 \\
-3 & \text{A03} & \text{복합성} & 15{,}735 \\
-4 & \text{A04} & \text{민감성} & 3{,}360 \\
-5 & \text{A05} & \text{약건성} & 523 \\
-6 & \text{A06} & \text{트러블성} & 2{,}232 \\
-7 & \text{A07} & \text{기타} & 643 \\
-8 & - & \text{정보 미기입(Null)} & 113{,}426 \\
-\end{array}
-$$
+이 글에서는 화장품 성분 분석 프로젝트의 기반 작업으로 올리브영 카테고리·제품·프로필·리뷰 데이터 구조와 Athena 스키마를 설계하고, 키워드 트렌드를 정량화하기 위한 SOV, NSS, MoM 지표 산출 쿼리를 구성했다. 이어지는 분석 단계에서는 이 지표들을 바탕으로 카테고리별 급상승 성분 키워드와 리뷰 반응을 비교하게 된다.

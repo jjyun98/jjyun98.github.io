@@ -72,6 +72,7 @@ loss = 0
 for t in range(T):
     h = cell(x[[t]], h)                     # h_t = tanh(x_t W_ih + h_(t-1) W_hh + b)
     loss = loss + loss_fn(out(h), y[[t]])
+loss = loss / T                             # nn.RNN 일괄 계산과 같은 시점 평균
 ```
 
 `torch.nn.RNN`은 이 반복을 안에서 해 주고 모든 시점의 은닉상태를 돌려준다.
@@ -112,10 +113,10 @@ loss = loss_fn(out(hidden), y)
 펼친 그림은 깊은 신경망이므로 역전파도 같다([5편](/posts/dl-05-backprop-vanishing)). 시점 $T$의 손실이 $k$칸 앞의 은닉상태에 주는 기울기는 체인룰로
 
 $$
-\frac{\partial \ell_T}{\partial \mathbf h_{T-k}} = \frac{\partial \ell_T}{\partial \mathbf h_T}\prod_{s=T-k+1}^{T}\frac{\partial \mathbf h_s}{\partial \mathbf h_{s-1}}, \qquad \frac{\partial \mathbf h_s}{\partial \mathbf h_{s-1}} = \mathbf W_{hh}^\top\,\text{diag}\big(1 - \mathbf h_s^2\big)
+\frac{\partial \ell_T}{\partial \mathbf h_{T-k}} = \frac{\partial \ell_T}{\partial \mathbf h_T}\left(\prod_{s=T}^{T-k+1}\frac{\partial \mathbf h_s}{\partial \mathbf h_{s-1}}\right), \qquad \frac{\partial \mathbf h_s}{\partial \mathbf h_{s-1}} = \text{diag}\big(1 - \mathbf h_s^2\big)\,\mathbf W_{hh}^\top
 $$
 
-로, 같은 꼴의 행렬이 $k$번 곱해진다. 이것을 BPTT(backpropagation through time)라 한다. tanh의 미분 $1 - h^2$는 1 이하이고, $\mathbf W_{hh}$의 크기가 1보다 작으면 곱이 $k$에 따라 기하급수로 줄고(기울기 소실), 크면 폭발한다. 5편의 깊은 층에서와 같은 현상인데, 여기서는 층 수가 순서열 길이만큼이고 모든 층의 가중치가 같아서 더 심하다. 같은 행렬을 $k$번 곱하면 크기가 대략 가장 큰 고유값의 $k$제곱으로 움직이기 때문이다([선형대수 - 고유값, 대각화와 이차형식](/posts/la-eigen)).
+로, 같은 꼴의 행렬이 $s = T$부터 $T-k+1$까지 역순으로 $k$번 곱해진다(행벡터 규약). 이것을 BPTT(backpropagation through time)라 한다. tanh의 미분 $1 - h^2$는 1 이하이고, $\mathbf W_{hh}$의 크기가 1보다 작으면 곱이 $k$에 따라 기하급수로 줄고(기울기 소실), 크면 폭발한다. 5편의 깊은 층에서와 같은 현상인데, 여기서는 층 수가 순서열 길이만큼이고 모든 층의 가중치가 같아서 더 심하다. 같은 행렬을 $k$번 곱하면 크기가 대략 가장 큰 고유값의 $k$제곱으로 움직이기 때문이다([선형대수 - 고유값, 대각화와 이차형식](/posts/la-eigen)).
 
 ### 예제: 기억해야 할 거리 늘리기
 

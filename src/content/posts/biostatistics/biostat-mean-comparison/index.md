@@ -20,6 +20,8 @@ tags: ['생명과학통계', '통계학', 'SAS']
 | 독립된 세 집단 이상 | 일원분산분석 | Kruskal-Wallis test | `PROC ANOVA`, `PROC GLM`, `PROC NPAR1WAY` |
 | 두 요인 실험 | 이원분산분석 | Friedman test 등 | `PROC ANOVA`, `PROC GLM`, `PROC FREQ` |
 
+검정의 구조는 [가설검정](/posts/biostat-hypothesis-testing), 다중비교의 이론은 [데이터 마이닝의 다중검정](/posts/dm-multiple-testing), 분산분석의 모형과 제곱합은 [실험계획법의 일원배치](/posts/doe-02-one-way), 공변량이 있는 경우는 [공분산분석](/posts/biostat-ancova)을 본다.
+
 모수적 방법은 보통 정규성, 독립성, 등분산성 같은 가정을 둔다. 표본 수가 작거나 정규성이 의심되면 비모수 방법을 함께 고려한다.
 
 ## 2. 독립된 두 집단의 평균 비교
@@ -55,13 +57,27 @@ S_p^2 =
 \frac{(n_1-1)S_1^2 + (n_2-1)S_2^2}{n_1+n_2-2}
 $$
 
-검정통계량은 다음과 같다.
+검정통계량은 다음과 같고, 귀무가설 아래에서 자유도 $n_1+n_2-2$인 $t$분포를 따른다.
 
 $$
 t =
 \frac{\bar Y_1 - \bar Y_2 - \delta_0}
 {S_p \sqrt{1/n_1 + 1/n_2}}
 $$
+
+등분산을 가정하지 않는 Welch 검정은 분산을 따로 추정한다. 통계량의 분포는 Satterthwaite 근사 자유도의 $t$분포로 본다.
+
+$$
+t =
+\frac{\bar Y_1 - \bar Y_2 - \delta_0}
+{\sqrt{S_1^2/n_1 + S_2^2/n_2}},
+\qquad
+\nu =
+\frac{\left(S_1^2/n_1 + S_2^2/n_2\right)^2}
+{\dfrac{(S_1^2/n_1)^2}{n_1-1} + \dfrac{(S_2^2/n_2)^2}{n_2-1}}
+$$
+
+두 집단의 크기와 분산이 같으면 두 통계량은 같고, 다르면 $\nu$가 $n_1+n_2-2$보다 작아진다. SAS `PROC TTEST`는 합동(`Pooled`)과 Satterthwaite 결과를 함께 출력하고 등분산 검정(`Equality of Variances`)도 보여 주지만, 위에서 말했듯 그 결과로 행을 고르기보다 Satterthwaite 행을 기본으로 읽는다.
 
 ## 3. 예제 2-1: 혈청 칼슘량 비교
 
@@ -151,6 +167,18 @@ proc npar1way data=test wilcoxon;
 run;
 ```
 
+SAS 출력을 직접 옮기지 않고 같은 자료를 R로 계산한 값을 적는다(R로 확인한 값).
+
+| 항목 | 값 | 읽는 법 |
+|---|---|---|
+| 평균 (흡연자 16명, 비흡연자 9명) | 17.54, 12.43 | 차이 5.10 |
+| 합동 $t$ | $t=2.658$, $df=23$, $p=0.0140$ | `Pooled` 행에 해당 |
+| Welch $t$ | $t=2.596$, $\nu=15.6$, $p=0.0198$ | `Satterthwaite` 행에 해당, 95% 구간 (0.93, 9.28) |
+| Shapiro-Wilk | 흡연자 $p=0.42$, 비흡연자 $p=0.27$ | 정규성을 기각하지 못함 |
+| 순위합 검정 | $W = 109$ ($U_2 = 109$, $U_1 = 35$), 정확 $p=0.037$ | $W/(n_1 n_2) = 0.76$ |
+
+두 집단의 표준편차는 4.48과 4.85로 비슷해 합동 $t$와 Welch $t$의 결론이 같다. 집단 크기가 다르므로 Welch는 자유도가 23에서 15.6으로 줄어 $p$값이 조금 커진다. Mann-Whitney의 $W/(n_1 n_2) = U_2/(n_1 n_2) = 0.76$은 흡연자의 값이 비흡연자보다 클 확률 $P(X>Y)$의 추정값이다(5절 정의의 $U_1 = n_1 n_2 + \frac{n_1(n_1+1)}{2} - R_1$을 쓰면 $R_1 = 245$에서 $U_1 = 35$가 나오며, R의 `wilcox.test`가 출력하는 `W`는 $n_1 n_2 - U_1 = R_1 - \frac{n_1(n_1+1)}{2} = U_2 = 109$에 해당한다). SAS의 `PROC NPAR1WAY` 출력은 정규근사 $p$값을 주므로 정확 $p$값과 약간 다를 수 있다.
+
 ## 5. Mann-Whitney U test
 
 Wilcoxon rank sum test는 두 독립 집단의 위치 차이를 비교하는 비모수 검정이다. 모든 관측값을 합쳐 순위를 매기고, 각 집단의 순위합을 비교한다.
@@ -161,7 +189,7 @@ $$
 U_1 = n_1 n_2 + \frac{n_1(n_1+1)}{2} - R_1
 $$
 
-원본 슬라이드의 순위합 예에서는 $n_1=7$, $n_2=6$, $R_1=50.5$, $R_2=40.5$일 때 다음처럼 계산한다.
+순위합 예로 $n_1=7$, $n_2=6$, $R_1=50.5$, $R_2=40.5$이면 다음처럼 계산한다. 두 값의 합 $U_1+U_2 = n_1 n_2 = 42$이다.
 
 $$
 U_1 = 7 \times 6 + \frac{7 \times 8}{2} - 50.5 = 19.5
@@ -200,7 +228,7 @@ $$
 
 ## 7. 예제 2-3: 혈압강하제 전후 비교
 
-환자 15명에게 새로운 혈압강하제를 12주 동안 투입하고, 복용 전후 혈압을 비교한다. 원본 자료에서는 `d=time2-time1`로 차이를 정의한다.
+환자 15명에게 새로운 혈압강하제를 12주 동안 투입하고, 복용 전후 혈압을 비교한다. 차이는 `d=time2-time1`로 정의한다.
 
 ```sas
 data blood;
@@ -232,7 +260,7 @@ proc means data=blood mean stderr t prt;
   var d;
 run;
 
-proc ttest data=blood;
+proc ttest data=blood sides=L;
   paired time2*time1;
 run;
 ```
@@ -252,6 +280,8 @@ proc univariate data=blood mu0=0;
   var d;
 run;
 ```
+
+R로 확인한 값은 다음과 같다. 차이의 평균은 $\bar d=-4.53$, 표준편차는 9.43이고, 짝지은 $t=-1.863$, $df=14$, 단측 $p=0.042$다. (`proc ttest`는 `sides=L`을 지정해야 $H_1: \mu_D < 0$ 단측 $p$값을 바로 주며, `proc means`의 `prt`와 `proc univariate`의 부호순위 검정은 양측 $p$값이 기본이므로 검정통계량 방향이 대립가설과 일치할 때 절반으로 나눠 단측 $p$값으로 읽는다.) 차이의 Shapiro-Wilk $p=0.13$이며, Wilcoxon 부호순위 검정의 단측 $p=0.062$로 5%에서는 기각하지 못한다. 같은 자료를 독립 두 표본처럼 분석하면 $t=-1.02$, $p=0.159$로 훨씬 약해진다. 전후 측정이 같은 사람의 것이라 상관되어 있는데 이를 오차 계산에 쓰지 않았기 때문이다(14절 참고). 또한 같은 자료에서 $t$검정은 유의하고 부호순위 검정은 유의하지 않아, 정규성이 의심스러운 소표본에서는 두 결과를 함께 보고 결론을 신중하게 쓴다.
 
 ## 8. 일원분산분석
 
@@ -298,7 +328,7 @@ $$
 자폐아, 정상아, 지진아 세 집단의 혈청 항원 농도에 차이가 있는지 확인한다.
 
 ```sas
-data blood;
+data antigen;
   input group $ y @@;
   cards;
   1 755 1 365 1 820 1 900 1 170 1 300 1 325 1 385
@@ -321,7 +351,7 @@ run;
 ANOVA와 등분산성 검정은 다음처럼 수행한다.
 
 ```sas
-proc anova data=blood;
+proc anova data=antigen;
   class group;
   model y = group;
   means group / hovtest=levene welch;
@@ -331,11 +361,21 @@ run;
 정규성이 만족되지 않으면 Kruskal-Wallis 검정을 고려한다.
 
 ```sas
-proc npar1way data=blood wilcoxon;
+proc npar1way data=antigen wilcoxon;
   class group;
   var y;
 run;
 ```
+
+R로 확인한 값은 다음과 같다(결측 1개를 뺀 70명).
+
+| 검정 | 통계량 | $p$값 |
+|---|---|---|
+| ANOVA | $F(2, 67)=5.13$ | 0.0085 |
+| Welch ANOVA | $F(2, 25.3)=4.21$ | 0.026 |
+| Kruskal-Wallis | $\chi^2_2=10.62$ | 0.0049 |
+
+세 방법 모두 5%에서 집단 차이가 있다고 본다. 집단 크기가 22, 33, 15로 다르고 자폐아 집단의 값이 크게 퍼져 있어, 등분산을 가정하는 ANOVA보다 Welch ANOVA의 $p$값이 크다. 어느 집단이 다른지는 다음 절의 다중비교로 확인한다.
 
 ## 10. 다중비교
 
@@ -359,7 +399,7 @@ $$
 $q_\alpha$는 스튜던트화 범위분포의 분위수다. 표본 크기가 다르면 Tukey-Kramer 수정($n_i$ 대신 조화평균)을 쓴다.
 
 ```sas
-proc glm data=blood plots=diagnostics;
+proc glm data=antigen plots=diagnostics;
   class group;
   model y = group;
   means group / hovtest=levene welch;
@@ -369,7 +409,9 @@ run;
 quit;
 ```
 
-- 불균형 자료는 `PROC ANOVA`보다 `PROC GLM`을 쓴다. `PROC ANOVA`는 균형 자료용이다.
+R로 확인한 Tukey 쌍별 비교(`TukeyHSD`)는 다음과 같다. 정상아와 자폐아의 평균 차이는 $-117.6$이고 수정 $p=0.0068$로 유의하다. 지진아와 자폐아는 $-93.3$, $p=0.107$, 지진아와 정상아는 $+24.3$, $p=0.833$으로 유의하지 않다. 즉 이 자료에서는 자폐아 집단이 정상아 집단과 다르다는 것만 확인된다.
+
+- 일원배치 분산분석에서는 불균형 자료에도 `PROC ANOVA`가 `PROC GLM`과 같은 결과를 주지만, 이원 이상 다원배치 불균형 자료에서는 `PROC ANOVA`가 올바른 제곱합을 계산하지 못하므로 반드시 `PROC GLM`을 쓴다.
 - `lsmeans ... / adjust=tukey`는 수정된 $p$값과 동시 신뢰구간을, `lines`는 차이가 없는 집단끼리 같은 글자로 묶은 표를 출력한다.
 - `pdiff=control('2')`는 정상아 집단을 대조군으로 둔 Dunnett 비교다.
 - `plots=diagnostics`는 잔차 그림, 정규 Q-Q 그림을 그린다. 등분산 검정이 유의하면 `welch` 옵션의 Welch ANOVA 결과를 본다.
@@ -379,7 +421,7 @@ quit;
 자료를 보기 전에 정한 특정 비교(예: "정상아 대 나머지 두 집단")는 대비로 직접 검정한다. 대비 $L = \sum c_i \mu_i$ ($\sum c_i = 0$)의 검정이다.
 
 ```sas
-proc glm data=blood;
+proc glm data=antigen;
   class group;
   model y = group;
   contrast 'normal vs others' group -1 2 -1;
@@ -425,6 +467,7 @@ $$
 
 ```sas
 data calcium;
+  length gender $ 6;
   do gender = 'male', 'female';
     do trt = 'trt1', 'trt2', 'trt3';
       do rep = 1, 2, 3, 4, 5;
@@ -477,6 +520,16 @@ proc sgplot data=calciummean;
 run;
 ```
 
+R로 확인한 이원분산분석표는 다음과 같다(자유도 오차 24, MSE 3.18).
+
+| 요인 | $F$ | $p$값 |
+|---|---|---|
+| gender | 1.28 | 0.269 |
+| trt | 180.36 | $3.5\times10^{-15}$ |
+| gender*trt | 0.61 | 0.554 |
+
+교호작용이 유의하지 않으므로 주효과를 해석한다. 호르몬 처리만 유의하고 성별은 유의하지 않다. 처리 평균은 trt1 16.06, trt2 17.67, trt3 29.91이다. `means trt / tukey`에 해당하는 Tukey 비교에서 trt3는 나머지 둘과 약 12~14 차이로 유의하고($p<0.0001$), trt1과 trt2의 차이 1.61은 유의하지 않다($p=0.13$).
+
 ### 교호작용의 해석
 
 평균 그림에서 성별 선이 평행하면 교호작용이 없고, 벌어지거나 교차하면 교호작용이 있다. 교호작용이 유의하면 "호르몬 처리 효과"를 하나로 말할 수 없으므로 성별마다 처리 효과를 따로 본다.
@@ -490,7 +543,7 @@ run;
 quit;
 ```
 
-`gender|trt`는 `gender trt gender*trt`의 줄임이다. `slice=gender`는 성별마다 처리 효과의 $F$검정(단순 주효과)을 수행한다.
+`gender|trt`는 `gender trt gender*trt`의 줄임이다. `slice=gender`는 성별마다 처리 효과의 $F$검정(단순 주효과)을 수행한다. 다만 같은 문장에 적은 `adjust=tukey pdiff`는 성별 내부만이 아니라 6개 셀 전체의 $\binom{6}{2} = 15$개 쌍에 Tukey 보정을 적용하므로, 특정 성별 내부의 쌍별 비교만 보려면 `PROC PLM`의 `SLICE` 문이나 `BY gender` 분석을 함께 사용한다.
 
 ## 13. Friedman 검정
 
@@ -498,7 +551,7 @@ Friedman 검정은 랜덤화 블록 실험에서 나온 자료의 비모수적 �
 
 예를 들어 벼 품종에 따른 수확량을 비교할 때 토양 차이를 줄이기 위해 농지를 여러 블록으로 나누고, 각 블록 안에서 품종을 배정할 수 있다.
 
-원본의 예제 자료는 다음과 같다.
+벼 품종 5개(A~E)를 지역 3곳(블록)에서 비교한 수확량 자료는 다음과 같다.
 
 ```sas
 data soy;
@@ -515,13 +568,15 @@ proc freq data=soy;
 run;
 ```
 
-SAS 출력에서는 `"Row Mean Scores Differ"` 행의 p-value를 확인한다.
+SAS 출력에서는 `"Row Mean Scores Differ"` 행의 p-value를 확인한다. 지역(블록)별로 품종에 순위를 매겨 합한 순위합은 A 12, B 13, C 6, D 4, E 10이다.
 
 Friedman 검정통계량은 블록마다 처리에 순위 $1, \dots, k$를 매긴 뒤, 처리별 순위합 $R_j$로 계산한다($b$ = 블록 수).
 
 $$
 Q = \frac{12}{b k (k + 1)} \sum_{j=1}^{k} R_j^2 - 3 b (k + 1) \;\dot\sim\; \chi^2_{k-1}
 $$
+
+이 자료는 $b=3$, $k=5$이므로 $\sum R_j^2 = 465$에서 $Q = \frac{12}{3\cdot5\cdot6}\times465 - 3\cdot3\cdot6 = 8.0$이다. R `friedman.test`로 확인한 값은 $\chi^2_4=8.0$, $p=0.092$로 5%에서 품종 차이를 기각하지 못한다(블록이 3개뿐이라 검정력이 낮다). 같은 자료에 블록을 넣은 이원분산분석(품종 $F=3.70$, $p=0.055$)도 결론이 같다. SAS `cmh2`의 값은 확인하지 못했다.
 
 ## 14. 방법 간 비교
 
@@ -540,12 +595,9 @@ $$
 
 ## 요약
 
-| 상황 | 모수 | 비모수 | SAS |
-|---|---|---|---|
-| 독립 두 집단 | $t$검정 (등분산/Welch) | Wilcoxon 순위합 | `ttest`, `npar1way wilcoxon` |
-| 짝지은 두 측정 | 짝지은 $t$검정 | Wilcoxon 부호순위 | `ttest paired`, `univariate` |
-| 독립 세 집단 이상 | 일원분산분석 | Kruskal-Wallis | `glm`, `npar1way wilcoxon` |
-| 블록 설계 | 이원분산분석(블록) | Friedman | `glm`, `freq cmh2 scores=rank` |
-| 두 요인 | 이원분산분석, 교호작용 | | `glm model y = a|b` |
-| 사후 비교 | Tukey, Dunnett, Bonferroni | | `lsmeans / adjust=` |
-| 가정 확인 | 정규성(Shapiro-Wilk), 등분산(Levene) | | `univariate normal`, `means / hovtest` |
+- 독립 두 집단은 등분산이라는 근거가 없으면 Welch $t$를 기본으로 쓰고, 사전 등분산 검정으로 행을 고르지 않는다.
+- Mann-Whitney는 평균이 아니라 $P(X>Y)$를 비교한다. 두 분포의 모양이 같을 때만 위치 차이로 읽는다.
+- 짝지은 자료는 차이 $D_i$의 일표본 $t$다. 독립 표본처럼 분석하면 검정력을 잃는다.
+- 일원분산분석은 $F = MSTR/MSE$이고, 기각 뒤 쌍별 비교는 Tukey, 대조군 비교는 Dunnett, 미리 정한 비교는 대비로 한다.
+- 교호작용이 유의하면 주효과 대신 단순 주효과(`slice`)를 본다. 블록이 있는 순위 검정은 Friedman이다.
+- 다원배치 불균형 자료는 `PROC GLM`을 쓰며, 균형 자료(또는 일원배치)에서 `PROC ANOVA`를 쓴다.

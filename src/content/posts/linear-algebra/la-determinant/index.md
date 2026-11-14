@@ -7,7 +7,7 @@ series: '선형대수학'
 tags: ['선형대수학', '수학']
 ---
 
-행렬식은 정사각행렬 하나를 숫자 하나로 요약한다. 이 숫자는 역행렬이 존재하는지, 선형변환이 넓이·부피를 몇 배로 바꾸는지를 알려 준다. 이 글은 행렬식의 성질에서 치환을 이용한 정의를 유도하고, 치환행렬, 여인자 전개, 기하학적 의미, 보간다항식까지 정리한다.
+행렬식은 정사각행렬 하나를 숫자 하나로 요약한다. 이 숫자는 역행렬이 존재하는지, 선형변환이 넓이·부피를 몇 배로 바꾸는지를 알려 준다. 이 글은 행렬식의 성질에서 치환을 이용한 정의를 유도하고, 치환행렬, 여인자 전개, 기하학적 의미, 보간다항식까지 정리한다. 각 절에 R과 Python 확인을 붙이고, 통계에서 행렬식이 쓰이는 곳(공선성, 야코비안, 다변량 정규 밀도, QDA)을 적었다.
 
 이전 글: [선형대수 - 가우스 소거법, 역행렬과 LU 분해](/posts/la-gauss-lu)
 
@@ -44,6 +44,36 @@ $$
 | 전치 | $\det(\mathbf{A}^T) = \det(\mathbf{A})$. 따라서 행에 대한 성질은 열에도 성립한다 |
 
 가역성은 소거로 보면 바로 보인다. 행 연산은 $\det$를 0이 아닌 수배만 하므로, 소거 결과 $\mathbf{U}$에 0인 행이 생기는지(대각에 0이 있는지)와 $\det = 0$인지가 같은 말이다.
+
+$3 \times 3$ 행렬 두 개로 성질을 확인한다.
+
+```r
+A <- matrix(c(2, 1, 0,  1, 3, 1,  0, 1, 4), 3, byrow = TRUE)
+B <- matrix(c(1, 2, 0,  0, 1, 1,  1, 0, 1), 3, byrow = TRUE)
+det(A); det(B)                      # 18, 3
+det(A %*% B); det(A) * det(B)       # 54, 54
+det(3 * A); 3^3 * det(A)            # 486, 486 (k^n)
+det(t(A)); det(solve(A)) * det(A)   # 18, 1
+A2 <- A; A2[2, ] <- A2[2, ] - 0.5 * A2[1, ]   # 1행의 상수배를 2행에 더하기
+det(A2)                             # 18, 그대로
+
+set.seed(1); x1 <- rnorm(20)
+X <- cbind(1, x1, 2 * x1)           # 3열 = 2 * 2열 (완전공선성)
+det(crossprod(X))                   # 0
+```
+
+```python
+import numpy as np
+
+A = np.array([[2, 1, 0], [1, 3, 1], [0, 1, 4]], dtype=float)
+B = np.array([[1, 2, 0], [0, 1, 1], [1, 0, 1]], dtype=float)
+np.linalg.det(A @ B), np.linalg.det(A) * np.linalg.det(B)   # 54, 54
+np.linalg.det(3 * A), 3**3 * np.linalg.det(A)                # 486, 486
+```
+
+$\det\mathbf{A} = 18$, $\det\mathbf{B} = 3$이고 $\det(\mathbf{AB}) = 54 = 18 \times 3$이다. 3배 한 행렬은 $3^3 = 27$배인 486이 되며, 행 더하기는 값을 바꾸지 않는다.
+
+**통계에서의 쓰임:** 가역성 판정이 곧 **완전공선성** 판정이다. 설계행렬 $\mathbf{X}$의 열이 일차종속이면 $\det(\mathbf{X}^T\mathbf{X}) = 0$이라 정규방정식의 해가 유일하지 않다. 같은 열을 2배 한 열을 추가한 $\mathbf{X}$로 `det(crossprod(X))`를 계산하면 0이 나온다. 또 공분산 행렬의 행렬식 $\det\boldsymbol\Sigma$를 **일반화 분산**이라 하며, 변수들이 흩어진 정도를 부피로 요약한다. 다음 6절 끝에서 이 값이 밀도에 들어가는 모습을 본다.
 
 ## 2. 성질만으로 행렬식 공식 유도하기
 
@@ -165,6 +195,23 @@ $$
 
 이것이 2절의 행렬식 공식에 $\operatorname{sgn}(\sigma)$가 붙는 이유다.
 
+위 $\mathbf{P}$로 확인한다. 반전 개수를 세면 $(4, 2, 1, 3)$은 4개($4>2, 4>1, 4>3, 2>1$)로 짝치환이다.
+
+```r
+P <- matrix(c(0,0,0,1,  0,1,0,0,  1,0,0,0,  0,0,1,0), 4, byrow = TRUE)
+apply(P, 1, which.max)                 # Φ_rc(P) = 4 2 1 3
+det(P)                                 # 1 = (-1)^4
+R <- function(i, j, n = 4) { M <- diag(n); M[c(i, j), ] <- M[c(j, i), ]; M }   # 행교환 행렬
+all(R(3,4) %*% R(2,4) %*% R(1,4) %*% R(1,2) == P)   # TRUE
+all.equal(solve(P), t(P))              # TRUE: P^{-1} = P^T
+```
+
+```python
+P = np.array([[0,0,0,1],[0,1,0,0],[1,0,0,0],[0,0,1,0]], dtype=float)
+np.linalg.det(P)                       # 1.0
+np.allclose(np.linalg.inv(P), P.T)     # True
+```
+
 ## 5. 여인자 전개와 수반행렬
 
 ### 정의
@@ -233,6 +280,35 @@ $$
 
 행렬식을 $n + 1$번 계산해야 하므로 큰 계산에는 소거법을 쓰고, 해를 식으로 나타내거나 성분 하나만 필요할 때 쓴다.
 
+앞의 $3 \times 3$ 행렬 $\mathbf{A}$로 수반행렬 공식과 크래머 공식을 확인한다. 여인자 전개를 재귀로 옮기면 정의가 그대로 코드가 된다.
+
+```r
+b <- c(1, 2, 3)
+cof_det <- function(M) {                 # 1행 여인자 전개
+  if (nrow(M) == 1) return(M[1, 1])
+  sum(sapply(1:ncol(M), function(j) (-1)^(1 + j) * M[1, j] * cof_det(M[-1, -j, drop = FALSE])))
+}
+cof_det(A)                               # 18
+adj <- function(M) {
+  n <- nrow(M); C <- matrix(0, n, n)
+  for (i in 1:n) for (j in 1:n) C[i, j] <- (-1)^(i + j) * det(M[-i, -j, drop = FALSE])
+  t(C)                                   # 여인자 행렬의 전치
+}
+adj(A)                                   # [[11,-4,1],[-4,8,-2],[1,-2,5]]
+all.equal(solve(A), adj(A) / det(A))     # TRUE
+sapply(1:3, function(i) { Ai <- A; Ai[, i] <- b; det(Ai) / det(A) })   # 1/3 1/3 2/3
+solve(A, b)                              # 같은 해
+```
+
+```python
+Ai = lambda i: np.column_stack([b if j == i else A[:, j] for j in range(3)])
+b = np.array([1, 2, 3], dtype=float)
+[np.linalg.det(Ai(i)) / np.linalg.det(A) for i in range(3)]   # [1/3, 1/3, 2/3]
+np.linalg.solve(A, b)                                          # 같은 해
+```
+
+`adj(A)`를 $\det\mathbf{A}=18$로 나눈 것이 `solve(A)`와 같고, 크래머 공식의 세 값 $(1/3,\ 1/3,\ 2/3)$이 `solve(A, b)`와 일치한다.
+
 ## 6. 행렬식의 기하학적 의미
 
 $\lvert\det\rvert$는 행벡터(또는 열벡터)가 만드는 평행사변형의 넓이, 평행육면체의 부피다. 부호는 방향(오른손·왼손)을 나타낸다.
@@ -291,6 +367,61 @@ $$
 
 $(\mathbf{a} \times \mathbf{b}) \cdot \mathbf{c}$를 **스칼라 삼중적**이라 한다. 밑면 넓이 $\lVert\mathbf{a} \times \mathbf{b}\rVert$에 높이를 곱한 것과 같다.
 
+### 통계에서의 쓰임: 야코비안, 다변량 정규 밀도, QDA
+
+**변수 변환의 야코비안.** 비선형 변환도 한 점 근처에서는 선형이고, 그 선형 근사(야코비 행렬)의 $\lvert\det\rvert$가 그 점에서 넓이가 늘어나는 배율이다. 변수를 $\mathbf{y} = g(\mathbf{x})$로 바꿀 때 밀도는 $f_{\mathbf{Y}}(\mathbf{y}) = f_{\mathbf{X}}(\mathbf{x})\,\lvert\det\mathbf{J}\rvert^{-1}$ 꼴로 이 배율만큼 보정된다. 극좌표 $(x, y) = (r\cos\theta,\ r\sin\theta)$에서는
+
+$$
+\mathbf{J} = \begin{pmatrix} \cos\theta & -r\sin\theta \\ \sin\theta & r\cos\theta \end{pmatrix},
+\qquad \det\mathbf{J} = r\cos^2\theta + r\sin^2\theta = r
+$$
+
+이라서 $dx\,dy = r\,dr\,d\theta$이다.
+
+**다변량 정규 밀도.** $\mathbf{x} \sim N_p(\boldsymbol\mu, \boldsymbol\Sigma)$의 밀도는
+
+$$
+f(\mathbf{x}) = \frac{1}{\sqrt{(2\pi)^p\,\det\boldsymbol\Sigma}}\exp\!\Big(-\tfrac12(\mathbf{x}-\boldsymbol\mu)^T\boldsymbol\Sigma^{-1}(\mathbf{x}-\boldsymbol\mu)\Big)
+$$
+
+이고, $\det\boldsymbol\Sigma$는 정규화 상수로 들어간다. 분포가 퍼질수록 $\sqrt{\det\boldsymbol\Sigma}$가 커져 밀도의 높이가 낮아진다.
+
+**QDA.** 판별분석은 집단 $k$의 판별 점수를 계산한다. 집단마다 공분산 $\boldsymbol\Sigma_k$가 다르면(QDA)
+
+$$
+\delta_k(\mathbf{x}) = -\tfrac12\log\det\boldsymbol\Sigma_k - \tfrac12(\mathbf{x}-\boldsymbol\mu_k)^T\boldsymbol\Sigma_k^{-1}(\mathbf{x}-\boldsymbol\mu_k) + \log\pi_k
+$$
+
+이므로 $\log\det\boldsymbol\Sigma_k$가 집단별로 달라 경계가 곡선이 된다. 공분산이 같으면(LDA) 이 항이 모든 집단에 공통이라 사라진다. 행렬식은 곱 때문에 값이 매우 크거나 작아지기 쉬워, 실제 계산에서는 `determinant(S, logarithm = TRUE)`처럼 로그를 직접 구한다.
+
+```r
+f <- function(p) c(p[1] * cos(p[2]), p[1] * sin(p[2]))
+p <- c(2, pi / 6); h <- 1e-6
+J <- sapply(1:2, function(k) { e <- c(0, 0); e[k] <- h; (f(p + e) - f(p - e)) / (2 * h) })
+det(J)                                   # 2 = r
+
+Sigma <- matrix(c(4, 2, 2, 3), 2); mu <- c(1, 2); x <- c(2, 1)
+det(Sigma)                               # 8
+q <- drop(t(x - mu) %*% solve(Sigma) %*% (x - mu))   # 1.375
+exp(-q / 2) / sqrt((2 * pi)^2 * det(Sigma))          # 0.0283
+determinant(Sigma, logarithm = TRUE)$modulus[1]      # 2.079 = log 8
+
+g <- split(iris[, 1:4], iris$Species)
+sapply(g, function(d) log(det(cov(d))))  # QDA의 log|Σ_k|
+```
+
+```python
+f = lambda p: np.array([p[0]*np.cos(p[1]), p[0]*np.sin(p[1])])
+p, h = np.array([2, np.pi/6]), 1e-6
+J = np.column_stack([(f(p + h*e) - f(p - h*e)) / (2*h) for e in np.eye(2)])
+np.linalg.det(J)                         # 2.0
+
+Sigma = np.array([[4, 2], [2, 3]], dtype=float)
+sign, logdet = np.linalg.slogdet(Sigma)  # log|Σ| = 2.079
+```
+
+수치 미분으로 구한 야코비 행렬의 행렬식이 $2 = r$이고, $\boldsymbol\Sigma$의 $\det = 8$, $\log\det = 2.079$이다. $\mathbf{x} = (2, 1)$에서 마할라노비스 제곱거리 1.375를 넣으면 밀도 0.0283이 나온다. iris의 세 종에서 `log(det(cov))`는 setosa $-13.07$, versicolor $-10.87$, virginica $-8.93$으로 종마다 크게 달라, LDA의 등공분산 가정을 의심해 볼 만한 차이다.
+
 ## 7. 보간다항식
 
 서로 다른 $x_0, \dots, x_n$에서 $n + 1$개의 점 $(x_i, y_i)$를 지나는 $n$차 이하 다항식은 **유일하게** 존재한다. 이를 **보간다항식**이라 한다.
@@ -329,7 +460,47 @@ $$
 
 $\ell_i(x_i) = 1$이고 $j \neq i$에서 $\ell_i(x_j) = 0$이라서 $L(x_i) = y_i$가 바로 성립한다. 보간다항식이 유일하므로 반데르몽드 방식과 **같은 다항식**이며, 표현하는 기저(단항식 $x^k$ vs. $\ell_i$)만 다르다.
 
-## 요약
+네 점 $(1, 1), (2, 3), (4, 2), (7, 5)$를 지나는 3차 다항식으로 확인한다.
+
+```r
+x <- c(1, 2, 4, 7); y <- c(1, 3, 2, 5)
+V <- outer(x, 0:3, `^`)                  # 반데르몽드 행렬
+det(V)                                   # 540
+prod(outer(x, x, function(a, b) b - a)[upper.tri(diag(4))])   # 540: ∏(x_j - x_i)
+a <- solve(V, y)                         # 계수 a0..a3
+a                                        # -4.178  7.144  -2.156  0.189
+L <- function(t) sum(sapply(1:4, function(i) y[i] * prod((t - x[-i]) / (x[i] - x[-i]))))
+L(3); sum(a * 3^(0:3))                   # 2.956, 2.956: 같은 다항식
+```
+
+```python
+x = np.array([1, 2, 4, 7]); y = np.array([1, 3, 2, 5], dtype=float)
+V = np.vander(x, increasing=True)        # 열: 1, x, x^2, x^3
+np.linalg.det(V)                         # 540.0
+np.linalg.solve(V, y)                    # [-4.178, 7.144, -2.156, 0.189]
+```
+
+$\det\mathbf{V} = 540 = (2-1)(4-1)(7-1)(4-2)(7-2)(7-4)$이다. 두 방법이 $x = 3$에서 모두 2.956을 주어 같은 다항식임이 확인된다.
+
+**통계에서의 쓰임:** 반데르몽드 행렬은 **다항회귀의 설계행렬** $\mathbf{X}$ 그 자체다. 서로 다른 $x$가 $n + 1$개이고 $n$차 다항식을 쓰면 $\mathbf{X}$가 정사각 가역행렬이라 모든 점을 정확히 지나는 해(보간)가 유일하게 나오며, 이는 잔차가 0인 과적합 모형이다. 관측이 모형의 모수보다 많을 때 비로소 최소제곱이 의미를 가진다. 또 $x$ 값이 서로 가까우면 $\det\mathbf{V}$가 0에 가까워져 계수가 불안정해지는데, 고차 다항회귀에서 `poly()`로 직교다항식을 쓰는 이유가 이것이다.
+
+## 비교
+
+**행렬식 계산법.** 같은 값을 세 방법으로 구할 수 있다.
+
+| 방법 | 근거 | 비용 | 쓰임 |
+|---|---|---|---|
+| 소거 | 행 연산 후 대각 성분의 곱 (LU) | $\approx\tfrac23n^3$ | 실제 계산 (`det()`) |
+| 여인자 전개 | 행·열을 따라 재귀 | $O(n!)$ | 0이 많은 행렬, 기호 계산, 이론 |
+| 치환 공식 | $\sum_\sigma\operatorname{sgn}(\sigma)\prod a_{i\sigma(i)}$ | $n!$개 항 | 정의, 증명 |
+
+항의 수 $n!$은 $n=10$이면 3,628,800이므로 손으로나 컴퓨터로나 큰 $n$에는 소거만 쓴다.
+
+**크래머 공식과 소거.** 크래머는 행렬식을 $n+1$번 계산하므로 소거보다 훨씬 비싸다. 해를 $x_i = \det\mathbf{A}_i/\det\mathbf{A}$ 식으로 쓰거나 성분 하나만 필요할 때만 쓴다.
+
+**라그랑주와 반데르몽드 보간.** 둘은 같은 다항식이고 기저만 다르다. 반데르몽드는 계수 $a_k$를 주지만 연립방정식을 풀어야 하고, 라그랑주는 연립방정식 없이 $L(x)$를 바로 쓴다.
+
+## 정리
 
 | 개념 | 핵심 |
 |---|---|
@@ -345,34 +516,6 @@ $\ell_i(x_i) = 1$이고 $j \neq i$에서 $\ell_i(x_j) = 0$이라서 $L(x_i) = y_
 | 크래머 공식 | $x_i = \det\mathbf{A}_i / \det\mathbf{A}$, $\mathbf{A}_i$는 $i$열을 $\mathbf{b}$로 교체 |
 | 기하 | $\lvert\det\rvert$ = 넓이·부피, 세 점 삼각형은 절반 |
 | 보간 | 반데르몽드 $\det = \prod_{i<j}(x_j - x_i)$, 라그랑주는 같은 다항식의 다른 표현 |
-
-## R / Python으로 확인
-
-```r
-A <- matrix(c(2, 1, 1, 1), nrow = 2)
-b <- c(5, 3)
-det(A)                                   # 1
-
-# 크래머 공식
-sapply(1:2, function(i) { Ai <- A; Ai[, i] <- b; det(Ai) / det(A) })   # 2 1
-
-x <- c(1, 2, 4, 7)
-det(outer(x, 0:3, `^`))                  # 반데르몽드 행렬식
-```
-
-```python
-import numpy as np
-
-A = np.array([[2, 1], [1, 1]], dtype=float)
-b = np.array([5, 3], dtype=float)
-np.linalg.det(A)                         # 1.0
-
-# 크래머 공식
-x = [np.linalg.det(np.column_stack([b if j == i else A[:, j] for j in range(2)])) / np.linalg.det(A)
-     for i in range(2)]                  # [2.0, 1.0]
-
-np.linalg.det(np.vander([1, 2, 4, 7], increasing=True))   # 반데르몽드 행렬식
-```
 
 ## 참고자료
 

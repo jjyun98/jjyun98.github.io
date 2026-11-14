@@ -7,7 +7,7 @@ series: '선형대수학'
 tags: ['선형대수학', '수학']
 ---
 
-선형사상은 벡터공간 사이에서 덧셈과 스칼라배를 보존하는 함수이고, 기저를 고정하면 하나의 행렬로 표현된다. 이 글은 핵공간·상공간과 차원정리, 동형·등장사상, 행렬표현과 닮음행렬을 다룬다.
+선형사상은 벡터공간 사이에서 덧셈과 스칼라배를 보존하는 함수이고, 기저를 고정하면 하나의 행렬로 표현된다. 이 글은 핵공간·상공간과 차원정리, 동형·등장사상, 행렬표현과 닮음행렬을 다룬다. 코드는 해당 소절에 붙였고, 7절에서 표준화, 회전, 주성분 점수가 선형사상으로 어떻게 읽히는지 보인다. 헷갈리는 쌍은 비교 절에 모았다.
 
 이전 글: [선형대수 - 정규직교기저와 최소제곱법](/posts/la-orthonormal)
 
@@ -99,6 +99,28 @@ $$
 
 핵공간은 $x + 2y = 0$인 직선이고, 이 직선은 원점으로 간다. 핵공간과 평행한 다른 직선 $x + 2y = c$도 각각 한 점 $(c, 0.5c)$로 모인다. 직선 위의 두 점은 차이가 핵공간에 속하므로 같은 곳으로 가기 때문이다. 결과적으로 정의역의 2차원 중 핵 방향의 1차원은 사라지고, 나머지 1차원만 상공간 $\operatorname{Im}(\mathbf{A})$라는 직선으로 남는다. 같은 그림에서 $\mathbf{A}\mathbf{x} = \mathbf{b}$의 해집합도 읽을 수 있다. $\mathbf{b}$가 상공간 위에 있으면 해집합은 핵공간을 평행이동한 직선 하나이고, 상공간 밖에 있으면 해가 없다.
 
+```r
+A <- matrix(c(1, 0.5, 2, 1), nrow = 2)   # 열이 (1, 0.5), (2, 1): 서로 평행
+qr(A)$rank                               # rank 1
+s <- svd(A)
+round(s$d, 10)                           # 특이값 2.5, 0: 평면이 직선으로 납작해진다
+s$v[, 2]                                 # 핵공간 방향 (0.894, -0.447) ∝ (2, -1)
+A %*% c(-2, 1)                           # 핵공간의 벡터는 0으로 간다
+```
+
+```python
+import numpy as np
+
+A = np.array([[1, 2], [0.5, 1]])
+np.linalg.matrix_rank(A)                 # 1
+U, d, Vt = np.linalg.svd(A)
+np.round(d, 10)                          # [2.5, 0]
+Vt[1]                                    # 핵공간 방향 (부호는 라이브러리에 따라 다르다)
+A @ np.array([-2, 1])                    # [0, 0]
+```
+
+rank가 1이므로 $\dim\operatorname{Ker} = 2 - 1 = 1$이고, 핵공간 방향은 $x + 2y = 0$인 직선의 방향 $(2, -1)$(부호는 임의)에 해당한다. 두 번째 특이값이 0이라는 것이 평면이 한 방향으로 납작해진다는 뜻이다(특이값은 [SVD](/posts/la-svd) 글에서 다룬다).
+
 ## 4. 동형사상과 등장사상
 
 ### 동형사상
@@ -162,6 +184,19 @@ $$
 
 행렬과 벡터의 곱을 "열들의 선형결합"으로 읽는 관점이 바로 이것이다. 좌표는 그대로 두고 기준이 되는 격자만 바뀐다.
 
+```r
+M <- matrix(c(2, 1, -1, 1), nrow = 2)    # 열: (2, 1), (-1, 1)
+v <- c(2, 1)
+M %*% v                                  # (3, 3)
+2 * M[, 1] + 1 * M[, 2]                  # 열의 선형결합: 같은 값
+```
+
+```python
+M = np.array([[2, -1], [1, 1]])
+v = np.array([2, 1])
+M @ v, 2 * M[:, 0] + 1 * M[:, 1]         # 둘 다 [3, 3]
+```
+
 ### 평면 선형변환의 예
 
 $\mathbb{R}^2$에서 행렬의 두 열은 $\mathbf{e}_1 = (1, 0)$, $\mathbf{e}_2 = (0, 1)$이 가는 곳이다. 그래서 단위정사각형이 어떻게 바뀌는지만 보면 행렬을 바로 읽을 수 있다.
@@ -176,6 +211,34 @@ $\mathbb{R}^2$에서 행렬의 두 열은 $\mathbf{e}_1 = (1, 0)$, $\mathbf{e}_2
 | 전단 | $\begin{pmatrix} 1 & k \\ 0 & 1 \end{pmatrix}$ | $1$ | 넓이는 보존, 길이와 각은 바뀐다 |
 
 행렬식의 절댓값이 넓이 배율, 부호가 방향 보존 여부라는 기하학적 의미와 맞아떨어진다. 정사영은 $\det = 0$이라 단사가 아니며, 차원정리대로 $\dim\operatorname{Ker} + \dim\operatorname{Im} = 1 + 1 = 2$이다.
+
+```r
+th <- pi / 6
+rotation   <- matrix(c(cos(th), sin(th), -sin(th), cos(th)), nrow = 2)
+reflection <- diag(c(1, -1))
+projection <- diag(c(1, 0))
+shear      <- matrix(c(1, 0, 0.6, 1), nrow = 2)
+
+square <- matrix(c(0, 0, 1, 0, 1, 1, 0, 1), nrow = 2)   # 꼭짓점을 열로
+rotation %*% square                                     # 변환된 꼭짓점
+sapply(list(rotation, reflection, projection, shear), det)   # 넓이 배율: 1, -1, 0, 1
+zapsmall(crossprod(rotation))                           # Q'Q = I: 회전은 등장사상
+```
+
+```python
+t = np.deg2rad(30)
+rotation   = np.array([[np.cos(t), -np.sin(t)], [np.sin(t), np.cos(t)]])
+reflection = np.array([[1, 0], [0, -1]])
+projection = np.array([[1, 0], [0, 0]])
+shear      = np.array([[1, 0.6], [0, 1]])
+
+square = np.array([[0, 1, 1, 0], [0, 0, 1, 1]])   # 단위정사각형의 꼭짓점(열)
+rotation @ square                                  # 변환된 꼭짓점
+[np.linalg.det(M) for M in (rotation, reflection, projection, shear)]   # 넓이 배율: 1, -1, 0, 1
+np.allclose(rotation.T @ rotation, np.eye(2))     # True
+```
+
+행렬식이 표의 값(1, $-1$, 0, 1)과 같고, 회전 행렬은 $\mathbf{Q}^T\mathbf{Q} = \mathbf{I}$를 만족한다. 전단은 $\det = 1$이어도 $\mathbf{S}^T\mathbf{S} \neq \mathbf{I}$라 넓이만 보존하고 등장사상은 아니다.
 
 ### 가환 도식
 
@@ -215,6 +278,20 @@ $$
 
 전단을 먼저 하면 세로로 서 있던 도형이 오른쪽으로 기운 뒤 회전하고, 회전을 먼저 하면 가로로 누운 도형이 수평 방향으로 밀린다. 두 결과 모두 넓이는 보존되지만($\det = 1$) 모양이 다르다. 행렬곱이 교환법칙을 만족하지 않는 것은 변환을 적용하는 순서가 결과를 바꾸기 때문이다.
 
+```r
+R <- matrix(c(0, 1, -1, 0), nrow = 2)    # 90도 회전
+S <- matrix(c(1, 0, 1, 1), nrow = 2)     # 전단
+R %*% S                                  # 전단 후 회전
+S %*% R                                  # 회전 후 전단
+c(det(R %*% S), det(S %*% R))            # 둘 다 1
+```
+
+```python
+R = np.array([[0, -1], [1, 0]])
+S = np.array([[1, 1], [0, 1]])
+R @ S, S @ R                             # 두 결과가 다르다
+```
+
 ## 6. 닮음행렬
 
 ### 정의
@@ -246,6 +323,24 @@ $$
 
 두 행렬은 겉모습이 다르지만 같은 사상이므로, 아래에서 보듯 행렬식($1.5^2 - 0.5^2 = 2 = 2 \times 1$)과 대각합($3 = 2 + 1$)이 같다. 행렬표현이 대각행렬이 되는 기저의 벡터 $\mathbf{b}_1$, $\mathbf{b}_2$는 사상을 적용해도 방향이 바뀌지 않는 벡터로, 다음 글의 고유벡터다.
 
+```r
+A <- matrix(c(1.5, 0.5, 0.5, 1.5), nrow = 2)
+P <- matrix(c(1, 1, -1, 1), nrow = 2) / sqrt(2)          # 열: b1, b2
+round(solve(P) %*% A %*% P, 10)                          # diag(2, 1)
+c(det(A), sum(diag(A)))                                 # 2, 3
+eigen(A)$values                                         # 고유값 2, 1
+```
+
+```python
+A = np.array([[1.5, 0.5], [0.5, 1.5]])
+P = np.array([[1, -1], [1, 1]]) / np.sqrt(2)             # 열: b1, b2
+np.round(np.linalg.inv(P) @ A @ P, 10)                   # diag(2, 1)
+np.linalg.det(A), np.trace(A)                            # 2, 3
+np.linalg.eigvalsh(A)                                    # [1, 2]
+```
+
+$\mathbf{P}^{-1}\mathbf{A}\mathbf{P}$가 $\operatorname{diag}(2, 1)$이고, $\det = 2 = 2 \times 1$, $\operatorname{tr} = 3 = 2 + 1$이며 고유값도 $2, 1$이다. 닮음은 기저만 바꾼 것이므로 기저에 의존하지 않는 값이 보존된다.
+
 ### 닮음에서 변하지 않는 값
 
 같은 사상이므로 기저에 의존하지 않는 값은 같다.
@@ -260,51 +355,105 @@ $$
 
 두 번째 식은 $\operatorname{tr}(\mathbf{XY}) = \operatorname{tr}(\mathbf{YX})$를 이용했다. 같은 이유로 계수(rank)와 고유값도 같다.
 
-## 요약
+## 7. 통계에서의 쓰임
+
+**표준화와 공분산의 변환.** 자료행렬 $\mathbf{X}$의 각 행을 $\mathbf{x}_i$라 하자. 중심화 $\mathbf{x} \mapsto \mathbf{x} - \bar{\mathbf{x}}$는 평행이동이라 선형사상이 아니라 아핀사상이고, 표준화에서 각 변수를 표준편차로 나누는 부분 $\mathbf{x} \mapsto \mathbf{D}^{-1}\mathbf{x}$ ($\mathbf{D} = \operatorname{diag}(s_1, \dots, s_p)$)만 선형사상이다. 평행이동은 공분산에 영향을 주지 않고 선형 부분만 공분산을 바꾼다.
+
+$$
+\operatorname{Cov}(\mathbf{A}\mathbf{x} + \mathbf{b}) = \mathbf{A}\,\boldsymbol\Sigma\,\mathbf{A}^T
+$$
+
+표준화한 자료의 공분산은 $\mathbf{D}^{-1}\mathbf{S}\mathbf{D}^{-1}$, 즉 상관행렬이다.
+
+**주성분 점수는 좌표 변환이다.** 표본공분산 $\mathbf{S}$는 대칭이므로 정규직교 고유벡터 $\mathbf{V} = (\mathbf{v}_1, \dots, \mathbf{v}_p)$가 있고($\mathbf{V}^T\mathbf{V} = \mathbf{I}$, 다음 글에서 다룬다), 중심화한 관측치의 주성분 점수는 새 기저 $\{\mathbf{v}_j\}$에 대한 좌표다.
+
+$$
+\text{점수} = [\mathbf{x} - \bar{\mathbf{x}}]_{\mathcal{V}} = \mathbf{V}^{-1}(\mathbf{x} - \bar{\mathbf{x}}) = \mathbf{V}^T(\mathbf{x} - \bar{\mathbf{x}})
+$$
+
+정규직교 기저로의 좌표 변환이므로 이는 **등장사상**이다. 길이와 점 사이의 거리가 변하지 않고, 점들을 회전(과 반사)해서 축을 자료의 분산 방향에 맞춘 것이다. 점수의 공분산은 $\mathbf{V}^T\mathbf{S}\mathbf{V} = \mathbf{V}^{-1}\mathbf{S}\mathbf{V} = \boldsymbol\Lambda$로, $\mathbf{S}$와 대각행렬 $\boldsymbol\Lambda$는 6절의 닮음이다. 따라서 닮음에서 변하지 않는 값이 통계량이 된다: $\operatorname{tr}(\mathbf{S}) = \sum\lambda_j$는 **총분산**, $\det(\mathbf{S}) = \prod\lambda_j$는 **일반화 분산**이다.
+
+```r
+X  <- as.matrix(iris[, 1:4])
+Xc <- scale(X, scale = FALSE)            # 중심화 (평행이동)
+S  <- cov(X)
+e  <- eigen(S); V <- e$vectors
+scores <- Xc %*% V                       # 행마다 V'(x - xbar)
+
+all.equal(abs(scores), abs(prcomp(X)$x), check.attributes = FALSE)  # prcomp 점수와 같다
+round(crossprod(V), 10)                  # V'V = I
+round(cov(scores), 4)                    # 대각행렬 Lambda
+c(sum(diag(S)), sum(e$values))           # 총분산: 닮음 불변량 tr
+c(det(S), prod(e$values))                # 일반화 분산: 닮음 불변량 det
+all.equal(as.numeric(dist(scores)), as.numeric(dist(Xc)))   # 거리 보존 (등장)
+```
+
+```python
+import numpy as np
+from sklearn.datasets import load_iris   # scikit-learn이 없으면 R의 iris를 csv로 내보내 읽어도 된다
+
+X = load_iris().data
+Xc = X - X.mean(axis=0)
+S = np.cov(X, rowvar=False)
+lam, V = np.linalg.eigh(S)
+lam, V = lam[::-1], V[:, ::-1]           # 큰 고유값 순서
+scores = Xc @ V
+np.round(np.cov(scores, rowvar=False), 4)          # 대각행렬
+np.trace(S), lam.sum(), np.linalg.det(S), lam.prod()
+```
+
+`iris`의 네 측정값에서 고유값은 $4.228, 0.243, 0.078, 0.024$이고, 점수의 공분산은 이 값을 대각에 둔 행렬이다(비대각은 0). 총분산은 $\operatorname{tr}(\mathbf{S}) = 4.573 = 4.228 + 0.243 + 0.078 + 0.024$, 일반화 분산은 $\det(\mathbf{S}) = 0.00191$로 고유값의 곱과 같다. 점수 사이의 거리는 중심화한 원자료의 거리와 같다. 주성분 점수는 새 정보를 만든 것이 아니라 같은 점을 다른 좌표계에서 읽은 것이고, 상위 몇 개 성분만 남기면 정사영([정규직교기저와 최소제곱법](/posts/la-orthonormal))이 되어 차원이 줄어든다. 통계적 해석은 [데이터 마이닝 - 주성분분석](/posts/dm-pca)에서 다룬다.
+
+**그 밖의 대응.** 회귀의 hat 행렬 $\mathbf{H}$는 $\mathbb{R}^n$에서 $C(\mathbf{X})$로의 사영이라는 선형사상으로, $\operatorname{Ker}(\mathbf{H}) = C(\mathbf{X})^{\perp}$(잔차 공간), $\operatorname{Im}(\mathbf{H}) = C(\mathbf{X})$(적합값 공간)이며 차원정리가 $(n - p) + p = n$이다. 설계행렬 $\mathbf{X}$의 열이 일차독립이면 $\mathbf{X}\boldsymbol\beta$가 단사라 $\boldsymbol\beta$가 유일하다(비교 절의 표).
+
+## 비교
+
+**단사, 전사, 전단사의 행렬 판정.** $m \times n$ 행렬 $\mathbf{A}$가 정의하는 $L(\mathbf{x}) = \mathbf{A}\mathbf{x}$ ($\mathbb{R}^n \to \mathbb{R}^m$)에서 rank를 $r$이라 하면
+
+| | 단사 | 전사 | 전단사(동형) |
+|---|---|---|---|
+| 핵공간 조건 | $N(\mathbf{A}) = \{\mathbf{0}\}$ | 해당 없음 | $N(\mathbf{A}) = \{\mathbf{0}\}$ |
+| rank 조건 | $r = n$ (열이 일차독립) | $r = m$ ($C(\mathbf{A}) = \mathbb{R}^m$) | $r = m = n$ |
+| 모양 | $m \ge n$ | $m \le n$ | 정사각, 가역 |
+| $\mathbf{Ax} = \mathbf{b}$의 해 | 있으면 유일 | 항상 존재 | 항상 유일하게 존재 |
+| 통계에서 | 계수 $\boldsymbol\beta$가 유일 (공선성 없음) | 어떤 $\mathbf{y}$도 $\mathbf{X}\boldsymbol\beta$로 표현 | $n = p$일 때 완전 적합 |
+
+**동형사상과 등장사상.** 모든 등장사상은 단사이고, 정사각이면 동형이다. 반대는 성립하지 않는다.
+
+| 항목 | 선형사상 | 동형사상 | 등장사상 |
+|---|---|---|---|
+| 보존하는 것 | 덧셈, 스칼라배 | 선형 구조 전부(전단사) | 선형 구조 + 내적과 길이 |
+| 조건 | $L(a\mathbf{u} + b\mathbf{v}) = aL(\mathbf{u}) + bL(\mathbf{v})$ | 선형 + 전단사, $\dim V = \dim W$ | $\lVert L(\mathbf{u}) \rVert = \lVert \mathbf{u} \rVert$ |
+| 행렬표현 | 임의의 $m \times n$ | 정사각 가역 | 정규직교기저에서 $\mathbf{A}^T\mathbf{A} = \mathbf{I}$ |
+| 예 | 정사영, 전단 | 전단, 회전, 가역행렬 | 회전, 반사 |
+| 평면에서 | 늘이고, 기울이고, 납작하게 | 납작하게 하지는 않는다($\det \ne 0$) | 모양도 유지($\lvert\det\rvert = 1$) |
+
+**닮음에서 변하는 값과 변하지 않는 값.** $\mathbf{A} = \mathbf{P}^{-1}\mathbf{B}\mathbf{P}$이면
+
+| 닮음에서 변하지 않음 (사상의 성질) | 닮음에서 변함 (기저의 성질) |
+|---|---|
+| 행렬식 $\det$ | 행렬의 각 성분 |
+| 대각합 $\operatorname{tr}$ | 열공간 $C(\mathbf{A})$, 영공간 $N(\mathbf{A})$ 자체($\mathbf{P}$로 옮겨진다) |
+| 계수(rank), nullity, 가역 여부 | 고유벡터의 좌표 |
+| 고유값(특성다항식) | 대칭성(직교행렬 $\mathbf{P}$일 때만 유지) |
+
+닮음은 정의역과 공역이 같은 공간이고 양쪽에 같은 기저를 쓰는 경우다. 정의역과 공역의 기저를 따로 바꾸면 행렬표현은 $\mathbf{Q}^{-1}\mathbf{A}\mathbf{P}$ 꼴이 되어 닮음이 아니므로 $\det$, $\operatorname{tr}$, 고유값이 보존되지 않는다(rank만 보존된다). 주성분처럼 직교행렬 $\mathbf{P}$를 쓰면 $\mathbf{P}^{-1} = \mathbf{P}^T$라 닮음이면서 합동($\mathbf{P}^T\mathbf{B}\mathbf{P}$)이 된다.
+
+## 정리
 
 | 개념 | 핵심 식 | 기억할 점 |
 |---|---|---|
-| 선형사상 | $L(a\mathbf{u} + b\mathbf{v}) = aL(\mathbf{u}) + bL(\mathbf{v})$ | $L(\mathbf{0}) = \mathbf{0}$부터 확인 |
+| 선형사상 | $L(a\mathbf{u} + b\mathbf{v}) = aL(\mathbf{u}) + bL(\mathbf{v})$ | $L(\mathbf{0}) = \mathbf{0}$부터 확인, 평행이동은 아핀 |
 | 핵공간 | $\operatorname{Ker}(L) = \{\mathbf{v} : L(\mathbf{v}) = \mathbf{0}\}$ | 행렬의 영공간 $N(\mathbf{A})$에 대응 |
 | 상공간 | $\operatorname{Im}(L) = \{L(\mathbf{v})\}$ | 행렬의 열공간 $C(\mathbf{A})$에 대응 |
-| 단사 판정 | $\operatorname{Ker}(L) = \{\mathbf{0}\}$ | |
+| 단사 판정 | $\operatorname{Ker}(L) = \{\mathbf{0}\}$ | 행렬이면 $r = n$ |
 | 차원정리 | $\operatorname{nullity}(L) + \operatorname{rank}(L) = \dim V$ | 행렬: $\dim N(\mathbf{A}) + \operatorname{rank}\mathbf{A} = $ 열의 수 |
 | 동형 | 선형 + 전단사 | 유한차원에서 차원이 같으면 동형 |
 | 등장 | $\lVert L(\mathbf{u}) \rVert = \lVert \mathbf{u} \rVert$ | 정규직교기저에서 행렬표현의 열이 정규직교 |
 | 행렬표현 | $[L(\mathbf{v})]_{B_W} = [L]_{B_V,B_W}[\mathbf{v}]_{B_V}$ | $j$열 $= [L(\mathbf{v}_j)]_{B_W}$ |
 | 합성 | $[G \circ F] = [G][F]$ | 곱하는 순서가 적용 순서의 반대 |
-| 닮음 | $\mathbf{A} = \mathbf{P}^{-1}\mathbf{B}\mathbf{P}$ | 같은 사상, 다른 기저. det·tr·rank·고유값 동일 |
-
-## R / Python으로 확인
-
-```r
-th <- pi / 6
-rotation <- matrix(c(cos(th), sin(th), -sin(th), cos(th)), nrow = 2)
-shear    <- matrix(c(1, 0, 0.6, 1), nrow = 2)
-
-square <- matrix(c(0, 0, 1, 0, 1, 1, 0, 1), nrow = 2)   # 꼭짓점을 열로
-rotation %*% square
-det(rotation); det(shear)                               # 넓이 배율 1, 1
-
-A <- matrix(c(1.5, 0.5, 0.5, 1.5), nrow = 2)
-P <- matrix(c(1, 1, -1, 1), nrow = 2) / sqrt(2)          # 열: b1, b2
-round(solve(P) %*% A %*% P, 10)                          # diag(2, 1)
-c(det(A), sum(diag(A)))                                 # 2, 3
-```
-
-```python
-import numpy as np
-
-t = np.deg2rad(30)
-rotation   = np.array([[np.cos(t), -np.sin(t)], [np.sin(t), np.cos(t)]])
-reflection = np.array([[1, 0], [0, -1]])
-projection = np.array([[1, 0], [0, 0]])
-shear      = np.array([[1, 0.6], [0, 1]])
-
-square = np.array([[0, 1, 1, 0], [0, 0, 1, 1]])   # 단위정사각형의 꼭짓점(열)
-rotation @ square                                  # 변환된 꼭짓점
-[np.linalg.det(M) for M in (rotation, reflection, projection, shear)]   # 넓이 배율: 1, -1, 0, 1
-```
+| 닮음 | $\mathbf{A} = \mathbf{P}^{-1}\mathbf{B}\mathbf{P}$ | 같은 사상, 다른 기저. det, tr, rank, 고유값 동일 |
+| 공분산의 변환 | $\operatorname{Cov}(\mathbf{Ax}+\mathbf{b}) = \mathbf{A}\boldsymbol\Sigma\mathbf{A}^T$ | 평행이동은 영향 없음 |
 
 ## 참고자료
 

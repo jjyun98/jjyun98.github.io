@@ -173,7 +173,7 @@ UTF-8로 저장한 CSV를 한국어 엑셀에서 더블클릭해 열면 한글�
 
 | 용도 | 인코딩 | 저장 |
 |---|---|---|
-| 엑셀로 열 배포용 CSV | BOM 포함 UTF-8 | Python `encoding="utf-8-sig"`, R `fileEncoding = "UTF-8-BOM"` |
+| 엑셀로 열 배포용 CSV | BOM 포함 UTF-8 | Python `encoding="utf-8-sig"`, R `readr::write_excel_csv()` / `data.table::fwrite(..., bom = TRUE)` (Base R `fileEncoding = "UTF-8-BOM"`은 읽기 전용) |
 | 웹·API용 JSON, GeoJSON | BOM 없는 UTF-8 | `encoding="utf-8"` |
 
 ### 엑셀로 열 수 없는 데이터

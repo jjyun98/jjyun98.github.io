@@ -4,6 +4,7 @@ published: 2022-07-29
 draft: false
 description: 'tibble, read_csv와 열 타입 지정, parse_* 함수, tidy data 세 가지 규칙, pivot_longer와 pivot_wider, 열 나누기·합치기, 결측값 다루기를 실습으로 정리'
 series: 'R for Data Science'
+seriesOrder: 3
 tags: ['R', 'tidyverse', '데이터 전처리']
 ---
 
@@ -230,6 +231,47 @@ treatment |> mutate(response = coalesce(response, 0))   # 특정 값으로 채�
 | NA를 특정 값으로 | `coalesce(x, 0)`, `replace_na(list(x = 0))` |
 | 특정 값을 NA로 (예: -99) | `na_if(x, -99)` |
 | NA 행 제거 | `drop_na(col)`, pivot에서는 `values_drop_na = TRUE` |
+
+### 명시적 결측과 암묵적 결측
+
+| | 명시적 결측 | 암묵적 결측 |
+|---|---|---|
+| 모양 | 칸에 `NA`가 적혀 있다 | 행 자체가 없다 |
+| 찾는 법 | `is.na()`, `count(is.na(x))` | `pivot_wider()`로 넓히거나 `complete()`로 조합을 채워 본다 |
+| 의미 | "측정했지만 값이 없다" | "기록 자체가 없다" (원래 없는 조합일 수도 있다) |
+
+위 `stocks |> complete(year, qtr)`는 7행을 8행으로 만든다. 그 결과 2020년 4분기(원래 `NA`)와 2021년 1분기(없던 행)의 `price`가 모두 `NA`로 보인다. 두 경우를 구분하려면 `complete()` 전에 어느 행이 원래 있었는지 확인해야 한다. 빠진 행이 "값이 0"인 것인지 "기록 누락"인지는 자료를 만든 사람에게 물어야 알 수 있다.
+
+### NA는 어떻게 전파되나
+
+`NA`는 "알 수 없는 값"이라서 계산과 비교 결과도 대부분 알 수 없다.
+
+```r
+NA > 5          # NA
+10 == NA        # NA
+NA + 10         # NA
+NA == NA        # NA: 모르는 두 값이 같은지도 모른다
+NA & FALSE      # FALSE: 상대가 FALSE면 NA가 무엇이든 FALSE
+NA | TRUE       # TRUE
+mean(c(1, NA, 3))                  # NA
+mean(c(1, NA, 3), na.rm = TRUE)    # 2
+```
+
+`NaN`(0/0처럼 수로 정의되지 않는 값)도 `is.na()`는 TRUE이지만 `is.nan()`은 `NaN`만 TRUE다. `NA`를 `NaN`과 구분해야 할 때만 `is.nan()`을 쓴다.
+
+factor는 값이 없어도 수준이 남는다. 그래서 `count()`가 개수 0인 수준을 기본으로 숨기는데, `.drop = FALSE`로 보여 줄 수 있다.
+
+```r
+health <- tibble(
+  name   = c("Ikaia", "Oletta", "Leriah", "Dashay", "Tresaun"),
+  smoker = factor(c("no", "no", "no", "no", "no"), levels = c("yes", "no")),
+  age    = c(34, 88, 75, 47, 56)
+)
+health |> count(smoker)
+health |> count(smoker, .drop = FALSE)
+```
+
+`smoker`에 `"yes"` 수준이 있지만 응답자가 없다. 첫 코드는 `no` 5명만 보여 주고, `.drop = FALSE`는 `yes` 0명을 함께 보여 준다. "흡연자가 없다"와 "흡연 여부를 조사하지 않았다"는 다른 정보이므로 요약표에서 빈 수준을 남길지 정한다.
 
 ## 자주 하는 실수
 

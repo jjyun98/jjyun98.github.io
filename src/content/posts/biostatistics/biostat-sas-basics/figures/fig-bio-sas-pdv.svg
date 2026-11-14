@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" width="760" height="330" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR',sans-serif">
+  <title>DATA step 실행 흐름: 입력 버퍼, PDV, 출력 데이터셋</title>
+  <rect x="0" y="0" width="760" height="330" rx="12" fill="#ffffff"/>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1 1 L9 5 L1 9" fill="none" stroke="#1e1e1e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="b" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1 1 L9 5 L1 9" fill="none" stroke="#f08c00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <text x="380" y="30" text-anchor="middle" font-size="16" font-weight="600" fill="#1e1e1e">DATA step는 관측치 하나씩 이 순서를 반복한다</text>
+
+  <!-- 입력 자료 -->
+  <rect x="30" y="70" width="170" height="110" rx="10" fill="#a5d8ff" stroke="#1e1e1e" stroke-width="2"/>
+  <text x="115" y="96" text-anchor="middle" font-size="15" font-weight="600" fill="#1e1e1e">입력 자료</text>
+  <text x="115" y="122" text-anchor="middle" font-size="13" fill="#1e1e1e">DATALINES, INFILE,</text>
+  <text x="115" y="142" text-anchor="middle" font-size="13" fill="#1e1e1e">SET으로 읽는 데이터셋</text>
+  <text x="115" y="166" text-anchor="middle" font-size="13" fill="#1e1e1e">한 줄(관측치)씩</text>
+
+  <!-- PDV -->
+  <rect x="290" y="55" width="190" height="140" rx="10" fill="#ffec99" stroke="#1e1e1e" stroke-width="2"/>
+  <text x="385" y="80" text-anchor="middle" font-size="15" font-weight="600" fill="#1e1e1e">PDV (메모리의 한 행)</text>
+  <rect x="302" y="96" width="166" height="26" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5"/>
+  <text x="385" y="114" text-anchor="middle" font-size="13" fill="#1e1e1e">subject | gender | exam1 …</text>
+  <rect x="302" y="122" width="166" height="26" fill="#ffffff" stroke="#1e1e1e" stroke-width="1.5"/>
+  <text x="385" y="140" text-anchor="middle" font-size="13" fill="#1e1e1e">10 | M | 80 …</text>
+  <text x="385" y="170" text-anchor="middle" font-size="12" fill="#1e1e1e">_N_, _ERROR_ 도 함께 가진다</text>
+  <text x="385" y="187" text-anchor="middle" font-size="12" fill="#1e1e1e">대입문·계산은 여기서 일어난다</text>
+
+  <!-- 출력 -->
+  <rect x="570" y="70" width="160" height="110" rx="10" fill="#b2f2bb" stroke="#1e1e1e" stroke-width="2"/>
+  <text x="650" y="96" text-anchor="middle" font-size="15" font-weight="600" fill="#1e1e1e">출력 데이터셋</text>
+  <text x="650" y="122" text-anchor="middle" font-size="13" fill="#1e1e1e">반복의 끝(RUN 위치)에서</text>
+  <text x="650" y="142" text-anchor="middle" font-size="13" fill="#1e1e1e">PDV의 값을 한 행으로</text>
+  <text x="650" y="162" text-anchor="middle" font-size="13" fill="#1e1e1e">기록(암시적 OUTPUT)</text>
+
+  <!-- 화살표 -->
+  <path d="M200 125 L286 125" fill="none" stroke="#1e1e1e" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+  <text x="243" y="116" text-anchor="middle" font-size="12" fill="#1e1e1e">INPUT</text>
+  <path d="M480 125 L566 125" fill="none" stroke="#1e1e1e" stroke-width="2" stroke-linecap="round" marker-end="url(#a)"/>
+  <text x="523" y="116" text-anchor="middle" font-size="12" fill="#1e1e1e">OUTPUT</text>
+
+  <!-- 되돌아가는 루프 -->
+  <path d="M385 195 C385 240 385 250 300 250 L115 250 C100 250 100 240 100 200 L100 186" fill="none" stroke="#f08c00" stroke-width="2" stroke-linecap="round" marker-end="url(#b)" transform="translate(15 0)"/>
+  <text x="385" y="272" text-anchor="middle" font-size="13" fill="#f08c00">다음 관측치로 돌아간다 (PDV 변수는 결측으로 초기화, SET·RETAIN으로 읽은 값은 유지)</text>
+
+  <!-- 단계 -->
+  <text x="30" y="310" font-size="13" fill="#1e1e1e">컴파일 단계: 변수 이름·형·길이를 정해 PDV를 만든다   →   실행 단계: 위 흐름을 입력이 끝날 때까지 반복한다</text>
+</svg>

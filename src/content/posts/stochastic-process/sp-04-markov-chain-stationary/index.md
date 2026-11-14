@@ -152,7 +152,7 @@ for P in mats:
 | 전이행렬 | $p_{ij}$를 모은 행렬, 행 합 1. $\mathbf P^t$의 $i$행은 $i$에서 출발한 $t$시점 분포 |
 | 정상분포 | $\boldsymbol\pi^\top \mathbf P = \boldsymbol\pi^\top$. $\mathbf P^\top$의 고유값 1 고유벡터 |
 | 2×2 공식 | $\boldsymbol\pi = \big(b/(a+b),\ a/(a+b)\big)$ |
-| 수렴 속도 | 절댓값이 두 번째로 큰 고유값의 절댓값 $|\lambda_2|$ |
+| 수렴 속도 | 절댓값이 두 번째로 큰 고유값의 절댓값 $\lvert\lambda_2\rvert$ |
 | 흡수 상태 | 수렴은 하지만 느릴 수 있음 |
 | 분리된 닫힌 클래스가 둘 이상 | 정상분포가 유일하지 않음, 극한이 출발점에 의존 (예시 4) |
 | 주기 | 정상분포는 유일해도 $\mathbf P^t$가 수렴하지 않음 |

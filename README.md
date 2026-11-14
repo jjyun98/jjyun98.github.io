@@ -8,9 +8,14 @@
 - 시계열 분석 (조신섭·손영숙·성병찬, R)
 - 실험계획법 (R)
 - 생명과학통계 (이재원·박미라·유한나, SAS)
-- 선형대수학 (하길찬)
+- 선형대수학 (하길찬, R·Python)
 - 미시경제학 (Pindyck·Rubinfeld 기반 강의 자료)
-- R for Data Science
+- 딥러닝 (PyTorch)
+- 확률과정론 (Python)
+- 데이터 시각화 (Python)
+- 기계학습 활용 (Python)
+- R for Data Science (R)
+- 데이터 분석 환경 (R·Python·SQL)
 
 ## 글 작성 규칙
 
@@ -36,7 +41,7 @@ npm install
 npm run dev
 ```
 
-빌드와 로컬 프리뷰는 다음 명령으로 확인합니다.
+빌드와 로컬 프리뷰는 다음 명령으로 확인한다.
 
 ```bash
 npm run build
@@ -63,11 +68,12 @@ published: 2026-01-01
 draft: false
 description: '글 설명'
 series: '시리즈명'
+seriesOrder: 1
 tags: ['tag']
 ---
 ```
 
-시리즈 안의 순서는 `published` 날짜 순이다.
+시리즈 안의 순서는 `seriesOrder`가 있으면 그 값 순으로, 없으면 `published` 날짜 순으로 정렬된다.
 
 ## Credits
 

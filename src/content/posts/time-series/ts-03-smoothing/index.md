@@ -15,7 +15,7 @@ library(forecast)
 library(patchwork)
 theme_set(theme_minimal(base_size = 12))
 
-data_url <- "https://raw.githubusercontent.com/Bricoler/time-series-analysis/master/timedata/"
+data_url <- "https://raw.githubusercontent.com/Bricoler/time-series-analysis/172803efe88d52321e43a3533b2fd2d1eeb6a6e4/timedata/"
 read_ts <- function(file, start, frequency = 12) {
   ts(scan(paste0(data_url, file), quiet = TRUE), start = start, frequency = frequency)
 }
@@ -214,14 +214,41 @@ ggAcf(residuals(fit_mult)) + labs(title = "ACF of residuals (multiplicative)")
 
 ### 예측함수와 대응하는 ARIMA 모형
 
-| 방법 | 추적하는 성분 | $h$시차 예측함수 | 동등한 ARIMA 모형 |
-|---|---|---|---|
-| 단순지수평활 | 수준 | 상수 $\ell_n$ | ARIMA(0,1,1) |
-| Holt (이중지수평활) | 수준 + 기울기 | 직선 $\ell_n + hb_n$ | ARIMA(0,2,2) |
-| Winters 가법 | 수준 + 기울기 + 계절 | 직선 + 고정 진폭 계절 | SARIMA의 특수한 경우 |
-| Winters 승법 | 수준 + 기울기 + 계절 | (직선) × 계절 지수 | 대응하는 선형 ARIMA 없음 |
+| 방법 | 추적하는 성분 | 평활상수 | $h$시차 예측함수 | 동등한 ARIMA 모형 |
+|---|---|---|---|---|
+| 단순지수평활 | 수준 | $\omega$ 1개 | 상수 $L_n$ | ARIMA(0,1,1) |
+| 이중지수평활 (Brown) | 수준 + 기울기 | $\omega$ 1개 | 직선 | ARIMA(0,2,2)의 제약된 형태 |
+| Holt | 수준 + 기울기 | $\alpha$, $\beta$ 2개 | 직선 $L_n + hb_n$ | ARIMA(0,2,2) |
+| Winters 가법 | 수준 + 기울기 + 계절 | $\alpha$, $\beta$, $\gamma$ | 직선 + 고정 진폭 계절 | SARIMA의 특수한 경우 |
+| Winters 승법 | 수준 + 기울기 + 계절 | $\alpha$, $\beta$, $\gamma$ | (직선) × 계절 지수 | 대응하는 선형 ARIMA 없음 |
 
-평활법은 성분을 하나씩 추가하면서 예측함수의 형태가 상수, 직선, 직선 + 계절로 확장된다. 단순지수평활은 ARIMA(0,1,1)과 같은 예측을 주며, 평활상수와 MA 계수 사이에 $\alpha = 1 + \theta$ (R의 부호 기준)의 관계가 있다.
+### 이중지수평활과 Holt
+
+이름이 비슷하지만 같은 것은 아니다. 3절의 이중지수평활(Brown)은 평활상수 $\omega$ 하나로 단순지수평활을 두 번 하고, Holt의 방법은 수준과 기울기에 $\alpha$, $\beta$를 따로 쓴다. Brown의 방법은 Holt의 방법에서 두 상수가 $\omega$ 하나로 묶인 특수한 경우다.
+
+$$
+\alpha = \omega(2 - \omega) = 1 - (1-\omega)^2, \qquad \beta = \frac{\omega}{2 - \omega}
+$$
+
+Holt는 두 상수를 따로 고를 수 있어 더 유연하고, 그래서 이 글의 `holt()` 예제처럼 $\alpha$는 크고 $\beta$는 작은 조합도 만들 수 있다. 아래에서 $\omega = 0.3$으로 Brown의 예측함수를 직접 계산하고, 위 관계로 얻은 Holt의 예측과 비교한다.
+
+```r
+w <- 0.3
+n <- length(stock)
+s1 <- s2 <- numeric(n)
+s1[1] <- s2[1] <- stock[1]
+for (t in 2:n) {
+  s1[t] <- w * stock[t] + (1 - w) * s1[t - 1]
+  s2[t] <- w * s1[t] + (1 - w) * s2[t - 1]
+}
+brown <- sapply(1:6, \(l) (2 + w * l / (1 - w)) * s1[n] - (1 + w * l / (1 - w)) * s2[n])
+holt_eq <- holt(stock, alpha = w * (2 - w), beta = w / (2 - w), initial = "simple", h = 6)
+round(rbind(Brown = brown, Holt = as.numeric(holt_eq$mean)), 2)
+```
+
+두 예측이 6시차 모두 같다(652.03에서 638.89까지 줄어든다). 이중지수평활은 Holt의 방법에서 $(\alpha, \beta)$가 $\omega$ 하나로 정해지는 경우다.
+
+평활법은 성분을 하나씩 추가하면서 예측함수의 형태가 상수, 직선, 직선 + 계절로 확장된다. 단순지수평활은 ARIMA(0,1,1)과 같은 예측을 주며, 평활상수와 MA 계수 사이에 $\alpha = 1 + \text{ma1}$ (R의 부호 기준, 교재 표기로는 $1 - \theta$)의 관계가 있다.
 
 ```r
 fit_ses_est <- ses(mindex, h = 1)
@@ -230,7 +257,7 @@ c(ses_alpha = unname(fit_ses_est$model$par["alpha"]),
   arima_1_plus_theta = unname(1 + coef(fit_011)["ma1"]))
 ```
 
-단순지수평활의 추정 평활상수는 0.9031이고, ARIMA(0,1,1)로 추정한 $1 + \theta$는 0.9038이다. 두 값은 최적화 방법의 차이만큼만 다르며, 두 모형이 같은 예측식을 갖는다는 것을 확인할 수 있다. 평활상수가 1에 가까운 것은 중간재 출하지수가 확률보행에 가까워 최근 관측값 하나가 예측의 대부분을 결정한다는 뜻이다.
+단순지수평활의 추정 평활상수는 0.9031이고, ARIMA(0,1,1)로 추정한 $1 + \text{ma1}$ (R의 부호 기준)은 0.9038이다. 두 값은 최적화 방법의 차이만큼만 다르며, 두 모형이 같은 예측식을 갖는다는 것을 확인할 수 있다. 평활상수가 1에 가까운 것은 중간재 출하지수가 확률보행에 가까워 최근 관측값 하나가 예측의 대부분을 결정한다는 뜻이다.
 
 
 ## 요약
@@ -239,7 +266,8 @@ c(ses_alpha = unname(fit_ses_est$model$par["alpha"]),
 |---|---|---|---|
 | 이동평균 | 수준 | 창 크기 $m$ | `stats::filter`, `ma` |
 | 단순지수평활 | 수준 | $\omega$ (또는 $\alpha$) | `ses()` |
-| 이중지수평활 / Holt | 수준 + 기울기 | $\alpha$, $\beta$ | `holt()` |
+| 이중지수평활 (Brown) | 수준 + 기울기 | $\omega$ | `holt()`에서 $\alpha=\omega(2-\omega)$, $\beta=\omega/(2-\omega)$ |
+| Holt | 수준 + 기울기 | $\alpha$, $\beta$ | `holt()` |
 | Winters 가법 | 수준 + 기울기 + 계절 (진폭 일정) | $\alpha$, $\beta$, $\gamma$ | `hw(seasonal = "additive")` |
 | Winters 승법 | 계절 진폭이 수준에 비례 | $\alpha$, $\beta$, $\gamma$ | `hw(seasonal = "multiplicative")` |
 | 평활상수 선택 | 1시차 예측오차 제곱합 최소 | | 생략하면 자동 추정 |

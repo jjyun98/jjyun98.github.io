@@ -4,6 +4,7 @@ published: 2022-08-26
 draft: false
 description: '벡터와 리스트, for 반복문, 여러 열에 같은 작업을 하는 across, 리스트에 함수를 적용하는 purrr map 함수군, 오류 처리와 reduce, 여러 파일 읽기를 실습으로 정리'
 series: 'R for Data Science'
+seriesOrder: 14
 tags: ['R', 'tidyverse']
 ---
 
@@ -178,7 +179,7 @@ dfs <- list(
   sex = tibble(name = c("John", "Mary"), sex = c("M", "F")),
   trt = tibble(name = "Mary", treatment = "A")
 )
-dfs |> reduce(full_join, by = "name")    # 테이블 여러 개를 차례로 join
+dfs |> reduce(full_join, by = join_by(name))    # 테이블 여러 개를 차례로 join
 
 accumulate(1:5, `+`)                     # 누적 합: 1 3 6 10 15
 ```

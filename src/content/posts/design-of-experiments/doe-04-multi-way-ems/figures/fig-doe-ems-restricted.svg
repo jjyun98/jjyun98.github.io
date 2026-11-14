@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" width="760" height="300" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR',sans-serif">
+  <title>비제약 모형과 제약 모형에서 AB의 EMS에 ABC가 들어가는지 판정</title>
+  <rect x="0" y="0" width="760" height="300" rx="12" fill="#ffffff"/>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1 1 L9 5 L1 9" fill="none" stroke="#1e1e1e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <text x="380" y="28" text-anchor="middle" font-size="16" font-weight="600" fill="#1e1e1e">A 변량, B·C 모수: AB의 EMS에 ABC가 들어가는가</text>
+
+  <!-- 가운데 후보 -->
+  <rect x="300" y="55" width="160" height="70" rx="10" fill="#f1f3f5" stroke="#1e1e1e" stroke-width="2"/>
+  <text x="380" y="83" text-anchor="middle" font-size="14" font-weight="600" fill="#1e1e1e">후보: ABC</text>
+  <text x="380" y="106" text-anchor="middle" font-size="12" fill="#495057">AB를 포함하는 교호작용</text>
+
+  <path d="M320 128 L190 160" stroke="#1e1e1e" stroke-width="2" marker-end="url(#a)"/>
+  <path d="M440 128 L570 160" stroke="#1e1e1e" stroke-width="2" marker-end="url(#a)"/>
+
+  <!-- 비제약 -->
+  <rect x="30" y="165" width="320" height="110" rx="10" fill="#a5d8ff" stroke="#1e1e1e" stroke-width="2"/>
+  <text x="190" y="190" text-anchor="middle" font-size="14" font-weight="600" fill="#1e1e1e">비제약 (교재, SAS, SPSS)</text>
+  <text x="190" y="214" text-anchor="middle" font-size="13" fill="#1e1e1e">ABC에 변량인자 A가 있는가? → 예</text>
+  <text x="190" y="238" text-anchor="middle" font-size="13" font-weight="600" fill="#1971c2">E(MS_AB) = E + ABC + AB</text>
+  <text x="190" y="260" text-anchor="middle" font-size="12" fill="#495057">분모 MS_ABC</text>
+
+  <!-- 제약 -->
+  <rect x="410" y="165" width="320" height="110" rx="10" fill="#ffd8a8" stroke="#1e1e1e" stroke-width="2"/>
+  <text x="570" y="190" text-anchor="middle" font-size="14" font-weight="600" fill="#1e1e1e">제약 (강의 글자표기)</text>
+  <text x="570" y="214" text-anchor="middle" font-size="13" fill="#1e1e1e">AB를 뺀 나머지 C가 모두 변량인가? → 아니오</text>
+  <text x="570" y="238" text-anchor="middle" font-size="13" font-weight="600" fill="#e8590c">E(MS_AB) = E + AB</text>
+  <text x="570" y="260" text-anchor="middle" font-size="12" fill="#495057">분모 MS_E (C 수준에 대해 합 0 제약)</text>
+</svg>

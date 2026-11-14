@@ -15,7 +15,7 @@ library(forecast)
 library(patchwork)
 theme_set(theme_minimal(base_size = 12))
 
-data_url <- "https://raw.githubusercontent.com/Bricoler/time-series-analysis/master/timedata/"
+data_url <- "https://raw.githubusercontent.com/Bricoler/time-series-analysis/172803efe88d52321e43a3533b2fd2d1eeb6a6e4/timedata/"
 read_ts <- function(file, start, frequency = 12) {
   ts(scan(paste0(data_url, file), quiet = TRUE), start = start, frequency = frequency)
 }
@@ -75,7 +75,7 @@ Z_t = Z_{t-1} + \epsilon_t = \epsilon_1 + \epsilon_2 + \cdots + \epsilon_t, \qqu
 $$
 
 $$
-E(Z_t) = 0, \qquad Var(Z_t) = t\sigma^2, \qquad Cov(Z_t, Z_{t+k}) = t\sigma^2
+E(Z_t) = 0, \qquad Var(Z_t) = t\sigma^2, \qquad Cov(Z_t, Z_{t+k}) = t\sigma^2 \;\; (k \ge 0)
 $$
 
 평균은 0으로 일정하지만 분산과 공분산이 $t$에 따라 커지므로 **비정상**이다. 절편(표류항) $\delta$가 있으면 $E(Z_t) = \delta t$로 평균까지 시간에 따라 변한다.
@@ -135,7 +135,21 @@ $$
 \hat\rho_k = r_k = \frac{\sum_{t=1}^{n-k} (Z_t - \bar Z)(Z_{t+k} - \bar Z)}{\sum_{t=1}^{n} (Z_t - \bar Z)^2}
 $$
 
-백색잡음이면 $\hat\rho_k \;\dot\sim\; N(0, 1/n)$이다. 그래서 ACF 그림의 파란 점선 $\pm 2/\sqrt n$ 밖으로 나가는 막대가 있으면 "시차 $k$에 자기상관이 있다"고 본다. 시차를 20개 그리면 백색잡음에서도 1개 정도는 우연히 점선을 넘으므로 하나만 보고 판단하지 않는다.
+표본 ACF의 분산은 Bartlett 근사로 구한다. 시차 $k$ 이상의 자기상관이 모두 0이면 ($\rho_j = 0,\; j \ge k$, 예: $k > q$인 MA($q$)) 다음과 같다.
+
+$$
+\mathrm{Var}(r_k) \approx \frac{1}{n}\Big(1 + 2\sum_{j=1}^{k-1} r_j^2\Big)
+$$
+
+백색잡음이면 합이 0이므로 $\hat\rho_k \;\dot\sim\; N(0, 1/n)$이다. 그래서 ACF 그림의 파란 점선 $\pm 2/\sqrt n$ 밖으로 나가는 막대가 있으면 "시차 $k$에 자기상관이 있다"고 본다. 시차를 20개 그리면 백색잡음에서도 1개 정도는 우연히 점선을 넘으므로 하나만 보고 판단하지 않는다.
+
+여러 시차를 한꺼번에 검정하려면 **Ljung-Box 포트맨토 검정**을 쓴다. $H_0$는 시차 $1, \dots, K$의 자기상관이 모두 0이라는 것이다.
+
+$$
+Q_{LB} = n(n+2)\sum_{k=1}^{K} \frac{r_k^2}{n-k} \;\;\dot\sim\;\; \chi^2_K \quad (H_0)
+$$
+
+시계열 자체에 쓰면 자유도는 $K$이고, ARMA($p,q$)를 적합한 잔차에 쓰면 $K-p-q$이다(8편).
 
 ```r w=9 h=3.2
 z <- as.numeric(arima.sim(list(ar = -0.7), n = 200)) + 10
@@ -208,6 +222,32 @@ acf_pair(diff(diff(log(pass), 12)), "log passengers after lag-1 and lag-12 diffe
 
 ![로그 변환과 차분 후 항공 승객 수의 SACF와 SPACF](./images/ts05-06.png)
 
+같은 네 자료에 Ljung-Box 검정($K = 12$)을 적용한다.
+
+```r
+set.seed(1)
+wn <- ts(rnorm(100))
+pop <- read_ts("population.txt", start = 1960, frequency = 1)
+dep <- read_ts("depart.txt", start = c(1984, 1))
+pass_d <- diff(diff(log(pass), 12))
+lb <- function(x, name) tibble(series = name, n = length(x),
+  Q = unname(Box.test(x, lag = 12, type = "Ljung-Box")$statistic),
+  p_value = Box.test(x, lag = 12, type = "Ljung-Box")$p.value)
+bind_rows(lb(wn, "white noise"), lb(pop, "population"),
+          lb(dep, "department store"), lb(pass_d, "passengers, differenced")) |>
+  mutate(Q = round(Q, 1), p_value = signif(p_value, 2))
+```
+
+```text
+  series                      n     Q   p_value
+1 white noise               100   6.4 0.89
+2 population                 36 152.0 < 0.001
+3 department store           60  50.7 0.0000011
+4 passengers, differenced    95  37.0 0.00023
+```
+
+백색잡음만 $H_0$를 기각하지 못한다($Q = 6.4$, $p = 0.89$). 인구와 백화점 매출은 추세와 계절성 때문에 기각된다. 차분한 항공 승객 수도 $p = 0.00023$으로 기각되므로, 차분만으로는 상관이 남아 있고 ARMA 항이 더 필요하다(10편의 항공 모형).
+
 | SACF 모양 | 의미 |
 |---|---|
 | 모든 시차에서 점선 안 | 백색잡음 |
@@ -219,11 +259,20 @@ acf_pair(diff(diff(log(pass), 12)), "log passengers after lag-1 and lag-12 diffe
 
 | 과정 | 식 | 평균 | 분산 | 정상성 | ACF |
 |---|---|---|---|---|---|
-| 백색잡음 | $Z_t = \varepsilon_t$ | 0 | $\sigma^2$ | 정상 | 시차 0에서만 1 |
-| AR(1) ($\lvert\phi\rvert < 1$) | $Z_t = \phi Z_{t-1} + \varepsilon_t$ | 0 | $\sigma^2/(1 - \phi^2)$ | 정상 | $\phi^k$로 지수적 감소 |
-| MA(1) | $Z_t = \varepsilon_t - \theta\varepsilon_{t-1}$ | 0 | $(1 + \theta^2)\sigma^2$ | 항상 정상 | 시차 1 이후 0 |
-| 확률보행 | $Z_t = Z_{t-1} + \varepsilon_t$ | $Z_0$ | $t\sigma^2$ (증가) | 비정상 | 1에 가깝게 매우 천천히 감소 |
-| 표류 있는 확률보행 | $Z_t = \delta + Z_{t-1} + \varepsilon_t$ | $Z_0 + \delta t$ | $t\sigma^2$ | 비정상 | 매우 천천히 감소 |
+| 백색잡음 | $Z_t = \epsilon_t$ | 0 | $\sigma^2$ | 정상 | 시차 0에서만 1 |
+| AR(1) ($\lvert\phi\rvert < 1$) | $Z_t = \phi Z_{t-1} + \epsilon_t$ | 0 | $\sigma^2/(1 - \phi^2)$ | 정상 | $\phi^k$로 지수적 감소 |
+| MA(1) | $Z_t = \epsilon_t - \theta\epsilon_{t-1}$ | 0 | $(1 + \theta^2)\sigma^2$ | 항상 정상 | 시차 1 이후 0 |
+| 확률보행 | $Z_t = Z_{t-1} + \epsilon_t$ | $Z_0$ | $t\sigma^2$ (증가) | 비정상 | 1에 가깝게 매우 천천히 감소 |
+| 표류 있는 확률보행 | $Z_t = \delta + Z_{t-1} + \epsilon_t$ | $Z_0 + \delta t$ | $t\sigma^2$ | 비정상 | 매우 천천히 감소 |
+
+ACF와 PACF는 같은 의존 구조를 다른 방식으로 보여 준다.
+
+| | ACF $\rho_k$ | PACF $\phi_{kk}$ |
+|---|---|---|
+| 정의 | $Z_t$와 $Z_{t+k}$의 상관 | 중간 시점의 영향을 제거한 상관 |
+| 구하는 법 | $\gamma_k/\gamma_0$ | Yule-Walker 방정식의 마지막 계수 |
+| 표본 기준선 | $\pm 2/\sqrt n$ (Bartlett으로 보정 가능) | $\pm 2/\sqrt n$ |
+| 절단되면 | MA 모형의 차수 $q$ (6편) | AR 모형의 차수 $p$ (6편) |
 
 AR(1)은 $\phi \to 1$이면 확률보행에 가까워진다. 두 과정의 표본 경로는 짧은 구간에서 구분하기 어렵지만, AR(1)은 평균으로 되돌아가는 성질이 있고 확률보행은 충격이 영구히 누적된다는 점이 본질적인 차이다. 이 차이가 [7편](/posts/ts-07-arima)의 단위근 검정과 차분의 근거가 된다.
 
@@ -237,4 +286,6 @@ AR(1)은 $\phi \to 1$이면 확률보행에 가까워진다. 두 과정의 표�
 | 확률보행 | $Var(Z_t) = t\sigma^2$, 비정상 |
 | Wold 분해 | 정상 과정 = 백색잡음의 선형결합 |
 | ACF | $\rho_k = \gamma_k / \gamma_0$, 백색잡음 기준선 $\pm 2/\sqrt n$ |
+| Bartlett | $\mathrm{Var}(r_k) \approx \frac{1}{n}(1 + 2\sum_{j<k} r_j^2)$ |
+| Ljung-Box | $Q_{LB} = n(n+2)\sum r_k^2/(n-k)$, 여러 시차를 한꺼번에 검정 |
 | PACF | 중간 시점을 통제한 상관, Yule-Walker 방정식 |

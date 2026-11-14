@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 330" width="760" height="330" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR',sans-serif">
+  <title>EMS 표를 채우는 세 단계: A 모수, B 변량, 반복 r인 이원배치 혼합모형</title>
+  <rect x="0" y="0" width="760" height="330" rx="12" fill="#ffffff"/>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M1 1 L9 5 L1 9" fill="none" stroke="#1e1e1e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+  <text x="380" y="28" text-anchor="middle" font-size="16" font-weight="600" fill="#1e1e1e">A 모수, B 변량, 반복 r인 혼합모형의 EMS 표 채우기</text>
+
+  <!-- 단계 1 -->
+  <g transform="translate(20,50)">
+    <rect x="0" y="0" width="220" height="200" rx="10" fill="#e7f5ff" stroke="#1e1e1e" stroke-width="2"/>
+    <text x="110" y="24" text-anchor="middle" font-size="14" font-weight="600" fill="#1e1e1e">① 법칙 2, 3: 절편 줄</text>
+    <text x="70" y="52" text-anchor="middle" font-size="13" fill="#495057">Q(A)</text>
+    <text x="120" y="52" text-anchor="middle" font-size="13" fill="#495057">σ²_B</text>
+    <text x="175" y="52" text-anchor="middle" font-size="13" fill="#495057">σ²_AB</text>
+    <text x="70" y="70" text-anchor="middle" font-size="12" fill="#495057">l</text>
+    <text x="120" y="70" text-anchor="middle" font-size="12" fill="#495057">m</text>
+    <text x="175" y="70" text-anchor="middle" font-size="12" fill="#495057">lm</text>
+    <path d="M10 80 L210 80" stroke="#495057" stroke-width="1.5"/>
+    <text x="25" y="102" font-size="13" fill="#1e1e1e">절편</text>
+    <text x="70" y="102" text-anchor="middle" font-size="13" font-weight="600" fill="#1971c2">mr</text>
+    <text x="120" y="102" text-anchor="middle" font-size="13" font-weight="600" fill="#1971c2">lr</text>
+    <text x="175" y="102" text-anchor="middle" font-size="13" font-weight="600" fill="#1971c2">r</text>
+    <text x="110" y="150" text-anchor="middle" font-size="12" fill="#1e1e1e">총 관측수 lmr을</text>
+    <text x="110" y="168" text-anchor="middle" font-size="12" fill="#1e1e1e">각 칸의 수준수로 나눈다</text>
+  </g>
+  <path d="M245 150 L265 150" stroke="#1e1e1e" stroke-width="2" marker-end="url(#a)"/>
+
+  <!-- 단계 2 -->
+  <g transform="translate(270,50)">
+    <rect x="0" y="0" width="220" height="200" rx="10" fill="#fff3bf" stroke="#1e1e1e" stroke-width="2"/>
+    <text x="110" y="24" text-anchor="middle" font-size="14" font-weight="600" fill="#1e1e1e">② 법칙 3: 포함하면 옮김</text>
+    <text x="70" y="52" text-anchor="middle" font-size="13" fill="#495057">A</text>
+    <text x="120" y="52" text-anchor="middle" font-size="13" fill="#495057">B</text>
+    <text x="175" y="52" text-anchor="middle" font-size="13" fill="#495057">AB</text>
+    <path d="M10 62 L210 62" stroke="#495057" stroke-width="1.5"/>
+    <text x="25" y="88" font-size="13" fill="#1e1e1e">A</text>
+    <text x="70" y="88" text-anchor="middle" font-size="13" fill="#1e1e1e">mr</text>
+    <text x="175" y="88" text-anchor="middle" font-size="13" fill="#1e1e1e">r</text>
+    <text x="25" y="114" font-size="13" fill="#1e1e1e">B</text>
+    <text x="120" y="114" text-anchor="middle" font-size="13" fill="#1e1e1e">lr</text>
+    <text x="175" y="114" text-anchor="middle" font-size="13" fill="#1e1e1e">r</text>
+    <text x="25" y="140" font-size="13" fill="#1e1e1e">AB</text>
+    <text x="175" y="140" text-anchor="middle" font-size="13" fill="#1e1e1e">r</text>
+    <text x="110" y="172" text-anchor="middle" font-size="12" fill="#1e1e1e">칸의 효과가 줄의 효과를</text>
+    <text x="110" y="190" text-anchor="middle" font-size="12" fill="#1e1e1e">포함하는 셀에만 적는다</text>
+  </g>
+  <path d="M495 150 L515 150" stroke="#1e1e1e" stroke-width="2" marker-end="url(#a)"/>
+
+  <!-- 단계 3 -->
+  <g transform="translate(520,50)">
+    <rect x="0" y="0" width="220" height="200" rx="10" fill="#d3f9d8" stroke="#1e1e1e" stroke-width="2"/>
+    <text x="110" y="24" text-anchor="middle" font-size="14" font-weight="600" fill="#1e1e1e">③ 법칙 4, 5: 곱해 더함</text>
+    <text x="14" y="62" font-size="13" fill="#1e1e1e">A: σ²_E + rσ²_AB + mrQ(A)</text>
+    <text x="14" y="92" font-size="13" fill="#1e1e1e">B: σ²_E + rσ²_AB + lrσ²_B</text>
+    <text x="14" y="122" font-size="13" fill="#1e1e1e">AB: σ²_E + rσ²_AB</text>
+    <text x="110" y="160" text-anchor="middle" font-size="12" fill="#1e1e1e">모수 효과 Q(·)는 자기 줄에만,</text>
+    <text x="110" y="178" text-anchor="middle" font-size="12" fill="#1e1e1e">변량 효과는 옮긴 모든 줄에</text>
+  </g>
+
+  <text x="380" y="290" text-anchor="middle" font-size="13" fill="#495057">F의 분모: 분자 EMS에서 검정할 성분 하나를 뺀 것과 같은 EMS의 평균제곱</text>
+  <text x="380" y="312" text-anchor="middle" font-size="13" fill="#495057">A → MS_AB,  B → MS_AB,  AB → MS_E</text>
+</svg>

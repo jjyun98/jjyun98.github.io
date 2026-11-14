@@ -16,7 +16,7 @@ library(tseries)
 library(patchwork)
 theme_set(theme_minimal(base_size = 12))
 
-data_url <- "https://raw.githubusercontent.com/Bricoler/time-series-analysis/master/timedata/"
+data_url <- "https://raw.githubusercontent.com/Bricoler/time-series-analysis/172803efe88d52321e43a3533b2fd2d1eeb6a6e4/timedata/"
 read_ts <- function(file, start = 1, frequency = 1) {
   ts(scan(paste0(data_url, file), quiet = TRUE), start = start, frequency = frequency)
 }
@@ -49,11 +49,7 @@ coef_test <- function(fit) {
 
 ### Step 2: ARMA 차수 결정
 
-| | SACF | SPACF |
-|---|---|---|
-| AR($p$) | 지수적으로 감소하거나 소멸하는 사인 곡선 | 시차 $p$ 이후 절단 |
-| MA($q$) | 시차 $q$ 이후 절단 | 지수적으로 감소하거나 소멸하는 사인 곡선 |
-| ARMA($p$, $q$) | 시차 $q$ 이후(또는 $\max(q-p, 0)$ 이후) 감소 | 시차 $p$ 이후(또는 $\max(p-q, 0)$ 이후) 감소 |
+AR, MA, ARMA의 SACF·SPACF 패턴은 [6편의 비교 표](/posts/ts-06-arma)를 따른다. 식별에서 쓰는 것은 그 표의 절단과 감소 구분이다. ARMA($p$, $q$)는 SACF가 시차 $q$ 이후(또는 $\max(q-p, 0)$ 이후), SPACF가 시차 $p$ 이후(또는 $\max(p-q, 0)$ 이후) 감소하므로 두 그림만으로는 차수를 정하기 어렵고 정보 기준을 함께 쓴다.
 
 "절단"을 판단하는 기준은 다음과 같다.
 
@@ -86,12 +82,13 @@ $$
 
 ## 3. 모수 추정
 
-| 방법 | 원리 | 특징 |
-|---|---|---|
-| 적률추정(MME) | 이론 적률과 표본 적률을 같게 놓음. AR은 Yule-Walker 방정식 | 간단하지만 MA가 있으면 비효율적, 초기값으로 사용 |
-| 조건부 최소제곱(CLS) | 관측 안 된 초기값을 0이나 평균으로 놓고 잔차제곱합 최소화 | `method = "CSS"` |
-| 비조건부 최소제곱(ULS) | 초기값을 후진예측으로 추정 | 초기값 영향을 줄임 |
-| 최대가능도(MLE) | 정규 가정 아래 정확한 가능도 최대화 | 효율적, `method = "ML"` |
+추정 방법은 적률추정(MME), 조건부 최소제곱(CSS), 비조건부 최소제곱(ULS), 최대가능도(ML)가 있고 8절에서 비교한다. 조건부 최소제곱은 관측되지 않은 초기값 $Z_0, \epsilon_0, \dots$을 0(또는 평균)으로 놓고 조건부 제곱합을 최소화한다.
+
+$$
+S_c(\phi, \theta) = \sum_{t=p+1}^{n} \hat\epsilon_t^2, \qquad \hat\epsilon_t = Z_t - \phi_1 Z_{t-1} - \cdots - \phi_p Z_{t-p} + \theta_1 \hat\epsilon_{t-1} + \cdots + \theta_q \hat\epsilon_{t-q}
+$$
+
+비조건부 최소제곱은 초기값을 후진예측으로 구해 $t \le 0$ 구간까지 제곱합에 넣는다.
 
 ### 적률추정의 예
 
@@ -128,7 +125,7 @@ $$
 H_0: \rho_1 = \cdots = \rho_K = 0, \qquad Q^* = n(n + 2) \sum_{k=1}^{K} \frac{r_k^2}{n - k} \;\dot\sim\; \chi^2_{K - p - q}
 $$
 
-Ljung-Box 통계량 $Q^*$은 Box-Pierce 통계량 $Q = n\sum r_k^2$을 소표본에서 보정한 것이다. ARMA($p$, $q$)의 잔차면 자유도에서 추정한 모수 수를 뺀다(`fitdf = p + q`).
+Ljung-Box 통계량의 정의와 시계열 자체에 쓸 때의 자유도($K$)는 [5편](/posts/ts-05-stochastic-process)에 있다. ARMA($p$, $q$)를 적합한 잔차에는 추정한 모수 수를 빼서 자유도가 $K - p - q$이다(`Box.test(..., fitdf = p + q)`).
 
 - 정규성: Jarque-Bera 검정 $JB = \frac{n}{6}\left(\hat S^2 + \frac{(\hat K - 3)^2}{4}\right) \;\dot\sim\; \chi^2_2$ ($\hat S$: 왜도, $\hat K$: 첨도)
 
@@ -236,6 +233,7 @@ t.test(diff(stock))
 |---|---|---|
 | 적률추정 (Yule-Walker) | 표본 자기상관을 이론 자기상관에 일치 | AR에서는 간단하고 정상성을 보장. MA·ARMA에서는 비효율적 |
 | 조건부 최소제곱 (CSS) | 초기값을 고정하고 잔차제곱합 최소화 | 계산이 빠름. 표본이 작으면 초기값의 영향이 큼 |
+| 비조건부 최소제곱 (ULS) | 초기값을 후진예측으로 추정해 제곱합 최소화 | 초기값 영향을 줄임. CSS보다 계산이 오래 걸림 |
 | 최대가능도 (ML) | 정확한 가능도를 최대화 | 점근적으로 가장 효율적. 정보 기준 계산의 기반 |
 
 순수 AR 모형이고 표본이 충분하면 세 방법의 추정값은 거의 같다. 차이는 MA 항이 있거나, 표본이 작거나, 모수가 정상성 경계에 가까울 때 드러난다.
@@ -252,14 +250,14 @@ $n \ge 8$이면 $\log n > 2$이므로 BIC가 AIC보다 작은 모형을 고른�
 
 ```r
 ic_tab <- map_dfr(1:8, \(p) {
-  f <- Arima(gas, order = c(p, 0, 0))
+  f <- Arima(gas, order = c(p, 0, 0), include.mean = FALSE)
   tibble(p = p, AIC = f$aic, AICc = f$aicc, BIC = f$bic)
 })
 ic_tab
 ic_tab |> summarise(across(c(AIC, AICc, BIC), \(v) p[which.min(v)]))
 ```
 
-가스로 자료에서 AIC와 AICc는 AR(6)을, BIC는 AR(3)을 고른다. AIC는 $p = 4$ 이후 거의 평평해서 차수를 분명히 정하지 못하고, 벌점이 큰 BIC는 그 구간에서 가장 단순한 AR(3)을 고른다. 앞에서 SPACF와 잔차 진단으로 정한 AR(3)과 같다.
+이 자료 전체(296개)에서 AIC와 AICc는 AR(6)을, BIC는 AR(3)을 고른다. AIC는 $p = 4$ 이후 거의 평평해서 차수를 분명히 정하지 못하고, 벌점이 큰 BIC는 그 구간에서 가장 단순한 AR(3)을 고른다. 앞에서 SPACF와 잔차 진단으로 정한 AR(3)과 같다.
 
 예측이 목적이고 약간의 과대적합을 감수할 수 있으면 AIC를, 해석할 수 있는 간결한 모형이 필요하면 BIC를 쓰는 것이 일반적인 기준이다. 두 기준이 다른 차수를 고르면 두 모형의 잔차 진단과 예측력을 함께 비교해 결정한다.
 
@@ -269,13 +267,13 @@ ic_tab |> summarise(across(c(AIC, AICc, BIC), \(v) p[which.min(v)]))
 auto.arima(gas, stepwise = FALSE, approximation = FALSE)
 ```
 
-`auto.arima()`는 단위근 검정으로 $d$를 정하고 AICc로 $p$, $q$를 고른다. 가스로 자료에서는 ARIMA(3,1,1)을 고르는데, `ma1` $\approx -0.99$로 $(1 - B)$와 거의 약분된다. 즉 차분과 MA(1)이 서로 상쇄된 것이라 사실상 앞에서 고른 정상 AR(3)과 같은 모형이고, 불필요한 차분(과대차분)의 흔적이다. 빠른 출발점이지만, 식별 그림과 잔차 진단 없이 결과를 그대로 쓰면 안 된다. 자동 선택이 고른 모형과 SACF·SPACF로 고른 모형이 다르면 두 모형을 모두 진단해 비교한다.
+`auto.arima()`는 기본으로 KPSS 단위근 검정(`test = "kpss"`)으로 $d$를 정하고 AICc(`ic = "aicc"`)로 $p$, $q$를 고른다. 기본값은 `stepwise = TRUE`, `approximation = TRUE`로 후보를 일부만 빠르게 탐색하므로, 위 코드는 두 인자를 `FALSE`로 두어 가능한 모든 후보를 정확한 가능도로 비교한다. 가스로 자료에서는 ARIMA(3,1,1)을 고르는데, `ma1` $\approx -0.99$로 $(1 - B)$와 거의 약분된다. 즉 차분과 MA(1)이 서로 상쇄된 것이라 사실상 앞에서 고른 정상 AR(3)과 같은 모형이고, 불필요한 차분(과대차분)의 흔적이다. 빠른 출발점이지만, 식별 그림과 잔차 진단 없이 결과를 그대로 쓰면 안 된다. 자동 선택은 AICc 하나와 단위근 검정 한 번에 의존하지만, 수동 식별은 SACF·SPACF의 모양과 잔차 진단, 계수의 유의성을 함께 본다. 두 방법이 고른 모형이 다르면 두 모형을 모두 진단해 비교한다.
 
 ## 요약
 
 | 단계 | 할 일 | R |
 |---|---|---|
-| 정상화 | 변환, 차분, 단위근 검정 | `log()`, `diff()`, `adf.test()` |
+| 정상화 | 변환, 차분, 단위근 검정 | `log()`, `diff()`, `adf.test()`, `kpss.test()` |
 | 식별 | SACF·SPACF의 절단과 감소 패턴 | `ggAcf()`, `ggPacf()` |
 | 비교 | AIC, BIC | `fit$aic`, `fit$bic` |
 | 추정 | CSS, ML | `Arima(method = )` |

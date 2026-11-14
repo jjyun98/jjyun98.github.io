@@ -553,6 +553,14 @@ article img {
     @apply uppercase text-left;
   }
 
+  .table-wrapper {
+    @apply my-6.5 overflow-x-auto max-w-full;
+
+    & > table {
+      @apply my-0;
+    }
+  }
+
   .katex-display {
     @apply overflow-x-auto py-2 my-4;
   }

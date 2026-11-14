@@ -4,6 +4,7 @@ published: 2022-07-15
 draft: false
 description: 'dplyr의 행 함수(filter, arrange, distinct), 열 함수(mutate, select, rename, relocate), 그룹 함수(summarise, .by, slice_*, count)를 nycflights13 실습으로 정리'
 series: 'R for Data Science'
+seriesOrder: 2
 tags: ['R', 'tidyverse', '데이터 전처리']
 ---
 
@@ -201,6 +202,38 @@ flights |> count(tailnum, wt = distance)             # 개수 대신 거리 합�
 flights |> summarise(carriers = n_distinct(carrier), .by = dest) |> arrange(desc(carriers))
 ```
 
+## 4. 비교
+
+이름이 비슷하거나 결과가 비슷해 보여서 헷갈리는 쌍이다.
+
+| 쌍 | 차이 | 선택 |
+|---|---|---|
+| `filter()`와 `slice_*()` | `filter`는 **값의 조건**으로, `slice`는 **순위나 위치**로 행을 고른다. `slice_max(x, n = 1)`은 동점이면 모두 돌려준다(`with_ties = FALSE`로 끈다) | 조건이 있으면 `filter`, 상위·하위 n개면 `slice_max`/`slice_min` |
+| `mutate()`와 `summarise()` | `mutate`는 **행 수를 유지**하며 열을 더하고, `summarise`는 그룹마다 **한 행으로** 줄인다 | 원자료 옆에 그룹 통계를 붙이면 `mutate(.by =)`, 요약표면 `summarise(.by =)` |
+| `.by`와 `group_by()` | `.by`는 그 함수 한 번에만 그룹을 적용하고, `group_by`는 `ungroup()`할 때까지 남는다 | 기본은 `.by`. 여러 단계에서 같은 그룹을 쓸 때만 `group_by` |
+| `count()`와 `tally()` | `count(x)`는 `group_by(x) \|> tally()`와 같다. `tally`는 이미 묶인 자료의 행을 센다 | 대부분 `count` |
+
+```r
+# mutate와 summarise: 같은 평균, 다른 행 수
+flights |> mutate(month_avg = mean(dep_delay, na.rm = TRUE), .by = month) |> nrow()
+flights |> summarise(month_avg = mean(dep_delay, na.rm = TRUE), .by = month) |> nrow()
+
+# filter와 slice_max: 출발지별 최대 출발 지연
+flights |> slice_max(dep_delay, n = 1, by = origin) |> select(origin, dep_delay)
+flights |> filter(dep_delay == max(dep_delay, na.rm = TRUE), .by = origin) |> select(origin, dep_delay)
+```
+
+`mutate`는 336,776행 그대로이고 `summarise`는 월마다 한 행씩 12행이다. 출발지별 최대 지연은 두 방법 모두 JFK 1,301분, EWR 1,126분, LGA 911분으로 같다(행 순서만 다르다). 이 자료에는 동점이 없어서 결과가 같고, 동점이 있으면 `filter`와 `slice_max` 모두 여러 행을 돌려준다.
+
+## 5. 코드 스타일과 작업 방식
+
+R4DS의 워크플로 장(Workflow: basics, style)에서 실수를 줄여 주는 습관만 모았다.
+
+- 이름은 소문자와 `_`로 짓고(`snake_case`), 연산자 앞뒤와 쉼표 뒤에 공백을 둔다.
+- 파이프는 줄 끝에 `|>`를 두고 다음 줄은 두 칸 들여쓴다. 세 단계 이상이면 줄을 나눈다.
+- 같은 함수 이름이 여러 패키지에 있으면(`dplyr::filter`와 `stats::filter`) `패키지::함수`로 쓰면 확실하다.
+- 작업은 스크립트 파일에 남기고, 시작할 때마다 새 R 세션에서 처음부터 실행해도 되는지 확인한다. 데이터 경로는 프로젝트 폴더 기준 상대 경로로 둔다.
+
 ## 자주 하는 실수
 
 | 증상 | 원인과 해결 |
@@ -233,4 +266,4 @@ flights |> summarise(carriers = n_distinct(carrier), .by = dest) |> arrange(desc
 - *R for Data Science* (2nd ed.): [3 Data transformation](https://r4ds.hadley.nz/data-transform.html), [12 Logical vectors](https://r4ds.hadley.nz/logicals.html), [13 Numbers](https://r4ds.hadley.nz/numbers.html)
 - [dplyr 공식 문서](https://dplyr.tidyverse.org/)
 
-다음 글: [R4DS - join으로 테이블 합치기](/posts/r4ds-joins)
+다음 글: [R4DS - 데이터 불러오기와 tidy data](/posts/r4ds-tibble-tidydata)

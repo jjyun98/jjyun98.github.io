@@ -15,7 +15,7 @@ library(forecast)
 library(patchwork)
 theme_set(theme_minimal(base_size = 12))
 
-data_url <- "https://raw.githubusercontent.com/Bricoler/time-series-analysis/master/timedata/"
+data_url <- "https://raw.githubusercontent.com/Bricoler/time-series-analysis/172803efe88d52321e43a3533b2fd2d1eeb6a6e4/timedata/"
 read_ts <- function(file, start, frequency = 12) {
   ts(scan(paste0(data_url, file), quiet = TRUE), start = start, frequency = frequency)
 }
@@ -53,11 +53,11 @@ theory_plot <- function(ar = numeric(), ma = numeric(), lag.max = 40, title = ""
 
 주기 $s$ 간격으로만 작동하는 ARMA다. 계절 후진연산자 $B^s$를 쓴다.
 
-| 모형 | 식 (교재 표기) | ACF | PACF |
+| 모형 ($s = 12$) | 식 (교재 표기) | ACF | PACF |
 |---|---|---|---|
-| SAR(1) | $(1 - \Phi B^{12}) Z_t = \epsilon_t$ | 시차 12, 24, 36에서 $\Phi, \Phi^2, \Phi^3$, 나머지 0 | 시차 12에서만 $\Phi$ |
-| SMA(1) | $Z_t = (1 - \Theta B^{12})\epsilon_t$ | 시차 12에서만 $-\Theta/(1 + \Theta^2)$ | 시차 12, 24, 36에서 감소 |
-| SAR(2), SMA(2) | 위의 계절 버전 | 시차 $12k$에서 AR(2), MA(2)와 같은 모양 | |
+| SAR(1) | $(1 - \Phi B^{12}) Z_t = \epsilon_t$ | 시차 12, 24, 36에서 $\Phi, \Phi^2, \Phi^3$, 나머지 0 | 시차 12에서만 $\Phi$, 나머지 0 |
+| SMA(1) | $Z_t = (1 - \Theta B^{12})\epsilon_t$ | 시차 12에서만 $-\Theta/(1 + \Theta^2)$, 나머지 0 | 시차 12, 24, 36에서 감소, 나머지 0 |
+| SAR(2), SMA(2) | 위의 계절 버전 | 시차 $12k$에서 AR(2), MA(2)의 ACF와 같은 모양, 나머지 0 | 시차 $12k$에서 AR(2), MA(2)의 PACF와 같은 모양, 나머지 0 |
 
 비계절 ARMA의 ACF·PACF 모양을 시차 $s$의 배수로 늘려 놓은 것과 같다.
 
@@ -79,7 +79,7 @@ $$
 
 이것을 ARIMA$(p, d, q)(P, D, Q)_s$라 쓴다.
 
-- $\phi_p(B) = 1 - \phi_1 B - \cdots - \phi_p B^p$, $\theta_q(B) = 1 - \theta_1 B - \cdots - \theta_q B^q$: 인접한 달 사이의 관계
+- $\phi_p(B) = 1 - \phi_1 B - \cdots - \phi_p B^p$, $\theta_q(B) = 1 - \theta_1 B - \cdots - \theta_q B^q$: 인접한 달 사이의 관계 (6~7편에서는 비계절 연산자를 대문자 $\Phi(B), \Theta(B)$로 썼지만, 이 글에서는 계절 연산자와 구분하려고 비계절을 소문자 $\phi_p(B), \theta_q(B)$로, 계절을 대문자 $\Phi_P(B^s), \Theta_Q(B^s)$로 쓴다)
 - $\Phi_P(B^s) = 1 - \Phi_1 B^s - \cdots - \Phi_P B^{Ps}$, $\Theta_Q(B^s) = 1 - \Theta_1 B^s - \cdots$: 같은 달끼리의 관계
 - $D$: 계절 차분 횟수. 보통 0 또는 1이다.
 
@@ -147,7 +147,7 @@ coef_tab
 checkresiduals(fit_air, lag = 36, plot = FALSE)
 ```
 
-`lambda = 0`은 로그 변환을 모형 안에서 처리한다. 예측할 때 자동으로 원래 단위로 되돌려 준다. R의 `ma1`, `sma1`은 부호가 교재와 반대이므로 교재의 $\hat\theta = -$`ma1`, $\hat\Theta = -$`sma1`이다. 이 자료에서는 $\hat\theta \approx 0.58$, $\hat\Theta \approx 0.55$이고 둘 다 크게 유의하다. 시차 36까지의 Ljung-Box 검정도 $p \approx 0.51$로 잔차가 백색잡음이라는 가정을 기각하지 않는다.
+`lambda = 0`은 로그 변환을 모형 안에서 처리한다. 예측할 때 자동으로 원래 단위로 되돌려 준다. R의 `ma1`, `sma1`은 부호가 교재와 반대이므로 교재의 $\hat\theta = -\text{ma1}$, $\hat\Theta = -\text{sma1}$이다. 이 자료에서는 $\hat\theta \approx 0.58$, $\hat\Theta \approx 0.55$이고 둘 다 크게 유의하다. 시차 36까지의 Ljung-Box 검정도 $p \approx 0.51$로 잔차가 백색잡음이라는 가정을 기각하지 않는다.
 
 ```r w=9 h=5
 res <- residuals(fit_air)

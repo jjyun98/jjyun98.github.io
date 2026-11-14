@@ -1,6 +1,6 @@
 ---
 title: '데이터 시각화 - 판다스로 자료 모양 바꾸기'
-published: 2021-10-27
+published: 2021-11-03
 draft: false
 description: '그룹별 요약(groupby와 agg), 연속형 변수의 구간화(pd.cut), 넓은 표를 긴 표로 바꾸는 tidy data 변환(melt, stack), 여러 표를 잇는 concat과 merge를 항공편, 과일, 주식 자료로 정리한다.'
 series: '데이터 시각화'

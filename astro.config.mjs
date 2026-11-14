@@ -20,11 +20,13 @@ import rehypeUnwrapImages from 'rehype-unwrap-images'
 import { remarkAdmonitions } from './src/plugins/remark-admonitions' /* Add admonitions */
 import remarkCharacterDialogue from './src/plugins/remark-character-dialogue' /* Custom plugin to handle character admonitions */
 import remarkUnknownDirectives from './src/plugins/remark-unknown-directives' /* Custom plugin to handle unknown admonitions */
+import remarkGfm from 'remark-gfm' /* 단일 ~를 취소선으로 보지 않도록 직접 설정 */
 import remarkMath from 'remark-math' /* for latex math support */
 import rehypeKatex from 'rehype-katex' /* again, for latex math support */
 import remarkGemoji from './src/plugins/remark-gemoji' /* for shortcode emoji support */
 import rehypePixelated from './src/plugins/rehype-pixelated' /* Custom plugin to handle pixelated images */
 import rehypeMathHeadings from './src/plugins/rehype-math-headings' /* TOC에 수식 구분자 유지 */
+import rehypeTableWrapper from './src/plugins/rehype-table-wrapper' /* 모바일 표 가로 스크롤 래퍼 */
 
 // https://astro.build/config
 export default defineConfig({
@@ -32,7 +34,10 @@ export default defineConfig({
   trailingSlash: siteConfig.trailingSlashes ? 'always' : 'never',
   prefetch: true,
   markdown: {
+    // 기본 GFM은 0~255 같은 범위 표기의 ~를 취소선으로 바꾼다. 취소선은 ~~ 두 개일 때만 쓴다.
+    gfm: false,
     remarkPlugins: [
+      [remarkGfm, { singleTilde: false }],
       [remarkDescription, { maxChars: 200 }],
       remarkReadingTime,
       remarkDirective,
@@ -57,6 +62,7 @@ export default defineConfig({
       ],
       rehypeUnwrapImages,
       rehypePixelated,
+      rehypeTableWrapper,
       rehypeKatex,
     ],
   },

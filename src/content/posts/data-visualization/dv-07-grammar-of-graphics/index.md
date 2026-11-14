@@ -1,6 +1,6 @@
 ---
 title: '데이터 시각화 - 그래프 레이어 문법: plotnine'
-published: 2021-10-13
+published: 2021-10-20
 draft: false
 description: '해들리 위컴의 그래프 레이어 문법(데이터, 맵핑, 지옴, 스탯, 포지션, 좌표계, 면분할)을 plotnine으로 정리한다. mpg 자료로 변수와 에스테틱의 맵핑을 늘려 3차원, 4차원 산점도를 만들고, 바플랏으로 stat과 position, coord_flip, facet을 익힌다.'
 series: '데이터 시각화'

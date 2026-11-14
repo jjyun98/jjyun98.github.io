@@ -2,7 +2,7 @@
 title: '시계열 분석 - 비정상 시계열과 ARIMA'
 published: 2022-10-17
 draft: false
-description: '분산이 변하는 시계열의 Box-Cox 변환, 결정적 추세와 확률적 추세, 차분 연산자와 과대차분, 계절 차분, ARIMA(p,d,q) 모형, Dickey-Fuller 단위근 검정을 백화점 매출과 시뮬레이션 자료로 정리한다.'
+description: '분산이 변하는 시계열의 Box-Cox 변환, 결정적 추세와 확률적 추세, 차분 연산자와 과대차분, 계절 차분, ARIMA(p,d,q) 모형, ADF·KPSS 단위근 검정을 백화점 매출과 시뮬레이션 자료로 정리한다.'
 series: '시계열 분석'
 tags: ['시계열', 'R']
 ---
@@ -16,7 +16,7 @@ library(tseries)
 library(patchwork)
 theme_set(theme_minimal(base_size = 12))
 
-data_url <- "https://raw.githubusercontent.com/Bricoler/time-series-analysis/master/timedata/"
+data_url <- "https://raw.githubusercontent.com/Bricoler/time-series-analysis/172803efe88d52321e43a3533b2fd2d1eeb6a6e4/timedata/"
 read_ts <- function(file, start, frequency = 12) {
   ts(scan(paste0(data_url, file), quiet = TRUE), start = start, frequency = frequency)
 }
@@ -187,16 +187,53 @@ $$
 | 2 | $Z_t = \delta + \phi Z_{t-1} + \epsilon_t$ | 평균이 0이 아닌 정상 |
 | 3 | $Z_t = \delta + \beta t + \phi Z_{t-1} + \epsilon_t$ | 추세 주위의 정상 (추세 정상) |
 
-오차의 자기상관을 흡수하려고 $\nabla Z_{t-j}$ 항을 추가한 것이 ADF(augmented Dickey-Fuller) 검정이다.
+오차의 자기상관을 흡수하려고 $\nabla Z_{t-j}$ 항을 추가한 것이 ADF(augmented Dickey-Fuller) 검정이다. 추세 정상까지 포함한 회귀는 다음과 같고, 검정하는 것은 $Z_{t-1}$의 계수다.
+
+$$
+\nabla Z_t = \alpha + \gamma t + \rho Z_{t-1} + \sum_{i=1}^{k} c_i \nabla Z_{t-i} + \epsilon_t, \qquad H_0: \rho = 0 \;\; (\rho = \phi - 1)
+$$
+
+### KPSS 검정
+
+KPSS(Kwiatkowski-Phillips-Schmidt-Shin) 검정은 **가설의 방향이 ADF와 반대**다. 시계열을 결정적 추세, 확률보행, 정상 오차의 합으로 놓는다.
+
+$$
+Z_t = \xi t + r_t + \epsilon_t, \qquad r_t = r_{t-1} + u_t, \quad u_t \sim (0, \sigma_u^2)
+$$
+
+$$
+H_0: \sigma_u^2 = 0 \;\; (\text{확률보행 성분이 없음, 정상}), \qquad H_1: \sigma_u^2 > 0 \;\; (\text{단위근})
+$$
+
+상수(수준 정상) 또는 상수와 추세(추세 정상)에 회귀한 잔차를 $e_t$, 그 누적합을 $S_t = \sum_{i=1}^{t} e_i$라 하면 통계량은 다음과 같다.
+
+$$
+\mathrm{KPSS} = \frac{1}{n^2} \sum_{t=1}^{n} \frac{S_t^2}{\hat\sigma_l^2}
+$$
+
+$\hat\sigma_l^2$은 시차 $l$까지의 자기공분산을 쓰는 장기분산 추정량이다. $H_0$에서 $S_t$가 확률보행처럼 퍼지지 않으므로 통계량이 작고, 단위근이 있으면 $S_t$가 크게 벌어져 통계량이 커진다. 그래서 **큰 값에서 기각**한다.
+
+ADF는 단위근이 있다는 가정을 기본으로 두고 정상이라는 증거를 찾고, KPSS는 정상이라는 가정을 기본으로 두고 단위근의 증거를 찾는다. 둘을 함께 보면 결론이 더 안정적이다.
+
+| ADF | KPSS | 해석 |
+|---|---|---|
+| 기각 | 기각 못 함 | 정상이라는 증거가 일치한다 |
+| 기각 못 함 | 기각 | 단위근이라는 증거가 일치한다. 차분한다 |
+| 기각 못 함 | 기각 못 함 | 자료가 부족해 판단할 수 없다 (검정력 부족) |
+| 기각 | 기각 | 두 검정이 충돌한다. 구조 변화, 계절성, 차분 정상과 추세 정상의 혼합 등을 의심한다 |
 
 ```r
 adf.test(rw)
 adf.test(diff(rw))
-ndiffs(log(depart))
-nsdiffs(log(depart))
+kpss.test(rw, null = "Level")
+kpss.test(diff(rw), null = "Level")
+ndiffs(log(depart), test = "kpss")
+nsdiffs(log(depart), test = "seas")
 ```
 
-- `tseries::adf.test()`는 경우 3(상수와 추세 포함)으로 검정한다. 확률보행은 $H_0$를 기각하지 못하고, 차분한 계열은 기각한다.
+- `tseries::adf.test()`는 경우 3(상수와 추세 포함)으로 검정한다. 확률보행은 $H_0$를 기각하지 못하고($p = 0.146$), 차분한 계열은 기각한다($p \le 0.01$).
+- 같은 확률보행에 KPSS는 정상 가설을 기각하고($p \le 0.01$), 차분한 계열에서는 기각하지 못한다($p \ge 0.1$). 두 검정이 모두 "확률보행은 단위근, 차분하면 정상"으로 일치한다. `ndiffs(log(depart))`와 `nsdiffs(log(depart))`는 둘 다 1을 주어 앞의 로그, 1차 차분, 계절 차분 선택과 맞는다.
+- `tseries::kpss.test()`는 `null = "Level"`(수준 정상)이 기본이고, 추세 정상을 검정하려면 `null = "Trend"`를 쓴다. 보고되는 $p$값은 표를 보간한 값이라 0.01과 0.1 사이로 제한된다.
 - `forecast::ndiffs()`는 기본으로 KPSS 검정(`test = "kpss"`)을 반복해 필요한 일반 차분 횟수를 정한다. ADF 검정으로 하려면 `ndiffs(x, test = "adf")`로 지정한다. `nsdiffs()`는 기본으로 계절 강도 측도(`test = "seas"`)로 계절 차분 횟수를 정한다.
 - 단위근 검정은 검정력이 낮아 $\phi = 0.95$ 같은 정상 과정도 단위근으로 판정하기 쉽다. SACF 모양과 함께 판단한다.
 
@@ -213,7 +250,9 @@ n <- 200
 z_det <- ts(5 + 0.1 * (1:n) + arima.sim(list(ar = 0.6), n))
 z_sto <- ts(5 + cumsum(0.1 + rnorm(n)))
 
-c(추세정상_ADF_p = adf.test(z_det)$p.value, 차분정상_ADF_p = adf.test(z_sto)$p.value)
+tibble(자료 = c("추세 정상", "차분 정상"),
+       ADF_p = c(adf.test(z_det)$p.value, adf.test(z_sto)$p.value),
+       KPSS_p = c(kpss.test(z_det, null = "Trend")$p.value, kpss.test(z_sto, null = "Trend")$p.value))
 
 fc_both <- function(z, name) {
   f1 <- forecast(Arima(z, order = c(1, 0, 0), xreg = seq_along(z)), xreg = n + 1:50)
@@ -234,7 +273,7 @@ ggplot(widths, aes(h, 폭, color = 모형)) +
 
 ![두 모형의 시차별 95% 예측구간 폭](./images/ts07-06.png)
 
-ADF 검정은 추세 정상 자료에서 단위근을 기각하고(유의확률 0.01 이하), 확률보행 자료에서는 기각하지 못한다(0.218). 검정이 두 자료의 성질을 올바르게 구분한다.
+ADF 검정은 추세 정상 자료에서 단위근을 기각하고(유의확률 0.01 이하), 확률보행 자료에서는 기각하지 못한다(0.218). KPSS(`null = "Trend"`)는 반대로 추세 정상 자료에서 기각하지 못하고(0.1 이상), 확률보행 자료에서 기각한다(0.011). 두 검정이 같은 방향을 가리켜 앞의 비교표에서 첫째, 둘째 행에 해당한다. 두 자료의 성질이 올바르게 구분된다. 이 값은 시드 7의 한 번의 생성 결과다.
 
 1시차 예측구간은 네 경우 모두 비슷하다. 차이는 장기에서 나타난다. 추세 정상 모형에서는 충격이 감쇠하므로 폭이 몇 시차 만에 일정한 값으로 수렴하고, 차분 모형에서는 충격이 누적되므로 폭이 $\sqrt{h}$에 비례해 계속 넓어진다. 추세 정상 자료에 차분 모형을 쓰면 장기 불확실성을 과대평가하고, 확률보행 자료에 추세 회귀를 쓰면 과소평가한다. 단위근 검정은 이 선택을 위한 것이다.
 
@@ -245,6 +284,6 @@ ADF 검정은 추세 정상 자료에서 단위근을 기각하고(유의확률 
 | 1 | 분산이 수준에 비례 | 로그·Box-Cox | `log()`, `BoxCox.lambda()` |
 | 2 | SACF가 아주 천천히 감소 | 1차 차분 | `diff(x)` |
 | 3 | 시차 $s$, $2s$의 SACF가 큼 | 계절 차분 | `diff(x, lag = 12)` |
-| 4 | 단위근 여부 | ADF 검정 | `adf.test()`, `ndiffs(test = "adf")` |
+| 4 | 단위근 여부 | ADF(귀무: 단위근)와 KPSS(귀무: 정상)를 함께 | `adf.test()`, `kpss.test()`, `ndiffs()` |
 | 주의 | 차분 후 시차 1 SACF가 $-0.5$ 근처 | 과대차분 의심 | |
 | 결과 | $\nabla^d Z_t$가 정상 ARMA | ARIMA($p$, $d$, $q$) | `Arima(order = c(p, d, q))` |

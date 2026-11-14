@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380" width="700" height="380" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR',sans-serif">
+  <title>2³ 요인실험의 8개 처리조합을 ABC의 부호로 두 블록으로 나눈 그림</title>
+  <rect x="0" y="0" width="700" height="380" rx="12" fill="#ffffff"/>
+  <!-- 뒷면 모서리 -->
+  <g fill="none" stroke="#adb5bd" stroke-width="2" stroke-linecap="round">
+    <path d="M200 270 L400 270 M200 270 L200 90 M200 270 L120 330" stroke-dasharray="6 5"/>
+  </g>
+  <!-- 보이는 모서리 -->
+  <g fill="none" stroke="#495057" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M120 330 L320 330 L320 150 L120 150 Z"/>
+    <path d="M120 150 L200 90 L400 90 L320 150"/>
+    <path d="M320 330 L400 270 L400 90"/>
+  </g>
+  <!-- 축 -->
+  <g font-size="13" fill="#495057">
+    <path d="M120 362 L320 362" stroke="#495057" stroke-width="1.5" marker-end="url(#ar)"/>
+    <text x="220" y="378" text-anchor="middle">A</text>
+    <path d="M88 330 L88 150" stroke="#495057" stroke-width="1.5" marker-end="url(#ar)"/>
+    <text x="74" y="244" text-anchor="middle">B</text>
+    <path d="M360 362 L428 311" stroke="#495057" stroke-width="1.5" marker-end="url(#ar)"/>
+    <text x="410" y="356" text-anchor="middle">C</text>
+  </g>
+  <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#495057"/></marker></defs>
+  <!-- 블록 2: ABC = - -->
+  <g fill="#e03131" stroke="#ffffff" stroke-width="2">
+    <circle cx="120" cy="330" r="9"/><circle cx="320" cy="150" r="9"/><circle cx="400" cy="270" r="9"/><circle cx="200" cy="90" r="9"/>
+  </g>
+  <!-- 블록 1: ABC = + -->
+  <g fill="#1971c2" stroke="#ffffff" stroke-width="2">
+    <rect x="311" y="321" width="18" height="18" rx="3"/><rect x="111" y="141" width="18" height="18" rx="3"/><rect x="191" y="261" width="18" height="18" rx="3"/><rect x="391" y="81" width="18" height="18" rx="3"/>
+  </g>
+  <g font-size="15" fill="#1e1e1e">
+    <text x="104" y="322" text-anchor="end">(1)</text>
+    <text x="336" y="322">a</text>
+    <text x="104" y="142" text-anchor="end">b</text>
+    <text x="300" y="138" text-anchor="end">ab</text>
+    <text x="214" y="290">c</text>
+    <text x="416" y="290">ac</text>
+    <text x="214" y="80">bc</text>
+    <text x="416" y="80">abc</text>
+  </g>
+  <!-- 범례 -->
+  <g font-size="14" fill="#1e1e1e">
+    <rect x="462" y="96" width="16" height="16" rx="3" fill="#1971c2"/>
+    <text x="488" y="109">블록 1 (ABC = +)</text>
+    <text x="488" y="130" fill="#495057" font-size="13">a, b, c, abc</text>
+    <circle cx="470" cy="166" r="8" fill="#e03131"/>
+    <text x="488" y="171">블록 2 (ABC = −)</text>
+    <text x="488" y="192" fill="#495057" font-size="13">(1), ab, ac, bc</text>
+    <text x="462" y="240" font-size="13" fill="#495057">모서리 하나를 따라가면</text>
+    <text x="462" y="259" font-size="13" fill="#495057">블록이 번갈아 바뀐다.</text>
+    <text x="462" y="290" font-size="13" fill="#495057">교락법: 두 블록을 모두 실험</text>
+    <text x="462" y="309" font-size="13" fill="#495057">반실시: 한 블록만 실험</text>
+  </g>
+</svg>

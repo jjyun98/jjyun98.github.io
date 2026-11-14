@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 360" width="880" height="360">
+<defs><marker id="ah868e96" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#868e96"/></marker><marker id="ah1971c2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1971c2"/></marker><marker id="ahe8590c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#e8590c"/></marker><marker id="ah7048e8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7048e8"/></marker></defs>
+<rect x="70" y="278" width="60" height="44" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+<text x="100" y="300" font-size="16" fill="#1e1e1e" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">X<tspan font-size="11" dy="5" font-style="normal">1</tspan></text>
+<rect x="70" y="166" width="60" height="48" rx="8" fill="#fff4e6" stroke="#e8590c" stroke-width="2"/>
+<text x="100" y="190" font-size="16" fill="#e8590c" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">A<tspan font-size="11" dy="5" font-style="normal">1</tspan></text>
+<rect x="74" y="55" width="52" height="40" rx="8" fill="#f8f9fa" stroke="#ced4da" stroke-width="2"/>
+<text x="100" y="75" font-size="16" fill="#868e96" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">O<tspan font-size="11" dy="5" font-style="normal">1</tspan></text>
+<line x1="100" y1="276" x2="100" y2="218" stroke="#868e96" stroke-width="1.8" marker-end="url(#ah868e96)" stroke-linecap="round"/>
+<text x="114" y="247.0" font-size="14" fill="#868e96" text-anchor="start" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">W</text>
+<line x1="100" y1="164" x2="100" y2="98" stroke="#ced4da" stroke-width="1.8" marker-end="url(#ahced4da)" stroke-linecap="round"/>
+<text x="114" y="132.5" font-size="14" fill="#ced4da" text-anchor="start" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">B</text>
+<rect x="230" y="278" width="60" height="44" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+<text x="260" y="300" font-size="16" fill="#1e1e1e" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">X<tspan font-size="11" dy="5" font-style="normal">2</tspan></text>
+<rect x="230" y="166" width="60" height="48" rx="8" fill="#fff4e6" stroke="#e8590c" stroke-width="2"/>
+<text x="260" y="190" font-size="16" fill="#e8590c" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">A<tspan font-size="11" dy="5" font-style="normal">2</tspan></text>
+<rect x="234" y="55" width="52" height="40" rx="8" fill="#f8f9fa" stroke="#ced4da" stroke-width="2"/>
+<text x="260" y="75" font-size="16" fill="#868e96" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">O<tspan font-size="11" dy="5" font-style="normal">2</tspan></text>
+<line x1="260" y1="276" x2="260" y2="218" stroke="#868e96" stroke-width="1.8" marker-end="url(#ah868e96)" stroke-linecap="round"/>
+<text x="274" y="247.0" font-size="14" fill="#868e96" text-anchor="start" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">W</text>
+<line x1="260" y1="164" x2="260" y2="98" stroke="#ced4da" stroke-width="1.8" marker-end="url(#ahced4da)" stroke-linecap="round"/>
+<text x="274" y="132.5" font-size="14" fill="#ced4da" text-anchor="start" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">B</text>
+<rect x="390" y="278" width="60" height="44" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+<text x="420" y="300" font-size="16" fill="#1e1e1e" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">X<tspan font-size="11" dy="5" font-style="normal">3</tspan></text>
+<rect x="390" y="166" width="60" height="48" rx="8" fill="#fff4e6" stroke="#e8590c" stroke-width="2"/>
+<text x="420" y="190" font-size="16" fill="#e8590c" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">A<tspan font-size="11" dy="5" font-style="normal">3</tspan></text>
+<rect x="394" y="55" width="52" height="40" rx="8" fill="#f8f9fa" stroke="#ced4da" stroke-width="2"/>
+<text x="420" y="75" font-size="16" fill="#868e96" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">O<tspan font-size="11" dy="5" font-style="normal">3</tspan></text>
+<line x1="420" y1="276" x2="420" y2="218" stroke="#868e96" stroke-width="1.8" marker-end="url(#ah868e96)" stroke-linecap="round"/>
+<text x="434" y="247.0" font-size="14" fill="#868e96" text-anchor="start" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">W</text>
+<line x1="420" y1="164" x2="420" y2="98" stroke="#ced4da" stroke-width="1.8" marker-end="url(#ahced4da)" stroke-linecap="round"/>
+<text x="434" y="132.5" font-size="14" fill="#ced4da" text-anchor="start" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">B</text>
+<rect x="570" y="278" width="60" height="44" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+<text x="600" y="300" font-size="16" fill="#1e1e1e" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">X<tspan font-size="11" dy="5" font-style="normal">L−1</tspan></text>
+<rect x="570" y="166" width="60" height="48" rx="8" fill="#fff4e6" stroke="#e8590c" stroke-width="2"/>
+<text x="600" y="190" font-size="16" fill="#e8590c" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">A<tspan font-size="11" dy="5" font-style="normal">L−1</tspan></text>
+<rect x="574" y="55" width="52" height="40" rx="8" fill="#f8f9fa" stroke="#ced4da" stroke-width="2"/>
+<text x="600" y="75" font-size="16" fill="#868e96" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">O<tspan font-size="11" dy="5" font-style="normal">L−1</tspan></text>
+<line x1="600" y1="276" x2="600" y2="218" stroke="#868e96" stroke-width="1.8" marker-end="url(#ah868e96)" stroke-linecap="round"/>
+<text x="614" y="247.0" font-size="14" fill="#868e96" text-anchor="start" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">W</text>
+<line x1="600" y1="164" x2="600" y2="98" stroke="#ced4da" stroke-width="1.8" marker-end="url(#ahced4da)" stroke-linecap="round"/>
+<text x="614" y="132.5" font-size="14" fill="#ced4da" text-anchor="start" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">B</text>
+<rect x="730" y="278" width="60" height="44" rx="8" fill="#ffffff" stroke="#1e1e1e" stroke-width="2"/>
+<text x="760" y="300" font-size="16" fill="#1e1e1e" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">X<tspan font-size="11" dy="5" font-style="normal">L</tspan></text>
+<rect x="730" y="166" width="60" height="48" rx="8" fill="#fff4e6" stroke="#e8590c" stroke-width="2"/>
+<text x="760" y="190" font-size="16" fill="#e8590c" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">A<tspan font-size="11" dy="5" font-style="normal">L</tspan></text>
+<rect x="734" y="55" width="52" height="40" rx="8" fill="#f3f0ff" stroke="#7048e8" stroke-width="2"/>
+<text x="760" y="75" font-size="16" fill="#7048e8" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">O<tspan font-size="11" dy="5" font-style="normal">L</tspan></text>
+<line x1="760" y1="276" x2="760" y2="218" stroke="#868e96" stroke-width="1.8" marker-end="url(#ah868e96)" stroke-linecap="round"/>
+<text x="774" y="247.0" font-size="14" fill="#868e96" text-anchor="start" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">W</text>
+<line x1="760" y1="164" x2="760" y2="98" stroke="#7048e8" stroke-width="1.8" marker-end="url(#ah7048e8)" stroke-linecap="round"/>
+<text x="774" y="132.5" font-size="14" fill="#7048e8" text-anchor="start" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">B</text>
+<line x1="132" y1="190" x2="226" y2="190" stroke="#e8590c" stroke-width="2" marker-end="url(#ahe8590c)" stroke-linecap="round"/>
+<text x="180.0" y="174" font-size="14" fill="#e8590c" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">U</text>
+<line x1="292" y1="190" x2="386" y2="190" stroke="#e8590c" stroke-width="2" marker-end="url(#ahe8590c)" stroke-linecap="round"/>
+<text x="340.0" y="174" font-size="14" fill="#e8590c" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">U</text>
+<text x="510.0" y="190" font-size="24" fill="#868e96" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif">⋯</text>
+<line x1="632" y1="190" x2="726" y2="190" stroke="#e8590c" stroke-width="2" marker-end="url(#ahe8590c)" stroke-linecap="round"/>
+<text x="680.0" y="174" font-size="14" fill="#e8590c" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif" font-style="italic">U</text>
+<line x1="452" y1="190" x2="482" y2="190" stroke="#e8590c" stroke-width="2" marker-end="url(#ahe8590c)" stroke-linecap="round"/>
+<line x1="536" y1="190" x2="566" y2="190" stroke="#e8590c" stroke-width="2" marker-end="url(#ahe8590c)" stroke-linecap="round"/>
+<text x="820" y="75" font-size="17" fill="#7048e8" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif">→ Y</text>
+<text x="440" y="20" font-size="15" fill="#868e96" text-anchor="middle" dominant-baseline="middle" font-family="'Noto Sans KR','Apple SD Gothic Neo',sans-serif">같은 W, U, B를 모든 시점에서 쓴다</text>
+</svg>

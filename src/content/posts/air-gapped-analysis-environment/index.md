@@ -95,7 +95,7 @@ detect_encoding <- function(path, candidates = c("UTF-8", "CP949")) {
 }
 ```
 
-확정한 뒤에는 UTF-8로 다시 저장해 이후 단계의 변환 문제를 없앤다. 엑셀로 열어 볼 파일이라면 BOM을 붙여 `fileEncoding = "UTF-8-BOM"`으로 저장·읽기를 맞춘다.
+확정한 뒤에는 UTF-8로 다시 저장해 이후 단계의 변환 문제를 없앤다. Base R의 `fileEncoding = "UTF-8-BOM"`은 `read.csv()` 등 읽기 전용이므로, 엑셀로 열어 볼 파일을 저장할 때는 `"wb"` 모드로 BOM 3바이트(`0xEF, 0xBB, 0xBF`)를 먼저 쓴 뒤 UTF-8 본문을 기록한다.
 
 ### 2. 컬럼 타입 고정
 

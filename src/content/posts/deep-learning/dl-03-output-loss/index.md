@@ -39,7 +39,7 @@ $$
 | 범위 | $(0, 1)$, $\sigma(0) = 0.5$ |
 | 대칭 | $1 - \sigma(u) = \sigma(-u)$ |
 | 역함수 | $\sigma^{-1}(\pi) = \log\frac{\pi}{1-\pi}$ (로짓) |
-| 포화 | $|u| > 4$ 정도면 출력이 0이나 1에 붙고 미분이 0에 가까워진다 |
+| 포화 | $\lvert u\rvert > 4$ 정도면 출력이 0이나 1에 붙고 미분이 0에 가까워진다 |
 
 모형 $y_i \sim \text{Ber}(\pi_i)$, $\pi_i = \sigma(w_0 + w_1 x_i)$는 로그 오즈 $\log\frac{\pi}{1-\pi}$가 $x$의 선형함수라는 로지스틱 회귀다([데이터 마이닝 - 로지스틱 회귀](/posts/dm-logistic-regression)). 파이토치로는 `Linear` 뒤에 `Sigmoid`를 잇는다.
 
@@ -172,7 +172,7 @@ $$
 \frac{\partial \ell}{\partial u_j} = -\mathbb 1[j = c] + \frac{e^{u_j}}{\sum_m e^{u_m}} = p_j - y_j
 $$
 
-이다. 시그모이드 + BCE의 $v - y$와 같은 형태로, 소프트맥스의 미분이 따로 남아 기울기를 죽이지 않는다. 위 예의 첫 행에서 `backward()`로 구한 기울기는 $(0.107, 0.107, -0.213)$으로 $\mathbf p - \mathbf y$와 같다.
+이다. 시그모이드 + BCE의 $v - y$와 같은 형태로, 소프트맥스의 미분이 따로 남아 기울기를 죽이지 않는다. 위 예의 첫 행만 따로 떼어(`logits[:1], y[:1]` 또는 `reduction='sum'`) `backward()`로 구한 기울기는 $(0.107, 0.107, -0.213)$으로 $\mathbf p - \mathbf y$와 같다(위 코드처럼 5행 전체에 기본 `CrossEntropyLoss()`(`reduction='mean'`)를 적용하면 행 수 5로 나눈 $(0.0213, 0.0213, -0.0426)$이 나온다).
 
 $\log\sum_m e^{u_m}$은 최댓값 $M$을 빼서 $M + \log\sum_m e^{u_m - M}$으로 계산하면 넘치지 않는다(log-sum-exp). 로짓이 (1000, 0, 0)이고 정답이 클래스 1이어도 `CrossEntropyLoss`는 정확히 1000을 돌려준다. 소프트맥스를 먼저 계산했다면 확률이 0이 되어 $\log 0$을 만났을 것이다.
 

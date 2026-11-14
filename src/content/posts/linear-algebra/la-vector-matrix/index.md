@@ -2,12 +2,12 @@
 title: '선형대수 - 벡터와 행렬곱을 보는 여러 관점'
 published: 2023-03-01
 draft: false
-description: '선형결합과 생성, 내적과 외적, 행렬 연산의 기본 성질, 행렬곱을 보는 네 가지 관점 정리'
+description: '선형결합과 생성, 내적·외적과 노름, 행렬 연산의 기본 성질, 행렬곱을 보는 네 가지 관점 정리'
 series: '선형대수학'
 tags: ['선형대수학', '수학']
 ---
 
-선형대수 시리즈의 첫 글이다. 선형결합, 내적과 외적, 행렬 연산의 기본 성질을 정리하고, 이후 가우스 소거법과 LU 분해의 기반이 되는 행렬곱의 네 가지 관점을 다룬다.
+선형대수 시리즈의 첫 글이다. 선형결합, 내적과 외적, 노름, 행렬 연산의 기본 성질을 정리하고, 이후 가우스 소거법과 LU 분해의 기반이 되는 행렬곱의 네 가지 관점을 다룬다. 개념마다 R과 Python으로 계산을 확인하고, 통계에서 어디에 쓰이는지 한두 문장으로 붙였다.
 
 ## 1. 선형결합과 생성
 
@@ -58,6 +58,26 @@ $$
 
 사잇각이 예각이면 정사영이 $\mathbf{a}$와 같은 방향이라 내적이 양수, 둔각이면 반대 방향이라 음수, 직각이면 정사영이 점 하나로 줄어 0이다. 내적의 부호만으로 두 벡터가 같은 쪽을 향하는지 알 수 있고, 이 관점은 [정사영과 최소제곱법](/posts/la-orthonormal)에서 그대로 쓰인다.
 
+### 노름과 두 부등식
+
+벡터의 길이는 내적으로 정의한다. 이 길이를 **노름**이라 한다.
+
+$$
+\lVert\mathbf{a}\rVert = \sqrt{\mathbf{a}\cdot\mathbf{a}} = \sqrt{a_1^2 + \cdots + a_n^2}
+$$
+
+노름과 내적 사이에는 다음 두 부등식이 성립한다.
+
+$$
+\lvert\mathbf{a}\cdot\mathbf{b}\rvert \le \lVert\mathbf{a}\rVert\,\lVert\mathbf{b}\rVert \quad(\text{코시-슈바르츠}),
+\qquad
+\lVert\mathbf{a}+\mathbf{b}\rVert \le \lVert\mathbf{a}\rVert + \lVert\mathbf{b}\rVert \quad(\text{삼각 부등식})
+$$
+
+코시-슈바르츠는 $\mathbf{a}\cdot\mathbf{b} = \lVert\mathbf{a}\rVert\lVert\mathbf{b}\rVert\cos\theta$에서 $\lvert\cos\theta\rvert\le 1$이기 때문에 나온다. 등호는 두 벡터가 평행할 때만 성립한다. 삼각 부등식은 $\lVert\mathbf{a}+\mathbf{b}\rVert^2 = \lVert\mathbf{a}\rVert^2 + 2\,\mathbf{a}\cdot\mathbf{b} + \lVert\mathbf{b}\rVert^2$에 코시-슈바르츠를 쓰면 $(\lVert\mathbf{a}\rVert + \lVert\mathbf{b}\rVert)^2$ 이하가 된다는 것에서 따른다.
+
+**통계에서의 쓰임:** $\mathbf{a}\cdot\mathbf{b}/(\lVert\mathbf{a}\rVert\lVert\mathbf{b}\rVert) = \cos\theta$의 절댓값이 1 이하라는 사실이 곧 표본상관계수가 $-1$과 $1$ 사이라는 증명이다. 평균을 뺀 두 변수를 벡터로 보면 상관계수는 두 벡터 사이각의 코사인이고, 잔차제곱합은 $\lVert\mathbf{y}-\hat{\mathbf{y}}\rVert^2$이다.
+
 ### 외적
 
 $\mathbf{a} = (a_1, a_2, a_3)$, $\mathbf{b} = (b_1, b_2, b_3)$일 때 형식적인 행렬식으로 외우면 편하다.
@@ -85,6 +105,33 @@ c_1 & c_2 & c_3
 $$
 
 외적이 교환법칙을 만족하지 않는 것처럼, 행렬곱도 일반적으로 $\mathbf{AB} \neq \mathbf{BA}$이다.
+
+> **주의** 이 글의 "외적"은 $\mathbb{R}^3$의 벡터곱 $\mathbf{a}\times\mathbf{b}$이다. 관점 2에 나오는 $\mathbf{a}\mathbf{b}^T$(열벡터 곱하기 행벡터)는 이름이 비슷하지만 다른 연산이다. 입력은 어떤 차원의 두 벡터든 되고, 출력은 $m\times n$ 행렬(rank 1)이다. 내적 $\mathbf{a}^T\mathbf{b}$는 같은 두 벡터에서 스칼라를 만든다.
+
+### 예시
+
+$\mathbf{a} = (3, 4)$, $\mathbf{b} = (1, 2)$에 대해 손으로 계산하면 $\lVert\mathbf{a}\rVert = 5$, $\mathbf{a}\cdot\mathbf{b} = 3 + 8 = 11$이다. 코시-슈바르츠는 $11 \le 5\sqrt{5} \approx 11.18$로 성립한다.
+
+```r
+a <- c(3, 4); b <- c(1, 2)
+sqrt(sum(a^2))                                  # 노름 5
+sum(a * b)                                      # 내적 11
+abs(sum(a * b)) <= sqrt(sum(a^2)) * sqrt(sum(b^2))   # 코시-슈바르츠: TRUE
+sqrt(sum((a + b)^2)); sqrt(sum(a^2)) + sqrt(sum(b^2))   # 삼각 부등식: 7.21 <= 7.24
+outer(a, b)                                     # a b^T, 2x2 rank 1 행렬
+```
+
+```python
+import numpy as np
+
+a = np.array([3, 4]); b = np.array([1, 2])
+np.linalg.norm(a)         # 5.0
+a @ b                     # 11
+np.outer(a, b)            # [[3, 6], [4, 8]]
+np.cross([1, 0, 0], [0, 1, 0])   # array([0, 0, 1]), 3차원 벡터곱
+```
+
+내적은 열벡터의 짝이 같은 차원이어야 하고 결과가 스칼라이지만, `outer(a, b)`는 같은 두 벡터에서 $(3, 6; 4, 8)$을 만든다. 두 행이 비례하므로 rank 1이다.
 
 ## 3. 행렬의 기본
 
@@ -124,6 +171,14 @@ $n$차 정사각행렬 $\mathbf{A}$에 대해 $\mathbf{AX} = \mathbf{XA} = \math
 | $(\mathbf{A}^T)^{-1} = (\mathbf{A}^{-1})^T$ | | $\operatorname{tr}(\mathbf{ABC}) = \operatorname{tr}(\mathbf{CAB}) = \operatorname{tr}(\mathbf{BCA})$ |
 
 곱의 역행렬과 전치는 **순서가 뒤집힌다**. 대각합은 **순환(cyclic) 순서**로만 바꿀 수 있으며, 일반적으로 $\operatorname{tr}(\mathbf{ABC}) \neq \operatorname{tr}(\mathbf{ACB})$이다.
+
+$\operatorname{tr}(\mathbf{AB}) = \operatorname{tr}(\mathbf{BA})$는 성분으로 쓰면 바로 확인된다. $\mathbf{A}$가 $m\times n$, $\mathbf{B}$가 $n\times m$일 때
+
+$$
+\operatorname{tr}(\mathbf{AB}) = \sum_{i=1}^m\sum_{k=1}^n a_{ik}b_{ki} = \sum_{k=1}^n\sum_{i=1}^m b_{ki}a_{ik} = \operatorname{tr}(\mathbf{BA})
+$$
+
+이다. $\mathbf{AB}$는 $m\times m$, $\mathbf{BA}$는 $n\times n$으로 크기가 달라도 대각합은 같다. 이 성질로 $\mathbf{x}^T\mathbf{A}\mathbf{x} = \operatorname{tr}(\mathbf{A}\mathbf{x}\mathbf{x}^T)$처럼 스칼라를 대각합으로 바꿔 순서를 옮길 수 있고, 다변량 정규분포의 로그가능도를 정리할 때 쓰인다.
 
 ### 블록행렬의 곱
 
@@ -176,6 +231,14 @@ $$
 
 SVD처럼 행렬을 rank 1 조각의 합으로 분해할 때 이 관점이 쓰인다.
 
+**통계에서의 쓰임:** 평균을 뺀 자료행렬 $\tilde{\mathbf{X}}$($n\times p$)의 표본 공분산은 관측치 하나하나의 rank 1 행렬의 평균이다.
+
+$$
+\mathbf{S} = \frac{1}{n-1}\tilde{\mathbf{X}}^T\tilde{\mathbf{X}} = \frac{1}{n-1}\sum_{i=1}^n \tilde{\mathbf{x}}_i\tilde{\mathbf{x}}_i^T
+$$
+
+여기서 $\tilde{\mathbf{x}}_i^T$는 $\tilde{\mathbf{X}}$의 $i$행이다. $\tilde{\mathbf{X}}^T$의 $i$열이 $\tilde{\mathbf{x}}_i$이고 $\tilde{\mathbf{X}}$의 $i$행이 $\tilde{\mathbf{x}}_i^T$이므로 관점 2를 그대로 쓴 것이다. 새 관측치가 들어올 때 이 합에 항을 하나 더하는 식으로 공분산을 갱신할 수 있는 이유이기도 하다.
+
 ### 관점 3. $\mathbf{AB}$의 행 = $\mathbf{B}$의 행들의 선형결합
 
 $\mathbf{AB}$의 $i$행은 $\mathbf{A}$의 $i$행 성분을 계수로 한 $\mathbf{B}$의 행들의 선형결합이다.
@@ -210,6 +273,21 @@ $$
 $$
 
 따라서 **오른쪽에 곱하는 행렬은 열 연산**이고, $\mathbf{A}\mathbf{x}$는 $\mathbf{A}$의 열들의 선형결합이다. $\mathbf{A}\mathbf{x} = \mathbf{b}$에 해가 있다는 것은 $\mathbf{b}$가 $\mathbf{A}$의 열공간에 있다는 뜻이다.
+
+**통계에서의 쓰임:** 선형회귀의 설계행렬 $\mathbf{X}$($n\times(p+1)$, 첫 열은 모두 1)에 대해 $\mathbf{X}\boldsymbol\beta = \beta_0\mathbf{1} + \beta_1\mathbf{x}_1 + \cdots + \beta_p\mathbf{x}_p$이다. 적합값 $\hat{\mathbf{y}} = \mathbf{X}\hat{\boldsymbol\beta}$는 설명변수 열들의 선형결합이고, 따라서 $\mathbf{X}$의 열공간 안에 있다. 최소제곱은 이 열공간에서 $\mathbf{y}$에 가장 가까운 벡터를 찾는 문제이며, [정사영과 최소제곱법](/posts/la-orthonormal)에서 다룬다.
+
+```r
+X <- cbind(1, c(1, 2, 3, 4)); beta <- c(0.1, 2)
+X %*% beta                              # 2.1 4.1 6.1 8.1
+beta[1] * X[, 1] + beta[2] * X[, 2]     # 열의 선형결합, 같은 값
+```
+
+```python
+X = np.c_[np.ones(4), [1, 2, 3, 4]]; beta = np.array([0.1, 2.0])
+X @ beta                                # [2.1, 4.1, 6.1, 8.1]
+beta[0] * X[:, 0] + beta[1] * X[:, 1]   # 열의 선형결합, 같은 값
+```
+
 ### 행 그림과 열 그림
 
 관점 1과 관점 4는 연립방정식 $\mathbf{A}\mathbf{x} = \mathbf{b}$를 보는 두 가지 그림에 대응한다.
@@ -223,23 +301,22 @@ $$
 **행 그림**은 각 행(방정식)을 하나의 직선으로 보고, 해를 두 직선의 교점 $(2, 1)$으로 찾는다. 행과 $\mathbf{x}$의 내적이 정해진 값이 되는 점들의 모임이 직선이기 때문이다. **열 그림**은 같은 문제를 "$\mathbf{A}$의 열 $\mathbf{a}_1$, $\mathbf{a}_2$를 몇 배씩 더하면 $\mathbf{b}$가 되는가"로 본다. $2\mathbf{a}_1 + 1\mathbf{a}_2 = \mathbf{b}$이므로 해는 $(2, 1)$이다. 2차원에서는 행 그림이 직관적이지만, 변수가 많아지면 초평면의 교점을 상상하기 어렵다. 열 그림은 차원과 관계없이 "$\mathbf{b}$가 열들이 생성하는 공간 안에 있는가"라는 하나의 질문으로 해의 존재를 다루므로, 이후의 열공간과 계수 논의는 모두 열 그림 위에서 진행된다.
 
 
-## 요약
+## 비교
 
-| 관점 | 식 | 쓰이는 곳 |
+네 관점은 같은 곱 $\mathbf{AB}$를 어느 단위로 쪼개 보느냐의 차이이고, 결과는 모두 같다.
+
+| 관점 | 식 | 언제 쓰는가 |
 |---|---|---|
-| 행 · 열 내적 | $(\mathbf{AB})_{ij} = (\mathbf{A}\text{의 } i\text{행}) \cdot (\mathbf{B}\text{의 } j\text{열})$ | 성분 계산 |
-| 열 × 행의 합 | $\mathbf{AB} = \sum_k \mathbf{a}_k \mathbf{b}_k^T$ | rank 1 분해, SVD |
-| 행의 선형결합 | $\mathbf{AB}$의 행 = $\mathbf{B}$ 행들의 결합 | 행 연산, 가우스 소거법 |
-| 열의 선형결합 | $\mathbf{AB}$의 열 = $\mathbf{A}$ 열들의 결합 | 열공간, $\mathbf{Ax} = \mathbf{b}$의 해 존재 |
+| 행 · 열 내적 | $(\mathbf{AB})_{ij} = (\mathbf{A}\text{의 } i\text{행}) \cdot (\mathbf{B}\text{의 } j\text{열})$ | 성분 하나를 계산할 때 |
+| 열 × 행의 합 | $\mathbf{AB} = \sum_k \mathbf{a}_k \mathbf{b}_k^T$ | rank 1 분해, SVD, 표본 공분산 $\sum_i\tilde{\mathbf{x}}_i\tilde{\mathbf{x}}_i^T$ |
+| 행의 선형결합 | $\mathbf{AB}$의 행 = $\mathbf{B}$ 행들의 결합 | 행 연산, 가우스 소거법 (왼쪽 곱) |
+| 열의 선형결합 | $\mathbf{AB}$의 열 = $\mathbf{A}$ 열들의 결합 | 열공간, $\mathbf{Ax} = \mathbf{b}$의 해 존재, $\mathbf{X}\boldsymbol\beta$ |
 
-| 자주 헷갈리는 것 | 정리 |
-|---|---|
-| 곱의 역행렬·전치 | $(\mathbf{AB})^{-1} = \mathbf{B}^{-1}\mathbf{A}^{-1}$, $(\mathbf{AB})^T = \mathbf{B}^T\mathbf{A}^T$ |
-| 대각합 | $\operatorname{tr}(\mathbf{AB}) = \operatorname{tr}(\mathbf{BA})$, 세 개 이상은 순환 순서만 |
-| 외적 | $\mathbb{R}^3$ 전용, 반교환 $\mathbf{b} \times \mathbf{a} = -\mathbf{a} \times \mathbf{b}$ |
-| 생성 vs 기저 | 기저 = 생성 + 선형독립 |
+관점 1은 결과를 성분 단위로, 관점 2는 rank 1 행렬 단위로, 관점 3과 4는 행 또는 열 벡터 단위로 만든다. 곱하는 쪽이 왼쪽이면 행을 섞고(관점 3), 오른쪽이면 열을 섞는다(관점 4)는 점이 가장 자주 쓰인다.
 
-## R / Python으로 확인
+### 예시
+
+앞의 행렬 $\mathbf{A}$와 $\mathbf{B} = \begin{pmatrix}5&6\\7&8\end{pmatrix}$로 관점 1과 관점 2가 같은 결과를 주는지, 그리고 $\mathbf{AB}\ne\mathbf{BA}$이면서도 대각합은 같은지 확인한다.
 
 ```r
 A <- matrix(c(1, 3, 2, 4), nrow = 2)   # 열 우선 입력: [[1, 2], [3, 4]]
@@ -247,21 +324,40 @@ B <- matrix(c(5, 7, 6, 8), nrow = 2)
 
 A %*% B                                         # 행렬곱 (* 는 성분별 곱)
 outer(A[, 1], B[1, ]) + outer(A[, 2], B[2, ])   # 관점 2: rank 1 행렬의 합
-sum(diag(A %*% B)) == sum(diag(B %*% A))        # TRUE
+sum(diag(A %*% B)); sum(diag(B %*% A))          # 둘 다 69
+A %*% B - B %*% A                               # 0이 아니다: 교환법칙 불성립
 crossprod(A)                                    # t(A) %*% A
 ```
 
 ```python
-import numpy as np
-
 A = np.array([[1, 2], [3, 4]])
 B = np.array([[5, 6], [7, 8]])
 
 A @ B                                   # 행렬곱
 np.outer(A[:, 0], B[0]) + np.outer(A[:, 1], B[1])   # 관점 2: rank 1 행렬의 합
 np.trace(A @ B) == np.trace(B @ A)      # True
-np.cross([1, 0, 0], [0, 1, 0])          # array([0, 0, 1])
 ```
+
+$\mathbf{AB} = \begin{pmatrix}19&22\\43&50\end{pmatrix}$이고 관점 2의 합도 같은 행렬이다. 손계산으로 $1\cdot5+2\cdot7 = 19$가 (1,1) 성분과 맞는다. $\mathbf{AB}-\mathbf{BA} = \begin{pmatrix}-4&-12\\12&4\end{pmatrix}$로 교환법칙은 성립하지 않지만, $\operatorname{tr}(\mathbf{AB}) = \operatorname{tr}(\mathbf{BA}) = 69$이다.
+
+표본 공분산도 같은 방식으로 확인된다. 세 관측치 $(2,1), (4,3), (6,2)$를 열별로 평균을 빼면 `crossprod(Zc) / (nrow(Z) - 1)`과 `cov(Z)`가 모두 $\begin{pmatrix}4&1\\1&1\end{pmatrix}$이다.
+
+```r
+Z <- cbind(c(2, 4, 6), c(1, 3, 2))
+Zc <- sweep(Z, 2, colMeans(Z))          # 열 평균 빼기
+crossprod(Zc) / (nrow(Z) - 1)           # (1/(n-1)) X~' X~
+cov(Z)                                  # 같은 값
+```
+
+## 정리
+
+| 자주 헷갈리는 것 | 정리 |
+|---|---|
+| 곱의 역행렬·전치 | $(\mathbf{AB})^{-1} = \mathbf{B}^{-1}\mathbf{A}^{-1}$, $(\mathbf{AB})^T = \mathbf{B}^T\mathbf{A}^T$ |
+| 대각합 | $\operatorname{tr}(\mathbf{AB}) = \operatorname{tr}(\mathbf{BA})$, 세 개 이상은 순환 순서만 |
+| 외적 | 벡터곱은 $\mathbb{R}^3$ 전용, 반교환. $\mathbf{a}\mathbf{b}^T$(rank 1 행렬)와 다르다 |
+| 코시-슈바르츠 | $\lvert\mathbf{a}\cdot\mathbf{b}\rvert\le\lVert\mathbf{a}\rVert\lVert\mathbf{b}\rVert$, 평행할 때만 등호 |
+| 생성 vs 기저 | 기저 = 생성 + 선형독립 |
 
 ## 참고자료
 

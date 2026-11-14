@@ -1,13 +1,14 @@
 ---
 title: 'R4DS - 그래프 다듬기: 라벨, 스케일, 테마'
-published: 2022-07-08
+published: 2022-08-06
 draft: false
 description: '분석용 그래프를 전달용으로 다듬는 방법. labs, 주석과 ggrepel, 축·색 스케일, 범례, 테마, 저장까지 실습 코드로 정리'
 series: 'R for Data Science'
+seriesOrder: 5
 tags: ['R', 'tidyverse', '시각화']
 ---
 
-분석하면서 그리는 그래프는 나만 알아보면 되지만, 보고서나 발표에 넣을 그래프는 처음 보는 사람도 바로 읽혀야 한다. 이 글은 R4DS(2판) Communication 장을 따라 라벨, 주석, 스케일, 테마로 그래프를 다듬는 방법을 정리한다.
+분석하면서 그리는 그래프는 나만 알아보면 되지만, 보고서나 발표에 넣을 그래프는 처음 보는 사람도 바로 읽혀야 한다. 이 글은 R4DS(2판) Communication 장을 따라 라벨, 주석, 스케일, 테마로 그래프를 다듬는 방법을 정리한다. [ggplot2 글](/posts/r4ds-ggplot2)의 레이어 문법과 [dplyr 글](/posts/r4ds-dplyr)의 `.by`, `slice_max`를 이미 안다고 보고 쓴다.
 
 ```r title="환경 설정"
 library(tidyverse)
@@ -92,7 +93,7 @@ p1 + p2
 
 - 범례를 오가며 색을 맞춰 보는 것보다 그룹 위에 이름이 있는 쪽이 빨리 읽힌다. 그룹이 많지 않을 때 쓴다.
 - `x = Inf, y = Inf`는 데이터 범위와 상관없이 항상 패널의 오른쪽 위 끝이다. `hjust`, `vjust`로 글자가 안쪽으로 들어오게 맞춘다.
-- 텍스트 하나를 넣을 때는 데이터 프레임을 만들 필요 없이 `annotate()`가 간단하다. 긴 문장은 `str_wrap()`으로 줄을 바꾼다.
+- 텍스트 하나를 넣을 때는 데이터 프레임을 만들 필요 없이 `annotate()`가 간단하다. 긴 문장은 `str_wrap()`으로 줄을 바꾼다(stringr 함수이며, 뒤의 [문자열 글](/posts/r4ds-string)에서 다른 `str_*` 함수와 함께 나온다).
 
 | 주석 도구 | 용도 |
 |---|---|
@@ -252,4 +253,4 @@ ggsave("plot.png", p, width = 7, height = 4.5, dpi = 300)
 - *R for Data Science* (2nd ed.): [11 Communication](https://r4ds.hadley.nz/communication.html)
 - [ggrepel](https://ggrepel.slowkow.com/), [ggplot2 공식 문서](https://ggplot2.tidyverse.org/)
 
-다음 글: [R4DS - dplyr로 데이터 변환하기](/posts/r4ds-dplyr)
+다음 글: [R4DS - 논리형과 수 다루기](/posts/r4ds-logical-numbers)

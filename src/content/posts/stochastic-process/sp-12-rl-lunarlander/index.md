@@ -56,7 +56,7 @@ q_net(torch.tensor(state))          # 행동 4개의 q값
 |---|---|---|
 | $q$의 저장 | `q = np.zeros([4,4,4])` | `q_net = Sequential(...)` |
 | 추정값 | `q[x, y, a]` | `q_net(s).gather(1, a)` |
-| 목표값 | `r + 0.99 * q[xx, yy, :].max()` | `r + 0.99 * q_net(s').max(1) * (~done)` |
+| 목표값 | `r + 0.99 * q[xx, yy, :].max()` | `r + 0.99 * q_net(s_next).max(1, keepdim=True)[0] * (~done)` |
 | 오차 | `diff = q_realistic - q_estimated` | `loss = mse(q_estimated, q_realistic)` |
 | 갱신 | `q[x, y, a] += 0.05 * diff` | `loss.backward(); optimizer.step()` |
 | 경험 사용 | 방금 경험 하나 | 버퍼에서 무작위 배치 |
@@ -159,7 +159,7 @@ class Agent:
         q_estimated = self.q_net(S).gather(1, A)
         with torch.no_grad():
             q_future = self.q_target(S2).max(1, keepdim=True)[0]
-        q_realistic = R + 0.99 * q_future * (~D)
+        q_realistic = R + 0.99 * q_future * (1 - D)
         loss = torch.nn.functional.mse_loss(q_estimated, q_realistic)
         loss.backward(); self.optimizer.step(); self.optimizer.zero_grad()
         if self.n_experiences % 1000 == 0:

@@ -4,10 +4,11 @@ published: 2022-07-01
 draft: false
 description: 'ggplot2 레이어 문법의 뼈대인 aes, geom, facet, stat, position, coord를 실습 코드와 비교 그래프로 정리'
 series: 'R for Data Science'
+seriesOrder: 1
 tags: ['R', 'tidyverse', '시각화']
 ---
 
-R for Data Science(2판)의 시각화 장을 실습하며 정리했다. ggplot2의 레이어 문법 중 그래프의 뼈대가 되는 aes, geom, facet, stat, position, coord를 다룬다. 라벨, 스케일, 테마로 그래프를 다듬는 내용은 다음 글에서 이어진다. 데이터는 ggplot2에 들어 있는 `mpg`(차종별 연비)와 `diamonds`를 쓴다.
+R for Data Science(2판)의 시각화 장을 실습하며 정리했다. ggplot2의 레이어 문법 중 그래프의 뼈대가 되는 aes, geom, facet, stat, position, coord를 다룬다. 라벨, 스케일, 테마로 그래프를 다듬는 내용은 [그래프 다듬기 글](/posts/r4ds-communication)에서 이어진다. 데이터는 ggplot2에 들어 있는 `mpg`(차종별 연비)와 `diamonds`를 쓴다.
 
 ```r title="환경 설정"
 library(tidyverse)
@@ -294,4 +295,4 @@ p1 + p2
 - Hadley Wickham, Mine Çetinkaya-Rundel, Garrett Grolemund, *R for Data Science* (2nd ed.): [1 Data visualization](https://r4ds.hadley.nz/data-visualize.html), [9 Layers](https://r4ds.hadley.nz/layers.html)
 - [ggplot2 공식 문서](https://ggplot2.tidyverse.org/), [patchwork](https://patchwork.data-imaginist.com/)
 
-다음 글: [R4DS - 그래프 다듬기: 라벨, 스케일, 테마](/posts/r4ds-communication)
+다음 글: [R4DS - dplyr로 데이터 변환하기](/posts/r4ds-dplyr)

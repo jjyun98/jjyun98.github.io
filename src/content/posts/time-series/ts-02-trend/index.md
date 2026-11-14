@@ -21,7 +21,7 @@ library(forecast)
 library(patchwork)
 theme_set(theme_minimal(base_size = 12))
 
-data_url <- "https://raw.githubusercontent.com/Bricoler/time-series-analysis/master/timedata/"
+data_url <- "https://raw.githubusercontent.com/Bricoler/time-series-analysis/172803efe88d52321e43a3533b2fd2d1eeb6a6e4/timedata/"
 read_ts <- function(file, start, frequency = 12) {
   ts(scan(paste0(data_url, file), quiet = TRUE), start = start, frequency = frequency)
 }
@@ -36,7 +36,7 @@ read_ts <- function(file, start, frequency = 12) {
 | 2차 추세 | $Z_t = \beta_0 + \beta_1 t + \beta_2 t^2 + \epsilon_t$ | 증가 속도가 변함 |
 | $p$차 다항 | $Z_t = \beta_0 + \beta_1 t + \cdots + \beta_p t^p + \epsilon_t$ | 차수를 높이면 과적합 위험 |
 | 성장곡선 | $Z_t = \exp(\beta_0 + \beta_1 t)\, e^{\epsilon_t}$ 등 | 기하급수적 성장, 로그 변환으로 선형화 |
-| 로지스틱 | $Z_t = \dfrac{K}{1 + \exp(\beta_0 + \beta_1 t)}$ | 포화 수준 $K$가 있는 확산(보급률) |
+| 로지스틱 | $Z_t = \dfrac{K}{1 + \exp(\beta_0 + \beta_1 t)} + \epsilon_t$ | 포화 수준 $K$가 있는 확산(보급률) |
 
 다항 추세모형은 모두 다중회귀모형 $Z = X\beta + \epsilon$의 특수한 경우다.
 
@@ -59,8 +59,16 @@ $$
 $Z_t = \beta_0 + \epsilon_t$에서 $\hat\beta_0 = \bar Z$이므로 모든 미래 시점의 예측값은 표본평균이다. 새 관측값 $Z_{n+1}$이 들어오면 다시 계산할 필요 없이 갱신할 수 있다.
 
 $$
-\hat Z_{n+1}(l) = \frac{n}{n+1} \hat Z_n(l) + \frac{1}{n+1} Z_{n+1} = \hat Z_n(l) + \frac{1}{n+1}\left( Z_{n+1} - \hat Z_n(l) \right)
+\hat Z_{n+1}(l) = \frac{n}{n+1} \hat Z_n(l) + \frac{1}{n+1} Z_{n+1} = \hat Z_n(l) + \frac{1}{n+1}\left( Z_{n+1} - \hat Z_n(1) \right)
 $$
+
+예측오차의 분산과 예측구간은 다음과 같다. 예측오차 $e_n(l) = Z_{n+l} - \bar Z$에는 미래 오차 $\epsilon_{n+l}$과 표본평균의 오차가 함께 들어 있다.
+
+$$
+Var(e_n(l)) = \left(1 + \frac{1}{n}\right)\sigma^2, \qquad \bar Z \pm t_{\alpha/2,\,n-1}\, \hat\sigma \sqrt{1 + \frac{1}{n}}
+$$
+
+예측 시차 $l$과 무관하게 폭이 같다. 모형이 "수준이 영원히 일정하다"고 가정하기 때문이다. 선형 추세모형의 $l$시차 예측은 $\hat Z_n(l) = \hat\beta_0 + \hat\beta_1(n+l)$이고, 구간은 8절에서 `predict()`로 구한다.
 
 새 예측 = 이전 예측 + (가중치) × 예측오차. 이 구조가 3편 지수평활법의 출발점이다. 상수평균모형은 모든 과거 관측값에 같은 가중치 $1/n$을 주지만, 지수평활은 최근 값에 더 큰 가중치를 준다.
 
@@ -139,7 +147,15 @@ $$
 Z_t = \beta_0 + \beta_1 t + \sum_{i=1}^{m} \left[ \beta_{1i} \sin\left( \frac{2\pi i t}{s} \right) + \beta_{2i} \cos\left( \frac{2\pi i t}{s} \right) \right] + \epsilon_t
 $$
 
-$\sin(2\pi i t / s)$는 주기 $s/i$, 진동수 $i$인 파동이다. $m = s/2$까지 모두 넣으면 지시함수 모형과 같은 적합값이 되고, 일부만 넣으면 모수를 아낄 수 있다.
+$\sin(2\pi i t / s)$는 주기 $s/i$, 진동수 $i$인 파동이다. 한 쌍의 항은 진폭 $A_i$와 위상 $\phi_i$로 쓸 수도 있다.
+
+$$
+\beta_{1i}\sin(\omega_i t) + \beta_{2i}\cos(\omega_i t) = A_i \sin(\omega_i t + \phi_i), \quad \omega_i = \frac{2\pi i}{s}, \quad A_i = \sqrt{\beta_{1i}^2 + \beta_{2i}^2}
+$$
+
+$m$은 $s$가 짝수면 $s/2$, 홀수면 $(s-1)/2$까지 넣을 수 있다. 다만 $s$가 짝수일 때 $i = s/2$의 사인항은 모든 $t$에서 0이므로 코사인항만 쓴다. 그렇게 끝까지 넣으면 지시함수 모형과 같은 적합값이 되고, 일부만 넣으면 모수를 아낄 수 있다.
+
+> **주의** 삼각함수 모형의 $\beta_{1i}, \beta_{2i}$는 월별 효과가 아니라 파동의 계수다. 12월 효과를 직접 읽으려면 지시함수 모형을 쓴다.
 
 ```r w=9 h=3.2
 t <- 1:120
@@ -160,7 +176,18 @@ ggplot(filter(waves, t <= 48), aes(t, value, color = name)) +
 
 주기 12인 파동과 주기 6인 파동을 더하면 복잡해 보이는 계절 패턴도 만들 수 있다.
 
-## 6. 예제: 백화점 월별 매출액
+## 6. 비교: 지시함수와 삼각함수, 추세 차수
+
+| 기준 | 지시함수 | 삼각함수 |
+|---|---|---|
+| 계절 모수 수 | $s$개(절편을 빼면 $s$개, 두면 $s-1$개) | $2m$개($m=s/2$일 때는 $\sin$ 항을 빼서 최대 $s-1$개) |
+| 곡선 모양 | 계절마다 자유로움, 한 달만 튀어도 가능 | 매끄러운 곡선 |
+| 계수 해석 | 달별 수준 차이를 바로 읽음 | 진폭과 위상으로 읽음 |
+| 쓰임 | 계절 패턴이 불규칙하거나 뾰족할 때 | 주기가 길어 $s$가 클 때(주간, 일간 자료) |
+
+추세 차수는 1차에서 시작해, 높인 항이 유의한지(부분 $F$검정)와 잔차 그림에서 체계적 패턴이 사라지는지를 함께 본다. $R^2$는 차수를 높이면 항상 커지므로 선택 기준으로 쓰지 않는다. 잔차에 자기상관이 남으면 차수를 더 높이는 것이 해결책이 아니다. 3절의 2차 추세 잔차가 그 예다.
+
+## 7. 예제: 백화점 월별 매출액
 
 계절 진폭이 수준과 함께 커지므로 로그를 취해 승법 구조를 가법으로 바꾼다.
 
@@ -209,9 +236,9 @@ ggAcf(resid(fit_ind)) + labs(title = "ACF of residuals (indicator model)") |
 
 ![지시함수 모형 잔차의 ACF와 PACF](./images/ts02-04.png)
 
-잔차 ACF가 천천히 줄어들고 PACF가 몇 개 시차에서 끊기면, 잔차에 AR 구조가 남아 있다는 뜻이다. 교재는 이 잔차에 AR(3)을 적합해 백색잡음으로 만든다. 추세·계절은 회귀로, 남은 상관 구조는 ARMA로 모델링하는 이 방식은 8편에서 다시 나온다.
+잔차 ACF가 천천히 줄어들고 PACF가 몇 개 시차에서 끊기면, 잔차에 AR 구조가 남아 있다는 뜻이다. 이 잔차에 AR 모형을 적합해 백색잡음으로 만드는 것이 다음 단계다. 추세·계절은 회귀로, 남은 상관 구조는 ARMA로 모델링하는 이 방식은 8편에서 다시 나온다.
 
-## 7. 추세모형으로 예측하기
+## 8. 추세모형으로 예측하기
 
 ```r
 h <- 12

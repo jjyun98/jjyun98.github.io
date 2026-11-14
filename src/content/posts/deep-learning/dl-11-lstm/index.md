@@ -66,6 +66,8 @@ out = torch.nn.Linear(16, 6)(hidden)  # 시점마다 출력
 `RNN`과 달리 상태가 $(\mathbf h, \mathbf c)$ 두 개다. 위 식대로 시점마다 직접 계산한 $\mathbf h_t$는 `torch.nn.LSTM`의 출력과 $10^{-5}$ 이내로 같다.
 
 ```python
+T = x.shape[0]
+h = c = torch.zeros(x.shape[1], 16)
 Wi, Wh = lstm.weight_ih_l0, lstm.weight_hh_l0
 b = lstm.bias_ih_l0 + lstm.bias_hh_l0
 for t in range(T):

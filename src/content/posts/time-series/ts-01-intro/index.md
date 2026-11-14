@@ -32,7 +32,7 @@ library(forecast)
 library(patchwork)
 theme_set(theme_minimal(base_size = 12))
 
-data_url <- "https://raw.githubusercontent.com/Bricoler/time-series-analysis/master/timedata/"
+data_url <- "https://raw.githubusercontent.com/Bricoler/time-series-analysis/172803efe88d52321e43a3533b2fd2d1eeb6a6e4/timedata/"
 read_ts <- function(file, start, frequency = 12) {
   ts(scan(paste0(data_url, file), quiet = TRUE), start = start, frequency = frequency)
 }
@@ -84,7 +84,14 @@ autoplot(depart) + labs(x = NULL, y = "sales", title = "Department store monthly
 | 계절 성분 | $S_t$ | 1년 이내의 일정한 주기로 반복(월별, 분기별, 요일별) |
 | 순환 성분 | $C_t$ | 주기가 1년보다 길고 일정하지 않은 변동(경기순환) |
 
-불규칙 성분을 뺀 나머지를 **체계적 성분**이라 한다. 성분별 모양을 시뮬레이션으로 확인한다.
+불규칙 성분을 뺀 나머지를 **체계적 성분**이라 한다. 성분을 합치는 방식은 두 가지다.
+
+| 모형 | 식 | 쓰는 경우 |
+|---|---|---|
+| 가법 | $Z_t = T_t + S_t + C_t + I_t$ | 계절 진폭이 수준과 무관하게 일정 |
+| 승법 | $Z_t = T_t \cdot S_t \cdot C_t \cdot I_t$ | 계절 진폭이 수준에 비례해 커짐 |
+
+승법 모형은 로그를 취하면 가법 모형이 된다($\log Z_t = \log T_t + \log S_t + \log C_t + \log I_t$). 앞의 백화점 매출이 승법 구조의 예다. 성분별 모양을 시뮬레이션으로 확인한다.
 
 ```r w=9 h=6
 set.seed(1)
@@ -139,7 +146,15 @@ MAE = \frac{1}{m} \sum_{l=1}^{m} |e_{n+l-1}(1)|, \qquad
 MAPE = \frac{100}{m} \sum_{l=1}^{m} \left| \frac{e_{n+l-1}(1)}{Z_{n+l}} \right|
 $$
 
-MAPE는 단위가 없어 서로 다른 시계열의 예측력을 비교할 수 있다. 다만 값이 0에 가까우면 불안정하다. `forecast::accuracy()`가 이 척도들을 한 번에 계산한다.
+$RMSE = \sqrt{MSE}$는 원자료와 같은 단위로 오차 크기를 읽을 때 쓴다. `forecast::accuracy()`가 이 척도들을 한 번에 계산한다.
+
+| 척도 | 단위 | 큰 오차 | 주의 |
+|---|---|---|---|
+| MSE, RMSE | 자료 단위(MSE는 제곱) | 제곱하므로 크게 반영 | 시계열마다 단위가 달라 서로 비교 불가 |
+| MAE | 자료 단위 | 비례해서 반영 | 단위가 다른 시계열은 비교 불가 |
+| MAPE | % (단위 없음) | 비례해서 반영 | $Z_t$가 0에 가까우면 불안정 |
+
+MAPE는 단위가 없어 서로 다른 시계열의 예측력을 비교할 수 있다.
 
 예측 방법을 고를 때는 예측 기간(단기·장기), 필요한 정확도, 자료의 양과 함께 **간결성의 원칙**(같은 성능이면 모수가 적은 모형)을 고려한다.
 

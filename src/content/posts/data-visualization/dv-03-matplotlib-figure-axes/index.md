@@ -1,6 +1,6 @@
 ---
 title: '데이터 시각화 - matplotlib의 구조: Figure와 Axes'
-published: 2021-09-27
+published: 2021-09-13
 draft: false
 description: 'plt.plot의 형식 문자열로 산점도와 라인플랏을 그리고, Figure ⊃ Axes ⊃ Axis 구조를 이해해 서브플랏, 제목, 축 범위를 객체 방식으로 다룬다. seaborn을 Axes에 끼워 넣는 법과 테마 변경도 정리한다.'
 series: '데이터 시각화'
@@ -22,6 +22,7 @@ import matplotlib.pyplot as plt
 ```python
 x = [1, 2, 3, 4]
 y = [1, 2, 4, 3]
+# 각각 따로 그리면
 plt.plot(x, y)
 plt.plot(x, y, 'o:r')   # 점 o, 점선 :, 빨강 r
 ```

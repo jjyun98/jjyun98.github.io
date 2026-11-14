@@ -7,7 +7,7 @@ series: '선형대수학'
 tags: ['선형대수학', '수학']
 ---
 
-고유벡터는 행렬을 곱해도 방향이 바뀌지 않고 크기만 고유값 배만큼 변하는 벡터다. 고유벡터로 기저를 만들 수 있으면 행렬이 대각행렬로 단순해진다. 이 글은 대각화 조건, 대칭·에르미트·유니타리·정규행렬의 대각화, 스펙트럼 분해, 양의 정부호 판정과 이차형식을 정리한다.
+고유벡터는 행렬을 곱해도 방향이 바뀌지 않고 크기만 고유값 배만큼 변하는 벡터다. 고유벡터로 기저를 만들 수 있으면 행렬이 대각행렬로 단순해진다. 이 글은 대각화 조건, 대칭·에르미트·유니타리·정규행렬의 대각화, 스펙트럼 분해, 양의 정부호 판정과 이차형식을 정리하고, 여러 분해를 비교한 뒤 통계에서의 쓰임으로 마무리한다. 모든 코드는 소절 바로 아래에서 손계산과 맞춰 본다.
 
 이전 글: [선형대수 - 선형사상과 행렬표현](/posts/la-linear-map)
 
@@ -67,6 +67,25 @@ $$
 
 확인: $\det\mathbf{A} = -10 + 12 = 2 = 1 \times 2$, $\operatorname{tr}\mathbf{A} = 3 = 1 + 2$.
 
+```r
+A <- matrix(c(5, 2, -6, -2), nrow = 2)
+e <- eigen(A)
+e$values                              # 2 1 (큰 값부터)
+e$vectors                             # 길이 1로 정규화: (2,1)/sqrt(5), (3,2)/sqrt(13)
+c(det(A), prod(e$values))             # 2 2
+c(sum(diag(A)), sum(e$values))        # 3 3
+```
+
+```python
+import numpy as np
+
+A = np.array([[5, -6], [2, -2]], dtype=float)
+w, V = np.linalg.eig(A)   # 고유값 [2, 1], 순서는 보장되지 않는다. 열이 정규화된 고유벡터
+np.linalg.det(A), w.prod(), np.trace(A), w.sum()
+```
+
+`eigen()`은 고유값을 내림차순으로 $2, 1$을 주고, 고유벡터는 길이 1로 맞춰 나오므로 손으로 구한 $(2, 1)^T$, $(3, 2)^T$를 $\sqrt5$, $\sqrt{13}$으로 나눈 값($0.894, 0.447$ / $0.832, 0.555$)이다. 행렬식과 대각합도 손계산과 같다.
+
 ### 케일리-해밀턴 정리
 
 특성다항식 $p(\lambda) = \det(\lambda\mathbf{I} - \mathbf{A})$에 행렬 자신을 넣으면 영행렬이 된다.
@@ -76,6 +95,17 @@ p(\mathbf{A}) = \mathbf{O}
 $$
 
 위 예시는 $p(\lambda) = \lambda^2 - 3\lambda + 2$이므로 $\mathbf{A}^2 - 3\mathbf{A} + 2\mathbf{I} = \mathbf{O}$이다. 따라서 $\mathbf{A}^2 = 3\mathbf{A} - 2\mathbf{I}$처럼 높은 거듭제곱을 낮은 차수로 줄일 수 있고, 역행렬도 $\mathbf{A}(3\mathbf{I} - \mathbf{A}) = 2\mathbf{I}$에서 $\mathbf{A}^{-1} = \frac{1}{2}(3\mathbf{I} - \mathbf{A})$처럼 다항식으로 쓸 수 있다.
+
+```r
+A %*% A - 3 * A + 2 * diag(2)         # 영행렬
+solve(A)                              # [-1, 3 / -1, 2.5]
+(3 * diag(2) - A) / 2                 # 같은 행렬
+```
+
+```python
+A @ A - 3 * A + 2 * np.eye(2)         # 영행렬
+np.allclose(np.linalg.inv(A), (3 * np.eye(2) - A) / 2)   # True
+```
 
 ## 2. 대각화
 
@@ -101,6 +131,16 @@ $$
 =
 \begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}
 $$
+
+```r
+P <- cbind(c(3, 2), c(2, 1))          # 열 = 고유벡터 (3,2), (2,1)
+solve(P) %*% A %*% P                  # 대각행렬 diag(1, 2) (부동소수점 오차 1e-15 수준)
+```
+
+```python
+P = np.array([[3, 2], [2, 1]], dtype=float)
+np.linalg.inv(P) @ A @ P              # diag(1, 2)
+```
 
 ### 판정에 쓰는 사실
 
@@ -130,6 +170,19 @@ $$
 
 대칭행렬 $\begin{pmatrix} 1.5 & 0.5 \\ 0.5 & 1.5 \end{pmatrix}$은 방향이 유지되는 직선이 두 개(빨강)이고, 다른 벡터들은 모두 고유값이 큰 $(1, 1)$ 방향 쪽으로 끌려간다. 전단 $\begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix}$은 $x$축 하나만 방향이 유지되고, 나머지 벡터는 모두 오른쪽으로 기운다. 평면을 덮으려면 독립인 방향이 두 개 필요한데 고유벡터 방향이 하나뿐이므로, 고유벡터로 기저를 만들 수 없다. 이것이 대각화가 안 된다는 것의 기하적 의미다.
 
+```r
+J <- matrix(c(1, 0, 1, 1), nrow = 2)  # 전단 [[1,1],[0,1]]
+eigen(J)$values                       # 1 1 (중근)
+eigen(J)$vectors                      # 두 열이 사실상 같은 방향: (1,0)과 (-1, 2e-16)
+det(eigen(J)$vectors)                 # 2.2e-16 ≈ 0, 고유벡터가 기저를 이루지 못한다
+```
+
+```python
+J = np.array([[1, 1], [0, 1]], dtype=float)
+w, V = np.linalg.eig(J)
+np.linalg.matrix_rank(V), abs(np.linalg.det(V))   # 1, 2.2e-16: 독립인 고유벡터가 하나뿐
+```
+
 ### 쓰임: 거듭제곱
 
 $\mathbf{A} = \mathbf{PDP}^{-1}$이면 $\mathbf{A}^k = \mathbf{P}\mathbf{D}^k\mathbf{P}^{-1}$이고, $\mathbf{D}^k$는 대각 성분만 $k$제곱하면 된다.
@@ -145,7 +198,23 @@ $$
 
 ![반복 곱셈으로 벡터의 방향이 지배적 고유벡터로 수렴하는 과정](./figures/fig-power-iteration.svg)
 
-그림의 $\mathbf{A} = \begin{pmatrix} 1.5 & 0.5 \\ 0.5 & 1.5 \end{pmatrix}$에서 $\mathbf{x}_0 = (1, -0.6)$은 처음에 $\lambda_2 = 1$인 방향 성분이 훨씬 크지만, 곱할 때마다 $\lambda_1 = 2$ 방향 성분만 2배씩 커져 6번 만에 거의 $(1, 1)$ 방향이 된다. 수렴 속도는 $\lvert\lambda_2/\lambda_1\rvert^k$로 정해진다. 이 원리를 이용해 가장 큰 고유값과 고유벡터를 구하는 방법이 **거듭제곱법**이고, 마르코프 연쇄가 정상분포로 수렴하는 것과 웹페이지 순위(PageRank)도 같은 원리다.
+그림의 $\mathbf{A} = \begin{pmatrix} 1.5 & 0.5 \\ 0.5 & 1.5 \end{pmatrix}$에서 $\mathbf{x}_0 = (1, -0.6)$은 처음에 $\lambda_2 = 1$인 방향 성분이 훨씬 크지만, 곱할 때마다 $\lambda_1 = 2$ 방향 성분만 2배씩 커진다. $\mathbf{x}_0 = 0.2(1, 1) + 0.8(1, -1)$이므로 $\mathbf{x}_6 = 0.2\cdot 2^6(1, 1) + 0.8\cdot 1^6(1, -1) = (13.6, 12)$가 되어, 두 성분의 비가 $1 : 1$에 가까운 $1 : 0.88$이 된다. 수렴 속도는 $\lvert\lambda_2/\lambda_1\rvert^k$로 정해진다. 이 원리를 이용해 가장 큰 고유값과 고유벡터를 구하는 방법이 **거듭제곱법**이고, 마르코프 연쇄가 정상분포로 수렴하는 것과 웹페이지 순위(PageRank)도 같은 원리다.
+
+```r
+B <- matrix(c(1.5, 0.5, 0.5, 1.5), nrow = 2)
+x <- c(1, -0.6)
+for (k in 1:6) x <- B %*% x
+x                                     # (13.6, 12)
+x[2] / x[1]                           # 0.882: 6번 곱한 뒤 (1,1) 방향(비 1)에 가까워진다
+```
+
+```python
+B = np.array([[1.5, 0.5], [0.5, 1.5]])
+x = np.array([1, -0.6])
+for _ in range(6):
+    x = B @ x
+x, x[1] / x[0]                        # [13.6, 12.0], 0.882
+```
 
 ## 3. 특별한 행렬들
 
@@ -182,6 +251,23 @@ $$
 
 유니타리행렬은 내적과 길이를 보존한다: $\langle \mathbf{U}\mathbf{u}, \mathbf{U}\mathbf{v} \rangle = \langle \mathbf{u}, \mathbf{v} \rangle$, $\lVert \mathbf{U}\mathbf{u} \rVert = \lVert \mathbf{u} \rVert$.
 
+```r
+H <- matrix(c(3, 1 - 1i, 1 + 1i, 4), nrow = 2)       # 에르미트
+all.equal(H, Conj(t(H)))                             # TRUE
+eigen(H)$values                                      # 5 2: 모두 실수
+
+U <- 0.5 * matrix(c(1 + 1i, 1 - 1i, 1 + 1i, -1 + 1i), nrow = 2)   # 유니타리
+round(Conj(t(U)) %*% U, 10)                          # 단위행렬
+Mod(eigen(U)$values)                                 # 1 1: 절댓값 1
+```
+
+```python
+H = np.array([[3, 1 + 1j], [1 - 1j, 4]])
+np.allclose(H, H.conj().T), np.linalg.eigvalsh(H)    # True, [2, 5]
+U = 0.5 * np.array([[1 + 1j, 1 + 1j], [1 - 1j, -1 + 1j]])
+np.allclose(U.conj().T @ U, np.eye(2)), np.abs(np.linalg.eigvals(U))   # True, [1, 1]
+```
+
 ## 4. 쉬르 정리와 스펙트럼 정리
 
 ### 쉬르 정리: 삼각화는 항상 된다
@@ -193,6 +279,17 @@ $$
 $$
 
 $\mathbf{T}$의 대각에는 $\mathbf{A}$의 고유값이 놓인다. 실행렬의 고유값이 모두 실수이면 $\mathbf{U}$를 실직교행렬로 잡을 수 있다.
+
+```python
+from scipy.linalg import schur
+
+B = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 10]], dtype=float)
+T, Z = schur(B)                       # B = Z T Z^T, Z 직교, T 상삼각
+np.allclose(Z @ T @ Z.T, B)           # True
+np.diag(T), np.linalg.eigvals(B)      # 같은 값: 16.707, -0.906, 0.198 (순서는 다를 수 있다)
+```
+
+쉬르 분해의 $\mathbf{T}$ 대각이 고유값이다. $\mathbf{B}$는 대칭이 아니므로 $\mathbf{T}$의 대각 위쪽(`4.76, 1.15, -0.10`)이 0이 아니며, 대칭이면 이 부분이 0이 되어 스펙트럼 정리가 된다. R 기본 함수에는 쉬르 분해가 없어 Python으로 확인했다.
 
 ### 스펙트럼 정리: 언제 유니타리 대각화가 되는가
 
@@ -219,6 +316,15 @@ $$
 
 **동시 대각화**: 유니타리 대각화 가능한 $\mathbf{A}, \mathbf{B}$를 같은 $\mathbf{U}$로 동시에 대각화할 수 있다 $\iff \mathbf{AB} = \mathbf{BA}$.
 
+```r
+S <- matrix(c(2, 1, 1, 2), nrow = 2)
+eS <- eigen(S)                        # 대칭행렬: 고유값 3, 1
+eS$vectors                            # 직교: (1,1)/sqrt(2), (-1,1)/sqrt(2)
+crossprod(eS$vectors)                 # V'V = I
+Cm <- matrix(c(1, 1i, 1i, 1), nrow = 2)               # 정규행렬 [[1,i],[i,1]]
+Cm %*% Conj(t(Cm)) - Conj(t(Cm)) %*% Cm              # 영행렬: 정규
+```
+
 ## 5. 스펙트럼 분해
 
 ### 형태
@@ -233,7 +339,7 @@ $$
 \mathbf{P}_i^2 = \mathbf{P}_i, \qquad \mathbf{P}_i^* = \mathbf{P}_i, \qquad \mathbf{P}_i\mathbf{P}_j = \mathbf{O}\ (i \neq j), \qquad \mathbf{P}_1 + \cdots + \mathbf{P}_k = \mathbf{I}
 $$
 
-고유값 $\lambda_i$의 정규직교 고유벡터를 $\mathbf{u}$들이라 하면 $\mathbf{P}_i = \sum \mathbf{u}\mathbf{u}^*$이다. 1편의 "열 × 행 = rank 1 행렬의 합" 관점 그대로다.
+고유값 $\lambda_i$의 정규직교 고유벡터를 $\mathbf{u}$들이라 하면 $\mathbf{P}_i = \sum \mathbf{u}\mathbf{u}^*$이다. [벡터와 행렬곱](/posts/la-vector-matrix)의 "열 × 행 = rank 1 행렬의 합" 관점 그대로다.
 
 ### 의미
 
@@ -265,6 +371,28 @@ $$
 
 고유벡터를 따로 구하지 않고 고유값만으로 정사영 행렬을 얻는다.
 
+세 고유값이 모두 다른 대칭행렬 $\mathbf{S} = \begin{pmatrix} 2 & -1 & 0 \\ -1 & 2 & -1 \\ 0 & -1 & 2 \end{pmatrix}$로 확인한다. 고유값은 $2 + \sqrt2,\ 2,\ 2 - \sqrt2$이다.
+
+```r
+S3 <- matrix(c(2, -1, 0, -1, 2, -1, 0, -1, 2), nrow = 3)
+e3 <- eigen(S3); lam <- e3$values; Q <- e3$vectors     # 3.414 2 0.586
+
+# 라그랑주 보간 기저로 정사영 행렬을 만든다
+Pl <- lapply(1:3, function(i)
+  Reduce(`%*%`, lapply(setdiff(1:3, i), function(j) (S3 - lam[j] * diag(3)) / (lam[i] - lam[j]))))
+max(abs(Pl[[1]] - Q[, 1] %o% Q[, 1]))                  # ~1e-16: 고유벡터로 만든 uu'와 같다
+max(abs(S3 - Reduce(`+`, Map(`*`, lam, Pl))))          # ~1e-16: A = sum(lambda_i P_i)
+Reduce(`+`, Map(function(l, P) exp(l) * P, lam, Pl))   # 행렬 지수 exp(S), 값이 [11.74, -10.11, 4.35 ...]
+```
+
+```python
+S3 = np.array([[2, -1, 0], [-1, 2, -1], [0, -1, 2]], dtype=float)
+lam, Q = np.linalg.eigh(S3)
+Ps = [np.outer(Q[:, i], Q[:, i]) for i in range(3)]    # P_i = u u^T
+np.allclose(sum(l * P for l, P in zip(lam, Ps)), S3), np.allclose(sum(Ps), np.eye(3))   # True True
+sum(np.exp(l) * P for l, P in zip(lam, Ps)).round(3)   # exp(S), R의 결과와 같다
+```
+
 ## 6. 양의 정부호 행렬
 
 ### 정의와 판정
@@ -284,6 +412,25 @@ h_{11} > 0, \qquad \det\begin{pmatrix} h_{11} & h_{12} \\ h_{21} & h_{22} \end{p
 $$
 
 고유값을 구하지 않고 행렬식만으로 판정할 수 있다. 준정부호는 **선행 소행렬식에 등호만 붙여서는 안 된다**. 예를 들어 $\operatorname{diag}(0, -1)$은 선행 소행렬식이 $0, 0$이지만 PSD가 아니다. 모든 주소행렬식(임의의 행·열 집합을 같이 고른 것)을 봐야 한다.
+
+```r
+S3 <- matrix(c(2, -1, 0, -1, 2, -1, 0, -1, 2), nrow = 3)
+c(det(S3[1, 1, drop = FALSE]), det(S3[1:2, 1:2]), det(S3))   # 2 3 4: 선행 소행렬식이 모두 양수
+chol(S3)                              # 성공 = 양의 정부호. 상삼각 R, S3 = t(R) %*% R
+
+M <- matrix(c(1, 2, 2, 1), nrow = 2)  # 고유값 3, -1
+try(chol(M))                          # 오류: 양의 정부호가 아니다
+```
+
+```python
+np.linalg.cholesky(S3).round(4)       # 하삼각 L, S3 = L L^T
+try:
+    np.linalg.cholesky(np.array([[1, 2], [2, 1.]]))
+except np.linalg.LinAlgError as err:
+    print(err)                        # Matrix is not positive definite
+```
+
+선행 소행렬식 $2, 3, 4$가 모두 양수이고 `chol`도 성공한다. 두 번째 행렬은 고유값이 $3, -1$이라 `chol`이 실패한다. 콜레스키 분해 $\mathbf{S} = \mathbf{R}^T\mathbf{R}$은 양의 정부호일 때만 존재하는 삼각 분해이며, [가우스 소거법과 LU 분해](/posts/la-gauss-lu)의 대칭 버전으로 계산량이 LU의 절반이다.
 
 ### 부분공간에서 양수인 경우
 
@@ -344,7 +491,88 @@ $n \times n$ 행렬 $\mathbf{A}$에 대해 다음은 모두 **동치**다. 시�
 
 정사각행렬에서는 단사와 전사가 같은 말이라 하나만 확인하면 된다는 점이 핵심이다.
 
-## 요약
+## 9. 통계에서의 쓰임
+
+**공분산행렬의 스펙트럼 분해.** 표본공분산 $\mathbf{S}$는 실대칭 양의 준정부호이므로 $\mathbf{S} = \mathbf{V}\boldsymbol\Lambda\mathbf{V}^T = \sum\lambda_j\mathbf{v}_j\mathbf{v}_j^T$로 직교 대각화된다. 고유벡터 $\mathbf{v}_j$가 주성분 방향, 고유값 $\lambda_j$가 그 방향의 분산이다. 이 분해에서 PCA가 나오며, 수학적 유도와 SVD와의 관계는 [특잇값 분해와 주성분분석](/posts/la-svd), 통계적 해석은 [데이터 마이닝 - 주성분분석](/posts/dm-pca)에서 다룬다.
+
+**이차형식과 카이제곱.** 마할라노비스 거리 제곱은 $\boldsymbol\Sigma^{-1}$의 이차형식이고, 주축 좌표에서는 분산으로 나눈 제곱의 합이 된다.
+
+$$
+d^2 = (\mathbf{x} - \boldsymbol\mu)^T\boldsymbol\Sigma^{-1}(\mathbf{x} - \boldsymbol\mu)
+= \sum_{j=1}^{p}\frac{\big(\mathbf{v}_j^T(\mathbf{x} - \boldsymbol\mu)\big)^2}{\lambda_j}
+$$
+
+$\mathbf{x} \sim N_p(\boldsymbol\mu, \boldsymbol\Sigma)$이면 $\mathbf{v}_j^T(\mathbf{x} - \boldsymbol\mu)/\sqrt{\lambda_j}$가 서로 독립인 표준정규이므로 $d^2 \sim \chi^2_p$이다. 고유값이 작은 방향의 편차가 크게 반영되어 이상치 탐지와 판별분석(QDA의 $\log\lvert\boldsymbol\Sigma_k\rvert = \sum\log\lambda_j$)에 쓰인다.
+
+**AR 정상성 조건.** AR($p$)의 동반행렬 $\mathbf{C}$는 첫 행이 $(\phi_1, \dots, \phi_p)$이고 아래는 단위행렬이 밀려 내려간 행렬이다. $\mathbf{C}$의 고유값은 $\Phi(B) = 1 - \phi_1B - \cdots - \phi_pB^p = 0$의 근의 **역수**이므로, "특성근이 단위원 밖"([시계열 - ARMA](/posts/ts-06-arma))은 "$\mathbf{C}$의 고유값이 모두 단위원 안"과 같다.
+
+**마르코프 연쇄.** 전이행렬 $\mathbf{P}$의 $k$단계 전이는 $\mathbf{P}^k = \mathbf{V}\mathbf{D}^k\mathbf{V}^{-1}$이다. 고유값 1에 대응하는 왼쪽 고유벡터가 정상분포이고, 나머지 고유값의 절댓값이 1보다 작으면 그 크기($\lvert\lambda_2\rvert^k$)대로 정상분포에 수렴한다([확률과정론 - 마코프체인과 정상분포](/posts/sp-04-markov-chain-stationary)).
+
+```r
+# 마할라노비스 거리: iris의 setosa 50개, 4개 변수
+X  <- as.matrix(iris[iris$Species == "setosa", 1:4])
+S  <- cov(X); mu <- colMeans(X)
+e  <- eigen(S); e$values                              # 0.2365 0.0369 0.0268 0.0090
+Z  <- sweep(X, 2, mu) %*% e$vectors                   # 주축 좌표 v_j'(x - mu)
+d2 <- rowSums(sweep(Z^2, 2, e$values, "/"))           # sum( (v'(x-mu))^2 / lambda )
+all.equal(d2, mahalanobis(X, mu, S))                  # TRUE
+c(mean(d2), mean(d2 <= qchisq(0.95, df = 4)))         # 3.92  0.90
+
+# AR(2): 동반행렬의 고유값 = 특성근의 역수
+ar_check <- function(phi) {
+  p <- length(phi)
+  C <- rbind(phi, cbind(diag(p - 1), 0))
+  c(eig_max = max(Mod(eigen(C)$values)), root_min = min(Mod(polyroot(c(1, -phi)))))
+}
+ar_check(c(0.5, 0.3))                 # 0.852  1.174: 정상 (고유값 < 1, 근 > 1)
+ar_check(c(0.5, 0.6))                 # 1.064  0.940: 비정상
+
+# 마르코프 연쇄: 날씨 전이행렬
+Pm <- matrix(c(0.4, 0.6, 0.7, 0.3), nrow = 2, byrow = TRUE)
+eigen(Pm)$values                      # 1.0 -0.3
+w <- eigen(t(Pm)); pi_hat <- Re(w$vectors[, 1]); pi_hat / sum(pi_hat)   # 0.538 0.462
+Pk <- diag(2); for (k in 1:20) Pk <- Pk %*% Pm; Pk    # 두 행이 모두 (0.538, 0.462)
+```
+
+```python
+# AR(2)와 마르코프 연쇄
+for phi in ([0.5, 0.3], [0.5, 0.6]):
+    C = np.array([phi, [1, 0]])
+    print(np.abs(np.linalg.eigvals(C)).max())         # 0.852 (정상), 1.064 (비정상)
+
+P = np.array([[0.4, 0.6], [0.7, 0.3]])
+w, V = np.linalg.eig(P.T)             # 왼쪽 고유벡터는 P^T의 고유벡터
+pi = V[:, np.argmax(w.real)].real
+pi / pi.sum()                         # [0.538, 0.462]
+np.linalg.matrix_power(P, 20)         # 두 행이 모두 정상분포
+```
+
+setosa 자료의 표본공분산 고유값은 $0.2365, 0.0369, 0.0268, 0.0090$이고, 주축 좌표로 계산한 $d^2$는 `mahalanobis()`와 일치한다. 표본공분산으로 계산한 $d^2$의 평균은 항상 $p(n-1)/n = 4 \times 49/50 = 3.92$이고, 50개 중 45개(0.90)가 $\chi^2_4$의 95% 분위수 이하였다. 모수를 추정했고 표본이 작으며 정규성도 완전하지 않으므로 이론값 0.95와 이 정도 차이는 날 수 있다. AR(2) $(0.5, 0.3)$은 동반행렬의 최대 고유값이 $0.852$($= 1/1.174$)라 정상이고, $(0.5, 0.6)$은 $1.064 > 1$이라 비정상이다. 날씨 전이행렬은 고유값이 $1, -0.3$이므로 $\mathbf{P}^{20}$의 오차는 $0.3^{20}$ 수준으로 사라져 두 행이 모두 정상분포 $(0.538, 0.462)$가 된다.
+
+## 비교
+
+대각화 계열의 분해는 포함 관계로 정리된다.
+
+$$
+\text{실대칭} \subset \text{에르미트} \subset \text{정규} \subset \text{대각화 가능} \subset \text{정사각행렬 전체}
+$$
+
+조건이 약할수록 적용 범위가 넓지만 분해가 약속하는 것은 줄어든다.
+
+| 분해 | 대상 | 형태 | 기저가 직교인가 | 쓰임 |
+|---|---|---|---|---|
+| 대각화 | 일차독립 고유벡터가 $n$개인 정사각 | $\mathbf{P}\boldsymbol\Lambda\mathbf{P}^{-1}$ | 아니다 | 거듭제곱, 마르코프 연쇄 |
+| 쉬르 | 모든 정사각 | $\mathbf{U}\mathbf{T}\mathbf{U}^*$ ($\mathbf{T}$ 상삼각) | 그렇다 | 고유값 계산 알고리즘, 증명 |
+| 스펙트럼 | 정규($\mathbf{A}^*\mathbf{A} = \mathbf{A}\mathbf{A}^*$), 실수에서는 대칭 | $\mathbf{Q}\boldsymbol\Lambda\mathbf{Q}^T$ | 그렇다 | 공분산, 이차형식, PCA |
+| 조르당 | 모든 정사각 | $\mathbf{P}\mathbf{J}\mathbf{P}^{-1}$ | 아니다 | 이론, 수치 계산에는 불안정 |
+
+고르는 기준은 다음과 같다.
+
+- 대칭(에르미트)이면 스펙트럼 분해를 쓴다. 고유값이 실수이고 기저가 직교라 가장 안정적이다.
+- 대칭이 아니어도 대각화되면 대각화로 거듭제곱을 계산한다. 고유벡터가 거의 평행하면(위의 전단 예시) 수치 오차가 커진다.
+- 대각화가 안 되거나 불확실하면 쉬르 분해로 삼각화한다. 직사각행렬은 고유값 분해 자체가 없으므로 SVD를 쓴다([SVD와 고유값 분해의 비교](/posts/la-svd)).
+
+## 정리
 
 | 개념 | 핵심 |
 |---|---|
@@ -360,31 +588,6 @@ $n \times n$ 행렬 $\mathbf{A}$에 대해 다음은 모두 **동치**다. 시�
 | 정사영 행렬 | $\mathbf{P}_i = \prod_{j \neq i}(\mathbf{A} - \lambda_j\mathbf{I})/(\lambda_i - \lambda_j)$ |
 | 양의 정부호 | 고유값 $> 0$ $\iff$ 선행 주소행렬식 $> 0$ (준정부호는 모든 주소행렬식 $\ge 0$) |
 | 이차형식 | $\mathbf{x}^T\mathbf{Ax} = \sum\lambda_iy_i^2$, 주축 = 고유벡터 |
-
-## R / Python으로 확인
-
-```r
-A <- matrix(c(5, 2, -6, -2), nrow = 2)
-e <- eigen(A)
-e$values; e$vectors                  # 고유벡터는 길이 1로 정규화되어 나온다
-A %*% A - 3 * A + 2 * diag(2)        # 케일리-해밀턴: 영행렬
-
-S <- matrix(c(2, 1, 1, 2), nrow = 2)
-eigen(S, symmetric = TRUE)           # 대칭행렬: 고유값 내림차순, 직교 고유벡터
-chol(S)                              # 양의 정부호면 성공 (S = t(R) %*% R)
-```
-
-```python
-import numpy as np
-
-A = np.array([[5, -6], [2, -2]], dtype=float)
-w, V = np.linalg.eig(A)          # 고유값 [2, 1] 순서는 보장되지 않음, 열이 정규화된 고유벡터
-A @ A - 3 * A + 2 * np.eye(2)    # 케일리-해밀턴: 영행렬
-
-S = np.array([[2, 1], [1, 2]], dtype=float)
-w, Q = np.linalg.eigh(S)         # 대칭행렬 전용: 고유값 오름차순 [1, 3], Q는 직교행렬
-np.linalg.cholesky(S)            # 양의 정부호면 성공, 아니면 LinAlgError
-```
 
 ## 참고자료
 

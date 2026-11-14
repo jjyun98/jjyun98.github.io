@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 300" width="760" height="300" font-family="'Pretendard','Apple SD Gothic Neo','Noto Sans KR',sans-serif">
+  <title>교호작용도의 세 패턴: 교호작용 없음, 순서형 교호작용, 교차형 교호작용</title>
+  <rect x="0" y="0" width="760" height="300" rx="12" fill="#ffffff"/>
+
+  <!-- 패널 1: 없음 -->
+  <g transform="translate(30,0)">
+    <text x="105" y="34" text-anchor="middle" font-size="15" font-weight="600" fill="#1e1e1e">(a) 교호작용 없음</text>
+    <path d="M20 60 L20 230 L210 230" fill="none" stroke="#495057" stroke-width="2" stroke-linecap="round"/>
+    <path d="M40 180 L115 140 L190 110" fill="none" stroke="#1971c2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M40 140 L115 100 L190 70" fill="none" stroke="#e03131" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="40" cy="180" r="4" fill="#1971c2"/><circle cx="115" cy="140" r="4" fill="#1971c2"/><circle cx="190" cy="110" r="4" fill="#1971c2"/>
+    <circle cx="40" cy="140" r="4" fill="#e03131"/><circle cx="115" cy="100" r="4" fill="#e03131"/><circle cx="190" cy="70" r="4" fill="#e03131"/>
+    <text x="40" y="250" text-anchor="middle" font-size="13" fill="#1e1e1e">B₁</text>
+    <text x="115" y="250" text-anchor="middle" font-size="13" fill="#1e1e1e">B₂</text>
+    <text x="190" y="250" text-anchor="middle" font-size="13" fill="#1e1e1e">B₃</text>
+    <text x="105" y="280" text-anchor="middle" font-size="13" fill="#495057">선이 평행: A의 효과가 B와 무관</text>
+  </g>
+
+  <!-- 패널 2: 순서형 -->
+  <g transform="translate(275,0)">
+    <text x="105" y="34" text-anchor="middle" font-size="15" font-weight="600" fill="#1e1e1e">(b) 순서형 교호작용</text>
+    <path d="M20 60 L20 230 L210 230" fill="none" stroke="#495057" stroke-width="2" stroke-linecap="round"/>
+    <path d="M40 200 L115 175 L190 155" fill="none" stroke="#1971c2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M40 180 L115 120 L190 65" fill="none" stroke="#e03131" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="40" cy="200" r="4" fill="#1971c2"/><circle cx="115" cy="175" r="4" fill="#1971c2"/><circle cx="190" cy="155" r="4" fill="#1971c2"/>
+    <circle cx="40" cy="180" r="4" fill="#e03131"/><circle cx="115" cy="120" r="4" fill="#e03131"/><circle cx="190" cy="65" r="4" fill="#e03131"/>
+    <text x="40" y="250" text-anchor="middle" font-size="13" fill="#1e1e1e">B₁</text>
+    <text x="115" y="250" text-anchor="middle" font-size="13" fill="#1e1e1e">B₂</text>
+    <text x="190" y="250" text-anchor="middle" font-size="13" fill="#1e1e1e">B₃</text>
+    <text x="105" y="280" text-anchor="middle" font-size="13" fill="#495057">간격만 변함: 순위는 그대로</text>
+  </g>
+
+  <!-- 패널 3: 교차형 -->
+  <g transform="translate(520,0)">
+    <text x="105" y="34" text-anchor="middle" font-size="15" font-weight="600" fill="#1e1e1e">(c) 교차형 교호작용</text>
+    <path d="M20 60 L20 230 L210 230" fill="none" stroke="#495057" stroke-width="2" stroke-linecap="round"/>
+    <path d="M40 190 L115 140 L190 75" fill="none" stroke="#1971c2" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M40 80 L115 135 L190 195" fill="none" stroke="#e03131" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="40" cy="190" r="4" fill="#1971c2"/><circle cx="115" cy="140" r="4" fill="#1971c2"/><circle cx="190" cy="75" r="4" fill="#1971c2"/>
+    <circle cx="40" cy="80" r="4" fill="#e03131"/><circle cx="115" cy="135" r="4" fill="#e03131"/><circle cx="190" cy="195" r="4" fill="#e03131"/>
+    <text x="40" y="250" text-anchor="middle" font-size="13" fill="#1e1e1e">B₁</text>
+    <text x="115" y="250" text-anchor="middle" font-size="13" fill="#1e1e1e">B₂</text>
+    <text x="190" y="250" text-anchor="middle" font-size="13" fill="#1e1e1e">B₃</text>
+    <text x="105" y="280" text-anchor="middle" font-size="13" fill="#495057">순위가 뒤집힘: 주효과만으론 판단 불가</text>
+  </g>
+
+  <!-- 범례 -->
+  <g transform="translate(560,48)">
+    <path d="M0 0 L22 0" stroke="#e03131" stroke-width="3" stroke-linecap="round"/>
+    <text x="28" y="5" font-size="12" fill="#1e1e1e">A₁</text>
+    <path d="M60 0 L82 0" stroke="#1971c2" stroke-width="3" stroke-linecap="round"/>
+    <text x="88" y="5" font-size="12" fill="#1e1e1e">A₂</text>
+  </g>
+</svg>

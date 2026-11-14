@@ -38,7 +38,7 @@ import torch, pandas as pd
 df = pd.read_csv("https://raw.githubusercontent.com/guebin/DL2022/main/posts/II.%20DNN/2022-09-22-regression.csv")
 x = torch.tensor(df.x).float().reshape(100, 1)      # (100, 1) 열벡터
 y = torch.tensor(df.y).float().reshape(100, 1)
-X = torch.concat([torch.ones(100, 1), x], axis=1)   # (100, 2): [1, x_i]
+X = torch.concat([torch.ones(100, 1), x], dim=1)   # (100, 2): [1, x_i]
 ```
 
 **학습**은 점들만 보고 $\hat{\mathbf W} = (\hat w_0, \hat w_1)$을 참값 $(2.5,\ 4)$에 가깝게 찾는 것이다. 그림으로 말하면 점들을 잘 지나는 직선 하나를 찾는 것이다. 반복 계산의 전략은 세 단계다.
@@ -248,7 +248,7 @@ $$
 
 이다. 이 자료에서 $\mathbf X^\top \mathbf X$의 고유값은 92.98과 121.39이므로 경계는 $1/121.39 = 0.00824$다.
 
-| $\alpha$ | 큰 고유값 방향 배율 $|1 - 2\alpha \cdot 121.39|$ | 해석 |
+| $\alpha$ | 큰 고유값 방향 배율 $\lvert 1 - 2\alpha \cdot 121.39\rvert$ | 해석 |
 |---|---|---|
 | 0.0001 | 0.976 | 30회 후에도 오차가 $0.976^{30} \approx 0.48$배 남음 (느림) |
 | 0.001 | 0.757 | 30회 후 오차가 $0.757^{30} \approx 0.0002$배 (수렴) |

@@ -4,6 +4,7 @@ published: 2022-09-02
 draft: false
 description: 'lm으로 모델 적합, broom으로 계수·적합도·예측·잔차 정리, 범주형 변수와 교호작용, formula 문법, 잔차로 패턴 찾기(diamonds, 일별 항공편), nest와 map으로 그룹별 모델을 실습으로 정리'
 series: 'R for Data Science'
+seriesOrder: 17
 tags: ['R', 'tidyverse', '회귀분석']
 ---
 
@@ -39,7 +40,7 @@ best$par                         # 직접 찾은 절편과 기울기
 coef(lm(y ~ x, data = sim1))     # lm의 최소제곱해
 ```
 
-두 결과가 (최적화 오차 범위에서) 같다. `lm()`은 이 문제를 반복 탐색 없이 정규방정식으로 바로 푼다. 원리는 [선형대수 - 정규직교기저와 최소제곱법](/posts/la-orthonormal)의 최소제곱해와 같다.
+두 결과가 (최적화 오차 범위에서) 같다. `lm()`은 이 문제를 반복 탐색 없이 QR 분해로 바로 푼다. 원리는 [선형대수 - 정규직교기저와 최소제곱법](/posts/la-orthonormal)의 최소제곱해와 같다.
 
 ## 2. lm과 broom
 

@@ -152,7 +152,7 @@ $y_i = 0 \cdot x_i + \varepsilon_i$, $\varepsilon_i \sim N(0, 0.01^2)$인 순수
 |---|---|---|
 | 자료 늘리기 | 자료 수집, 데이터 증강(회전·자르기 등) | |
 | 모형 줄이기 | 노드·층 수를 줄인다 | 변수 선택 |
-| 가중치 감쇠 | 손실에 $\lambda\lVert\mathbf w\rVert^2$을 더한다. `Adam(..., weight_decay=λ)` | 릿지 회귀 |
+| 가중치 감쇠 | 손실에 $\frac{\lambda}{2}\lVert\mathbf w\rVert^2$을 더한다(`Adam(..., weight_decay=λ)` 대응) | 릿지 회귀 |
 | 조기 종료 | 검증 손실이 오르기 시작하면 멈춘다 | |
 | 드롭아웃 | 학습 중 노드를 무작위로 끈다 | 배깅과 비슷한 앙상블 효과 |
 

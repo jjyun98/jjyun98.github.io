@@ -7,7 +7,7 @@ series: '선형대수학'
 tags: ['선형대수학', '수학']
 ---
 
-벡터공간은 선형대수의 모든 개념이 놓이는 무대다. 이 글은 벡터공간과 내적공간의 공리, 부분공간과 생성, 일차독립, 기저와 차원, 행렬의 네 가지 기본 공간 중 행공간·열공간·영공간과 계수를 정리한다.
+벡터공간은 선형대수의 모든 개념이 놓이는 무대다. 이 글은 벡터공간과 내적공간의 공리, 부분공간과 생성, 일차독립, 기저와 차원, 행렬의 네 가지 기본 공간 중 행공간·열공간·영공간과 계수를 정리한다. 코드는 해당 절에 붙였고, 통계에서의 쓰임(공선성, 자유도, 추정 가능한 대비)과 비교 절을 더했다.
 
 이전 글: [선형대수 - 행렬식, 치환과 보간다항식](/posts/la-determinant)
 
@@ -91,6 +91,17 @@ $$
 \dim(W_1 + W_2) = \dim W_1 + \dim W_2 - \dim(W_1 \cap W_2)
 $$
 
+$\mathbb{R}^3$에서 $W_1 = \langle \mathbf{e}_1, \mathbf{e}_2 \rangle$($xy$평면), $W_2 = \langle \mathbf{e}_2, \mathbf{e}_3 \rangle$($yz$평면)이면 $W_1 + W_2 = \mathbb{R}^3$이고 교집합은 $y$축이다. 생성집합의 rank가 차원이므로 코드로 확인할 수 있다.
+
+```r
+W1 <- rbind(c(1, 0, 0), c(0, 1, 0)); W2 <- rbind(c(0, 1, 0), c(0, 0, 1))
+r <- function(M) qr(M)$rank
+c(r(W1), r(W2), r(rbind(W1, W2)))        # 2 2 3
+r(W1) + r(W2) - r(rbind(W1, W2))         # 1 = dim(W1 ∩ W2)
+```
+
+$\dim W_1 = \dim W_2 = 2$, $\dim(W_1 + W_2) = 3$이므로 $\dim(W_1 \cap W_2) = 2 + 2 - 3 = 1$이다.
+
 ## 4. 일차독립
 
 ### 정의
@@ -110,6 +121,16 @@ $$
 | 소거 | 벡터들을 행으로 쌓아 행사다리꼴로 만든다. 0인 행이 생기면 일차종속 |
 | 행렬식 | $n$개의 벡터를 쌓은 $n \times n$ 행렬 $\mathbf{A}$에 대해, 일차독립 $\iff \det\mathbf{A} \neq 0$ |
 | 개수 | $\mathbb{R}^n$에서 $n$개보다 많은 벡터는 항상 일차종속 |
+
+$(1, 2, 3), (2, 3, 4), (3, 5, 7)$은 세 번째가 앞의 둘의 합이라 일차종속이다. 마지막 벡터를 $(1, 0, 1)$로 바꾸면 독립이다.
+
+```r
+V <- rbind(c(1, 2, 3), c(2, 3, 4), c(3, 5, 7))
+qr(V)$rank                                # 2: 일차종속
+qr(rbind(c(1, 2, 3), c(2, 3, 4), c(1, 0, 1)))$rank   # 3: 일차독립
+```
+
+rank가 벡터 개수(3)보다 작으면 일차종속이고, 같으면 독립이다. 행렬식으로도 같은 판정이 되지만 정사각일 때만 쓸 수 있고, rank는 모양에 관계없이 쓸 수 있다.
 
 ## 5. 기저와 차원
 
@@ -225,7 +246,80 @@ $\mathbf{A}^T$의 영공간 $N(\mathbf{A}^T) = \{\mathbf{y} \mid \mathbf{A}^T\ma
 - $\mathbf{A}$는 행공간을 열공간으로 일대일 대응시키고 영공간은 $\mathbf{0}$으로 보낸다.
 - 위 예시의 $\mathbf{A}$($3 \times 4$, rank 2)는 영공간이 $4 - 2 = 2$차원, 좌영공간이 $3 - 2 = 1$차원이다. 3행 = 1행 + 2 $\times$ 2행이므로 $\mathbf{y} = (1, 2, -1)^T$가 $\mathbf{y}^T\mathbf{A} = \mathbf{0}^T$를 만족한다.
 
-## 요약
+같은 $\mathbf{A}$로 rank와 두 영공간을 계산한다.
+
+```r
+A <- matrix(c(1, 1, 3, 0, 1, 2, 1, 0, 1, 1, 1, 3), nrow = 3)
+
+qr(A)$rank          # 2
+MASS::Null(t(A))    # N(A)의 기저, 열 2개 (MASS::Null(M)은 M^T x = 0을 구하므로 t(A) 전달)
+MASS::Null(A)       # 좌영공간 N(A^T)의 기저, 열 1개
+crossprod(A, MASS::Null(A))   # A^T y = 0 확인: 모두 0
+A %*% MASS::Null(t(A))        # A x = 0 확인: 모두 0
+```
+
+```python
+import numpy as np
+from scipy.linalg import null_space
+
+A = np.array([[1, 0, 1, 1], [1, 1, 0, 1], [3, 2, 1, 3]], dtype=float)
+np.linalg.matrix_rank(A)    # 2
+null_space(A)               # N(A)의 정규직교기저, 열 2개
+null_space(A.T)             # 좌영공간 N(A^T)의 기저, 열 1개
+```
+
+rank 2, 영공간 2개 열, 좌영공간 1개 열로 $2 + 2 = 4$(열의 수), $2 + 1 = 3$(행의 수)가 맞는다. 좌영공간의 기저는 $(-0.41, -0.82, 0.41)$로 앞서 구한 $(1, 2, -1)$에 비례한다.
+
+**통계에서의 쓰임:**
+
+- **완전공선성**은 $\mathbf{X}$의 열이 일차종속이라는 뜻이다. $\operatorname{rank}(\mathbf{X}) < p$이면 영공간에 0이 아닌 $\mathbf{x}$가 있어 $\mathbf{X}\boldsymbol\beta$가 같은 $\boldsymbol\beta$가 여러 개다. `lm(y ~ x1 + x2)`에서 `x2 = 3 * x1`이면 R은 계수 하나를 `NA`로 두고 rank 2인 모형으로 적합한다.
+- **자유도**는 부분공간의 차원이다. 적합값 $\hat{\mathbf{y}}$는 열공간 $C(\mathbf{X})$ 위에 있어 모형 자유도가 $\operatorname{rank}(\mathbf{X})$이고, 잔차는 직교하는 좌영공간 $N(\mathbf{X}^T)$에 있어 잔차 자유도가 $n - \operatorname{rank}(\mathbf{X})$이다. 위의 공선 모형은 $n = 10$, 모형 자유도 2, 잔차 자유도 8이며 `summary(lm())$df`가 `2 8 3`으로 보고한다(세 번째 값은 `NA`를 포함한 모수의 수).
+- **추정 가능한 대비**: $\mathbf{c}^T\boldsymbol\beta$는 $\mathbf{c}$가 $\mathbf{X}$의 행공간에 있을 때만 추정할 수 있다. 절편과 세 집단 더미를 모두 넣은 일원배치 설계행렬은 열이 4개인데 rank가 3이라 nullity가 1이다.
+
+```r
+g <- factor(rep(c("a", "b", "c"), each = 2))
+X <- cbind(1, model.matrix(~ 0 + g))     # 절편 + 집단 3개: 열 4개
+c(qr(X)$rank, ncol(X) - qr(X)$rank)      # rank 3, nullity 1
+estimable <- function(cc) qr(rbind(X, cc))$rank == qr(X)$rank   # c가 행공간에 있는가
+estimable(c(0, 1, -1, 0))                # TRUE : 집단 a와 b의 차
+estimable(c(1, 1, 0, 0))                 # TRUE : 집단 a의 평균
+estimable(c(0, 1, 0, 0))                 # FALSE: 효과 α_a 하나만으로는 안 됨
+```
+
+집단 간 차이와 집단 평균은 추정할 수 있지만 절편이나 집단 효과 하나만으로는 값이 정해지지 않는다. 영공간 방향 $(1, -1, -1, -1)$만큼 절편과 효과를 서로 옮겨도 $\mathbf{X}\boldsymbol\beta$가 같기 때문이다.
+
+## 비교
+
+**부분공간의 합과 교집합.** 합집합은 부분공간이 아니고, 합공간과 교집합이 부분공간이다.
+
+| | 교집합 $W_1 \cap W_2$ | 합공간 $W_1 + W_2$ | 합집합 $W_1 \cup W_2$ |
+|---|---|---|---|
+| 부분공간인가 | 항상 | 항상 | 일반적으로 아님 |
+| 정체 | 둘 모두에 속하는 벡터 | 두 공간의 벡터를 더한 것 전체 | 둘 중 하나에 속하는 벡터 |
+| 차원 | $\dim W_1 + \dim W_2 - \dim(W_1 + W_2)$ | $\dim W_1 + \dim W_2 - \dim(W_1 \cap W_2)$ | 해당 없음 |
+
+**네 가지 기본 부분공간.** $\mathbf{A}$가 $m \times n$, rank $r$일 때
+
+| 공간 | 위치 | 차원 | 직교하는 짝 | 기저를 얻는 방법 |
+|---|---|---|---|---|
+| 행공간 $R(\mathbf{A})$ | $\mathbb{R}^n$ | $r$ | 영공간 | 기약행사다리꼴의 0이 아닌 행 |
+| 영공간 $N(\mathbf{A})$ | $\mathbb{R}^n$ | $n - r$ | 행공간 | 자유변수로 푼 해 |
+| 열공간 $C(\mathbf{A})$ | $\mathbb{R}^m$ | $r$ | 좌영공간 | 선행성분이 있는 열 |
+| 좌영공간 $N(\mathbf{A}^T)$ | $\mathbb{R}^m$ | $m - r$ | 열공간 | $\mathbf{A}^T$의 영공간 |
+
+**rank와 nullity.** rank는 독립인 열(또는 행)의 개수이고, nullity는 $\mathbf{Ax} = \mathbf{0}$의 자유변수 개수다. 둘의 합은 열의 수 $n$이다.
+
+**일차독립과 생성.** 기저는 둘을 모두 만족하는 집합이다.
+
+| | 일차독립 | 생성 |
+|---|---|---|
+| 뜻 | 불필요한 벡터가 없다 | 공간을 모두 덮는다 |
+| 벡터가 너무 많으면 | 깨진다 ($n$개 초과면 종속) | 유지된다 |
+| 벡터가 너무 적으면 | 유지된다 | 깨진다 ($n$개 미만이면 생성 못 함) |
+
+$\dim V = n$이면 $n$개의 벡터는 둘 중 하나만 확인해도 기저다.
+
+## 정리
 
 | 개념 | 핵심 |
 |---|---|
@@ -240,26 +334,6 @@ $\mathbf{A}^T$의 영공간 $N(\mathbf{A}^T) = \{\mathbf{y} \mid \mathbf{A}^T\ma
 | 계수 | 행계수 = 열계수 = 선행성분 개수 |
 | 네 부분공간 | $\mathbb{R}^n$: 행공간 $\perp$ 영공간 ($r$, $n - r$), $\mathbb{R}^m$: 열공간 $\perp$ 좌영공간 ($r$, $m - r$) |
 | 차원정리 | $\operatorname{rank} + \operatorname{nullity} = $ 열의 수, nullity = 자유변수 개수 |
-
-## R / Python으로 확인
-
-```r
-A <- matrix(c(1, 1, 3, 0, 1, 2, 1, 0, 1, 1, 1, 3), nrow = 3)
-
-qr(A)$rank          # 2
-MASS::Null(t(A))    # N(A)의 기저, 열 2개 (MASS::Null(M)은 M^T x = 0을 구하므로 t(A) 전달)
-MASS::Null(A)       # 좌영공간 N(A^T)의 기저, 열 1개
-```
-
-```python
-import numpy as np
-from scipy.linalg import null_space
-
-A = np.array([[1, 0, 1, 1], [1, 1, 0, 1], [3, 2, 1, 3]], dtype=float)
-np.linalg.matrix_rank(A)    # 2
-null_space(A)               # N(A)의 정규직교기저, 열 2개
-null_space(A.T)             # 좌영공간 N(A^T)의 기저, 열 1개
-```
 
 ## 참고자료
 

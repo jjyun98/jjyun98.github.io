@@ -156,7 +156,7 @@ approx_err <- map_dbl(1:4, \(M) {
 tibble(M = 1:4, unexplained = round(approx_err, 3), PVE_cum = round(cumsum(pve), 3))
 ```
 
-$1 - $ 누적 PVE가 근사 오차 비율과 정확히 같게 나온다. 분산 최대화와 근사 오차 최소화가 같은 문제라는 것을 확인할 수 있다.
+$1 - \text{누적 PVE}$가 근사 오차 비율과 정확히 같게 나온다. 분산 최대화와 근사 오차 최소화가 같은 문제라는 것을 확인할 수 있다.
 
 ## 다른 차원축소 방법과의 비교
 

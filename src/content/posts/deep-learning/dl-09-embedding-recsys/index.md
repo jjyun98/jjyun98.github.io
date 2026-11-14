@@ -57,7 +57,7 @@ $$
 편향을 빼면 평점 행렬 $\mathbf R$ ($n_u \times n_i$)을 $\mathbf P\mathbf Q^\top$ ($n_u \times k$ 곱하기 $k \times n_i$)으로 근사하는 것이다. 모든 칸이 관측되어 있다면 최적의 계수-$k$ 근사는 절단 특잇값 분해로 바로 구해진다(에카르트–영 정리). 추천 자료는 대부분의 칸이 비어 있어서 SVD를 쓸 수 없고, 대신 **관측된 칸에서만** 손실을 계산해 경사하강법으로 푼다.
 
 $$
-L = \frac{1}{|\Omega|}\sum_{(u,i) \in \Omega}\big(r_{ui} - \hat r_{ui}\big)^2 + \lambda\big(\lVert\mathbf p_u\rVert^2 + \lVert\mathbf q_i\rVert^2\big)
+L = \frac{1}{|\Omega|}\sum_{(u,i) \in \Omega}\big(r_{ui} - \hat r_{ui}\big)^2 + \lambda\left(\sum_u \lVert\mathbf p_u\rVert^2 + \sum_i \lVert\mathbf q_i\rVert^2\right)
 $$
 
 $\Omega$는 관측된 (사용자, 아이템) 쌍의 집합이다. 빈칸을 예측하는 근거는 "평점 행렬은 저차원 구조를 가진다", 즉 사람들의 취향과 아이템의 성격이 소수의 숨은 요인으로 설명된다는 가정이다.

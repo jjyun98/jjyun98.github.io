@@ -4,6 +4,7 @@ published: 2022-08-19
 draft: false
 description: 'forcats로 범주형 변수의 수준 순서 바꾸기(fct_infreq, fct_reorder, fct_reorder2, fct_relevel), 수준 이름 바꾸기와 묶기(fct_recode, fct_collapse, fct_lump)를 gss_cat 실습으로 정리'
 series: 'R for Data Science'
+seriesOrder: 8
 tags: ['R', 'tidyverse', '데이터 전처리']
 ---
 
@@ -147,6 +148,16 @@ gss_cat |>
 | `fct_lump_min(f, min)` | 개수가 min 이상인 범주 |
 | `fct_lump_lowfreq(f)` | "Other"가 가장 작은 범주보다 작게 유지되도록 |
 
+### 비교: recode, collapse, lump
+
+| 함수 | 바꾸는 방식 | 쓰는 때 |
+|---|---|---|
+| `fct_recode` | 수준 이름을 하나씩 직접 바꾼다. 같은 이름을 주면 묶인다 | 이름 정리가 목적이고 몇 개만 바꿀 때 |
+| `fct_collapse` | 새 이름 하나에 옛 수준 여러 개를 벡터로 지정한다 | 많은 수준을 몇 개 범주로 직접 묶을 때 |
+| `fct_lump_*` | 빈도 기준으로 드문 수준을 자동으로 `Other`에 묶는다 | 기준을 직접 정하지 않고 상위 범주만 남길 때 |
+
+묶는 기준을 내가 정하면 `fct_collapse`, 빈도가 기준이면 `fct_lump_*`다. `fct_lump_*`는 의미가 다른 범주도 빈도가 낮다는 이유로 합치므로, 합친 뒤 `count()`로 결과를 확인한다.
+
 ## 자주 하는 실수
 
 | 증상 | 원인과 해결 |
@@ -175,4 +186,4 @@ gss_cat |>
 - *R for Data Science* (2nd ed.): [16 Factors](https://r4ds.hadley.nz/factors.html)
 - [forcats 공식 문서](https://forcats.tidyverse.org/)
 
-다음 글: [R4DS - 반복: across와 map](/posts/r4ds-iteration)
+다음 글: [R4DS - 날짜와 시간](/posts/r4ds-datetime)

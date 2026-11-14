@@ -15,7 +15,7 @@ library(forecast)
 library(patchwork)
 theme_set(theme_minimal(base_size = 12))
 
-data_url <- "https://raw.githubusercontent.com/Bricoler/time-series-analysis/master/timedata/"
+data_url <- "https://raw.githubusercontent.com/Bricoler/time-series-analysis/172803efe88d52321e43a3533b2fd2d1eeb6a6e4/timedata/"
 read_ts <- function(file, start, frequency = 12) {
   ts(scan(paste0(data_url, file), quiet = TRUE), start = start, frequency = frequency)
 }
@@ -170,6 +170,14 @@ autoplot(dec) + labs(x = NULL)
 
 양 끝 6개월은 이동평균을 계산할 수 없어 추세와 불규칙 성분이 비어 있다. 계절 성분은 해마다 똑같다.
 
+계절지수는 한 해 안에서 정규화한다. 가법에서는 $\sum_{i=1}^{s}\hat S_i = 0$이라 계절 성분이 추세 수준을 옮기지 않는다. 승법에서는 계절지수의 평균이 1이 되게 하는 것이 `decompose(type = "multiplicative")`의 방식이고, 로그를 취해 가법으로 분해한 뒤 $e^{\hat S_i}$로 되돌리면 지수의 곱이 1이 된다. 3절의 지시함수 계수도 같은 조건을 만족한다. 식료품 자료에서 3절의 12개 월별 계수(추세 제거 후 지시함수 회귀)의 합을 계산하면 0이다.
+
+```r
+c(sum_indicator = sum(coef(season_fit)),
+  sum_classical = sum(dec$figure),
+  prod_exp_indicator = prod(exp(coef(season_fit))))
+```
+
 ### STL
 
 STL(Seasonal and Trend decomposition using Loess)은 국소회귀(loess)로 추세와 계절을 반복 추정한다. 계절 패턴이 해마다 조금씩 변하는 것을 허용하고, 이상점에 강건하게(`robust = TRUE`) 만들 수 있다.
@@ -200,7 +208,7 @@ autoplot(food, series = "original") +
 
 ![원계열과 계절조정 계열](./images/ts04-06.png)
 
-계절조정을 하면 "이번 달 출하가 지난달보다 줄었다"가 계절 때문인지 실제 경기 때문인지 판단할 수 있다. 통계청과 한국은행은 이동평균을 여러 번 반복하는 X-13ARIMA-SEATS를 쓴다. R에서는 `seasonal` 패키지가 이를 감싸 준다.
+계절조정을 하면 "이번 달 출하가 지난달보다 줄었다"가 계절 때문인지 실제 경기 때문인지 판단할 수 있다. X-11 계열은 이 장의 방법을 반복해서 다듬은 것이다. 중심이동평균으로 추세를 뽑고, 계절 성분을 구하고, 계절조정 계열에서 다시 추세를 추정하는 과정을 되풀이하며, 이상값을 줄이고 양 끝을 ARIMA 예측으로 늘려 이동평균을 계산한다. X-13ARIMA-SEATS가 그 최신 판이고, 통계청과 한국은행의 계절조정이 이 계열이다. R에서는 `seasonal` 패키지가 이를 감싸 준다. 이 글에서는 실행하지 않았다.
 
 ## 7. 분해 방법의 비교
 
@@ -213,7 +221,7 @@ autoplot(food, series = "original") +
 | 이상값 | 민감 | 민감 | `robust = TRUE`로 강건 |
 | 승법 분해 | 로그 변환 후 가법 | `type = "multiplicative"` | 로그 변환 후 가법 |
 
-추세모형 회귀와 고전적 분해는 계절 성분을 해마다 같은 값으로 고정하고, STL은 `s.window`에 따라 해마다 달라지게 둔다. 식료품 자료처럼 계절 패턴이 안정적이면 세 방법의 평균 계절 성분은 거의 같다. 계절 패턴이 바뀌는 시계열을 계절조정할 때 STL을 쓰는 이유다.
+추세모형 회귀와 고전적 분해는 계절 성분을 해마다 같은 값으로 고정하고, STL은 `s.window`에 따라 해마다 달라지게 둔다. 식료품 자료처럼 계절 패턴이 안정적이면 세 방법의 월별 계절 성분은 비슷하다. 로그 척도에서 지시함수 회귀와 고전적 분해는 월별로 최대 0.011, STL의 해별 평균과는 최대 0.016 차이가 난다. 계절 패턴이 바뀌는 시계열을 계절조정할 때 STL을 쓰는 이유다.
 
 ## 요약
 

@@ -1,6 +1,6 @@
 ---
 title: '데이터 시각화 - 판다스 백엔드와 plotly'
-published: 2021-11-29
+published: 2021-11-24
 draft: false
 description: '데이터프레임의 plot 메서드(line, bar, pie, box, hist, kde, area)로 바로 그리는 법을 휴대폰 시장점유율 자료로 정리하고, backend를 plotly로 바꿔 같은 코드로 인터랙티브 그림을 만든다. tidy data가 color, facet 맵핑을 얼마나 쉽게 하는지 tips 자료로 확인한다.'
 series: '데이터 시각화'
@@ -149,6 +149,14 @@ df.set_index('Date').plot.area(alpha=0.6)
 ```
 
 <iframe src="/charts/dv/dv11-avg.html" width="100%" height="400px" frameborder="0" scrolling="no"></iframe>
+
+앞의 영역 그림도 `backend='plotly'`만 더하면 된다. 범례를 클릭해 일부 제조사를 끄고 나머지 점유율만 겹쳐 볼 수 있다.
+
+```python
+df.set_index('Date').plot.area(backend='plotly')
+```
+
+<iframe src="/charts/dv/dv11-area.html" width="100%" height="450px" frameborder="0" scrolling="no"></iframe>
 
 plotly 백엔드는 plotly express의 인자를 그대로 받는다. 그래서 tidy한 표만 있으면 `color`, `facet_col`, `facet_row`, `text` 같은 맵핑을 쓸 수 있다. matplotlib 백엔드로는 하기 어려운 일이다.
 

@@ -11,7 +11,25 @@ const config: SiteConfig = {
   // The author of the site, used in the footer, SEO, and RSS feed.
   author: 'jjyun98',
   // Keywords for SEO, used in the meta tags.
-  tags: ['통계학', '데이터 분석', '데이터 마이닝', '시계열', '생명과학통계', '미시경제학', 'R', 'SAS', 'Python'],
+  tags: [
+    '통계학',
+    '데이터 분석',
+    '데이터 마이닝',
+    '기계학습',
+    '딥러닝',
+    '시계열',
+    '실험계획법',
+    '생명과학통계',
+    '선형대수학',
+    '확률과정론',
+    '데이터 시각화',
+    '미시경제학',
+    '데이터 엔지니어링',
+    'R',
+    'SAS',
+    'Python',
+    'SQL',
+  ],
   // Path to the image used for generating social media previews.
   // Needs to be a square JPEG file due to limitations of the social card generator.
   // Try https://squoosh.app/ to easily convert images to JPEG.

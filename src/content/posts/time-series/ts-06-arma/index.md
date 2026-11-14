@@ -105,7 +105,7 @@ $$
 \phi_1 + \phi_2 < 1, \qquad \phi_2 - \phi_1 < 1, \qquad -1 < \phi_2 < 1
 $$
 
-- ACF: $\rho_k = \phi_1 \rho_{k-1} + \phi_2 \rho_{k-2}$ (Yule-Walker), $\rho_1 = \dfrac{\phi_1}{1 - \phi_2}$. 특성근이 실수면 지수적으로, 복소수면 **감쇠하는 사인 곡선** 모양으로 줄어든다.
+- ACF: $\rho_k = \phi_1 \rho_{k-1} + \phi_2 \rho_{k-2}$ (Yule-Walker), $\rho_1 = \dfrac{\phi_1}{1 - \phi_2}$, $\rho_2 = \dfrac{\phi_1^2}{1 - \phi_2} + \phi_2$. 예를 들어 $(\phi_1, \phi_2) = (0.5, 0.3)$이면 $\rho_1 = 0.714$, $\rho_2 = 0.657$이고 `ARMAacf()`와 일치한다. 특성근이 실수면 지수적으로, 복소수면 **감쇠하는 사인 곡선** 모양으로 줄어든다.
 - PACF: 시차 2 이후 절단, $\phi_{22} = \phi_2$.
 
 ```r w=9 h=5.5
@@ -117,7 +117,13 @@ theory_plot(ar = c(0.8, -0.7), title = "AR(2): phi1 = 0.8, phi2 = -0.7 (complex 
 
 ### AR(p)
 
-정상성 조건은 $\Phi(B) = 0$의 모든 근이 단위원 밖에 있는 것이다. ACF는 지수적 감소나 감쇠 사인 곡선이 섞인 모양으로 서서히 줄고, **PACF는 시차 $p$ 이후 절단**된다.
+정상성 조건은 $\Phi(B) = 0$의 모든 근이 단위원 밖에 있는 것이다. 자기공분산은 $k \ge 1$에서 Yule-Walker 방정식을 만족한다.
+
+$$
+\rho_k = \phi_1 \rho_{k-1} + \phi_2 \rho_{k-2} + \cdots + \phi_p \rho_{k-p}
+$$
+
+ACF는 지수적 감소나 감쇠 사인 곡선이 섞인 모양으로 서서히 줄고, **PACF는 시차 $p$ 이후 절단**된다.
 
 ## 2. 이동평균모형 MA(q)
 
@@ -168,16 +174,16 @@ $$
 \rho_1 = \frac{-\theta_1 + \theta_1\theta_2}{1 + \theta_1^2 + \theta_2^2}, \qquad \rho_2 = \frac{-\theta_2}{1 + \theta_1^2 + \theta_2^2}, \qquad \rho_k = 0 \;(k \ge 3)
 $$
 
-가역 조건은 AR(2) 정상 조건과 같은 꼴이다: $\theta_1 + \theta_2 < 1$, $\theta_2 - \theta_1 < 1$, $-1 < \theta_2 < 1$. MA($q$)의 **ACF는 시차 $q$ 이후 절단**, PACF는 서서히 감소한다.
+가역 조건은 AR(2) 정상 조건과 같은 꼴이다: $\theta_1 + \theta_2 < 1$, $\theta_2 - \theta_1 < 1$, $-1 < \theta_2 < 1$. MA($q$)의 일반형은 다음과 같고 **ACF는 시차 $q$ 이후 절단**, PACF는 서서히 감소한다.
+
+$$
+\gamma_0 = \sigma^2\Big(1 + \sum_{i=1}^q \theta_i^2\Big), \qquad
+\rho_k = \frac{-\theta_k + \theta_1\theta_{k+1} + \cdots + \theta_{q-k}\theta_q}{1 + \theta_1^2 + \cdots + \theta_q^2} \;\; (1 \le k \le q), \qquad \rho_k = 0 \;\; (k > q)
+$$
 
 ## 3. AR과 MA의 쌍대성
 
-| | AR($p$) | MA($q$) |
-|---|---|---|
-| 다른 표현 | 정상이면 MA($\infty$) | 가역이면 AR($\infty$) |
-| ACF | 서서히 감소 | 시차 $q$ 이후 절단 |
-| PACF | 시차 $p$ 이후 절단 | 서서히 감소 |
-| 조건 | 정상성 필요, 가역성은 항상 만족 | 가역성 필요, 정상성은 항상 만족 |
+AR과 MA는 서로 거울이다. 정상인 AR($p$)는 MA($\infty$)로, 가역인 MA($q$)는 AR($\infty$)로 바꿔 쓸 수 있다. AR은 정상성 조건이 필요하고 가역성은 항상 만족하며, MA는 반대로 가역성 조건이 필요하고 정상성은 항상 만족한다. 그래서 ACF와 PACF의 역할이 뒤바뀐다(AR은 PACF가 절단, MA는 ACF가 절단). 자세한 대비는 6절의 표에 정리했다.
 
 ## 4. ARMA(p, q)
 
@@ -191,11 +197,11 @@ $$
 - $\Phi(B)$와 $\Theta(B)$가 공통 인수를 가지면 약분되어 더 작은 모형이 된다. 공통 인수가 없어야 한다.
 - 평균: $\mu = \dfrac{\delta}{1 - \phi_1 - \cdots - \phi_p}$
 
-| 모형 | ACF | PACF |
-|---|---|---|
-| AR($p$) | 지수적 감소 또는 감쇠 사인 곡선 | 시차 $p$ 이후 절단 |
-| MA($q$) | 시차 $q$ 이후 절단 | 지수적 감소 또는 감쇠 사인 곡선 |
-| ARMA($p$, $q$) | 시차 $q$ 이후(또는 $\max(q-p, 0)$ 이후) 감소 | 시차 $p$ 이후(또는 $\max(p-q, 0)$ 이후) 감소 |
+ARMA($p, q$)의 ACF는 시차 $k > q$에서 AR 부분과 같은 차분방정식을 따른다.
+
+$$
+\rho_k = \phi_1 \rho_{k-1} + \cdots + \phi_p \rho_{k-p}, \qquad k > q
+$$
 
 ### ARMA(1, 1)
 
@@ -209,7 +215,7 @@ $$
 \rho_k = \phi \rho_{k-1} \;\; (k \ge 2)
 $$
 
-시차 1의 값은 $\phi$와 $\theta$가 함께 정하고, 그 뒤로는 AR(1)처럼 $\phi$배씩 줄어든다. ACF와 PACF 모두 절단되지 않으므로 표본 그림만으로 ARMA(1,1)을 AR(2)나 MA(2)와 구별하기 어렵다. 이때는 8편의 AIC·BIC로 비교한다.
+시차 1의 값은 $\phi$와 $\theta$가 함께 정하고, 그 뒤로는 AR(1)처럼 $\phi$배씩 줄어든다. 예를 들어 $\phi = 0.8$, $\theta = -0.7$(R에서 `ma = 0.7`)이면 $\rho_1 = 0.897$, $\rho_2 = 0.8\rho_1 = 0.717$이고 `ARMAacf()`의 값과 같다. 같은 $\phi$라도 $\theta = 0.7$이면 $\rho_1 = 0.119$로 크게 달라지므로 두 모수가 시차 1을 함께 정한다. $\phi = \theta$이면 $\Phi(B)$와 $\Theta(B)$가 같은 인수를 가져 약분되고 $Z_t - \mu = \epsilon_t$, 곧 백색잡음이 된다. ACF와 PACF 모두 절단되지 않으므로 표본 그림만으로 ARMA(1,1)을 AR(2)나 MA(2)와 구별하기 어렵다. 이때는 8편의 AIC·BIC로 비교한다.
 
 ```r w=9 h=5.5
 # 교재 표기 (phi, theta) = (-0.5, 0.3)과 (0.8, -0.7) → R의 ma는 부호 반대
@@ -221,7 +227,7 @@ theory_plot(ar = -0.5, ma = -0.3, title = "ARMA(1,1): phi = -0.5, theta = 0.3") 
 
 ## 5. 시뮬레이션 자료의 SACF·SPACF
 
-```r w=9 h=6
+```r w=9 h=8.5
 set.seed(123)
 sim_acf <- function(model, n = 200, title) {
   z <- arima.sim(model, n = n)
@@ -229,12 +235,13 @@ sim_acf <- function(model, n = 200, title) {
     (ggPacf(z, lag.max = 20) + labs(title = "SPACF"))
 }
 sim_acf(list(ar = c(0.8, -0.7)), title = "AR(2)") /
-  sim_acf(list(ma = -0.8), title = "MA(1), theta = 0.8")
+  sim_acf(list(ma = -0.8), title = "MA(1), theta = 0.8") /
+  sim_acf(list(ar = 0.8, ma = 0.7), title = "ARMA(1,1), phi = 0.8, theta = -0.7")
 ```
 
-![n = 200인 AR(2)와 MA(1) 시뮬레이션의 SACF와 SPACF](./images/ts06-06.png)
+![n = 200인 AR(2), MA(1), ARMA(1,1) 시뮬레이션의 SACF와 SPACF](./images/ts06-06.png)
 
-표본에서는 이론처럼 깔끔하게 절단되지 않는다. 점선($\pm 2/\sqrt n$)을 기준으로 "어디서 끊기는가", "서서히 줄어드는가"를 대략 읽는다.
+ARMA(1,1)은 SACF와 SPACF 모두 절단되지 않고 줄어든다. 표본에서는 이론처럼 깔끔하게 절단되지 않는다. 점선($\pm 2/\sqrt n$)을 기준으로 "어디서 끊기는가", "서서히 줄어드는가"를 대략 읽는다.
 
 ## 6. AR, MA, ARMA 모형의 비교
 
@@ -243,8 +250,8 @@ sim_acf(list(ar = c(0.8, -0.7)), title = "AR(2)") /
 | 현재 값을 설명하는 것 | 과거 관측값 | 과거 오차(충격) | 둘 다 |
 | 정상성 조건 | $\Phi(B) = 0$의 근이 단위원 밖 | 항상 정상 | AR 부분의 조건 |
 | 가역성 조건 | 항상 가역 | $\Theta(B) = 0$의 근이 단위원 밖 | MA 부분의 조건 |
-| ACF | 지수적·사인 곡선형으로 감소 | 시차 $q$ 이후 0 (절단) | 시차 $q$ 이후(또는 $\max(q-p, 0)$ 이후) 감소 |
-| PACF | 시차 $p$ 이후 0 (절단) | 지수적·사인 곡선형으로 감소 | 시차 $p$ 이후(또는 $\max(p-q, 0)$ 이후) 감소 |
+| ACF | 지수적·사인 곡선형으로 감소 | 시차 $q$ 이후 0 (절단) | 절단 없이 감소, $k > q$에서 AR 차분방정식을 따름 |
+| PACF | 시차 $p$ 이후 0 (절단) | 지수적·사인 곡선형으로 감소 | 절단 없이 감소 |
 | 충격의 지속 | 무한히 (점점 약해짐) | $q$시점 뒤 사라짐 | 무한히 |
 | 다른 표현 | MA($\infty$) | AR($\infty$) (가역일 때) | AR($\infty$), MA($\infty$) |
 | 차수 식별 | PACF 절단점 | ACF 절단점 | 정보 기준 (EACF 등) |
@@ -253,11 +260,7 @@ AR과 MA는 ACF와 PACF의 역할이 서로 뒤바뀐 쌍대 관계다. 순수 A
 
 ## 요약
 
-| 모형 | 식 (교재 표기) | 조건 | ACF | PACF |
-|---|---|---|---|---|
-| AR(1) | $Z_t = \phi Z_{t-1} + \epsilon_t$ | $\lvert \phi \rvert < 1$ | $\phi^k$ | 시차 1 이후 0 |
-| AR(2) | $+ \phi_2 Z_{t-2}$ | 삼각형 영역 | 지수·사인 감소 | 시차 2 이후 0 |
-| MA(1) | $Z_t = \epsilon_t - \theta\epsilon_{t-1}$ | $\lvert \theta \rvert < 1$ (가역) | 시차 1 이후 0 | 지수 감소 |
-| MA(2) | $- \theta_2 \epsilon_{t-2}$ | 삼각형 영역 | 시차 2 이후 0 | 지수·사인 감소 |
-| ARMA(1,1) | 둘 다 | 둘 다 | 시차 1 이후 $\phi$배 감소 | 감소 |
-| R 주의 | MA 부호가 반대 | | | `ma = -theta` |
+- AR($p$): $\Phi(B)(Z_t-\mu)=\epsilon_t$, 정상 조건은 근이 단위원 밖, AR(1)은 $\rho_k=\phi^k$이고 PACF는 시차 $p$ 이후 0이다.
+- MA($q$): $Z_t-\mu=\Theta(B)\epsilon_t$, 항상 정상이고 가역 조건이 필요하다. MA(1)은 $\rho_1=-\theta/(1+\theta^2)$이고 ACF는 시차 $q$ 이후 0이다.
+- ARMA(1,1): $\rho_1=(\phi-\theta)(1-\phi\theta)/(1+\theta^2-2\phi\theta)$, $\rho_k=\phi\rho_{k-1}$ $(k\ge2)$. ACF와 PACF 모두 절단되지 않아 차수는 정보 기준으로 정한다.
+- 혼동 주의: 교재의 $\theta$는 빼는 형태라 R에서 `ma = -theta`. $\theta$와 $1/\theta$는 같은 $\rho_1$을 주므로 $|\theta|<1$인 가역해를 고른다.

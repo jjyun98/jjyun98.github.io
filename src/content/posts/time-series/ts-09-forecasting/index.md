@@ -2,7 +2,7 @@
 title: '시계열 분석 - 예측'
 published: 2022-10-31
 draft: false
-description: '최소평균제곱오차 예측과 조건부 기대값, AR(1)·MA(1)·ARMA 모형의 예측값과 예측오차 분산, 파이 가중치와 예측구간, 비정상 ARIMA 예측의 성질, 예측 갱신과 모형 비교를 정리한다.'
+description: '최소평균제곱오차 예측과 조건부 기대값, AR(1)·MA(1)·ARMA 모형의 예측값과 예측오차 분산, 선형과정 가중치와 예측구간, 비정상 ARIMA 예측의 성질, 예측 갱신과 모형 비교를 정리한다.'
 series: '시계열 분석'
 tags: ['시계열', 'R']
 ---
@@ -15,7 +15,7 @@ library(forecast)
 library(patchwork)
 theme_set(theme_minimal(base_size = 12))
 
-data_url <- "https://raw.githubusercontent.com/Bricoler/time-series-analysis/master/timedata/"
+data_url <- "https://raw.githubusercontent.com/Bricoler/time-series-analysis/172803efe88d52321e43a3533b2fd2d1eeb6a6e4/timedata/"
 read_ts <- function(file, start = 1, frequency = 1) {
   ts(scan(paste0(data_url, file), quiet = TRUE), start = start, frequency = frequency)
 }
@@ -68,7 +68,7 @@ $$
 Var(e_n(l)) = \begin{cases} \sigma^2, & l = 1 \\ (1 + \theta^2)\sigma^2, & l > 1 \end{cases}
 $$
 
-MA(1)은 기억이 1시차뿐이라 2시차부터는 평균밖에 예측할 수 없다. $\epsilon_n$은 관측되지 않으므로 가역성을 이용해 과거 관측값으로 복원한다(8편).
+MA(1)은 기억이 1시차뿐이라 2시차부터는 평균밖에 예측할 수 없다. $\epsilon_n$은 관측되지 않으므로 가역성을 이용해 과거 관측값으로 복원한다(6편, 8편).
 
 ## 4. 일반 ARMA와 예측구간
 
@@ -92,7 +92,12 @@ round(c(1, psi), 3)
 round(sqrt(cumsum(c(1, psi^2))), 3)    # sigma = 1일 때 l = 1, 2, ...의 예측 표준오차
 ```
 
-`ARMAtoMA()`가 $\psi_j$를 계산한다. 출력의 둘째 줄처럼 표준오차가 1, 1.22, 1.32, ...로 늘다가 1.40에서 멈춘다. AR(1), $\phi = 0.7$이면 $\psi_j = 0.7^j$이고, 예측 표준오차는 $1/\sqrt{1 - 0.49} \approx 1.40$으로 수렴한다.
+```text
+[1] 1.000 0.700 0.490 0.343 0.240 0.168 0.118 0.082 0.058 0.040 0.028
+[1] 1.000 1.221 1.315 1.359 1.380 1.391 1.396 1.398 1.399 1.400 1.400
+```
+
+`ARMAtoMA()`가 $\psi_j$를 계산한다. 출력의 둘째 줄처럼 표준오차가 1.000, 1.221, 1.315, ...로 늘다가 1.400에서 멈춘다. AR(1), $\phi = 0.7$이면 $\psi_j = 0.7^j$이고, 예측 표준오차는 $1/\sqrt{1 - 0.49} \approx 1.40$으로 수렴한다.
 
 ## 5. 예제: AR(1) 예측
 
@@ -142,7 +147,7 @@ autoplot(forecast(fit2, h = 50)) + labs(x = "t", y = NULL, title = "ARIMA(0,1,1)
 
 ![ARIMA(0,1,1)의 50시차 예측과 넓어지는 예측구간](./images/ts09-02.png)
 
-R의 `ma1` $\approx 0.76$이므로 교재 표기로는 $\hat\theta \approx -0.76$이다. 대응하는 평활상수 $\omega = 1 - \theta \approx 1.76$이 1보다 커서, 이 자료는 단순지수평활의 범위(0~1)로는 표현되지 않는다. ARIMA 표현이 평활법보다 넓은 경우를 포함한다는 예다.
+R의 `ma1` $\approx 0.76$이므로 교재 표기로는 $\hat\theta \approx -0.76$이다. 대응하는 평활상수 $\omega = 1 - \hat\theta \approx 1.76$이 1보다 커서, 이 자료는 단순지수평활의 범위(0~1)로는 표현되지 않는다. ARIMA 표현이 평활법보다 넓은 경우를 포함한다는 예다.
 
 | | 정상 ARMA | 비정상 ARIMA ($d \ge 1$) |
 |---|---|---|
