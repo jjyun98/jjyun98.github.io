@@ -5,7 +5,7 @@ draft: false
 description: '벡터 함수, 데이터프레임 함수, 그래프 함수를 직접 만드는 방법과 임브레이스({{ }}), 데이터 마스킹과 tidy-select, pick, 코드 스타일을 diamonds와 nycflights13 예시로 정리'
 series: 'R for Data Science'
 seriesOrder: 13
-tags: ['R', 'tidyverse', '프로그래밍']
+tags: ['데이터 분석', 'R']
 ---
 
 같은 코드를 세 번 복사했다면 함수로 만들 때다. 함수는 코드를 짧게 하고, 이름을 붙여 의도를 드러내며, 고칠 곳을 한 군데로 모은다. R4DS(2판) Functions 장을 따라, 무엇을 입력받아 무엇을 돌려주는가에 따라 함수를 **벡터 함수, 데이터프레임 함수, 그래프 함수**로 나누어 정리한다. 열 이름을 인자로 넘기는 방법(`{{ }}`)이 핵심이다. 자료는 `ggplot2::diamonds`와 `nycflights13::flights`다.

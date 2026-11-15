@@ -5,7 +5,7 @@ draft: false
 description: 'AutoGluon의 TabularPredictor가 fit 한 번으로 무엇을 하는지 정리한다. 자동 전처리, 여러 모형의 학습과 가중 앙상블, 리더보드와 검증 점수의 낙관, presets에 따른 배깅과 스태킹, 하이퍼파라미터 지정, 순열 특성 중요도를 타이타닉과 Medical Cost 자료로 확인하고, 나무 기반 모형이 섞여도 외삽은 여전히 안 된다는 점을 아이스크림 자료로 본다.'
 series: '기계학습 활용'
 seriesOrder: 10
-tags: ['기계학습 활용', 'AutoML', 'AutoGluon', '앙상블', '스태킹', '특성 중요도', 'Python']
+tags: ['기계학습', 'Python']
 ---
 
 **AutoML**(automated machine learning)은 전처리, 모형 선택, 하이퍼파라미터 조정, 앙상블을 자동으로 수행하는 도구를 말한다. AutoGluon은 그중 하나로, 표 자료에서는 `TabularPredictor`에 자료를 넘기면 LightGBM, CatBoost, XGBoost, 랜덤포레스트, 신경망 등을 차례로 학습하고 검증 점수로 가중평균한 앙상블을 만든다. 쓰는 법은 sklearn과 같은 네 단계다([기계학습 활용 - 예측 문제와 predictor](/posts/ml-01-predictor)). 안에서 돌아가는 부스팅과 배깅은 [기계학습 활용 - 배깅, 랜덤포레스트, 부스팅](/posts/ml-08-ensemble)에서 다뤘다. 이 글은 자동화가 무엇을 대신해 주는지, 그리고 대신해 주지 못하는 것이 무엇인지를 정리한다.

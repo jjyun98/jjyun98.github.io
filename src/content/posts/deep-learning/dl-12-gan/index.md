@@ -5,7 +5,7 @@ draft: false
 description: '잡음을 자료처럼 보이는 표본으로 바꾸는 생성자와 진짜와 가짜를 가르는 판별자를 경쟁시키는 GAN을 정리한다. 판별자의 최적해가 두 밀도의 비 p/(p+q)이고 그때 목적함수가 젠슨–섀넌 발산이 된다는 점을 유도하고, 생성자 손실을 비포화형으로 바꾸는 이유를 기울기로 보인다. 1차원 혼합정규분포와 MNIST 숫자 3에서 학습 과정, 모드 붕괴, 판별자가 이겨 버리는 실패를 확인하고 시리즈를 정리한다.'
 series: '딥러닝'
 seriesOrder: 12
-tags: ['딥러닝', 'GAN', '생성모형', 'PyTorch', 'Python']
+tags: ['딥러닝', 'Python']
 ---
 
 생성모형(generative model)은 자료의 분포 $p(\mathbf x)$를 배워서 그 분포에서 새 표본을 뽑는 모형이다. 지금까지의 분류 모형은 $p(y \mid \mathbf x)$만 배웠다. **GAN**(generative adversarial network, Goodfellow et al., 2014)은 밀도함수를 직접 쓰지 않고, 잡음 $\mathbf z$를 표본 $G(\mathbf z)$로 바꾸는 **생성자** $G$와 진짜 자료와 $G$의 표본을 가르는 **판별자** $D$를 서로 경쟁시켜 $G(\mathbf z)$의 분포가 자료의 분포에 가까워지게 한다. 판별자는 진짜(1)와 가짜(0)를 맞히는 이진 분류기, 즉 로지스틱 회귀의 확장이다([데이터 마이닝 - 로지스틱 회귀](/posts/dm-logistic-regression)).

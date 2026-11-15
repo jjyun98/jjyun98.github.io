@@ -5,7 +5,7 @@ draft: false
 description: 'plt.plot의 형식 문자열로 산점도와 라인플랏을 그리고, Figure ⊃ Axes ⊃ Axis 구조를 이해해 서브플랏, 제목, 축 범위를 객체 방식으로 다룬다. seaborn을 Axes에 끼워 넣는 법과 테마 변경도 정리한다.'
 series: '데이터 시각화'
 seriesOrder: 3
-tags: ['데이터 시각화', 'matplotlib', 'seaborn', '서브플랏', 'Python']
+tags: ['데이터 시각화', 'Python']
 ---
 
 matplotlib은 그림 하나를 `plt.plot()` 한 줄로 그리게 해 주지만, 그림 여러 개를 나란히 놓거나 일부만 고치려면 그 뒤의 구조를 알아야 한다. 이 글은 matplotlib의 **Figure, Axes, Axis** 구조를 정리한다. 이후 글의 모든 서브플랏이 이 구조 위에서 그려진다.

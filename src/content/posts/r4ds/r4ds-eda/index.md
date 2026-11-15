@@ -5,7 +5,7 @@ draft: false
 description: '변동(한 변수의 분포, 이상값, 결측)과 공변동(범주×연속, 범주×범주, 연속×연속)을 질문 중심으로 탐색하는 방법을 diamonds, flights 실습으로 정리'
 series: 'R for Data Science'
 seriesOrder: 4
-tags: ['R', 'tidyverse', '데이터 분석', '시각화']
+tags: ['데이터 분석', '데이터 시각화', 'R']
 ---
 
 EDA는 정해진 절차가 아니라 **질문 → 시각화·변환 → 새 질문**을 반복하는 과정이다. R4DS(2판) Exploratory data analysis 장을 따라, 한 변수 안의 변동과 두 변수 사이의 공변동을 보는 방법을 정리한다.

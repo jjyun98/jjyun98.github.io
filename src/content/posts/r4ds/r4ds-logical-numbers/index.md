@@ -5,7 +5,7 @@ draft: false
 description: '논리 연산과 결측, if_else와 case_when, 수의 변환·반올림·구간화·누적·순위·오프셋·요약을 nycflights13 지연 자료로 정리'
 series: 'R for Data Science'
 seriesOrder: 6
-tags: ['R', 'tidyverse', '데이터 전처리']
+tags: ['데이터 전처리', 'R']
 ---
 
 [dplyr 글](/posts/r4ds-dplyr)에서 `filter()`와 `mutate()`를 썼다면, 그 안에 들어가는 조건식과 숫자 계산이 이 글의 주제다. R4DS(2판)의 Logical vectors와 Numbers 장을 따라, 논리형 벡터로 조건을 만들고 수 벡터를 변환·요약하는 도구를 정리한다. 자료는 `nycflights13::flights`다.

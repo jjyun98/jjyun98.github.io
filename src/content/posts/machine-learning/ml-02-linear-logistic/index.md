@@ -5,7 +5,7 @@ draft: false
 description: 'sklearn의 LinearRegression과 LogisticRegression으로 계수를 읽고 예측하는 법을 정리한다. 범주형 변수의 원핫 인코딩과 drop_first, 계수의 해석, R², 시그모이드로 확률을 만드는 과정과 predict_proba, 그리고 문자열·결측치 때문에 fit이 실패하는 이유를 확인한다.'
 series: '기계학습 활용'
 seriesOrder: 2
-tags: ['기계학습 활용', '선형회귀', '로지스틱 회귀', '원핫 인코딩', 'scikit-learn', 'Python']
+tags: ['기계학습', '회귀분석', '분류', 'Python']
 ---
 
 **선형회귀**(linear regression)는 $y \approx \beta_0 + \beta_1 x_1 + \cdots + \beta_p x_p$가 되도록 계수를 고르는 방법이고, **로지스틱 회귀**(logistic regression)는 같은 선형식을 시그모이드에 넣어 $y=1$일 확률을 만드는 방법이다. 반응변수가 연속형이면 앞의 것, 범주형이면 뒤의 것을 쓴다. 최소제곱과 최대가능도 추정의 이론은 [데이터 마이닝 - 선형회귀](/posts/dm-linear-regression)와 [데이터 마이닝 - 로지스틱 회귀](/posts/dm-logistic-regression)에 있고, 이 글은 [앞 글](/posts/ml-01-predictor)의 네 단계로 두 모형을 쓰고 결과를 읽는 데 집중한다.

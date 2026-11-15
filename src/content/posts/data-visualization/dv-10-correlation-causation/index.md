@@ -5,7 +5,7 @@ draft: false
 description: '아이스크림 판매량과 소아마비의 상관이 온도라는 숨은 변수 때문에 생긴다는 것을 전주 기온 자료로 만든 모의자료로 보이고, 온도 구간별로 색을 나눈 산점도와 편상관계수로 확인한다. 전체와 부분의 결론이 뒤집히는 심슨의 역설을 학과별 합격률로 시각화한다.'
 series: '데이터 시각화'
 seriesOrder: 10
-tags: ['데이터 시각화', '상관관계', '인과관계', '심슨의 역설', 'Python']
+tags: ['데이터 시각화', '통계학', 'Python']
 ---
 
 [4편](/posts/dv-04-scatter-correlation)에서 상관계수는 직선 관계의 강도만 잰다고 했다. 이 글은 한 걸음 더 나아가, 상관이 강해도 **원인은 아닐 수 있다**는 것을 그림으로 확인한다. 핵심 도구는 [7편](/posts/dv-07-grammar-of-graphics)의 색 맵핑과 면분할, [9편](/posts/dv-09-pandas-reshape)의 `pd.cut`, `groupby`, `merge`다.

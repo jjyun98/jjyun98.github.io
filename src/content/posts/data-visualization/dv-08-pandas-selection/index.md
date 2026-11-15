@@ -5,7 +5,7 @@ draft: false
 description: '판다스에서 열과 행을 고르는 방법(대괄호, loc, iloc, 불 인덱싱, lambda와 map, query)을 정리하고 헷갈리는 지점(Series와 DataFrame, loc와 iloc의 슬라이싱, and와 &)을 짚는다. FIFA22 선수 자료에서 조건에 맞는 행을 골라 새 변수를 만들고 산점도와 박스플랏을 겹쳐 그린다.'
 series: '데이터 시각화'
 seriesOrder: 8
-tags: ['데이터 시각화', '판다스', 'query', 'loc', 'Python']
+tags: ['데이터 시각화', '데이터 전처리', 'Python']
 ---
 
 [앞 글](/posts/dv-07-grammar-of-graphics)의 plotnine은 데이터프레임을 받아 그린다. 원하는 그림을 그리려면 먼저 원하는 행과 열을 꺼낼 수 있어야 한다. 이 글은 판다스에서 열과 행을 고르는 방법을 정리하고, FIFA22 선수 자료로 고른 결과를 시각화한다.

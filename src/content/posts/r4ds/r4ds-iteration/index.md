@@ -5,7 +5,7 @@ draft: false
 description: '벡터와 리스트, for 반복문, 여러 열에 같은 작업을 하는 across, 리스트에 함수를 적용하는 purrr map 함수군, 오류 처리와 reduce, 여러 파일 읽기를 실습으로 정리'
 series: 'R for Data Science'
 seriesOrder: 14
-tags: ['R', 'tidyverse']
+tags: ['데이터 분석', 'R']
 ---
 
 같은 작업을 여러 번 할 때 코드를 복사하는 대신 반복을 쓴다. R4DS(2판) Iteration 장과 purrr를 따라, 반복을 **여러 열**(`across`)과 **여러 원소**(`map`) 두 방향으로 나눠 정리한다. 1판에서 다루던 리스트 열과 그룹별 모델은 [모델링 글](/posts/r4ds-modeling)로 옮겼다.

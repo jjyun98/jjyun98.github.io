@@ -5,7 +5,7 @@ draft: false
 description: '지도학습 예측 문제를 학습 자료와 시험 자료, 설명변수와 반응변수로 정리하고, scikit-learn의 모든 모형이 따르는 생성-fit-predict-score 네 단계와 입력 형식을 타이타닉 자료로 확인한다.'
 series: '기계학습 활용'
 seriesOrder: 1
-tags: ['기계학습 활용', 'scikit-learn', '타이타닉', '지도학습', 'Python']
+tags: ['기계학습', 'Python']
 ---
 
 **지도학습 예측 문제**(supervised prediction)는 설명변수 $X$와 반응변수 $y$가 함께 주어진 자료로 둘 사이의 관계를 배우고, $y$를 모르는 새 $X$에 대해 $y$를 맞히는 문제다. 이 시리즈는 이 문제를 scikit-learn(이하 sklearn)과 AutoGluon으로 푸는 방법과, 각 방법이 어떤 자료에서 무너지는지를 정리한다. 모형의 이론은 [데이터 마이닝 - 개요와 모델 평가](/posts/dm-overview)부터 시작하는 데이터 마이닝 시리즈가 담당하고, 여기서는 필요한 곳에서 링크로 넘긴다.

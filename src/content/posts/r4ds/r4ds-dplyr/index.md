@@ -5,7 +5,7 @@ draft: false
 description: 'dplyr의 행 함수(filter, arrange, distinct), 열 함수(mutate, select, rename, relocate), 그룹 함수(summarise, .by, slice_*, count)를 nycflights13 실습으로 정리'
 series: 'R for Data Science'
 seriesOrder: 2
-tags: ['R', 'tidyverse', '데이터 전처리']
+tags: ['데이터 전처리', 'R']
 ---
 
 R4DS(2판) Data transformation 장을 실습하며 정리했다. dplyr 함수는 **행**, **열**, **그룹** 중 무엇을 다루는지로 나누면 기억하기 쉽다. 데이터는 2013년 뉴욕 출발 항공편 33만여 건인 `nycflights13::flights`를 쓴다.

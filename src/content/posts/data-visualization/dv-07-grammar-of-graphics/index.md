@@ -5,7 +5,7 @@ draft: false
 description: '해들리 위컴의 그래프 레이어 문법(데이터, 맵핑, 지옴, 스탯, 포지션, 좌표계, 면분할)을 plotnine으로 정리한다. mpg 자료로 변수와 에스테틱의 맵핑을 늘려 3차원, 4차원 산점도를 만들고, 바플랏으로 stat과 position, coord_flip, facet을 익힌다.'
 series: '데이터 시각화'
 seriesOrder: 7
-tags: ['데이터 시각화', 'plotnine', 'ggplot2', '그래프 문법', 'Python']
+tags: ['데이터 시각화', 'Python']
 ---
 
 [앞 글](/posts/dv-06-good-visualization)에서 미나드는 그림을 늘리는 대신 한 그림 안의 표현 수단을 늘렸다. 해들리 위컴(Hadley Wickham)은 이 생각을 체계로 만들었다. 그래프는 **데이터 + 맵핑 + 지옴 + 스탯 + 포지션 + 좌표계 + 면분할**의 조합이라는 것이다. R의 ggplot2가 이 문법을 구현했고, 파이썬에서는 plotnine이 같은 문법을 쓴다.

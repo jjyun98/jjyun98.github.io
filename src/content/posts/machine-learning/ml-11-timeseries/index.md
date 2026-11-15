@@ -5,7 +5,7 @@ draft: false
 description: '시계열 예측이 표 자료의 예측과 무엇이 다른지 정리한다. AutoGluon의 TimeSeriesDataFrame과 TimeSeriesPredictor로 전주 기온을 예측해 단순 기준선과 비교하고, 검증 구간이 시험 구간과 다른 계절일 때 생기는 문제를 본다. 이어 자전거 대여 자료에서 시각·연도 같은 시간 특징을 뽑아 회귀 문제로 바꾸는 방법과, 시험 시점에 알 수 없는 변수가 만드는 정보누수를 확인한다.'
 series: '기계학습 활용'
 seriesOrder: 11
-tags: ['기계학습 활용', '시계열', 'AutoGluon', '피처엔지니어링', '정보누수', 'Python']
+tags: ['기계학습', '시계열', '데이터 전처리', 'Python']
 ---
 
 **시계열 예측**(time series forecasting)은 과거의 관측값 $y_1, \dots, y_T$로 미래 값 $y_{T+1}, \dots, y_{T+h}$를 예측하는 문제다. 지금까지의 예측이 설명변수에서 반응변수로 가는 사상 $X \to y$를 배우는 것이었다면, 시계열 예측은 $y_{\text{과거}} \to y_{\text{미래}}$를 배운다. ARIMA 같은 통계 모형으로 같은 문제를 푸는 방법은 [시계열 분석 - 예측](/posts/ts-09-forecasting)과 [시계열 분석 - 계절형 ARIMA 모형](/posts/ts-10-seasonal-arima)에 있다. 이 글은 [앞 글](/posts/ml-10-autogluon)의 AutoGluon을 시계열에 쓰는 법과, 시간에서 특징을 뽑아 표 자료의 회귀로 바꾸는 방법을 정리한다.

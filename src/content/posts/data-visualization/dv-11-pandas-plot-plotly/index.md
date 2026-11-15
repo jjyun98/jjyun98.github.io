@@ -5,7 +5,7 @@ draft: false
 description: '데이터프레임의 plot 메서드(line, bar, pie, box, hist, kde, area)로 바로 그리는 법을 휴대폰 시장점유율 자료로 정리하고, backend를 plotly로 바꿔 같은 코드로 인터랙티브 그림을 만든다. tidy data가 color, facet 맵핑을 얼마나 쉽게 하는지 tips 자료로 확인한다.'
 series: '데이터 시각화'
 seriesOrder: 11
-tags: ['데이터 시각화', '판다스', 'plotly', '인터랙티브', 'Python']
+tags: ['데이터 시각화', 'Python']
 ---
 
 지금까지는 matplotlib, seaborn, plotnine에 데이터를 넘겨 그렸다. 판다스 데이터프레임에는 그 자체로 `.plot` 메서드가 있어서, 표를 다듬은 뒤 **이어서 바로** 그릴 수 있다. 그리는 엔진(백엔드)은 기본이 matplotlib이고, `backend='plotly'`로 바꾸면 같은 코드로 인터랙티브 그림이 나온다.

@@ -5,7 +5,7 @@ draft: false
 description: '그룹별 요약(groupby와 agg), 연속형 변수의 구간화(pd.cut), 넓은 표를 긴 표로 바꾸는 tidy data 변환(melt, stack), 여러 표를 잇는 concat과 merge를 항공편, 과일, 주식 자료로 정리한다.'
 series: '데이터 시각화'
 seriesOrder: 9
-tags: ['데이터 시각화', '판다스', 'groupby', 'tidy data', 'Python']
+tags: ['데이터 시각화', '데이터 전처리', 'Python']
 ---
 
 [6편](/posts/dv-06-good-visualization)에서 좋은 그림을 그리기 어려운 이유 중 하나로 "그림에 맞는 표의 모양을 떠올리고, 그 모양으로 바꾸는 것"을 꼽았다. [앞 글](/posts/dv-08-pandas-selection)이 표에서 일부를 꺼내는 법이었다면, 이 글은 표의 **모양을 바꾸는** 법이다. 그룹별로 요약하고, 넓은 표를 긴 표로 펴고, 여러 표를 잇는다.

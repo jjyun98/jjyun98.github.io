@@ -5,7 +5,7 @@ draft: false
 description: '모형에 넣기 전의 두 가지 전처리를 정리한다. missingno로 결측의 양과 패턴을 보고 SimpleImputer로 채우는 법, MinMaxScaler와 StandardScaler의 차이, 그리고 두 전처리 모두 학습 자료에서만 fit하고 시험 자료는 transform만 해야 하는 이유(정보누수)를 확인한다.'
 series: '기계학습 활용'
 seriesOrder: 3
-tags: ['기계학습 활용', '결측치', '스케일링', '정보누수', 'scikit-learn', 'Python']
+tags: ['기계학습', '데이터 전처리', 'Python']
 ---
 
 **결측치 대체**(imputation)는 비어 있는 값을 그럴듯한 값으로 채우는 일이고, **스케일링**(scaling)은 단위가 다른 변수들을 같은 범위로 맞추는 일이다. 둘 다 [앞 글](/posts/ml-02-linear-logistic)에서 본 "fit이 실패한다", "계수를 비교할 수 없다"는 문제에서 출발한다. 그리고 둘 다 sklearn에서 `fit`/`transform`을 가진 변환기(transformer)로 구현되어 있어서, 학습 자료와 시험 자료를 다루는 규칙이 같다.

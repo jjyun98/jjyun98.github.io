@@ -5,7 +5,7 @@ draft: false
 description: 'ggplot2 레이어 문법의 뼈대인 aes, geom, facet, stat, position, coord를 실습 코드와 비교 그래프로 정리'
 series: 'R for Data Science'
 seriesOrder: 1
-tags: ['R', 'tidyverse', '시각화']
+tags: ['데이터 시각화', 'R']
 ---
 
 R for Data Science(2판)의 시각화 장을 실습하며 정리했다. ggplot2의 레이어 문법 중 그래프의 뼈대가 되는 aes, geom, facet, stat, position, coord를 다룬다. 라벨, 스케일, 테마로 그래프를 다듬는 내용은 [그래프 다듬기 글](/posts/r4ds-communication)에서 이어진다. 데이터는 ggplot2에 들어 있는 `mpg`(차종별 연비)와 `diamonds`를 쓴다.

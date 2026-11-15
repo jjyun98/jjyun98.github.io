@@ -5,7 +5,7 @@ draft: false
 description: 'lubridate로 날짜·시간 파싱과 구성요소 추출, 반올림, duration·period·interval의 차이, 시간대를 정리하고 nycflights13 출발 지연을 시간대별로 확인'
 series: 'R for Data Science'
 seriesOrder: 9
-tags: ['R', 'tidyverse', '데이터 전처리', '시계열']
+tags: ['데이터 전처리', '시계열', 'R']
 ---
 
 날짜와 시간은 달력, 윤년, 일광절약시간, 시간대 때문에 숫자나 문자열처럼 다룰 수 없다. R4DS(2판) Dates and times 장을 따라 lubridate로 날짜를 만들고, 구성요소를 꺼내고, 시간 간격을 계산하는 방법을 정리한다. 분석 단계에서 시간 순서가 중요해지는 경우는 [시계열 분석 시리즈](/posts/ts-01-intro)로 이어진다.
