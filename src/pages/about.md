@@ -22,7 +22,7 @@ title: About
 | [데이터 시각화](/series/데이터-시각화) | 전북대학교 최규빈 교수님 데이터시각화 강의 (2021) | Python |
 | [기계학습 활용](/series/기계학습-활용) | 전북대학교 최규빈 교수님 기계학습활용 강의 (2023) | Python (scikit-learn, AutoGluon) |
 | [R for Data Science](/series/r-for-data-science) | 『R for Data Science』 독학 실습 | R |
-| [데이터 분석 환경](/series/데이터-분석-환경) | 망분리 환경, 데이터 저장소 네이밍, 포터블 Python, Parquet 압축 정리 | R, Python, SQL |
+| [데이터 분석 환경](/series/데이터-분석-환경) | 망분리 환경, 데이터 저장소 네이밍, 포터블 Python, Parquet 압축, 리눅스와 WSL2, CSV 줄바꿈 정리 | R, Python, SQL |
 
 그 외에 [화장품 성분 분석 프로젝트](/posts/beauty) 같은 분석 프로젝트 기록도 남긴다.
 
