@@ -81,6 +81,22 @@ $$
 
 범주형 설명변수에서는 기준범주 대비 오즈비로 해석한다.
 
+확률 척도에서는 효과가 일정하지 않다. 로짓 곡선의 기울기는 $\beta p(1 - p)$라서 $p = 0.5$ 근처에서 가장 가파르고($\beta/4$) 0이나 1에 가까울수록 완만하다. 같은 오즈비라도 기저 확률에 따라 확률의 변화량이 다르다.
+
+```r w=8 h=3.5
+library(tidyverse)
+
+expand_grid(x = seq(-6, 6, 0.05), beta = c(0.5, 1, 2)) |>
+  mutate(p = plogis(beta * x), beta = factor(beta)) |>
+  ggplot(aes(x, p, color = beta)) +
+  geom_line(linewidth = 1) +
+  geom_hline(yintercept = 0.5, linetype = "dashed", color = "grey60") +
+  labs(x = "x (alpha = 0)", y = "P(Y = 1)", color = "beta") +
+  theme_minimal(base_size = 12)
+```
+
+![beta가 0.5, 1, 2일 때의 로짓 곡선](./images/logit-curve.png)
+
 ## 4. 추정과 검정
 
 로지스틱 회귀의 계수는 최대가능도추정으로 구한다.
@@ -275,7 +291,17 @@ proc logistic data=ex42 descending;
 run;
 ```
 
-`freq count`는 각 행이 `count`명을 나타낸다는 뜻이다. 집계자료는 사건 수/시행 수 형식으로도 넣을 수 있다. 성공 수 `s`와 전체 수 `n`이 한 행에 있으면 `model s/n = type trt;`처럼 쓴다.
+`freq count`는 각 행이 `count`명을 나타낸다는 뜻이다. 집계자료는 사건 수/시행 수 형식으로도 넣을 수 있다. 성공 수 `s`와 전체 수 `n`이 한 행에 있으면 `model s/n = type trt;`처럼 쓴다. `param=ref`에서 기준범주를 지정하지 않으면 정렬 순서의 마지막 범주(type은 T, trt는 C)가 기준이 된다.
+
+R로 확인한 값은 다음과 같다.
+
+| 효과 | 계수 | 표준오차 | $p$ | 오즈비 (95% Wald 구간) |
+|---|---|---|---|---|
+| type M (대 T) | 0.722 | 0.220 | 0.001 | 2.06 (1.34, 3.17) |
+| trt A (대 C) | 0.680 | 0.251 | 0.007 | 1.97 (1.21, 3.22) |
+| trt B (대 C) | 0.808 | 0.284 | 0.004 | 2.24 (1.29, 3.92) |
+
+질병 유형 M은 T보다 치료 성공 오즈가 2.06배이고, 치료 A와 B는 C보다 성공 오즈가 각각 1.97배, 2.24배다. 이탈도는 1.06(자유도 2, $p = 0.59$)으로 주효과 모형이 자료에 잘 맞는다. 이 이탈도는 아래 상호작용 항을 넣은 포화모형과의 가능도비 검정과 같으므로, 상호작용도 유의하지 않다.
 
 ### 교란과 상호작용
 
@@ -381,6 +407,47 @@ run;
 - 출력의 `Score Test for the Proportional Odds Assumption`이 비례오즈 가정 검정이다. 유의하지 않으면 가정을 받아들인다. 유의하면 부분 비례오즈 모형(`unequalslopes` 옵션)이나 일반화 로짓을 검토한다.
 - 절편은 범주 경계 수만큼($J - 1 = 2$개) 나온다.
 
+R로 확인한 값(`MASS::polr`, 같은 방향)은 다음과 같다.
+
+| 효과 | 계수 | 표준오차 | 누적 오즈비 (95% Wald 구간) |
+|---|---|---|---|
+| 여성 (대 남성) | 1.319 | 0.538 | 3.74 (1.30, 10.73) |
+| Active (대 Placebo) | 1.797 | 0.472 | 6.03 (2.39, 15.21) |
+
+같은 성별에서 활성 약물군은 위약군보다 "더 개선된 범주에 속할 오즈"가 6.0배다. 이 값은 None과 그 이상, Some 이하와 Marked 중 어느 경계로 나눠도 같다고 가정한 것이다. 같은 자료에 범주마다 기울기를 따로 두는 모형을 적합해 가능도비로 비교하면 $\chi^2 = 1.01$(자유도 2, $p = 0.60$)로 비례오즈 가정을 기각하지 않는다. SAS의 점수 검정과는 다른 통계량이지만 같은 가정을 확인한다.
+
+```r w=8 h=3.5
+library(MASS)
+
+arth <- expand_grid(sex = c("F", "M"), trt = c("A", "P"), improve = 1:3) |>
+  mutate(count = c(6, 5, 16, 19, 7, 6, 7, 2, 5, 10, 0, 1))
+
+# 관측 누적 로짓: logit P(Y >= j), j = 2, 3
+obs <- arth |>
+  group_by(sex, trt) |>
+  summarise(j2 = sum(count[improve >= 2]) / sum(count), j3 = sum(count[improve >= 3]) / sum(count), .groups = "drop") |>
+  pivot_longer(j2:j3, names_to = "경계", values_to = "p") |>
+  mutate(logit = qlogis(p), 집단 = paste(sex, trt))
+
+fit_po <- polr(factor(improve, ordered = TRUE) ~ relevel(factor(sex), "M") + relevel(factor(trt), "P"),
+               data = arth, weights = count)
+fitted <- distinct(obs, sex, trt, 집단) |>
+  mutate(eta = coef(fit_po)[1] * (sex == "F") + coef(fit_po)[2] * (trt == "A")) |>
+  expand_grid(경계 = c("j2", "j3")) |>
+  mutate(logit = eta - fit_po$zeta[ifelse(경계 == "j2", 1, 2)])
+
+ggplot(obs, aes(경계, logit, color = 집단, group = 집단)) +
+  geom_point(size = 2.5) +
+  geom_line(data = fitted, linewidth = 0.8) +
+  scale_x_discrete(labels = c(j2 = "Some 이상", j3 = "Marked")) +
+  labs(x = "누적 경계", y = "logit P(Y ≥ j)", color = "성별·처리") +
+  theme_minimal(base_size = 12)
+```
+
+![관절염 자료의 관측 누적 로짓(점)과 비례오즈모형의 적합(선)](./images/proportional-odds.png)
+
+선이 평행한 것이 비례오즈 가정이다. 두 경계에서 집단 간 간격이 같다고 보고 하나의 오즈비로 요약한다. 관측 점은 대체로 선 근처에 있고, 11명뿐인 남성 위약군만 표본이 작아 선에서 벗어난다.
+
 ## 11. 명목형 반응변수
 
 반응변수가 세 범주 이상이지만 순서가 없으면 일반화 로짓모형을 쓴다. 기준범주를 $J$로 두면 다음과 같다.
@@ -422,7 +489,16 @@ proc logistic data=party;
 run;
 ```
 
-기준범주를 Independent로 두면 계수가 두 벌 나온다. 하나는 $\log(\pi_D / \pi_I)$, 다른 하나는 $\log(\pi_R / \pi_I)$에 대한 계수다. 표만 봐도 흑인 응답자에서 Republican 비율이 매우 낮으므로, `race`의 R 대 I 계수가 크게 음수로 나올 것으로 예상할 수 있다. 두 비교의 계수를 빼면 Democrat 대 Republican 비교도 얻는다.
+기준범주를 Independent로 두면 계수가 두 벌 나온다. 하나는 $\log(\pi_D / \pi_I)$, 다른 하나는 $\log(\pi_R / \pi_I)$에 대한 계수다. R로 확인한 값(`nnet::multinom`)은 다음과 같다.
+
+| 비교 | 효과 | 계수 | 표준오차 | 오즈비 |
+|---|---|---|---|---|
+| D 대 I | 여성 | 0.220 | 0.158 | 1.25 |
+| | 흑인 | 1.118 | 0.234 | 3.06 |
+| R 대 I | 여성 | −0.353 | 0.165 | 0.70 |
+| | 흑인 | −1.160 | 0.380 | 0.31 |
+
+흑인 응답자는 백인보다 Independent 대비 Democrat을 지지할 오즈가 3.06배, Republican을 지지할 오즈는 0.31배다. 두 비교의 계수를 빼면 Democrat 대 Republican 비교를 얻는다. 흑인의 계수는 $1.118 - (-1.160) = 2.278$로, 오즈비는 $e^{2.278} = 9.8$이다.
 
 ## 13. 해석할 때 주의할 점
 
