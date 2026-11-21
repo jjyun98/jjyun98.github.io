@@ -80,9 +80,33 @@ $$
 2. $X_n \xrightarrow{D} b$(상수)이면 $X_n \xrightarrow{P} b$
 3. $X_n \xrightarrow{D} X$이고 $g$가 연속이면 $g(X_n) \xrightarrow{D} g(X)$
 
+1의 증명: $F$의 연속점 $x$와 $\epsilon > 0$에 대해 $\{X_n \le x\} \subset \{X \le x + \epsilon\} \cup \{|X_n - X| > \epsilon\}$이므로
+
+$$
+F_n(x) \le F(x + \epsilon) + P(|X_n - X| > \epsilon)
+$$
+
+이다. 같은 방법으로 $F(x - \epsilon) \le F_n(x) + P(|X_n - X| > \epsilon)$이다. $n \to \infty$이면 확률수렴으로 마지막 항이 0이 되어 $F(x - \epsilon) \le \liminf F_n(x) \le \limsup F_n(x) \le F(x + \epsilon)$이고, $\epsilon \to 0$이면 $x$가 연속점이므로 $F_n(x) \to F(x)$이다.
+
+2의 증명: 상수 $b$의 cdf는 $b$에서만 불연속이므로 $\epsilon > 0$에 대해 $F_n(b - \epsilon) \to 0$, $F_n(b + \epsilon/2) \to 1$이다. 따라서
+
+$$
+P(|X_n - b| \ge \epsilon) \le F_n(b - \epsilon) + 1 - F_n(b + \epsilon/2) \to 0
+$$
+
+이다. 3은 교재에서도 증명을 생략하는 정리로, $g$가 연속이면 $\{g(X_n) \le y\}$의 극한이 $\{g(X) \le y\}$와 맞는다는 것을 측도론으로 보인다.
+
 1의 역은 일반적으로 거짓이다. $X \sim N(0, 1)$, $X_n = -X$이면 $X_n$의 분포는 항상 $N(0, 1)$이라 $X$로 분포수렴하지만, $|X_n - X| = 2|X|$는 작아지지 않는다. 분포수렴은 분포만 비교하고 확률변수의 값은 비교하지 않는다.
 
-모든 $\epsilon$에 대해 $P(|X_n| \le B_\epsilon) \ge 1 - \epsilon$인 상수 $B_\epsilon$이 있으면 $X_n$이 **확률적으로 유계**라 한다. 분포수렴하는 수열은 확률적으로 유계다. 유계인 $X_n$과 0으로 확률수렴하는 $Y_n$의 곱은 0으로 확률수렴한다. 이것이 슬러츠키 정리와 델타방법 증명의 핵심 단계다.
+모든 $\epsilon$에 대해 $P(|X_n| \le B_\epsilon) \ge 1 - \epsilon$인 상수 $B_\epsilon$이 있으면 $X_n$이 **확률적으로 유계**라 한다. 분포수렴하는 수열은 확률적으로 유계다. $X_n \xrightarrow{D} X$이면 $F$의 연속점 $\pm B$를 충분히 크게 잡아 $F(B) - F(-B) > 1 - \epsilon/2$로 만들고, 큰 $n$에서 $F_n(B) - F_n(-B) > 1 - \epsilon$이기 때문이다(작은 $n$ 몇 개는 $B$를 더 키워 처리한다).
+
+유계인 $X_n$과 0으로 확률수렴하는 $Y_n$의 곱은 0으로 확률수렴한다. $\epsilon$에 맞는 $B_\epsilon$을 잡으면
+
+$$
+P(|X_nY_n| \ge \delta) \le P(|X_n| > B_\epsilon) + P(|Y_n| \ge \delta/B_\epsilon) \le \epsilon + P(|Y_n| \ge \delta/B_\epsilon)
+$$
+
+이고 마지막 항이 0으로 가므로 $\limsup P(|X_nY_n| \ge \delta) \le \epsilon$, $\epsilon$은 임의다. 이것이 슬러츠키 정리와 델타방법 증명의 핵심 단계다.
 
 ### 슬러츠키 정리
 
@@ -93,6 +117,8 @@ A_n + B_nX_n \xrightarrow{D} a + bX
 $$
 
 이다. 분포수렴하는 것과 상수로 확률수렴하는 것을 섞어 계산할 수 있다는 뜻이다.
+
+증명의 뼈대: $A_n + B_nX_n = (a + bX_n) + (A_n - a) + (B_n - b)X_n$이다. 첫 항은 $X_n$의 연속함수라 $a + bX$로 분포수렴하고, 둘째 항은 0으로 확률수렴하며, 셋째 항은 (0으로 확률수렴) × (확률적 유계)라 0으로 확률수렴한다. 남은 것은 "$U_n \xrightarrow{D} U$, $V_n \xrightarrow{P} 0$이면 $U_n + V_n \xrightarrow{D} U$"이고, 1의 증명과 같은 $\epsilon$ 논법으로 $F_{U_n}(x - \epsilon) - P(|V_n| > \epsilon) \le P(U_n + V_n \le x) \le F_{U_n}(x + \epsilon) + P(|V_n| > \epsilon)$에서 나온다.
 
 가장 많이 쓰는 경우가 모르는 $\sigma$를 $S$로 바꾸는 것이다. CLT(4절)로 $\sqrt n(\bar X - \mu)/\sigma \xrightarrow{D} N(0, 1)$이고 $\sigma/S \xrightarrow{P} 1$이므로
 
@@ -110,7 +136,13 @@ $$
 \sqrt n[g(X_n) - g(\theta)] \xrightarrow{D} N\big(0, \sigma^2[g'(\theta)]^2\big)
 $$
 
-이다. 일차 테일러 전개 $g(X_n) = g(\theta) + g'(\theta)(X_n - \theta) + o_p(|X_n - \theta|)$에 $\sqrt n$을 곱하면, 나머지 항은 (유계) × (0으로 확률수렴)이라 사라지고 앞 항에 슬러츠키 정리를 쓴다.
+이다. 증명: $\sqrt n(X_n - \theta)$가 확률적 유계이므로 $X_n - \theta = n^{-1/2}\cdot\sqrt n(X_n - \theta) \xrightarrow{P} 0$이다. 미분의 정의에서
+
+$$
+g(X_n) - g(\theta) = g'(\theta)(X_n - \theta) + R_n, \qquad \frac{R_n}{X_n - \theta} \xrightarrow{P} 0
+$$
+
+이다(나머지 비율은 $X_n - \theta \to 0$일 때 0으로 가는 함수에 $X_n$을 넣은 것이므로). 양변에 $\sqrt n$을 곱하면 $\sqrt n R_n = \frac{R_n}{X_n - \theta}\cdot\sqrt n(X_n - \theta)$는 (0으로 확률수렴) × (유계)라 0으로 확률수렴하고, 남은 $g'(\theta)\sqrt n(X_n - \theta) \xrightarrow{D} N(0, \sigma^2[g'(\theta)]^2)$에 슬러츠키 정리를 쓴다.
 
 **예 (로그 오즈).** 베르누이 표본에서 $\sqrt n(\hat p - p) \xrightarrow{D} N(0, p(1 - p))$이다. $g(p) = \log[p/(1 - p)]$이면 $g'(p) = 1/[p(1 - p)]$이므로
 
@@ -208,6 +240,8 @@ $P(X \le 18)$의 정확한 값 0.8594에 대해 수정 없는 근사는 0.8227�
 [6편](/posts/ms-06-testing-basics) 피어슨 카이제곱 통계량의 극한분포가 다변량 CLT의 응용이다.
 
 ## 6. 비교
+
+![확률수렴과 분포수렴의 관계. 확률수렴은 항상 분포수렴을 뜻하고, 역은 상수로 수렴할 때만 성립한다. 대수의 법칙은 확률수렴, 중심극한정리는 분포수렴을 주고, 슬러츠키 정리와 델타방법이 둘을 섞어 계산하게 해 준다](./figures/fig-ms-convergence.svg)
 
 | 구분 | 확률수렴 $\xrightarrow{P}$ | 분포수렴 $\xrightarrow{D}$ |
 |---|---|---|

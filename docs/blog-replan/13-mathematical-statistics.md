@@ -40,3 +40,8 @@
 ## 연결
 
 - `ms-07` CLT ↔ `biostat-sample-size`, `ms-08` ↔ `biostat-logistic-regression`(MLE), `ms-12` ↔ `doe-02-one-way`, `la-orthonormal`(사영), `ms-04` 다변량정규 ↔ `la-eigen`.
+
+## 증명과 그림 보강 (2026-11-22)
+
+- 교재에서 증명하는 정리는 본문에 증명을 둔다. 측도론이 필요한 것(mgf 유일성, 연속사상 정리, 크레이그 정리의 필요조건)만 생략하고 생략했다고 밝힌다.
+- 개념도는 `_tmp/excal/ms_figs.py`로 만든다(`_tmp/pyla/bin/python _tmp/excal/ms_figs.py`). 생성기 `_tmp/excal/excal.py`는 Excalifont/Xiaolai 글꼴을 경로로 바꾼 SVG와 `.excalidraw` JSON을 함께 만든다. 첨자는 `X_{n}`, `σ^{2}` 표기를 쓴다.

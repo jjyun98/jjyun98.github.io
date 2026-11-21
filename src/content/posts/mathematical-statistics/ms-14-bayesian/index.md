@@ -25,6 +25,8 @@ $$
 
 를 **사후분포**라 한다. 분모(주변 pdf $g(\mathbf{x})$)는 $\theta$와 무관한 정규화 상수이므로, 계산할 때는 "가능도 × 사전분포"의 모양만 보고 어느 분포인지 알아내면 된다.
 
+![사전분포(주황 점선)와 정규화한 가능도(초록 점선), 둘을 곱해 얻은 사후분포(파란 실선). 사후분포는 사전과 가능도 사이에 놓이고 둘보다 좁다](./figures/fig-ms-bayes-update.svg)
+
 가능도가 $\theta$에 대해 충분통계량 $Y$를 통해서만 의존하면([10편](/posts/ms-10-sufficiency) 분해정리) 사후분포도 $Y$에만 의존한다. 베이즈 추론도 충분통계량으로 요약된다.
 
 ## 2. 켤레사전분포
@@ -37,7 +39,7 @@ $$
 | 포아송 $(\theta)$ | 감마 $(\alpha, \beta)$ (척도 $\beta$) | 감마 $\left(\alpha + \sum x_i, \dfrac{\beta}{n\beta + 1}\right)$ |
 | 정규 $(\theta, \sigma^2)$, $\sigma^2$ 앎 | 정규 $(\theta_0, \tau^2)$ | 정규 (아래) |
 
-**베타-이항.** $L(\theta) \propto \theta^y(1 - \theta)^{n - y}$, $h(\theta) \propto \theta^{\alpha - 1}(1 - \theta)^{\beta - 1}$이므로 곱은 $\theta^{\alpha + y - 1}(1 - \theta)^{\beta + n - y - 1}$, 즉 베타$(\alpha + y, \beta + n - y)$다. 사전분포의 $\alpha, \beta$는 미리 본 "가상의 성공·실패 수"처럼 작동한다.
+**베타-이항.** $L(\theta) \propto \theta^y(1 - \theta)^{n - y}$, $h(\theta) \propto \theta^{\alpha - 1}(1 - \theta)^{\beta - 1}$이므로 곱은 $\theta^{\alpha + y - 1}(1 - \theta)^{\beta + n - y - 1}$, 즉 베타$(\alpha + y, \beta + n - y)$다. 사전분포의 $\alpha, \beta$는 미리 본 "가상의 성공·실패 수"처럼 작동한다. 감마-포아송도 같다. $L(\theta) \propto \theta^{\sum x_i}e^{-n\theta}$와 $h(\theta) \propto \theta^{\alpha - 1}e^{-\theta/\beta}$의 곱은 $\theta^{\alpha + \sum x_i - 1}e^{-\theta(n + 1/\beta)}$이고, 척도모수가 $1/(n + 1/\beta) = \beta/(n\beta + 1)$인 감마분포다.
 
 **정규-정규.** 정밀도(분산의 역수)로 쓰면 깔끔하다.
 
@@ -45,7 +47,13 @@ $$
 \Theta \mid \mathbf{x} \sim N\left(\frac{\frac{n}{\sigma^2}\bar x + \frac{1}{\tau^2}\theta_0}{\frac{n}{\sigma^2} + \frac{1}{\tau^2}},\ \frac{1}{\frac{n}{\sigma^2} + \frac{1}{\tau^2}}\right)
 $$
 
-사후 정밀도 = 자료 정밀도 + 사전 정밀도이고, 사후평균은 $\bar x$와 $\theta_0$를 각 정밀도로 가중평균한 값이다. $n$이 커지면 자료의 가중치가 1로 가서 사후평균이 $\bar x$(MLE)에 가까워지고 사후분산은 $\sigma^2/n$에 가까워진다. 표본이 크면 사전분포의 영향이 사라진다.
+유도는 제곱을 완성하는 것이다. $\sum(x_i - \theta)^2 = \sum(x_i - \bar x)^2 + n(\bar x - \theta)^2$이므로 $\theta$에 의존하는 부분만 남기면
+
+$$
+k(\theta \mid \mathbf{x}) \propto \exp\left[-\frac{n(\theta - \bar x)^2}{2\sigma^2} - \frac{(\theta - \theta_0)^2}{2\tau^2}\right] \propto \exp\left[-\frac a2\left(\theta - \frac ba\right)^2\right], \quad a = \frac{n}{\sigma^2} + \frac1{\tau^2},\ b = \frac{n\bar x}{\sigma^2} + \frac{\theta_0}{\tau^2}
+$$
+
+이고, 이것이 $N(b/a, 1/a)$의 모양이다. 사후 정밀도 = 자료 정밀도 + 사전 정밀도이고, 사후평균은 $\bar x$와 $\theta_0$를 각 정밀도로 가중평균한 값이다. $n$이 커지면 자료의 가중치가 1로 가서 사후평균이 $\bar x$(MLE)에 가까워지고 사후분산은 $\sigma^2/n$에 가까워진다. 표본이 크면 사전분포의 영향이 사라진다.
 
 ```r
 set.seed(19)
@@ -102,7 +110,19 @@ $$
 
 로 MLE와 사전평균의 가중평균이다. MLE를 사전평균 쪽으로 **축소**한다.
 
-**빈도론적 성질.** 베이즈 추정량은 편향되어 있지만 MSE가 작을 수 있다. 사전분포로 평균한 위험(**베이즈 위험**)을 최소로 하는 것이 베이즈 추정량이고, 위험이 $\theta$에 대해 상수인 베이즈 추정량은 [10편](/posts/ms-10-sufficiency)에서 말한 **미니맥스** 추정량이다. 베르누이에서 $\alpha = \beta = \sqrt n/2$인 베타 사전분포의 베이즈 추정량 $(y + \sqrt n/2)/(n + \sqrt n)$은 위험이 상수 $1/[4(1 + \sqrt n)^2]$이라 미니맥스다.
+**빈도론적 성질.** 베이즈 추정량은 편향되어 있지만 MSE가 작을 수 있다. 사전분포로 평균한 위험(**베이즈 위험**)을 최소로 하는 것이 베이즈 추정량이고, 위험이 $\theta$에 대해 상수인 베이즈 추정량은 [10편](/posts/ms-10-sufficiency)에서 말한 **미니맥스** 추정량이다. 베르누이에서 $\alpha = \beta = \sqrt n/2$인 베타 사전분포의 베이즈 추정량 $\delta^* = (y + \sqrt n/2)/(n + \sqrt n)$은 위험이 상수라 미니맥스다. 위험을 계산하면
+
+$$
+R(p, \delta^*) = \frac{\text{Var}(Y) + [E(Y) + \sqrt n/2 - (n + \sqrt n)p]^2}{(n + \sqrt n)^2} = \frac{np(1 - p) + n(1/2 - p)^2}{(n + \sqrt n)^2} = \frac{n/4}{(n + \sqrt n)^2} = \frac{1}{4(1 + \sqrt n)^2}
+$$
+
+로 $p$와 무관하다. 상수 위험 $c$를 갖는 베이즈 추정량 $\delta_h$가 미니맥스인 이유는, 다른 어떤 $\delta$에 대해서도
+
+$$
+\max_\theta R(\theta, \delta) \ge \int R(\theta, \delta)h(\theta)\,d\theta \ge \int R(\theta, \delta_h)h(\theta)\,d\theta = c = \max_\theta R(\theta, \delta_h)
+$$
+
+이기 때문이다(가운데 부등식이 베이즈 추정량의 정의).
 
 ```r
 n <- 30; p <- seq(0.01, 0.99, by = 0.01)
@@ -157,7 +177,7 @@ $$
 \theta_1^{(i+1)} \sim k(\theta_1 \mid \theta_2^{(i)}, \mathbf{x}), \qquad \theta_2^{(i+1)} \sim k(\theta_2 \mid \theta_1^{(i+1)}, \mathbf{x})
 $$
 
-이 수열은 마르코프 연쇄이고, 정상분포가 결합 사후분포다. 처음 일부(번인)를 버리고 나머지를 사후표본으로 쓴다. 자기상관이 있어 같은 수의 독립 표본보다 정보가 적다.
+이 수열은 마르코프 연쇄이고, 정상분포가 결합 사후분포다. $(\theta_1, \theta_2)$가 결합 사후분포 $k$를 따를 때 첫 단계로 $\theta_1' \sim k(\theta_1 \mid \theta_2)$를 뽑으면 $(\theta_1', \theta_2)$의 결합 pdf는 $k(\theta_2)k(\theta_1' \mid \theta_2) = k(\theta_1', \theta_2)$로 그대로이고, 둘째 단계도 같다. 따라서 결합 사후분포는 한 번의 갱신에서 보존되고(불변분포), 연쇄가 기약이고 비주기적이면 시작점과 무관하게 이 분포로 수렴한다. 처음 일부(번인)를 버리고 나머지를 사후표본으로 쓴다. 자기상관이 있어 같은 수의 독립 표본보다 정보가 적다.
 
 **예: 정규분포, 평균과 분산 모두 모름.** 사전분포 $\mu \sim N(\mu_0, \tau_0^2)$, $1/\sigma^2 \sim \text{Gamma}(a, \text{rate } b)$를 독립으로 주면 결합 사후분포는 켤레가 아니지만, 완전조건부는
 

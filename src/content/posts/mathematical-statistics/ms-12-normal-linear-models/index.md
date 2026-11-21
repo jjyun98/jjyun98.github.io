@@ -27,6 +27,8 @@ $$
 
 **정리 (평균).** $E(\mathbf{X}) = \boldsymbol\mu$, $\text{Cov}(\mathbf{X}) = \boldsymbol\Sigma$이면 $E(\mathbf{X}'\mathbf{A}\mathbf{X}) = \text{tr}(\mathbf{A}\boldsymbol\Sigma) + \boldsymbol\mu'\mathbf{A}\boldsymbol\mu$.
 
+스칼라는 자기 자신의 대각합이고 $\text{tr}(\mathbf{BC}) = \text{tr}(\mathbf{CB})$이므로 $\mathbf{X}'\mathbf{AX} = \text{tr}(\mathbf{AXX}')$이다. 기댓값과 대각합의 순서를 바꾸고 $E(\mathbf{XX}') = \boldsymbol\Sigma + \boldsymbol\mu\boldsymbol\mu'$을 넣으면 $\text{tr}(\mathbf{A}\boldsymbol\Sigma) + \text{tr}(\mathbf{A}\boldsymbol\mu\boldsymbol\mu') = \text{tr}(\mathbf{A}\boldsymbol\Sigma) + \boldsymbol\mu'\mathbf{A}\boldsymbol\mu$이다. 정규성은 필요 없다.
+
 $\boldsymbol\Sigma = \sigma^2\mathbf{I}$, $\mathbf{A} = \mathbf{I} - \mathbf{J}/n$이면 $\text{tr}(\mathbf{A}) = n - 1$이고 $\mathbf{A}\boldsymbol\mu = \mathbf{0}$($\boldsymbol\mu = \mu\mathbf{1}$)이므로 $E[\sum(X_i - \bar X)^2] = (n - 1)\sigma^2$이다. [3편](/posts/ms-03-multivariate)의 결과를 한 줄로 얻는다.
 
 **정리 (분포).** $\mathbf{X} \sim N_n(\mathbf{0}, \sigma^2\mathbf{I})$이고 $\mathbf{A}$가 계수 $r$인 대칭행렬이면
@@ -35,14 +37,25 @@ $$
 \frac{\mathbf{X}'\mathbf{A}\mathbf{X}}{\sigma^2} \sim \chi^2(r) \iff \mathbf{A}^2 = \mathbf{A} \text{ (멱등)}
 $$
 
-멱등 대칭행렬은 고유값이 0 또는 1뿐이고, 1인 고유값이 $r$개다. 고유분해 $\mathbf{A} = \boldsymbol\Gamma'\text{diag}(1, \dots, 1, 0, \dots, 0)\boldsymbol\Gamma$에서 $\mathbf{W} = \boldsymbol\Gamma\mathbf{X}/\sigma$는 다시 독립 표준정규이므로 $\mathbf{X}'\mathbf{A}\mathbf{X}/\sigma^2 = W_1^2 + \cdots + W_r^2 \sim \chi^2(r)$이다. 멱등 대칭행렬은 **정사영행렬**이다. 이차형식은 $\mathbf{X}$를 $r$차원 부분공간에 사영한 벡터의 길이 제곱이고, 자유도는 그 부분공간의 차원이다([선형대수 사영 글](/posts/la-orthonormal)).
+멱등 대칭행렬은 고유값이 0 또는 1뿐이고, 1인 고유값이 $r$개다. 고유분해 $\mathbf{A} = \boldsymbol\Gamma'\text{diag}(1, \dots, 1, 0, \dots, 0)\boldsymbol\Gamma$에서 $\mathbf{W} = \boldsymbol\Gamma\mathbf{X}/\sigma$는 다시 독립 표준정규이므로 $\mathbf{X}'\mathbf{A}\mathbf{X}/\sigma^2 = W_1^2 + \cdots + W_r^2 \sim \chi^2(r)$이다(⇐). 반대로(⇒) 대칭행렬 $\mathbf{A}$의 고유값을 $\lambda_1, \dots, \lambda_n$이라 하면 같은 변환으로 $\mathbf{X}'\mathbf{AX}/\sigma^2 = \sum\lambda_iW_i^2$이고 mgf는 $\prod_i(1 - 2t\lambda_i)^{-1/2}$이다. 이것이 0 근방에서 $(1 - 2t)^{-r/2}$와 같으면 $\prod_i(1 - 2t\lambda_i) = (1 - 2t)^r$이 $t$의 다항식으로 같아야 하므로, 근을 비교해 0이 아닌 고유값은 모두 1이고 그 개수가 $r$이다. 고유값이 0과 1뿐인 대칭행렬은 $\mathbf{A}^2 = \mathbf{A}$이다. 멱등 대칭행렬은 **정사영행렬**이다. 이차형식은 $\mathbf{X}$를 $r$차원 부분공간에 사영한 벡터의 길이 제곱이고, 자유도는 그 부분공간의 차원이다([선형대수 사영 글](/posts/la-orthonormal)).
 
 **정리 (독립).** $\mathbf{X} \sim N_n(\boldsymbol\mu, \sigma^2\mathbf{I})$일 때 두 이차형식 $\mathbf{X}'\mathbf{A}\mathbf{X}$와 $\mathbf{X}'\mathbf{B}\mathbf{X}$가 독립일 필요충분조건은 $\mathbf{AB} = \mathbf{0}$이다(크레이그 정리). 사영으로 말하면 두 부분공간이 직교한다는 뜻이다.
+
+충분조건을 보인다. $\mathbf{AB} = \mathbf{0}$이면 $\mathbf{BA} = (\mathbf{AB})' = \mathbf{0}$이다. 고유분해 $\mathbf{A} = \sum_i\lambda_i\mathbf{a}_i\mathbf{a}_i'$, $\mathbf{B} = \sum_j\mu_j\mathbf{b}_j\mathbf{b}_j'$ (0이 아닌 고유값만)에서 $\mathbf{0} = \mathbf{a}_k'\mathbf{AB}\mathbf{b}_l = \lambda_k\mu_l\mathbf{a}_k'\mathbf{b}_l$이므로 $\mathbf{a}_k'\mathbf{b}_l = 0$이다. $\mathbf{X}'\mathbf{AX} = \sum\lambda_i(\mathbf{a}_i'\mathbf{X})^2$은 $\mathbf{a}_i'\mathbf{X}$들의, $\mathbf{X}'\mathbf{BX}$는 $\mathbf{b}_j'\mathbf{X}$들의 함수이고, 이 정규변수들은 $\text{Cov}(\mathbf{a}_i'\mathbf{X}, \mathbf{b}_j'\mathbf{X}) = \sigma^2\mathbf{a}_i'\mathbf{b}_j = 0$이라 [4편](/posts/ms-04-special-distributions)의 성질 3으로 서로 독립이다. 필요조건의 증명은 더 길어 생략한다.
 
 **정리 (코크란).** $\mathbf{X}'\mathbf{X} = \sum_{j=1}^k \mathbf{X}'\mathbf{A}_j\mathbf{X}$이고 $\mathbf{A}_j$의 계수가 $r_j$일 때, 다음은 동치다.
 
 1. $\sum r_j = n$
 2. $\mathbf{X}'\mathbf{A}_j\mathbf{X}/\sigma^2$들이 서로 독립이고 각각 $\chi^2(r_j)$ ($\mathbf{X} \sim N(\mathbf{0}, \sigma^2\mathbf{I})$일 때)
+
+2 ⇒ 1은 기댓값으로 바로 나온다. $n = E(\mathbf{X}'\mathbf{X})/\sigma^2 = \sum_jE(\mathbf{X}'\mathbf{A}_j\mathbf{X})/\sigma^2 = \sum r_j$이다.
+
+1 ⇒ 2: 모든 $\mathbf{x}$에서 성립하므로 $\sum_j\mathbf{A}_j = \mathbf{I}$이다.
+
+- **각 $\mathbf{A}_j$가 멱등.** $\mathbf{I} = \mathbf{A}_1 + (\mathbf{I} - \mathbf{A}_1)$에서 $n \le r_1 + \text{rank}(\mathbf{I} - \mathbf{A}_1)$이고, $\mathbf{I} - \mathbf{A}_1 = \sum_{j \ge 2}\mathbf{A}_j$에서 $\text{rank}(\mathbf{I} - \mathbf{A}_1) \le n - r_1$이다. 따라서 $\mathbf{I} - \mathbf{A}_1$의 영공간, 즉 $\mathbf{A}_1$의 고유값 1의 고유공간이 정확히 $r_1$차원이다. $\mathbf{A}_1$의 0이 아닌 고유값이 $r_1$개뿐이므로 모두 1이고, $\mathbf{A}_1$은 멱등이다. 다른 $j$도 같다.
+- **서로 곱하면 0.** $\mathbf{A}_i + \mathbf{A}_j$를 한 조각으로 보고 같은 논리를 쓰면 $\mathbf{A}_i + \mathbf{A}_j$도 멱등이므로 $\mathbf{A}_i\mathbf{A}_j + \mathbf{A}_j\mathbf{A}_i = \mathbf{0}$이다. 왼쪽과 오른쪽에서 각각 $\mathbf{A}_i$를 곱해 빼면 $\mathbf{A}_i\mathbf{A}_j = \mathbf{A}_j\mathbf{A}_i$이고, 따라서 $\mathbf{A}_i\mathbf{A}_j = \mathbf{0}$이다.
+
+멱등이므로 분포 정리로 각 조각이 $\chi^2(r_j)$, 서로 곱해 0이므로 크레이그 정리로 독립이다.
 
 제곱합을 쪼갰을 때 자유도의 합이 $n$이면 각 조각이 독립인 카이제곱이다. $\mathbf{X}'\mathbf{X} = \mathbf{X}'(\mathbf{J}/n)\mathbf{X} + \mathbf{X}'(\mathbf{I} - \mathbf{J}/n)\mathbf{X} = n\bar X^2 + \sum(X_i - \bar X)^2$에서 계수가 $1 + (n - 1) = n$이므로, [4편](/posts/ms-04-special-distributions) Student 정리의 독립성과 $\chi^2(n - 1)$이 다시 나온다.
 
@@ -170,7 +183,15 @@ $$
 \hat{\boldsymbol\beta} = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y} \sim N_p\left(\boldsymbol\beta, \sigma^2(\mathbf{X}'\mathbf{X})^{-1}\right)
 $$
 
-이다. 적합값은 $\hat{\mathbf{Y}} = \mathbf{H}\mathbf{Y}$, $\mathbf{H} = \mathbf{X}(\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'$이고, $\mathbf{H}$와 $\mathbf{I} - \mathbf{H}$는 계수가 $p$와 $n - p$인 멱등행렬이며 서로 곱하면 $\mathbf{0}$이다. 1절의 정리로 잔차제곱합 $\mathbf{Y}'(\mathbf{I} - \mathbf{H})\mathbf{Y}/\sigma^2 \sim \chi^2(n - p)$이고 $\hat{\boldsymbol\beta}$와 독립이다. 회귀의 모든 $t$, $F$검정이 여기서 나온다.
+이다. 적합값은 $\hat{\mathbf{Y}} = \mathbf{H}\mathbf{Y}$, $\mathbf{H} = \mathbf{X}(\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'$이고, $\mathbf{H}$와 $\mathbf{I} - \mathbf{H}$는 계수가 $p$와 $n - p$인 멱등행렬이며 서로 곱하면 $\mathbf{0}$이다. $(\mathbf{I} - \mathbf{H})\mathbf{X} = \mathbf{0}$이므로 잔차는 $(\mathbf{I} - \mathbf{H})\mathbf{Y} = (\mathbf{I} - \mathbf{H})\mathbf{e}$로 $\boldsymbol\beta$와 무관하고, 1절의 분포 정리로 잔차제곱합 $\mathbf{e}'(\mathbf{I} - \mathbf{H})\mathbf{e}/\sigma^2 \sim \chi^2(n - p)$이다. 또
+
+$$
+\text{Cov}\big(\hat{\boldsymbol\beta}, (\mathbf{I} - \mathbf{H})\mathbf{Y}\big) = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\,\sigma^2\mathbf{I}\,(\mathbf{I} - \mathbf{H}) = \sigma^2(\mathbf{X}'\mathbf{X})^{-1}[(\mathbf{I} - \mathbf{H})\mathbf{X}]' = \mathbf{0}
+$$
+
+이고 둘은 결합정규이므로 $\hat{\boldsymbol\beta}$와 잔차(따라서 잔차제곱합)는 독립이다. 회귀의 모든 $t$, $F$검정이 여기서 나온다.
+
+![자료 벡터 Y를 설계행렬의 열공간에 정사영한 것이 적합값 HY이고, 남은 잔차 (I − H)Y는 열공간에 직교한다. 피타고라스 분해가 제곱합 분해이고 코크란 정리로 두 조각이 독립인 카이제곱이 된다](./figures/fig-ms-projection.svg)
 
 ```r
 x <- cars$speed; y <- cars$dist; n <- length(y)
@@ -197,7 +218,13 @@ $$
 T = \frac{R\sqrt{n - 2}}{\sqrt{1 - R^2}} \sim t(n - 2) \quad (H_0 \text{ 아래})
 $$
 
-$X$를 고정하고 보면 [4편](/posts/ms-04-special-distributions)의 조건부분포로 $Y \mid x$가 정규 회귀모형이고, $\rho = 0$은 기울기 $\beta = 0$과 같다. 실제로 위 $T$는 6절 기울기의 $t$통계량과 대수적으로 같은 값이다. 조건부분포가 $x$와 무관하므로 무조건부 분포도 $t(n - 2)$다.
+$X$를 고정하고 보면 [4편](/posts/ms-04-special-distributions)의 조건부분포로 $Y \mid x$가 정규 회귀모형이고, $\rho = 0$은 기울기 $\beta = 0$과 같다. 실제로 위 $T$는 6절 기울기의 $t$통계량과 대수적으로 같은 값이다. $S_{xx} = \sum(x_i - \bar x)^2$, $S_{yy} = \sum(y_i - \bar y)^2$, $S_{xy} = \sum(x_i - \bar x)(y_i - \bar y)$로 쓰면 $\hat\beta = S_{xy}/S_{xx}$, $r = S_{xy}/\sqrt{S_{xx}S_{yy}}$이고 잔차제곱합은 $S_{yy} - \hat\beta^2S_{xx} = S_{yy}(1 - r^2)$이므로
+
+$$
+\frac{\hat\beta}{\sqrt{S_{yy}(1 - r^2)/[(n - 2)S_{xx}]}} = \frac{r\sqrt{S_{yy}/S_{xx}}}{\sqrt{S_{yy}(1 - r^2)/[(n - 2)S_{xx}]}} = \frac{r\sqrt{n - 2}}{\sqrt{1 - r^2}}
+$$
+
+이다. 조건부분포가 $x$와 무관하므로 무조건부 분포도 $t(n - 2)$다.
 
 ```r
 r <- cor(x, y)

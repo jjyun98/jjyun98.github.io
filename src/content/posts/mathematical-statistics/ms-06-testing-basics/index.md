@@ -40,6 +40,8 @@ $$
 
 이다. $H_0$가 복합가설이면 그중 가장 나쁜 경우의 제1종 오류다.
 
+![H0 아래 분포와 H1 아래 분포, 기각값 c. H0 분포에서 c 오른쪽 넓이가 제1종 오류 α, H1 분포에서 c 왼쪽 넓이가 제2종 오류 β다](./figures/fig-ms-errors.svg)
+
 **예.** $X_1, \dots, X_n \sim N(\mu, \sigma^2)$, $\sigma$를 안다고 하고 $H_0: \mu \le \mu_0$ 대 $H_1: \mu > \mu_0$를 검정한다. 기각역을 $\bar X > \mu_0 + z_\alpha\sigma/\sqrt n$으로 두면
 
 $$
@@ -107,7 +109,7 @@ $$
 Q_{k-1} = \sum_{i=1}^k \frac{(X_i - np_{i0})^2}{np_{i0}} \overset{\cdot}{\sim} \chi^2(k - 1) \quad (H_0 \text{ 아래, 대표본})
 $$
 
-이다. $k = 2$이면 $Q_1 = \dfrac{(X_1 - np_{10})^2}{np_{10}(1 - p_{10})}$으로, 이항비율 $z$통계량의 제곱이다. 일반적인 $k$에서도 다항벡터의 다변량 CLT와 [4편](/posts/ms-04-special-distributions)의 이차형식 결과에서 나온다. 범주의 합이 $n$으로 고정되어 있어 자유도가 $k$가 아니라 $k - 1$이다. 각 범주의 기대도수 $np_{i0}$가 5 이상이면 근사가 괜찮다.
+이다. $k = 2$이면 $Q_1 = \dfrac{(X_1 - np_{10})^2}{np_{10}(1 - p_{10})}$으로, 이항비율 $z$통계량의 제곱이다. 일반적인 $k$에서는 다변량 CLT를 쓴다. $Z_i = (X_i - np_{i0})/\sqrt{np_{i0}}$로 두면 $\mathbf{X}$는 $n$개의 독립 다항 시행의 합이므로 $\mathbf{Z}$는 평균 $\mathbf{0}$, 공분산 $\mathbf{I} - \mathbf{q}\mathbf{q}'$ ($\mathbf{q} = (\sqrt{p_{10}}, \dots, \sqrt{p_{k0}})'$)인 다변량정규로 분포수렴한다. $\mathbf{q}'\mathbf{q} = \sum p_{i0} = 1$이라 $\mathbf{I} - \mathbf{qq}'$은 계수 $k - 1$인 정사영행렬이고, [12편](/posts/ms-12-normal-linear-models)의 이차형식 정리로 $Q_{k-1} = \mathbf{Z}'\mathbf{Z} \xrightarrow{D} \chi^2(k - 1)$이다. 범주의 합이 $n$으로 고정되어 있어 자유도가 $k$가 아니라 $k - 1$이다. 각 범주의 기대도수 $np_{i0}$가 5 이상이면 근사가 괜찮다.
 
 | 용도 | 귀무가설 | 자유도 |
 |---|---|---|

@@ -47,6 +47,17 @@ $$
 
 $k_1$은 $\mathbf{x}$에 $u_1(\mathbf{x})$를 통해서만 의존하고, $k_2$는 $\theta$에 의존하지 않는다.
 
+이산형으로 증명한다(연속형은 변수변환으로 같은 논리를 편다). $u_1(\mathbf{x}) = y$인 $\mathbf{x}$에 대해
+
+- (분해 ⇒ 충분) $P(Y_1 = y) = \sum_{\mathbf{x}': u_1(\mathbf{x}') = y}k_1(y; \theta)k_2(\mathbf{x}') = k_1(y; \theta)\sum_{u_1(\mathbf{x}') = y}k_2(\mathbf{x}')$이므로
+
+$$
+P(\mathbf{X} = \mathbf{x} \mid Y_1 = y) = \frac{k_1(y; \theta)k_2(\mathbf{x})}{k_1(y; \theta)\sum_{u_1(\mathbf{x}') = y}k_2(\mathbf{x}')} = \frac{k_2(\mathbf{x})}{\sum_{u_1(\mathbf{x}') = y}k_2(\mathbf{x}')}
+$$
+
+로 $\theta$가 사라진다.
+- (충분 ⇒ 분해) $P(\mathbf{X} = \mathbf{x}) = P(Y_1 = y; \theta)\,P(\mathbf{X} = \mathbf{x} \mid Y_1 = y)$이고 뒤의 인자가 $\theta$와 무관하므로, $k_1 = Y_1$의 pmf, $k_2 =$ 조건부확률로 두면 된다.
+
 | 모형 | 결합 pdf의 분해 | 충분통계량 |
 |---|---|---|
 | 포아송 $(\theta)$ | $\theta^{\sum x_i}e^{-n\theta} \cdot \frac{1}{\prod x_i!}$ | $\sum X_i$ |
@@ -82,10 +93,14 @@ $k_1$은 $\mathbf{x}$에 $u_1(\mathbf{x})$를 통해서만 의존하고, $k_2$�
 
 **정리 (레만-셰페).** $Y_1$이 완비충분통계량이고 $\varphi(Y_1)$이 $\theta$의 불편추정량이면, $\varphi(Y_1)$은 **유일한** MVUE다.
 
+증명: $W$를 아무 불편추정량이라 하자. 라오-블랙웰로 $\varphi_W(Y_1) = E(W \mid Y_1)$은 불편이고 $\text{Var}(\varphi_W) \le \text{Var}(W)$이다. $\varphi_W(Y_1)$과 $\varphi(Y_1)$은 모두 $Y_1$의 함수인 불편추정량이므로 $E_\theta[\varphi_W(Y_1) - \varphi(Y_1)] = 0$이 모든 $\theta$에서 성립하고, 완비성에서 $\varphi_W = \varphi$ (확률 1)이다. 따라서 $\text{Var}(\varphi) = \text{Var}(\varphi_W) \le \text{Var}(W)$이다. 유일성은 $\text{Var}(W) = \text{Var}(\varphi)$이면 전분산 공식에서 $E[\text{Var}(W \mid Y_1)] = 0$, 즉 $W = E(W \mid Y_1) = \varphi(Y_1)$이기 때문이다.
+
 라오-블랙웰로 MVUE는 $Y_1$의 함수 중에서 찾으면 되고, 완비성으로 $Y_1$의 함수인 불편추정량은 하나뿐이다. MVUE를 찾는 절차는 다음과 같다.
 
 1. 완비충분통계량 $Y_1$을 찾는다.
 2. $Y_1$의 함수 중 불편인 것을 찾는다(기댓값을 계산해 맞추거나, 아무 불편추정량에 $E(\cdot \mid Y_1)$을 취한다).
+
+![MVUE를 찾는 길. 아무 불편추정량 W를 충분통계량 T로 조건부기댓값을 취하면 분산이 줄고(라오-블랙웰), T가 완비이면 그 결과가 유일한 MVUE다(레만-셰페). T는 분해정리로 찾고, 정칙 지수족이면 완비성이 자동으로 따라온다](./figures/fig-ms-mvue-flow.svg)
 
 ## 5. 지수족
 
@@ -101,7 +116,13 @@ $$
 
 **정리.** 정칙 지수족의 확률표본에서 $Y_1 = \sum_{i=1}^n K(X_i)$는 완비충분통계량이다.
 
-충분성은 분해정리에서 바로 보인다($\prod f = \exp[p(\theta)\sum K(x_i) + nq(\theta)]\exp[\sum H(x_i)]$). 완비성은 $Y_1$의 분포도 지수족이 되고, 라플라스 변환의 유일성에서 나온다.
+충분성은 분해정리에서 바로 보인다($\prod f = \exp[p(\theta)\sum K(x_i) + nq(\theta)]\exp[\sum H(x_i)]$). 완비성은 $Y_1$의 pdf도 $R(y)\exp[p(\theta)y + nq(\theta)]$ 꼴이라는 데서 시작한다. $E_\theta[g(Y_1)] = 0$이 모든 $\theta$에서 성립하면 $p = p(\theta)$가 움직이는 열린 구간에서
+
+$$
+\int g^+(y)R(y)e^{py}\,dy = \int g^-(y)R(y)e^{py}\,dy
+$$
+
+이다($g = g^+ - g^-$로 양수 부분과 음수 부분을 나눔). 양변을 같은 상수로 나누면 두 확률분포 $\propto g^\pm(y)R(y)e^{p_0y}$의 mgf가 0 근방에서 같다는 뜻이므로, [2편](/posts/ms-02-random-variables) mgf의 유일성으로 $g^+R = g^-R$, 즉 $g = 0$이다. 조건 (2)에서 $p(\theta)$가 열린 구간을 채운다는 것이 여기서 쓰인다.
 
 | 분포 | $p(\theta)$ | $K(x)$ | 완비충분통계량 |
 |---|---|---|---|
@@ -113,7 +134,7 @@ $$
 
 모수가 여럿인 지수족 $\exp[\sum_j p_j(\boldsymbol\theta)K_j(x) + H(x) + q(\boldsymbol\theta)]$에서도 $(\sum K_1(X_i), \dots, \sum K_m(X_i))$가 완비충분통계량이다. 정규분포의 $(\sum X_i, \sum X_i^2)$가 그 예다. 그래서 정규표본에서 $\bar X$와 $S^2$은 각각 $\mu$와 $\sigma^2$의 MVUE다. $S^2$이 라오-크라메르 하한에 못 미쳐도 MVUE인 이유가 이것이다. 하한 자체가 달성 불가능한 경우다.
 
-균일분포 $U(0, \theta)$는 받침이 $\theta$에 의존해 지수족이 아니다. 그래도 $Y_n = \max X_i$가 완비충분통계량임을 직접 보일 수 있고, $E(Y_n) = n\theta/(n + 1)$이므로 MVUE는 $\frac{n + 1}{n}Y_n$이다.
+균일분포 $U(0, \theta)$는 받침이 $\theta$에 의존해 지수족이 아니다. 그래도 $Y_n = \max X_i$가 완비충분통계량임을 직접 보일 수 있다. 충분성은 2절의 분해에서 나오고, $Y_n$의 pdf가 $ny^{n-1}/\theta^n$ ($0 < y < \theta$)이므로 $E_\theta[g(Y_n)] = 0$이 모든 $\theta$에서 성립하면 $\int_0^\theta g(y)y^{n-1}\,dy = 0$이다. 이것을 $\theta$로 미분하면 $g(\theta)\theta^{n-1} = 0$, 즉 $g = 0$이라 완비다. 그리고 $E(Y_n) = n\theta/(n + 1)$이므로 MVUE는 $\frac{n + 1}{n}Y_n$이다.
 
 ## 6. 모수 함수의 MVUE
 

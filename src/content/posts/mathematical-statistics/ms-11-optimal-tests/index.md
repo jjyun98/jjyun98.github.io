@@ -89,6 +89,12 @@ $$
 
 이다. 이 검정의 검정력 함수는 $\theta$에 대해 증가하므로, 복합 귀무가설에서도 경계점 $\theta'$의 크기가 전체 크기다.
 
+증명은 세 단계다.
+
+1. **단순 대립에서 최강력.** $\theta'' > \theta'$를 하나 고정하면, MLR에서 $L(\theta')/L(\theta'') \le k$는 $u(\mathbf{x}) \ge c$와 같다($k$와 $c$는 일대일 대응). 크기 조건 $P_{\theta'}(Y \ge c) = \alpha$가 $c$를 정하고 $c$는 $\theta''$와 무관하므로, 네이만-피어슨 보조정리로 $Y \ge c$는 모든 $\theta'' > \theta'$에 대해 최강력이다.
+2. **검정력 함수가 증가.** $\theta_1 < \theta_2$이면 1과 같은 논리로 $Y \ge c$는 $\theta_1$ 대 $\theta_2$의 크기 $\gamma(\theta_1)$ 최강력 검정이다. 자료를 보지 않고 확률 $\gamma(\theta_1)$로 기각하는 검정도 크기가 $\gamma(\theta_1)$이고 검정력이 $\gamma(\theta_1)$이므로, 최강력 검정은 $\gamma(\theta_2) \ge \gamma(\theta_1)$이다.
+3. **복합 귀무가설.** 2에서 $\max_{\theta \le \theta'}\gamma(\theta) = \gamma(\theta') = \alpha$이므로 $Y \ge c$의 크기는 $\alpha$다. 크기 $\alpha$인 다른 검정은 $\theta'$에서의 제1종 오류도 $\alpha$ 이하이므로, 1에 의해 모든 $\theta'' > \theta'$에서 검정력이 $Y \ge c$보다 크지 않다.
+
 정칙 지수족 $f(x; \theta) = \exp[p(\theta)K(x) + H(x) + q(\theta)]$에서 $p(\theta)$가 증가함수이면
 
 $$
@@ -179,6 +185,8 @@ $$
 이것을 관측값을 두 집단 중 하나로 배정하는 **분류** 문제로 보면, 두 다변량정규분포(공분산 같음)의 로그가능도비가 $\mathbf{x}$의 일차함수가 되어 선형판별분석(LDA)이 나온다([분류 글](/posts/dm-classification)). 검정과 분류는 같은 수학이다.
 
 ## 7. 비교
+
+![검정 선택 흐름. 단순 대 단순이면 네이만-피어슨, 단조가능도비가 있는 단측 복합가설이면 칼린-루빈의 UMP 검정, 양측이나 장애모수가 있으면 가능도비 검정을 쓴다](./figures/fig-ms-test-choice.svg)
 
 | 상황 | 최적 검정 | 근거 |
 |---|---|---|

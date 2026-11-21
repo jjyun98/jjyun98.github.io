@@ -46,7 +46,13 @@ $$
 
 이고, 정확한 분포는 $2^n$가지 부호 배치를 세어 얻으며 $n$이 크면 정규근사한다.
 
-$T^+$는 **월시 평균** $(X_i + X_j)/2$ ($i \le j$) 중 $\theta_0$보다 큰 것의 개수와 같다. 그래서 $T^+$를 기댓값에 맞추는 추정량은 월시 평균의 중앙값이다. 이것을 **호지스-레만 추정량**이라 한다. 평균(모든 값을 동등하게)과 중앙값(가운데 값만)의 중간 성격이다.
+유도: $\theta_0 = 0$으로 두면 대칭분포에서 $X_i$의 부호와 $|X_i|$는 독립이고($P(X > 0, |X| \le a) = P(0 < X \le a) = \frac12P(|X| \le a)$), 순위 $R_i$는 절댓값들만의 함수다. 따라서 순위 $j$를 가진 관측값이 양수인지를 나타내는 $I_j$들은 iid 베르누이(1/2)이고 $T^+ = \sum_{j=1}^n jI_j$이다.
+
+$$
+E(T^+) = \sum_{j=1}^n \frac j2 = \frac{n(n + 1)}{4}, \qquad \text{Var}(T^+) = \sum_{j=1}^n \frac{j^2}{4} = \frac{n(n + 1)(2n + 1)}{24}
+$$
+
+$T^+$는 **월시 평균** $(X_i + X_j)/2$ ($i \le j$) 중 $\theta_0$보다 큰 것의 개수와 같다. $\theta_0 = 0$이고 $|X_i| \le |X_j|$이면 $X_i + X_j$의 부호는 절댓값이 큰 $X_j$의 부호와 같다. 그러므로 양수인 $X_j$ 하나(절댓값 순위 $R_j$)마다, 절댓값이 그보다 작거나 같은 $X_i$ $R_j$개(자기 자신 포함)와 만든 월시 평균이 모두 양수이고, 음수인 $X_j$와는 양수인 평균이 생기지 않는다. 다 더하면 $\sum R_jI(X_j > 0) = T^+$이다. 그래서 $T^+$를 기댓값에 맞추는 추정량은 월시 평균의 중앙값이다. 이것을 **호지스-레만 추정량**이라 한다. 평균(모든 값을 동등하게)과 중앙값(가운데 값만)의 중간 성격이다.
 
 `sleep` 자료는 같은 10명에게 두 수면제를 쓴 짝지은 자료다. 차이(약 2 − 약 1)에 세 검정을 적용한다.
 
@@ -80,7 +86,9 @@ $$
 E(W) = \frac{n_2(n + 1)}{2}, \qquad \text{Var}(W) = \frac{n_1n_2(n + 1)}{12}
 $$
 
-이다. 동치인 통계량으로 $U = \#\{(i, j) : Y_j > X_i\} = W - n_2(n_2 + 1)/2$가 있고, $U/(n_1n_2)$는 $P(Y > X)$의 불편추정량이다. 위치 차이 $\Delta$의 추정량은 모든 쌍의 차이 $Y_j - X_i$의 중앙값(두 표본 호지스-레만)이다.
+이다. $W$는 $\{1, \dots, n\}$에서 비복원으로 뽑은 $n_2$개의 합이므로, 모집단 평균 $(n + 1)/2$, 모집단 분산 $(n^2 - 1)/12$와 유한모집단 보정 $(n - n_2)/(n - 1)$에서 $E(W) = n_2(n + 1)/2$, $\text{Var}(W) = n_2\cdot\frac{n^2 - 1}{12}\cdot\frac{n_1}{n - 1} = \frac{n_1n_2(n + 1)}{12}$이다.
+
+동치인 통계량으로 $U = \#\{(i, j) : Y_j > X_i\} = W - n_2(n_2 + 1)/2$가 있다. $j$번째로 작은 $Y$의 합친 순위가 $R_{(j)}$이면 그 아래에 $Y$가 $j - 1$개, $X$가 $R_{(j)} - j$개 있으므로 $U = \sum_j(R_{(j)} - j) = W - n_2(n_2 + 1)/2$이다. 그리고 $U/(n_1n_2)$는 $P(Y > X)$의 불편추정량이다. 위치 차이 $\Delta$의 추정량은 모든 쌍의 차이 $Y_j - X_i$의 중앙값(두 표본 호지스-레만)이다.
 
 ```r
 set.seed(17)
@@ -107,6 +115,18 @@ c(W = W, z = z, p_normal = 2 * pnorm(-abs(z)), p_wilcox = wilcox.test(y, x)$p.va
 $$
 \text{ARE}(\text{부호}, t) = 4\sigma^2f(0)^2, \qquad \text{ARE}(\text{윌콕슨}, t) = 12\sigma^2\left[\int f^2(x)\,dx\right]^2
 $$
+
+유도의 틀은 이렇다. 검정통계량 $V_n$이 $\sqrt n[V_n - \mu(\theta)] \xrightarrow{D} N(0, \tau^2)$을 만족하고 $V_n$이 크면 기각한다고 하자. 대립가설 $\theta_n = \theta_0 + \delta/\sqrt n$에서 $\sqrt n[\mu(\theta_n) - \mu(\theta_0)] \to \delta\mu'(\theta_0)$이므로
+
+$$
+P_{\theta_n}\left(\frac{\sqrt n[V_n - \mu(\theta_0)]}{\tau} \ge z_\alpha\right) \to 1 - \Phi(z_\alpha - \delta c), \qquad c = \frac{\mu'(\theta_0)}{\tau}
+$$
+
+이다. $c$를 **효능**이라 한다. 같은 대립가설 $\theta_0 + \delta_A/\sqrt{n_A} = \theta_0 + \delta_B/\sqrt{n_B}$에서 같은 검정력을 얻으려면 $\delta_Ac_A = \delta_Bc_B$이어야 하므로 $n_B/n_A = (c_A/c_B)^2$, 즉 $\text{ARE}(A, B) = (c_A/c_B)^2$이다.
+
+- $t$검정: $V_n = \bar X$, $\mu(\theta) = \theta$, $\tau = \sigma$이므로 $c_t = 1/\sigma$.
+- 부호검정: $V_n = S/n$, $\mu(\theta) = P_\theta(X > 0) = 1 - F(-\theta)$이므로 $\mu'(0) = f(0)$, $\tau = 1/2$이고 $c_S = 2f(0)$.
+- 따라서 $\text{ARE}(\text{부호}, t) = (2f(0)\sigma)^2 = 4\sigma^2f(0)^2$이다. 윌콕슨은 $T^+/\binom{n}{2}$가 $P(X_1 + X_2 > 0)$를 추정하고 그 도함수가 $2\int f^2$, $\tau = 1/\sqrt3$이라 $c_W = \sqrt{12}\int f^2$이다.
 
 ```r
 are <- function(f, s2) c(sign = 4 * s2 * f(0)^2, wilcoxon = 12 * s2 * integrate(\(x) f(x)^2, -Inf, Inf)$value^2)
@@ -140,7 +160,7 @@ $$
 IF(x; T, F) = \lim_{\epsilon \to 0}\frac{T[(1 - \epsilon)F + \epsilon\Delta_x] - T(F)}{\epsilon}
 $$
 
-평균은 $IF(x) = x - \mu$로 $x$에 대해 유계가 아니고, 중앙값은 $IF(x) = \text{sgn}(x - \theta)/[2f(\theta)]$로 유계다. 영향함수가 유계이면 이상치 하나의 영향이 제한된다. 영향함수의 분산 $E[IF(X)^2]$이 점근분산이 되므로 효율과도 연결된다.
+평균은 $T(F_\epsilon) = (1 - \epsilon)\mu + \epsilon x$이므로 $IF(x) = x - \mu$로 $x$에 대해 유계가 아니다. 중앙값은 $F_\epsilon(\theta_\epsilon) = (1 - \epsilon)F(\theta_\epsilon) + \epsilon I(x \le \theta_\epsilon) = 1/2$를 $\epsilon$으로 미분해 $\epsilon = 0$을 넣으면 $f(\theta)\,IF - F(\theta) + I(x \le \theta) = 0$, 즉 $IF(x) = \text{sgn}(x - \theta)/[2f(\theta)]$로 유계다. 영향함수가 유계이면 이상치 하나의 영향이 제한된다. 영향함수의 분산 $E[IF(X)^2]$이 점근분산이 되므로 효율과도 연결된다.
 
 **붕괴점**은 추정량을 무한대로 보내려면 표본의 몇 비율을 오염시켜야 하는가다. 평균은 $1/n \to 0$, 중앙값은 50%, 호지스-레만 추정량은 약 29%다.
 
@@ -150,7 +170,11 @@ $$
 \psi_k(u) = \begin{cases} u & |u| \le k \\ k\,\text{sgn}(u) & |u| > k \end{cases}
 $$
 
-로, 가운데에서는 평균처럼, 꼬리에서는 중앙값처럼 행동한다. 영향함수가 $\psi$에 비례하므로 유계다. 척도를 함께 추정하며 $k = 1.345\hat\sigma$를 쓰면 정규분포에서 효율이 95%다.
+로, 가운데에서는 평균처럼, 꼬리에서는 중앙값처럼 행동한다.
+
+영향함수가 $\psi$에 비례하므로 유계다. 척도를 함께 추정하며 $k = 1.345\hat\sigma$를 쓰면 정규분포에서 효율이 95%다.
+
+![세 가지 ψ 함수. 평균은 직선이라 끝없이 커지고, 중앙값은 부호만 보는 계단이며, 후버는 가운데에서 직선이다가 |u| > k에서 잘린다. 영향함수가 ψ에 비례하므로 잘린 ψ는 이상치의 영향을 제한한다](./figures/fig-ms-influence.svg)
 
 ```r
 set.seed(18)

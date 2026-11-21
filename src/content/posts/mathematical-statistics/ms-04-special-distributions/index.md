@@ -59,7 +59,13 @@ $M'(0) = \lambda$, $M''(0) = \lambda^2 + \lambda$이므로 **평균과 분산이
 2. 두 번 이상 일어날 확률은 $o(h)$
 3. 겹치지 않는 구간의 사건 수는 독립
 
-$g(x, w) = P(X = x)$에 대한 미분방정식 $\partial g(x, w)/\partial w = -\lambda g(x, w) + \lambda g(x - 1, w)$를 풀면 $X \sim \text{Poisson}(\lambda w)$가 된다. 독립 포아송변수의 합은 $\text{Poisson}(\sum \lambda_i)$다(mgf의 곱).
+$g(x, w) = P(\text{길이 } w \text{에서 } x \text{번})$이라 하자. 구간 $[0, w + h]$를 $[0, w]$와 $(w, w + h]$로 나누면, 가정 3(독립)과 가정 1, 2에서
+
+$$
+g(x, w + h) = g(x, w)[1 - \lambda h - o(h)] + g(x - 1, w)[\lambda h + o(h)] + o(h)
+$$
+
+이다. $g(x, w)$를 빼고 $h$로 나눈 뒤 $h \to 0$이면 미분방정식 $\partial g(x, w)/\partial w = -\lambda g(x, w) + \lambda g(x - 1, w)$를 얻는다($g(-1, w) = 0$). $x = 0$이면 $\partial g(0, w)/\partial w = -\lambda g(0, w)$, $g(0, 0) = 1$이라 $g(0, w) = e^{-\lambda w}$이다. $g(x - 1, w) = (\lambda w)^{x-1}e^{-\lambda w}/(x - 1)!$이라 가정하면 $\frac{\partial}{\partial w}[e^{\lambda w}g(x, w)] = \lambda e^{\lambda w}g(x - 1, w) = \lambda^x w^{x-1}/(x - 1)!$이고, $g(x, 0) = 0$에서 적분하면 $g(x, w) = (\lambda w)^x e^{-\lambda w}/x!$이다. 귀납법으로 $X \sim \text{Poisson}(\lambda w)$가 된다. 독립 포아송변수의 합은 $\text{Poisson}(\sum \lambda_i)$다(mgf의 곱).
 
 이항분포에서 $n \to \infty$, $p \to 0$, $np = \lambda$로 두면 $M(t) = [1 + \lambda(e^t - 1)/n]^n \to \exp[\lambda(e^t - 1)]$이므로 포아송분포로 수렴한다. 드문 사건을 많이 시행할 때의 근사다.
 
@@ -88,6 +94,14 @@ f(x) = \frac{1}{\Gamma(\alpha)\beta^\alpha}x^{\alpha - 1}e^{-x/\beta}, \quad x >
 $$
 
 이고 평균 $\alpha\beta$, 분산 $\alpha\beta^2$이다. $\alpha$는 모양, $\beta$는 척도 모수다. 같은 $\beta$의 독립 감마변수의 합은 $\Gamma(\sum \alpha_i, \beta)$다.
+
+mgf는 $y = x(1 - \beta t)/\beta$로 치환해 계산한다.
+
+$$
+M(t) = \frac{1}{\Gamma(\alpha)\beta^\alpha}\int_0^\infty x^{\alpha - 1}e^{-x(1 - \beta t)/\beta}\,dx = \frac{1}{\Gamma(\alpha)\beta^\alpha}\left(\frac{\beta}{1 - \beta t}\right)^\alpha\int_0^\infty y^{\alpha - 1}e^{-y}\,dy = (1 - \beta t)^{-\alpha}
+$$
+
+$M'(0) = \alpha\beta$, $M''(0) = \alpha(\alpha + 1)\beta^2$에서 평균과 분산이 나오고, 독립 합의 mgf가 $\prod(1 - \beta t)^{-\alpha_i} = (1 - \beta t)^{-\sum\alpha_i}$이므로 유일성으로 합의 분포가 나온다.
 
 | 특수한 경우 | 모수 | 나오는 곳 |
 |---|---|---|
@@ -128,7 +142,7 @@ $$
 f(\mathbf{x}) = \frac{1}{(2\pi)^{n/2}|\boldsymbol\Sigma|^{1/2}}\exp\left[-\frac12(\mathbf{x} - \boldsymbol\mu)'\boldsymbol\Sigma^{-1}(\mathbf{x} - \boldsymbol\mu)\right], \qquad M(\mathbf{t}) = \exp\left(\mathbf{t}'\boldsymbol\mu + \frac12\mathbf{t}'\boldsymbol\Sigma\mathbf{t}\right)
 $$
 
-이다. $|\boldsymbol\Sigma|$(일반화 분산)는 [선형대수 행렬식 글](/posts/la-determinant)에서 본 부피 확대율이다.
+이다. mgf는 $E[e^{\mathbf{t}'(\mathbf{AZ} + \boldsymbol\mu)}] = e^{\mathbf{t}'\boldsymbol\mu}\prod_i E[e^{(\mathbf{A}'\mathbf{t})_iZ_i}] = e^{\mathbf{t}'\boldsymbol\mu}\prod_i e^{(\mathbf{A}'\mathbf{t})_i^2/2} = \exp(\mathbf{t}'\boldsymbol\mu + \mathbf{t}'\mathbf{AA}'\mathbf{t}/2)$로 바로 나온다. pdf는 $\mathbf{A}$가 정칙인 정방행렬일 때 변환 $\mathbf{z} = \mathbf{A}^{-1}(\mathbf{x} - \boldsymbol\mu)$의 야코비안 $|\det\mathbf{A}^{-1}| = |\boldsymbol\Sigma|^{-1/2}$와 $\mathbf{z}'\mathbf{z} = (\mathbf{x} - \boldsymbol\mu)'\boldsymbol\Sigma^{-1}(\mathbf{x} - \boldsymbol\mu)$에서 나온다. $|\boldsymbol\Sigma|$(일반화 분산)는 [선형대수 행렬식 글](/posts/la-determinant)에서 본 부피 확대율이다.
 
 **정리.** $\mathbf{X} \sim N_n(\boldsymbol\mu, \boldsymbol\Sigma)$이면
 
@@ -138,9 +152,15 @@ $$
 4. 조건부분포: $\mathbf{X}_1 \mid \mathbf{x}_2 \sim N\big(\boldsymbol\mu_1 + \boldsymbol\Sigma_{12}\boldsymbol\Sigma_{22}^{-1}(\mathbf{x}_2 - \boldsymbol\mu_2),\ \boldsymbol\Sigma_{11} - \boldsymbol\Sigma_{12}\boldsymbol\Sigma_{22}^{-1}\boldsymbol\Sigma_{21}\big)$
 5. $(\mathbf{X} - \boldsymbol\mu)'\boldsymbol\Sigma^{-1}(\mathbf{X} - \boldsymbol\mu) \sim \chi^2(n)$
 
-3은 다변량정규에서만 성립하는 특별한 성질이다. 일반적으로 무상관은 독립을 뜻하지 않지만([3편](/posts/ms-03-multivariate)), 결합분포가 정규이면 공분산이 0일 때 mgf가 곱으로 나뉜다. 단, "각각 정규"인 것만으로는 부족하고 **결합분포가 정규**여야 한다.
+3은 다변량정규에서만 성립하는 특별한 성질이다. 일반적으로 무상관은 독립을 뜻하지 않지만([3편](/posts/ms-03-multivariate)), 결합분포가 정규이면 공분산이 0일 때 mgf가 곱으로 나뉜다. $\boldsymbol\Sigma_{12} = \mathbf{0}$이면 $\mathbf{t}'\boldsymbol\Sigma\mathbf{t} = \mathbf{t}_1'\boldsymbol\Sigma_{11}\mathbf{t}_1 + \mathbf{t}_2'\boldsymbol\Sigma_{22}\mathbf{t}_2$이므로 $M(\mathbf{t}) = M_1(\mathbf{t}_1)M_2(\mathbf{t}_2)$이고, [3편](/posts/ms-03-multivariate)의 mgf 조건으로 독립이다. 단, "각각 정규"인 것만으로는 부족하고 **결합분포가 정규**여야 한다.
 
-4에서 조건부평균은 $\mathbf{x}_2$의 일차함수이고 조건부분산은 $\mathbf{x}_2$와 무관하다. 이변량이면 $E(X_1 \mid x_2) = \mu_1 + \rho(\sigma_1/\sigma_2)(x_2 - \mu_2)$, $\text{Var}(X_1 \mid x_2) = \sigma_1^2(1 - \rho^2)$로, 3편의 선형 조건부평균 정리가 정확히 성립하는 경우다. 증명은 $\mathbf{W} = \mathbf{X}_1 - \boldsymbol\Sigma_{12}\boldsymbol\Sigma_{22}^{-1}\mathbf{X}_2$가 $\mathbf{X}_2$와 공분산이 0이어서 독립이라는 것을 이용한다.
+4에서 조건부평균은 $\mathbf{x}_2$의 일차함수이고 조건부분산은 $\mathbf{x}_2$와 무관하다. 이변량이면 $E(X_1 \mid x_2) = \mu_1 + \rho(\sigma_1/\sigma_2)(x_2 - \mu_2)$, $\text{Var}(X_1 \mid x_2) = \sigma_1^2(1 - \rho^2)$로, 3편의 선형 조건부평균 정리가 정확히 성립하는 경우다. 증명은 다음과 같다. $\mathbf{W} = \mathbf{X}_1 - \boldsymbol\Sigma_{12}\boldsymbol\Sigma_{22}^{-1}\mathbf{X}_2$로 두면 $(\mathbf{W}, \mathbf{X}_2)$는 $\mathbf{X}$의 선형변환이라 결합정규이고
+
+$$
+\text{Cov}(\mathbf{W}, \mathbf{X}_2) = \boldsymbol\Sigma_{12} - \boldsymbol\Sigma_{12}\boldsymbol\Sigma_{22}^{-1}\boldsymbol\Sigma_{22} = \mathbf{0}
+$$
+
+이므로 성질 3에서 $\mathbf{W}$와 $\mathbf{X}_2$는 독립이다. $\mathbf{W} \sim N(\boldsymbol\mu_1 - \boldsymbol\Sigma_{12}\boldsymbol\Sigma_{22}^{-1}\boldsymbol\mu_2,\ \boldsymbol\Sigma_{11} - \boldsymbol\Sigma_{12}\boldsymbol\Sigma_{22}^{-1}\boldsymbol\Sigma_{21})$이고(성질 1), $\mathbf{X}_1 = \mathbf{W} + \boldsymbol\Sigma_{12}\boldsymbol\Sigma_{22}^{-1}\mathbf{X}_2$이다. $\mathbf{X}_2 = \mathbf{x}_2$로 조건을 걸어도 $\mathbf{W}$의 분포는 바뀌지 않으므로 $\mathbf{X}_1 \mid \mathbf{x}_2$는 $\mathbf{W}$의 분포를 $\boldsymbol\Sigma_{12}\boldsymbol\Sigma_{22}^{-1}\mathbf{x}_2$만큼 옮긴 것이고, 이것이 4의 평균과 분산이다.
 
 5는 $\mathbf{Z} = \boldsymbol\Sigma^{-1/2}(\mathbf{X} - \boldsymbol\mu)$가 독립 표준정규이므로 $\mathbf{Z}'\mathbf{Z} \sim \chi^2(n)$이라는 데서 나온다. 마할라노비스 거리의 분포이고, 다변량 이상치 탐지와 신뢰타원의 근거다.
 
@@ -152,7 +172,31 @@ $$
 T = \frac{Z}{\sqrt{V/r}} \sim t(r), \qquad F = \frac{U/r_1}{V/r_2} \sim F(r_1, r_2) \quad (U \sim \chi^2(r_1),\ V \sim \chi^2(r_2) \text{ 독립})
 $$
 
-이다. 두 pdf는 [3편](/posts/ms-03-multivariate)의 이변량 변환(보조변수를 두고 적분)으로 구한다.
+이다. 두 pdf는 [3편](/posts/ms-03-multivariate)의 이변량 변환으로 구한다. $t$분포를 유도하면, $(Z, V)$의 결합 pdf는
+
+$$
+f(z, v) = \frac{1}{\sqrt{2\pi}}e^{-z^2/2}\cdot\frac{1}{\Gamma(r/2)2^{r/2}}v^{r/2 - 1}e^{-v/2}, \quad v > 0
+$$
+
+이다. 보조변수 $U = V$를 두면 역변환은 $z = t\sqrt{u/r}$, $v = u$이고 $|J| = \sqrt{u/r}$이므로
+
+$$
+g(t, u) = \frac{1}{\sqrt{2\pi r}\,\Gamma(r/2)2^{r/2}}\,u^{\frac{r+1}{2} - 1}\exp\left[-\frac u2\left(1 + \frac{t^2}{r}\right)\right]
+$$
+
+이다. $u$에 대한 적분은 감마 pdf의 적분 $\int_0^\infty u^{a - 1}e^{-bu}du = \Gamma(a)/b^a$ ($a = (r + 1)/2$, $b = (1 + t^2/r)/2$)이므로
+
+$$
+f_T(t) = \frac{\Gamma[(r + 1)/2]}{\sqrt{\pi r}\,\Gamma(r/2)}\left(1 + \frac{t^2}{r}\right)^{-(r+1)/2}, \quad -\infty < t < \infty
+$$
+
+이다. $(1 + t^2/r)^{-(r+1)/2} \to e^{-t^2/2}$이므로 $r \to \infty$에서 정규 pdf로 간다. $F$분포도 같은 방법($W = (U/r_1)/(V/r_2)$, 보조변수 $V$)으로
+
+$$
+f_W(w) = \frac{\Gamma[(r_1 + r_2)/2](r_1/r_2)^{r_1/2}}{\Gamma(r_1/2)\Gamma(r_2/2)}\cdot\frac{w^{r_1/2 - 1}}{(1 + r_1w/r_2)^{(r_1 + r_2)/2}}, \quad w > 0
+$$
+
+를 얻는다.
 
 - $t(r)$은 0에 대칭이고 정규분포보다 꼬리가 두껍다. $r > 2$이면 분산은 $r/(r - 2)$다. $r = 1$이면 코시분포라 평균이 없다. $r \to \infty$이면 $V/r \to 1$이라 $N(0, 1)$로 간다.
 - $T^2 \sim F(1, r)$, $1/F \sim F(r_2, r_1)$이다.
@@ -225,6 +269,8 @@ c(mean = mean(x), var = var(x), theory_var = 3 * 2 + 3 * 2^2)
 ```
 
 ## 8. 비교
+
+![분포 사이의 관계. 이항에서 포아송, 표준정규의 제곱에서 카이제곱, 정규와 카이제곱에서 t와 F가 나오고, 지수와 카이제곱은 감마의 특수한 경우다](./figures/fig-ms-dist-map.svg)
 
 | 분포 | pmf/pdf | 평균 | 분산 | mgf |
 |---|---|---|---|---|

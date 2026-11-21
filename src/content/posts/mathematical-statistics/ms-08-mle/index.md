@@ -55,6 +55,8 @@ $$
 
 **정리 (불변성).** $\hat\theta$가 $\theta$의 MLE이면 $g(\theta)$의 MLE는 $g(\hat\theta)$다.
 
+$g$가 일대일이면 $\eta = g(\theta)$로 모수를 바꾼 가능도는 $L^*(\eta) = L(g^{-1}(\eta))$이고, $L^*$의 최대는 $g^{-1}(\eta) = \hat\theta$, 즉 $\eta = g(\hat\theta)$에서 얻는다. 일대일이 아니면 **유도 가능도** $L^*(\eta) = \sup_{\theta: g(\theta) = \eta}L(\theta)$를 정의한다. 모든 $\eta$에서 $L^*(\eta) \le \sup_\theta L(\theta) = L(\hat\theta) = L^*(g(\hat\theta))$이므로 $g(\hat\theta)$가 $L^*$의 최대점이다.
+
 정규분포에서 $\sigma$의 MLE는 $\sqrt{\hat\sigma^2}$, 베르누이에서 오즈 $p/(1 - p)$의 MLE는 $\bar X/(1 - \bar X)$다. 불편추정량은 이런 성질이 없다($E(S) \ne \sigma$).
 
 ## 2. 피셔정보
@@ -84,7 +86,15 @@ $$
 | 베르누이 $(p)$ | $-x/p^2 - (1 - x)/(1 - p)^2$ | $\dfrac{1}{p(1 - p)}$ |
 | 포아송 $(\theta)$ | $-x/\theta^2$ | $\dfrac1\theta$ |
 | 정규 평균 ($\sigma$ 앎) | $-1/\sigma^2$ | $\dfrac{1}{\sigma^2}$ |
-| 코시 위치 $\frac{1}{\pi[1 + (x - \theta)^2]}$ | (계산) | $\dfrac12$ |
+| 코시 위치 $\frac{1}{\pi[1 + (x - \theta)^2]}$ | 아래 계산 (스코어 제곱의 평균) | $\dfrac12$ |
+
+코시 위치모수의 스코어는 $2u/(1 + u^2)$ ($u = x - \theta$)이고 $U = X - \theta$는 표준 코시이므로, $u = \tan\phi$로 치환하면
+
+$$
+I(\theta) = \frac{4}{\pi}\int_{-\infty}^\infty \frac{u^2}{(1 + u^2)^3}\,du = \frac4\pi\int_{-\pi/2}^{\pi/2}\sin^2\phi\cos^2\phi\,d\phi = \frac4\pi\cdot\frac\pi8 = \frac12
+$$
+
+이다.
 
 ## 3. 라오-크라메르 하한과 효율성
 
@@ -116,6 +126,14 @@ $$
 
 **정리 (일치성).** (R0)–(R2)와 $f$의 미분가능성 아래에서 가능도방정식은 $\theta_0$로 확률수렴하는 해 $\hat\theta_n$을 갖는다.
 
+증명: $a > 0$을 $(\theta_0 - a, \theta_0 + a) \subset \Omega$가 되도록 잡는다(R2). 1절의 정리를 $\theta_0 \pm a$에 쓰면 사건
+
+$$
+S_n = \{L(\theta_0) > L(\theta_0 - a)\} \cap \{L(\theta_0) > L(\theta_0 + a)\}
+$$
+
+의 확률이 1로 간다. $S_n$ 위에서 $l$은 구간 $(\theta_0 - a, \theta_0 + a)$ 안에 극대점을 가지므로 $l'(\hat\theta_n) = 0$인 해가 $|\hat\theta_n - \theta_0| < a$에 있다. 여러 개면 $\theta_0$에 가장 가까운 것을 택한다. 따라서 $P(|\hat\theta_n - \theta_0| < a) \ge P(S_n) \to 1$이고, 작은 $a$마다 성립하므로 $\hat\theta_n \xrightarrow{P} \theta_0$이다.
+
 **정리 (점근정규성).** 추가 정칙조건(세 번 미분가능, $0 < I(\theta_0) < \infty$, 3차 도함수가 적분가능한 함수로 유계) 아래에서 일치적인 해 $\hat\theta_n$은
 
 $$
@@ -124,17 +142,25 @@ $$
 
 을 만족한다.
 
-증명의 뼈대는 스코어의 테일러 전개다. $0 = l'(\hat\theta_n) = l'(\theta_0) + (\hat\theta_n - \theta_0)l''(\theta_0) + \cdots$에서
+증명은 스코어의 테일러 전개다. $\theta_0$와 $\hat\theta_n$ 사이의 $\theta_n^*$에 대해
 
 $$
-\sqrt n(\hat\theta_n - \theta_0) \approx \frac{n^{-1/2}l'(\theta_0)}{-n^{-1}l''(\theta_0)}
+0 = l'(\hat\theta_n) = l'(\theta_0) + (\hat\theta_n - \theta_0)l''(\theta_0) + \frac12(\hat\theta_n - \theta_0)^2l'''(\theta_n^*)
 $$
 
-이다. 분자는 평균 0, 분산 $I(\theta_0)$인 iid 스코어의 합이므로 CLT로 $N(0, I(\theta_0))$에 분포수렴하고, 분모는 대수의 법칙으로 $I(\theta_0)$로 확률수렴한다. [7편](/posts/ms-07-limiting-distributions)의 슬러츠키 정리로 비는 $N(0, I(\theta_0))/I(\theta_0) = N(0, 1/I(\theta_0))$이다.
+이므로
+
+$$
+\sqrt n(\hat\theta_n - \theta_0) = \frac{n^{-1/2}l'(\theta_0)}{-n^{-1}l''(\theta_0) - (2n)^{-1}(\hat\theta_n - \theta_0)l'''(\theta_n^*)}
+$$
+
+이다. 3차 도함수 조건 $|\partial^3\log f(x; \theta)/\partial\theta^3| \le M(x)$, $E[M(X)] < \infty$ ($\theta_0$ 근방에서)에서 $|n^{-1}l'''(\theta_n^*)| \le n^{-1}\sum M(X_i) \xrightarrow{P} E[M(X)]$로 확률적 유계이고, $\hat\theta_n - \theta_0 \xrightarrow{P} 0$이므로 분모의 둘째 항은 0으로 확률수렴한다. 분자는 평균 0, 분산 $I(\theta_0)$인 iid 스코어의 합이므로 CLT로 $N(0, I(\theta_0))$에 분포수렴하고, 분모는 대수의 법칙으로 $I(\theta_0)$로 확률수렴한다. [7편](/posts/ms-07-limiting-distributions)의 슬러츠키 정리로 비는 $N(0, I(\theta_0))/I(\theta_0) = N(0, 1/I(\theta_0))$이다.
 
 극한분포의 분산 $1/I(\theta_0)$이 라오-크라메르 하한과 같다. MLE는 **점근효율적**이다. 두 추정량의 점근분산 비를 **점근상대효율**(ARE)이라 한다. 델타방법을 함께 쓰면 $\sqrt n[g(\hat\theta) - g(\theta_0)] \xrightarrow{D} N(0, [g'(\theta_0)]^2/I(\theta_0))$이고, 이것이 $g(\theta)$에 대한 라오-크라메르 하한과 같으므로 불변성과 점근효율이 함께 성립한다.
 
 이로부터 대표본 신뢰구간 $\hat\theta \pm z_{\alpha/2}/\sqrt{nI(\hat\theta)}$를 얻는다. $I(\hat\theta)$ 대신 관측정보 $-l''(\hat\theta)/n$을 써도 된다.
+
+![같은 MLE에서 최대가 되는 두 로그가능도. 뾰족한 곡선은 곡률이 커서 정보가 많고 추정량의 분산이 작으며, 평평한 곡선은 정보가 적다](./figures/fig-ms-information.svg)
 
 ### 예: 코시분포의 위치모수
 

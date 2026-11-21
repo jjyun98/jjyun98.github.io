@@ -25,6 +25,8 @@ $H_0: \theta = \theta_0$ 대 $H_1: \theta \ne \theta_0$를 생각한다. 로그�
 | 왈드 | $\chi^2_W = nI(\hat\theta)(\hat\theta - \theta_0)^2$ | MLE와 $\theta_0$의 가로 거리 (MLE의 표준오차로 잼) |
 | 스코어 (라오) | $\chi^2_R = \dfrac{[l'(\theta_0)]^2}{nI(\theta_0)}$ | $\theta_0$에서 로그가능도의 기울기 |
 
+![로그가능도 곡선 위의 세 검정. 가능도비는 MLE와 θ0에서 로그가능도의 높이 차이, 왈드는 두 점의 가로 거리, 스코어는 θ0에서의 접선 기울기를 본다](./figures/fig-ms-three-tests.svg)
+
 **가능도비 검정**은 $\Lambda = L(\theta_0)/L(\hat\theta) \le 1$이 작을 때(참값 후보 $\theta_0$의 가능도가 최대 가능도보다 훨씬 작을 때) 기각한다.
 
 **정리 (윌크스).** 정칙조건과 $H_0$ 아래에서 $-2\log\Lambda \xrightarrow{D} \chi^2(1)$이다.
@@ -79,6 +81,14 @@ $$
 
 **장애모수의 비용.** 관심 모수가 $\theta_1$이고 나머지가 장애모수일 때, $\hat\theta_1$의 점근분산은 $[\mathbf{I}^{-1}]_{11}$이다. 일반적으로 $[\mathbf{I}^{-1}]_{11} \ge 1/\mathbf{I}_{11}$이고, 등호는 $\theta_1$과 나머지 모수의 정보가 직교할 때(비대각이 0)만 성립한다. 다른 모수를 모르면 관심 모수에 대한 정보가 줄어든다. 회귀에서 설명변수 사이의 공선성이 계수의 분산을 키우는 것이 이 현상이다.
 
+부등식은 분할행렬의 역행렬에서 나온다. $\mathbf{I} = \begin{pmatrix} I_{11} & \mathbf{I}_{12} \\ \mathbf{I}_{21} & \mathbf{I}_{22} \end{pmatrix}$이면
+
+$$
+[\mathbf{I}^{-1}]_{11} = \frac{1}{I_{11} - \mathbf{I}_{12}\mathbf{I}_{22}^{-1}\mathbf{I}_{21}} \ge \frac{1}{I_{11}}
+$$
+
+이다. $\mathbf{I}_{22}$가 양의 정부호라 $\mathbf{I}_{12}\mathbf{I}_{22}^{-1}\mathbf{I}_{21} \ge 0$이고, 등호는 $\mathbf{I}_{12} = \mathbf{0}$일 때다. 분모 $I_{11} - \mathbf{I}_{12}\mathbf{I}_{22}^{-1}\mathbf{I}_{21}$을 장애모수를 고려한 **유효 정보**라 한다.
+
 ## 3. 제약이 여럿인 가능도비 검정
 
 모수공간 $\Omega$(차원 $p$) 안의 부분공간 $\omega$(차원 $p - r$)에 대해 $H_0: \boldsymbol\theta \in \omega$를 검정한다. $\omega$는 $\boldsymbol\theta$에 $r$개의 제약을 건 것이다.
@@ -88,6 +98,14 @@ $$
 $$
 
 자유도는 **제약의 개수** = (전체 모형의 자유 모수 수) − (귀무 모형의 자유 모수 수)다.
+
+증명은 1절과 같다. $H_0$를 $\boldsymbol\theta = \boldsymbol\theta(\boldsymbol\phi)$ ($\boldsymbol\phi$는 $p - r$차원)로 쓰고 두 최대 로그가능도를 참값 근처에서 2차 전개하면, $\mathbf{Z} = \mathbf{I}^{-1/2}n^{-1/2}\nabla l(\boldsymbol\theta_0) \xrightarrow{D} N_p(\mathbf{0}, \mathbf{I}_p)$ ($\mathbf{I}_p$는 단위행렬)에 대해
+
+$$
+-2\log\Lambda = \mathbf{Z}'\mathbf{Z} - \mathbf{Z}'\mathbf{P}\mathbf{Z} + o_p(1) = \mathbf{Z}'(\mathbf{I}_p - \mathbf{P})\mathbf{Z} + o_p(1)
+$$
+
+이 된다. $\mathbf{Z}'\mathbf{Z}$는 전체 모형에서, $\mathbf{Z}'\mathbf{PZ}$는 귀무 모형에서 얻는 로그가능도 증가량이고, $\mathbf{P}$는 귀무 모형의 접공간($p - r$차원)으로의 정사영이다. $\mathbf{I}_p - \mathbf{P}$는 계수 $r$인 정사영이므로 [12편](/posts/ms-12-normal-linear-models)의 이차형식 정리로 $\chi^2(r)$이다.
 
 **예 1: 정규평균, 분산 모름.** $H_0: \mu = \mu_0$에서 $\omega$의 MLE는 $\hat\sigma_0^2 = \frac1n\sum(x_i - \mu_0)^2$이고
 
