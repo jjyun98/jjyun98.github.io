@@ -4,6 +4,7 @@ published: 2026-05-31
 draft: false
 description: '경제적 비용과 매몰비용, 고정·가변·평균·한계비용, MC와 AVC·ATC의 관계, 등비용선과 비용최소화, 확장경로, 장기평균비용과 규모의 경제, 범위의 경제와 학습곡선을 정리한다.'
 series: '미시경제학'
+seriesOrder: 7
 tags: ['경제학']
 ---
 

@@ -4,6 +4,7 @@ published: 2026-05-22
 draft: false
 description: '귀무가설과 대립가설, 제1종 오류와 제2종 오류, 유의수준, 검정력, p-value, 단측검정과 양측검정, 가능도비 검정 정리'
 series: '생명과학통계'
+seriesOrder: 3
 tags: ['통계학', 'SAS']
 ---
 

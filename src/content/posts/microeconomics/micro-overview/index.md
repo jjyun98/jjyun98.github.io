@@ -4,6 +4,7 @@ published: 2026-05-25
 draft: false
 description: '미시경제학의 대상과 분석 방법, 실증적·규범적 분석, 시장의 정의, 명목가격과 실질가격을 정리하고 나머지 17편의 흐름과 핵심 조건을 한 장으로 연결한다.'
 series: '미시경제학'
+seriesOrder: 1
 tags: ['경제학']
 ---
 

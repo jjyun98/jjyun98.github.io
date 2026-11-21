@@ -4,6 +4,7 @@ published: 2022-10-03
 draft: false
 description: '확률과정과 실현값, 강정상성과 약정상성, 백색잡음과 확률보행, 선형과정과 Wold 분해, 후진연산자, 자기상관함수와 부분자기상관함수, 표본 ACF·PACF로 실제 시계열의 특징을 읽는 법을 정리한다.'
 series: '시계열 분석'
+seriesOrder: 5
 tags: ['시계열', '통계학', 'R']
 ---
 

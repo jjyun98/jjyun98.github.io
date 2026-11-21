@@ -4,6 +4,7 @@ published: 2026-05-30
 draft: false
 description: '생존시간과 중도절단, 생존함수와 위험함수, 협심증 생명표, 신장이식 환자의 Kaplan-Meier 추정, 흑색종 환자의 로그순위 검정, 폐암 환자의 Cox 비례위험모형과 가정 확인을 SAS PROC LIFETEST, PROC PHREG로 정리한다.'
 series: '생명과학통계'
+seriesOrder: 12
 tags: ['통계학', 'SAS']
 ---
 

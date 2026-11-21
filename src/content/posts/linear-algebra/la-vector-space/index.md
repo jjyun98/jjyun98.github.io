@@ -4,6 +4,7 @@ published: 2023-04-10
 draft: false
 description: '벡터공간과 내적공간의 공리, 부분공간과 생성, 일차독립, 기저와 차원, 행공간·열공간·영공간과 계수 정리'
 series: '선형대수학'
+seriesOrder: 4
 tags: ['수학', 'R', 'Python']
 ---
 

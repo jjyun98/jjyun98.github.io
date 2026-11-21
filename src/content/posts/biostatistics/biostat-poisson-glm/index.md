@@ -4,6 +4,7 @@ published: 2026-05-27
 draft: false
 description: '발생률과 인년, 포아송 분포, 일반화선형모형의 세 요소, 오프셋을 쓰는 포아송 회귀와 발생률비, 과대산포와 음이항 회귀, 상대위험률을 직접 추정하는 회귀를 SAS PROC GENMOD로 정리한다.'
 series: '생명과학통계'
+seriesOrder: 10
 tags: ['통계학', '회귀분석', 'SAS']
 ---
 

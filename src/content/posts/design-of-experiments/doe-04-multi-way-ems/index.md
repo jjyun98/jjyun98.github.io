@@ -4,6 +4,7 @@ published: 2023-03-27
 draft: false
 description: '모수·변량·혼합모형에서 평균제곱의 기댓값(EMS)을 구하는 법칙과 글자표기, F검정의 분모 선택, 분산성분 추정, 반복 없는 삼원배치법과 풀링, 혼합모형에서 Satterthwaite 근사 F검정을 R로 정리한다.'
 series: '실험계획법'
+seriesOrder: 4
 tags: ['통계학', 'R']
 ---
 

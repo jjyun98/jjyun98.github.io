@@ -4,6 +4,7 @@ published: 2026-05-21
 draft: false
 description: 'SAS의 DATA step, PROC step, 데이터 입력, 라이브러리, 데이터셋 결합, 기초 통계량과 그래프 작성 문법 정리'
 series: '생명과학통계'
+seriesOrder: 2
 tags: ['통계학', 'SAS']
 ---
 

@@ -4,6 +4,7 @@ published: 2023-05-15
 draft: false
 description: '선형사상의 정의, 핵공간과 상공간, 차원정리, 동형사상과 등장사상, 행렬표현과 닮음행렬 정리'
 series: '선형대수학'
+seriesOrder: 6
 tags: ['수학', 'R', 'Python']
 ---
 

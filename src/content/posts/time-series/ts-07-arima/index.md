@@ -4,6 +4,7 @@ published: 2022-10-17
 draft: false
 description: '분산이 변하는 시계열의 Box-Cox 변환, 결정적 추세와 확률적 추세, 차분 연산자와 과대차분, 계절 차분, ARIMA(p,d,q) 모형, ADF·KPSS 단위근 검정을 백화점 매출과 시뮬레이션 자료로 정리한다.'
 series: '시계열 분석'
+seriesOrder: 7
 tags: ['시계열', 'R']
 ---
 

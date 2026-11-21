@@ -4,6 +4,7 @@ published: 2026-06-10
 draft: false
 description: '레몬시장과 역선택, 시장신호와 교육 신호 모형, 보증과 평판, 도덕적 해이, 주인-대리인 문제와 유인 설계, 효율임금 이론을 수치 예제로 정리한다.'
 series: '미시경제학'
+seriesOrder: 17
 tags: ['경제학']
 ---
 

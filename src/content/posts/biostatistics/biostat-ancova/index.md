@@ -4,6 +4,7 @@ published: 2026-05-25T18:00:00
 draft: false
 description: '공분산분석(ANCOVA)의 목적, 공변량 보정, 조정평균, 평행기울기 가정, Type I/III 제곱합과 SAS PROC GLM 문법 정리'
 series: '생명과학통계'
+seriesOrder: 8
 tags: ['통계학', '회귀분석', 'SAS', 'R']
 ---
 

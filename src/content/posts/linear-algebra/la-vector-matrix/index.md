@@ -4,6 +4,7 @@ published: 2023-03-01
 draft: false
 description: '선형결합과 생성, 내적·외적과 노름, 행렬 연산의 기본 성질, 행렬곱을 보는 네 가지 관점 정리'
 series: '선형대수학'
+seriesOrder: 1
 tags: ['수학', 'R', 'Python']
 ---
 

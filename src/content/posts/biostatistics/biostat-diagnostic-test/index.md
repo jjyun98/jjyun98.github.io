@@ -4,6 +4,7 @@ published: 2026-05-24T12:00:00
 draft: false
 description: '민감도와 특이도, 예측도와 유병률, 우도비, 절단값과 ROC 곡선, AUC, 카파 일치도 정리'
 series: '생명과학통계'
+seriesOrder: 6
 tags: ['통계학', '분류', 'SAS', 'R']
 ---
 

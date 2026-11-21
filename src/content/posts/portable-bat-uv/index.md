@@ -4,7 +4,7 @@ published: 2026-11-13
 draft: false
 description: '드라이브 문자가 바뀌고 파이썬이 없는 PC에서도 더블클릭 한 번으로 파이프라인이 돌도록, 배치 파일의 경로·인코딩 처리와 uv로 파이썬과 가상환경을 자동 준비하는 방법을 정리했다.'
 series: '데이터 분석 환경'
-seriesOrder: 3
+seriesOrder: 5
 tags: ['데이터 엔지니어링', 'Python']
 ---
 

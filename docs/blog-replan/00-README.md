@@ -140,7 +140,7 @@ docs/blog-replan/00-README.md, 01-common-frame.md, <시리즈 파일>을 읽고
 
 | 작업 묶음 | 글 | 상태 | 비고 |
 |---|---|---|---|
-| WP-0 | 사이트 공통 | 진행 | `seriesOrder` 완료(스키마, 정렬, 데이터 마이닝 14편 번호). 모바일 표, 자료 URL 고정, About·README 갱신은 대기 |
+| WP-0 | 사이트 공통 | 진행 | `seriesOrder` 완료(스키마, 정렬, 데이터 마이닝 14편 번호). 생명과학통계, 실험계획법, 선형대수학, 미시경제학, 시계열 분석 59편에도 발행일 순서대로 번호를 붙였다(2026-11-21). 모바일 표, 자료 URL 고정, About·README 갱신은 대기 |
 | WP-1 | 확정 오류 | 완료 | 16건 중 15건 처리(2026-11-11). `doe-04`는 비제약(교재)과 제약(강의) EMS를 나란히 비교하는 표로 고쳤다. 7, 13번은 해당 문장이 GitHub 기준 정리에서 빠져 해소됐다. 칼슘 자료(D7)만 보류. 사용자 검토 완료(2026-11-14) |
 | WP-2 | 파일럿 3편 | 중단 | 번호 구조 파일럿은 폐기했다. `dm-resampling`은 GitHub 글 기준으로 되돌렸다 |
 | DM 기존 14편 | GitHub 기준 정리 | 완료 | 8편은 GitHub 글로 되돌린 뒤 빠진 내용만 더했고, 6편은 덧붙인 절을 줄였다. 사용자 검토 완료(2026-11-14) |
@@ -176,7 +176,7 @@ docs/blog-replan/00-README.md, 01-common-frame.md, <시리즈 파일>을 읽고
 | 딥러닝 | 12편 | 완료 | `10-deep-learning.md`. 1~9편을 개념 중심으로 다시 쓰고 폴더와 번호를 바꿨으며 10~12편을 새로 썼다. 편끼리 교차 링크 추가(2026-11-14). 사용자 검토 완료(2026-11-14) |
 | 데이터 시각화 | 12편 | 완료 | `11-data-visualization.md`. 신규, 사용자 검토 완료(2026-11-14) |
 | 기계학습 활용 | 11편 | 완료 | `12-machine-learning.md`. 신규, 사용자 검토 완료(2026-11-14) |
-| 데이터 분석 환경 | air-gapped, data-naming-standards, portable-bat-uv, parquet-compression-sorting | 완료 | `seriesOrder` 1~4. 사용자 검토 완료(2026-11-14) |
+| 데이터 분석 환경 | 7편 | 완료 | `seriesOrder`는 linux 1, wsl2 2, air-gapped 3, data-naming-standards 4, portable-bat-uv 5, parquet-compression-sorting 6, crlf 7. 기존 4편 사용자 검토 완료(2026-11-14). linux, wsl2, crlf 3편 추가와 그림 6장(2026-11-16~21) |
 | 마무리 | 단독 글, About, 링크 | 대기 | |
 
 ## 8. 계획과 달라진 점
@@ -206,6 +206,8 @@ docs/blog-replan/00-README.md, 01-common-frame.md, <시리즈 파일>을 읽고
 - 2026-11-14: BIO-4에서 `sashelp.class`, `sashelp.heart` 예제는 코드만 두고 개념 예시는 R 내장 자료(`women`, `mtcars`)로 넣었다. 생명과학통계는 `seriesOrder` 대신 `published` 시각으로 순서를 맞추고 있다(diagnostic-test, ancova).
 - 2026-11-14: TS-4에서 ts-07, ts-08은 ts-06의 `Φ(B)`(비계절 연산자) 표기를 따랐다. ts-10의 계절 연산자 $\Phi(B^s)$와 겹치므로 TS-5에서 시리즈 전체 표기를 정리한다.
 - 2026-11-14: MI-4의 곡선 그림은 이미 있어 새로 그리지 않았다. 비교표와 시트 C09, C10에서 빠진 개념을 더했다.
+- 2026-11-21: 데이터 분석 환경 시리즈에서 입문 글인 리눅스와 WSL2를 1, 2번으로 당기고 나머지를 한 칸씩 뒤로 미뤘다. 글끼리는 제목으로 링크하므로 본문 문구는 바꾸지 않았다. About의 시리즈 설명 순서도 맞췄다.
+- 2026-11-21: 단독 글 그림(`posts/*/figures/fig-*.svg`)은 글자가 path로 들어 있어 용량이 크다. `scripts/optimize-figures.py`로 좌표를 소수 한 자리로 줄이고 상대 좌표로 바꿔 20장 4.49MB를 2.37MB로(gzip 1.49MB → 0.61MB) 줄였다. 새 그림을 넣으면 이 스크립트를 한 번 돌린다.
 - **마무리 때 처리할 시리즈 간 항목:** (1) `r4ds-modeling`의 "`lm()`은 정규방정식으로 바로 푼다"는 틀렸다(`lm()`은 QR). R4-3 때 고친다. (2) `la-orthonormal` 7절이 `dm-linear-regression`을 지렛값 진단 글로 링크하는데 그 글에 `hatvalues` 설명이 없다. 지렛값을 짧게 넣거나 링크 문장을 바꾼다.
   (3) 완료: `la-svd` 8절의 PCR·PLS 언급을 `dm-regularization` 링크로 바꿨다. (4) 생명과학통계 시리즈 순서를 `published`로 맞춘 것을 `seriesOrder`로 바꿀지 결정한다.
 - 2026-11-09: `02-data-mining.md`의 12번 `dm-neural-network` 계획을 ISLR 10.1, 10.2, 10.7, 10.8 원문과 대조해 다시 썼다. 예시를 소주제마다 붙이는 B형 구조로 바꾸고, 역전파, 모수 수, 드롭아웃, 이중 하강 재현 설정을 구체화했다. 이중 하강은 시드 평균 대신 중앙값과 대표 시드를 쓰고, Hitters는 `nnet`이 ISLR 모형과 다르다는 점과 `MaxNWts`를 명시했다. `01-common-frame.md`에 torchvision과 큰 내려받기 허락 규칙을 추가했다.

@@ -4,6 +4,7 @@ published: 2022-11-07
 draft: false
 description: '결정적 계절성과 확률적 계절성, 순수 계절형 ARMA의 ACF·PACF, 승법 계절형 ARIMA(p,d,q)(P,D,Q)s와 항공 모형, 관광객 자료로 식별·추정·진단·예측까지 전 과정을 정리한다.'
 series: '시계열 분석'
+seriesOrder: 10
 tags: ['시계열', 'R']
 ---
 

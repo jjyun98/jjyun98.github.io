@@ -4,6 +4,7 @@ published: 2022-09-12
 draft: false
 description: '다항 추세모형과 성장곡선, 최소제곱 추정과 회귀 추론, 잔차분석과 Durbin-Watson 검정, 지시함수와 삼각함수를 이용한 계절 추세모형을 인구 자료와 백화점 매출 자료로 정리한다.'
 series: '시계열 분석'
+seriesOrder: 2
 tags: ['시계열', '회귀분석', 'R']
 ---
 

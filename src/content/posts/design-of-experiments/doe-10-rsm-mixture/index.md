@@ -4,6 +4,7 @@ published: 2023-05-15
 draft: false
 description: '1차 모형과 최대경사법, 2차 반응표면의 적합과 적합결여검정, 정상점과 정준분석, 중심합성계획과 회전성, 성분의 합이 1인 혼합물 실험의 Scheffé 모형과 단체격자·단체중심계획을 R로 정리한다.'
 series: '실험계획법'
+seriesOrder: 10
 tags: ['통계학', 'R']
 ---
 

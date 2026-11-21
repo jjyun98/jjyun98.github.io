@@ -4,6 +4,7 @@ published: 2026-05-23
 draft: false
 description: '독립표본 t-검정, 짝지은 t-검정, 윌콕슨 검정, 일원분산분석, 이원분산분석, 다중비교와 Friedman 검정 정리'
 series: '생명과학통계'
+seriesOrder: 4
 tags: ['통계학', 'SAS']
 ---
 

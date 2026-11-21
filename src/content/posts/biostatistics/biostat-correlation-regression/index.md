@@ -4,6 +4,7 @@ published: 2026-05-25
 draft: false
 description: '피어슨·스피어만 상관계수와 검정, 단순선형회귀의 최소제곱 추정과 추론, 다중회귀와 변수선택, 잔차 진단, 다중공선성, 영향점을 SAS PROC CORR, PROC REG로 정리한다.'
 series: '생명과학통계'
+seriesOrder: 7
 tags: ['통계학', '회귀분석', 'SAS', 'R']
 ---
 

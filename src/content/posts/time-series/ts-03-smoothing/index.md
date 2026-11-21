@@ -4,6 +4,7 @@ published: 2022-09-19
 draft: false
 description: '단순이동평균, 단순지수평활법의 원리와 평활상수 선택, 이중지수평활법과 Holt의 방법, Winters의 가법·승법 계절지수평활법을 중간재 출하지수, 주가지수, 항공 승객 자료로 정리한다.'
 series: '시계열 분석'
+seriesOrder: 3
 tags: ['시계열', 'R']
 ---
 

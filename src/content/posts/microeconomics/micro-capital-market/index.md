@@ -4,6 +4,7 @@ published: 2026-06-08
 draft: false
 description: '저량과 유량, 현재가치와 할인, 채권 가격과 실효수익률, 순현재가치(NPV) 투자 결정과 내부수익률, 위험 조정 할인율과 CAPM, 소비자의 시점 간 선택, 고갈자원의 가격, 이자율의 결정을 정리한다.'
 series: '미시경제학'
+seriesOrder: 15
 tags: ['경제학']
 ---
 

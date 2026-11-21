@@ -4,6 +4,7 @@ published: 2022-10-31
 draft: false
 description: '최소평균제곱오차 예측과 조건부 기대값, AR(1)·MA(1)·ARMA 모형의 예측값과 예측오차 분산, 선형과정 가중치와 예측구간, 비정상 ARIMA 예측의 성질, 예측 갱신과 모형 비교를 정리한다.'
 series: '시계열 분석'
+seriesOrder: 9
 tags: ['시계열', 'R']
 ---
 

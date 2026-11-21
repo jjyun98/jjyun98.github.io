@@ -4,6 +4,7 @@ published: 2023-07-11
 draft: false
 description: '모든 행렬에 적용되는 특잇값 분해(SVD)의 정의와 유도, 기하학적 의미, 저차원 근사, 유사역행렬, 주성분분석(PCA)과의 관계 정리'
 series: '선형대수학'
+seriesOrder: 8
 tags: ['수학', 'R', 'Python']
 ---
 

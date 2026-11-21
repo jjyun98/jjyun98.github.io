@@ -4,6 +4,7 @@ published: 2023-05-08
 draft: false
 description: '인자가 다른 인자에 속해 있는 지분실험법의 모형, 평균제곱의 기댓값과 분산성분 추정, 확률화가 단계적으로 이루어지는 단일분할법과 2단분할법의 오차 구조를 R의 Error() 항으로 분석한다.'
 series: '실험계획법'
+seriesOrder: 9
 tags: ['통계학', 'R']
 ---
 

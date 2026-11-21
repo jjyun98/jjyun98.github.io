@@ -4,6 +4,7 @@ published: 2023-05-02
 draft: false
 description: '좌표벡터와 전이행렬, 직교여공간, 정규직교기저와 정사영, 그람-슈미트 직교화와 QR 분해, 최소제곱법과 정규방정식 정리'
 series: '선형대수학'
+seriesOrder: 5
 tags: ['수학', 'R', 'Python']
 ---
 

@@ -4,6 +4,7 @@ published: 2023-03-02
 draft: false
 description: '기본행렬로 보는 가우스 소거법, 가우스-조르당 소거법으로 역행렬 구하기, LU 분해와 PA = LU 정리'
 series: '선형대수학'
+seriesOrder: 2
 tags: ['수학', 'R', 'Python']
 ---
 

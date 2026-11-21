@@ -4,6 +4,7 @@ published: 2022-10-10
 draft: false
 description: '자기회귀 AR(p)와 이동평균 MA(q) 모형의 정상성·가역성 조건, 이론적 ACF와 PACF, AR과 MA의 쌍대성, ARMA(p,q) 모형과 ARMA(1,1)의 성질을 시뮬레이션으로 정리한다.'
 series: '시계열 분석'
+seriesOrder: 6
 tags: ['시계열', 'R']
 ---
 

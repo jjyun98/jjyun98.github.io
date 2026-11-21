@@ -4,6 +4,7 @@ published: 2023-03-13
 draft: false
 description: '일원배치법의 모형, 총변동의 분해와 F검정의 원리, 평균제곱의 기댓값, 가정 검토, 수준별 모평균의 신뢰구간, 다중비교(LSD, Tukey, Bonferroni, Scheffé), 반복수가 다른 경우, Kruskal-Wallis 검정, 변량모형을 R로 정리한다.'
 series: '실험계획법'
+seriesOrder: 2
 tags: ['통계학', 'R']
 ---
 

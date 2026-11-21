@@ -4,7 +4,7 @@ published: 2026-11-16
 draft: false
 description: 'WSL2가 실제 리눅스 커널을 경량 VM으로 띄우는 방식, WSL1과의 차이, 데이터 분석에서 쓰는 이유, 설치와 작업 경로·메모리 설정을 정리했다.'
 series: '데이터 분석 환경'
-seriesOrder: 6
+seriesOrder: 2
 tags: ['데이터 엔지니어링']
 ---
 

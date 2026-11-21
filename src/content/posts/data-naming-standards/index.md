@@ -4,7 +4,7 @@ published: 2026-11-13
 draft: false
 description: '원본·정제·배포 데이터를 계층으로 나누는 폴더 구조, TB_·_CD·_AMT 같은 테이블·컬럼 명명 규칙, 영문 물리명을 한글로 보는 방법, CSV 인코딩과 엑셀 한계까지 정리했다.'
 series: '데이터 분석 환경'
-seriesOrder: 2
+seriesOrder: 4
 tags: ['데이터 분석', '데이터 엔지니어링', 'SQL', 'Python']
 ---
 

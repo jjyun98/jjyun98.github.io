@@ -4,6 +4,7 @@ published: 2022-10-24
 draft: false
 description: 'Box-Jenkins 절차에 따라 정상화와 SACF·SPACF를 이용한 차수 식별, AIC·BIC, 적률추정·조건부/비조건부 최소제곱·최대가능도 추정, 잔차의 Ljung-Box 검정과 과대적합 진단을 가스로 자료와 교재 예제로 정리한다.'
 series: '시계열 분석'
+seriesOrder: 8
 tags: ['시계열', 'R']
 ---
 

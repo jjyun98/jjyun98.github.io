@@ -4,6 +4,7 @@ published: 2023-04-10
 draft: false
 description: '2수준 요인실험의 표기법, 대비와 효과, 제곱합, 부호표와 Yates 알고리즘, 회귀모형과의 관계, 반복이 없는 실험에서 정규확률그림과 Lenth 방법으로 유의한 효과를 찾는 방법을 R로 정리한다.'
 series: '실험계획법'
+seriesOrder: 6
 tags: ['통계학', 'R']
 ---
 

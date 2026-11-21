@@ -4,6 +4,7 @@ published: 2026-05-26
 draft: false
 description: '이진 반응변수의 로짓모형, 오즈비 해석, 최대가능도와 Wald·가능도비 검정, 교란과 상호작용, 적합도와 분류 성능, 조건부·정확 로지스틱, 순서형 누적로짓과 명목형 일반화 로짓모형을 SAS PROC LOGISTIC으로 정리한다.'
 series: '생명과학통계'
+seriesOrder: 9
 tags: ['통계학', '회귀분석', '분류', 'SAS']
 ---
 

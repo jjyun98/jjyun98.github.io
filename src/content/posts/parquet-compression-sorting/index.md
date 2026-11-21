@@ -4,7 +4,7 @@ published: 2026-11-13
 draft: false
 description: 'Parquet 파일의 Row Group·컬럼 청크·페이지 구조, 사전·비트 패킹·RLE 인코딩, 저장 전 정렬과 타입 변환이 압축과 조회를 좋게 만드는 이유, 그리고 마지막 단계인 ZSTD 블록 압축의 원리와 레벨 선택을 실측과 함께 정리했다.'
 series: '데이터 분석 환경'
-seriesOrder: 4
+seriesOrder: 6
 tags: ['데이터 엔지니어링', 'SQL']
 ---
 

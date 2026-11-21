@@ -4,6 +4,7 @@ published: 2026-05-31
 draft: false
 description: '검정력을 결정하는 네 요소, 두 평균·짝지은 자료·두 비율·생존분석의 표본크기 공식, 탈락률 보정, 비열등성 설계, SAS PROC POWER 사용법을 정리한다.'
 series: '생명과학통계'
+seriesOrder: 13
 tags: ['통계학', 'SAS']
 ---
 

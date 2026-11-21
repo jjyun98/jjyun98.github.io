@@ -4,6 +4,7 @@ published: 2022-09-05
 draft: false
 description: '시계열 자료의 정의와 종류, 시계열 그림, 불규칙·추세·계절·순환 성분, 분석 목적, 모형 적합의 3단계와 예측력 척도를 R로 정리한다.'
 series: '시계열 분석'
+seriesOrder: 1
 tags: ['시계열', '통계학', 'R']
 ---
 

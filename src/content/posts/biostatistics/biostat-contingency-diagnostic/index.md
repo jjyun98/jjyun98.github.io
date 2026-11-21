@@ -4,6 +4,7 @@ published: 2026-05-24
 draft: false
 description: '2x2 분할표, 상대위험률, 오즈비, 카이제곱 검정, Fisher 정확검정, McNemar 검정, CMH 검정 정리'
 series: '생명과학통계'
+seriesOrder: 5
 tags: ['통계학', '분류', 'SAS', 'R']
 ---
 

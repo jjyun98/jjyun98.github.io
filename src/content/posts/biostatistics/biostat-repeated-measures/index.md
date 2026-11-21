@@ -4,6 +4,7 @@ published: 2026-05-29
 draft: false
 description: '반복측정자료의 상관 구조, 넓은 형식과 긴 형식, 반복측정 분산분석과 구형성, 선형혼합모형의 공분산 구조와 임의효과, 이진 반복측정의 GEE를 SAS PROC GLM, PROC MIXED, PROC GENMOD로 정리한다.'
 series: '생명과학통계'
+seriesOrder: 11
 tags: ['통계학', 'SAS']
 ---
 

@@ -4,6 +4,7 @@ published: 2026-05-20
 draft: false
 description: '생명과학 연구에서 단면연구, 종적연구, 코호트 연구, 사례-대조 연구, 실험연구와 임상시험을 구분하는 기준 정리'
 series: '생명과학통계'
+seriesOrder: 1
 tags: ['통계학', 'SAS', 'R']
 ---
 

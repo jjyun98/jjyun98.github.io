@@ -4,6 +4,7 @@ published: 2023-03-20
 draft: false
 description: '반복이 없는 이원배치법과 Tukey 비가법성 검정, 교호작용의 의미와 교호작용도, 반복이 있는 이원배치법의 분산분석, 최적조건의 추정과 유효반복수, 오차항에의 풀링을 R로 정리한다.'
 series: '실험계획법'
+seriesOrder: 3
 tags: ['통계학', 'R']
 ---
 

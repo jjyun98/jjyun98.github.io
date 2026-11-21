@@ -4,7 +4,7 @@ published: 2026-11-16
 draft: false
 description: '실무 데이터 환경이 리눅스 위에서 돌아가는 이유, 가상 머신·컨테이너·파이썬 가상환경이 각각 무엇을 격리하는지, 매일 쓰는 기본 명령어를 정리했다.'
 series: '데이터 분석 환경'
-seriesOrder: 5
+seriesOrder: 1
 tags: ['데이터 엔지니어링']
 ---
 

@@ -4,6 +4,7 @@ published: 2023-04-03
 draft: false
 description: '장애인자를 블록으로 묶는 난괴법(RCBD)의 모형과 분산분석, 블록의 상대효율, 블록 안에서 요인실험을 하는 경우, 두 장애인자를 동시에 통제하는 라틴방격법, 그래코라틴방격법과 Youden방격법을 R로 정리한다.'
 series: '실험계획법'
+seriesOrder: 5
 tags: ['통계학', 'R']
 ---
 

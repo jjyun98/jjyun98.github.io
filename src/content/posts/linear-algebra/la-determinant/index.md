@@ -4,6 +4,7 @@ published: 2023-03-03
 draft: false
 description: '행렬식의 성질과 치환을 이용한 정의, 치환행렬, 여인자 전개와 수반행렬, 행렬식의 기하학적 의미, 반데르몽드 행렬과 라그랑주 보간 정리'
 series: '선형대수학'
+seriesOrder: 3
 tags: ['수학', 'R', 'Python']
 ---
 

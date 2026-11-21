@@ -4,6 +4,7 @@ published: 2023-07-04
 draft: false
 description: '고유값과 고유벡터, 대각화 조건, 대칭·에르미트·유니타리·정규행렬, 쉬르 정리와 스펙트럼 정리, 스펙트럼 분해, 양의 정부호 판정과 이차형식 정리'
 series: '선형대수학'
+seriesOrder: 7
 tags: ['수학', 'R', 'Python']
 ---
 
