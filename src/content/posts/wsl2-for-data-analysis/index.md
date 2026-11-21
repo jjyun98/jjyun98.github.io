@@ -24,6 +24,8 @@ WSL2는 Windows 안에서 **실제 리눅스 커널을 경량 가상 머신으�
 | 리눅스 내부 파일 I/O | 느리다 | 리눅스 파일시스템(`ext4`)을 써서 빠르다 |
 | Windows 경로(`/mnt/c`) I/O | 상대적으로 빠르다 | 느리다 (아래 3절) |
 
+![WSL1은 리눅스 프로그램의 시스템 콜을 번역 계층이 Windows 커널 호출로 바꾸는 구조이고, WSL2는 하이퍼바이저 위에서 Windows 커널과 경량 VM 속 실제 리눅스 커널이 나란히 돌아 리눅스 프로그램과 Docker가 리눅스 커널을 직접 쓰는 구조](./figures/fig-wsl-arch.svg)
+
 지금은 WSL2가 기본값이다.
 
 ## 2. 데이터 분석에서 쓰는 이유
@@ -53,6 +55,8 @@ wsl --install
 |---|---|
 | `/home/사용자명/...` | WSL2 안의 도구(Python, Docker)로 처리할 데이터와 코드 |
 | `C:\...` (`/mnt/c/...`) | Windows 프로그램(엑셀 등)으로 열 결과물 |
+
+![Windows 프로그램은 NTFS의 C 드라이브를, 리눅스 도구는 ext4의 /home 경로를 빠르게 읽지만, 리눅스 도구가 /mnt/c로 Windows 파일에 접근하면 두 파일시스템 사이 변환을 거쳐 느려지는 구조](./figures/fig-wsl-files.svg)
 
 ### 메모리 상한 설정 (`.wslconfig`)
 
