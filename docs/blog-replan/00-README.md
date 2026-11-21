@@ -144,7 +144,7 @@ docs/blog-replan/00-README.md, 01-common-frame.md, <시리즈 파일>을 읽고
 | WP-1 | 확정 오류 | 완료 | 16건 중 15건 처리(2026-11-11). `doe-04`는 비제약(교재)과 제약(강의) EMS를 나란히 비교하는 표로 고쳤다. 7, 13번은 해당 문장이 GitHub 기준 정리에서 빠져 해소됐다. 칼슘 자료(D7)만 보류. 사용자 검토 완료(2026-11-14) |
 | WP-2 | 파일럿 3편 | 중단 | 번호 구조 파일럿은 폐기했다. `dm-resampling`은 GitHub 글 기준으로 되돌렸다 |
 | DM 기존 14편 | GitHub 기준 정리 | 완료 | 8편은 GitHub 글로 되돌린 뒤 빠진 내용만 더했고, 6편은 덧붙인 절을 줄였다. 사용자 검토 완료(2026-11-14) |
-| DM 신규 | neural-network, deep-learning, survival | 검토 | ISLR 10, 11장. 3편 작성 완료(2026-11-14), `draft: false`, 커밋 전. torch·luz는 renv(`_tmp/r4ds`)에 설치해 Hitters 신경망과 NYSE RNN을 실제로 학습했다. IMDb, MNIST, CIFAR 수치는 ISLR 인용. 개념 그림 SVG 4장은 Excalidraw 도구가 없어 같은 색으로 직접 그렸다. 콜센터 자료는 `coxed` 대신 base R 모의. `pcr-pls-high-dim`은 만들지 않고 `dm-regularization` 안에 둔다(seriesOrder 7은 비어 있음) |
+| DM 신규 | neural-network, deep-learning, survival | 검토 | ISLR 10, 11장. 3편 작성 완료(2026-11-14), `draft: false`, 커밋됨. torch·luz는 renv(`_tmp/r4ds`)에 설치해 Hitters 신경망과 NYSE RNN을 실제로 학습했다. IMDb, MNIST, CIFAR 수치는 ISLR 인용. 개념 그림 SVG 4장은 Excalidraw 도구가 없어 같은 색으로 직접 그렸다. 콜센터 자료는 `coxed` 대신 base R 모의. `pcr-pls-high-dim`은 만들지 않고 `dm-regularization` 안에 둔다(seriesOrder 7은 비어 있음) |
 | DOE-1 | 01, 02 | 검토 | doe-01에 일표본 예시, Welch 기본 권고, 대응 차이 Q-Q 예시. doe-02에 대비 수치 예시, 변량모형 코드와 비교 표, Dunnett(교재 밖) 행. 기존 숫자는 로그와 일치(2026-11-14) |
 | DOE-2 | 03, 04 | 검토 | doe-03 풀링 기준을 교재대로(Montgomery p≥0.25), 수준별 구간·교락 식·교호작용 패턴 SVG·비교 절. doe-04 법칙 5~7과 부록 4A, 제약·비제약 SVG, 4원배치 풀링 재현, 교재 표 4.16 분산성분 14.488 → 13.63 정정, 한글 행 이름 때문에 근사 F가 실행되지 않던 코드 버그 수정(2026-11-14) |
 | DOE-3 | 05, 06 | 검토 | 05는 그래코·Youden 식·자유도·예제, 교재 예제 5.2, 5.3, 5.8 R 재현, 라틴방격 최적조건 80.64로, 그래코 존재 조건 p≥4로 수정. 06은 2³ 예제, Yates, 단계적 풀링, 비교 절. 교재 오류 3건(표 5.18 EMS 계수, 예제 5.6 점추정, 표 5.17 인쇄) 주의 표시(2026-11-14) |
@@ -162,13 +162,13 @@ docs/blog-replan/00-README.md, 01-common-frame.md, <시리즈 파일>을 읽고
 | TS-4 | ts-07, ts-08 | 검토 | ts-07에 ADF 회귀식, KPSS와 ADF·KPSS 조합 표. ts-08은 추정 방법 표를 하나로, ts-05·ts-06으로 링크, `auto.arima` 기본값 명시. URL SHA 고정(2026-11-14) |
 | TS-5 | ts-09, ts-10 | 완료 | ts-09: 추세정상 열, 네 모형 예측 그림. ts-10: 승법 모형의 다른 패턴과 비승법 모형, `fixed=`, 다루지 않는 주제 (2026-11-21) |
 | LA-1 | la-vector-matrix, la-gauss-lu | 검토 | 노름·코시-슈바르츠·대각합·콜레스키·정규방정식 예시 추가, 코드를 소절 옆으로, 비교 절 정리, `PA=LU`와 `A=PLU` 구분(2026-11-14) |
-| LA-2 | la-determinant, la-vector-space | 검토 | 코드를 소절 옆으로, 비교 절 1회, 통계 쓰임(공선성, 일반화 분산, 야코비안, QDA, 자유도, 추정 가능 대비). Python 블록은 미실행(2026-11-14) |
+| LA-2 | la-determinant, la-vector-space | 검토 | 코드를 소절 옆으로, 비교 절 1회, 통계 쓰임(공선성, 일반화 분산, 야코비안, QDA, 자유도, 추정 가능 대비). Python 블록은 미실행(2026-11-14) → Python 블록 6개를 venv(`_tmp/pyla`)에서 실행, 주석 값과 일치(2026-11-22). |
 | LA-3 | la-orthonormal, la-linear-map | 검토 | orthonormal은 수치 안정성(조건수 제곱), 7절 회귀의 사영 해석(hat 행렬, 지렛값, `lm`의 QR, 직교다항식), 비교표. linear-map은 공분산 변환, PCA 점수 = 등장 좌표변환, 불변량. R·Python 모두 실행(2026-11-14) |
 | LA-4 | la-eigen, la-svd | 검토 | eigen은 통계 쓰임(마할라노비스, AR 동반행렬, 마르코프)과 분해 비교, 거듭제곱법 과장 문구 수정. svd는 간소·완전 SVD, 에카르트-영, 유사역행렬(최소노름), 조건수 제곱, 릿지 축소, PCA 통계 해석은 `dm-pca`로. R·Python 모두 실행(2026-11-14) |
-| MI-1 | overview, supply-demand | 검토 | overview의 과점 잉여 수치표를 정성 설명으로 줄임(수치는 oligopoly 글). supply-demand에 탄력성 4종 비교 표. 숫자 재계산 일치, 강의 시트 항목 대조는 못 함(2026-11-14) |
-| MI-2 | consumer-behavior, individual-market-demand, uncertainty | 검토 | 내부해·구석해, 힉스·슬러츠키, 마셜·힉스 수요, 밴드왜건·스놉·과시, 분산투자·보험·정보, 기대효용·전망이론 비교표. 생계비 지수 수치 예, 정보 가치 예제 설정(C05 대조), 과시효과 추가. `fig-mi-network.svg` 숫자 미확인(2026-11-14) |
-| MI-3 | production, cost, perfect-competition | 검토 | 세 글에 비교 절. cost에 비용함수 형태와 규모·범위·학습 비교표, 범위의 경제 해석 문구 수정. perfect-competition에 공급탄력성과 단기·장기 비교. LAC 포락선 그림 수치 미확인(2026-11-14) |
-| MI-4 | competitive-market-analysis, monopoly, pricing | 검토 | 정책 8개, 완전경쟁·독점·수요독점, 가격전략 8개 비교표. C09, C10 대조로 큰 나라 관세, 신장 시장 수치, 수요독점력 지수, 수익률 규제식 추가. 이부가격제 "둘 다 참여" 전제 명시(소비자 1만 상대하면 이윤 3,200). C11, 그림 내부 수치 미확인(2026-11-14) |
+| MI-1 | overview, supply-demand | 검토 | overview의 과점 잉여 수치표를 정성 설명으로 줄임(수치는 oligopoly 글). supply-demand에 탄력성 4종 비교 표. 숫자 재계산 일치, 강의 시트 항목 대조는 못 함(2026-11-14) → C02 대조(2026-11-22): 기대가격, 가격 상한(초과수요 20), 브라질 커피 단기·중기·장기 보충. |
+| MI-2 | consumer-behavior, individual-market-demand, uncertainty | 검토 | 내부해·구석해, 힉스·슬러츠키, 마셜·힉스 수요, 밴드왜건·스놉·과시, 분산투자·보험·정보, 기대효용·전망이론 비교표. 생계비 지수 수치 예, 정보 가치 예제 설정(C05 대조), 과시효과 추가. `fig-mi-network.svg` 숫자 미확인(2026-11-14) → `fig-mi-network` 기하 확인: 시장수요 점이 D20~D80 위 Q=20~80, 40→50→60 일치(2026-11-22). |
+| MI-3 | production, cost, perfect-competition | 검토 | 세 글에 비교 절. cost에 비용함수 형태와 규모·범위·학습 비교표, 범위의 경제 해석 문구 수정. perfect-competition에 공급탄력성과 단기·장기 비교. LAC 포락선 그림 수치 미확인(2026-11-14) → LAC 포락선 확인: SAC가 q≈6, 15, 24에서 접하고 SAC1 최저점은 접점 오른쪽, SAC3은 왼쪽(2026-11-22). |
+| MI-4 | competitive-market-analysis, monopoly, pricing | 검토 | 정책 8개, 완전경쟁·독점·수요독점, 가격전략 8개 비교표. C09, C10 대조로 큰 나라 관세, 신장 시장 수치, 수요독점력 지수, 수익률 규제식 추가. 이부가격제 "둘 다 참여" 전제 명시(소비자 1만 상대하면 이윤 3,200). C11, 그림 내부 수치 미확인(2026-11-14) → C11 대조와 가격전략 그림 5장 수치 재계산 일치. 강의 자료의 혼합 묶어팔기 222.90은 229.9의 오기로 보여 주의 표시(2026-11-22). |
 | MI-5~7 | 7편 | 완료 | 그림은 이미 들어가 있었다. game-theory에 Wal-Mart 선점과 협상 연계(강의 자료), asymmetric-information에 비교 절(역선택·도덕적 해이, 신호·선별) 추가 (2026-11-21) |
 | R4-1 | `seriesOrder`, 기존 10편 | 검토 | `seriesOrder` 1, 2, 3, 4, 5, 7, 8, 10, 14, 17과 다음 글 링크. dplyr, tibble, eda, string, factor, joins에 비교와 빠진 내용 보강(2026-11-14) |
 | R4-2 | logical-numbers, datetime, functions | 검토 | 신규 3편(seriesOrder 6, 9, 13), 앞뒤 링크 3곳 수정. `published`는 기존 글 날짜 사이 임의 값(2026-11-14) |
@@ -177,9 +177,11 @@ docs/blog-replan/00-README.md, 01-common-frame.md, <시리즈 파일>을 읽고
 | 데이터 시각화 | 12편 | 완료 | `11-data-visualization.md`. 신규, 사용자 검토 완료(2026-11-14) |
 | 기계학습 활용 | 11편 | 완료 | `12-machine-learning.md`. 신규, 사용자 검토 완료(2026-11-14) |
 | 데이터 분석 환경 | 7편 | 완료 | `seriesOrder`는 linux 1, wsl2 2, air-gapped 3, data-naming-standards 4, portable-bat-uv 5, parquet-compression-sorting 6, crlf 7. 기존 4편 사용자 검토 완료(2026-11-14). linux, wsl2, crlf 3편 추가와 그림 6장(2026-11-16~21) |
-| 마무리 | 단독 글, About, 링크 | 대기 | |
+| 마무리 | 단독 글, About, 링크 | 진행 | beauty의 세 문제는 이미 해결되어 있었다. air-gapped 인코딩 코드 실행 확인. `dm-linear-regression` 고영향점 기준을 평균의 2배로 명시. 시계열 비계절 연산자를 소문자 $\phi(B)$, $\theta(B)$로 통일(ts-06, ts-07, la-eigen). About(D9)·D5·D10은 사용자 결정 대기 (2026-11-22) |
 
 ## 8. 계획과 달라진 점
+
+- 2026-11-22: 검토 대기 글 중 R 코드가 있는 67편(torch를 쓰는 `dm-neural-network`, `dm-deep-learning` 제외)을 글 사본에서 다시 실행해 모두 에러 0을 확인했다. 저장소의 그림은 바꾸지 않았다.
 
 - 2026-11-21: BIO-5의 포아송 신뢰구간 포함률 모의실험은 "반복 모의실험으로 방법 비교 금지" 원칙에 따라 넣지 않았다. 예제에 과대산포가 없어(편차 0.022) 음이항 적합은 수렴하지 않는다는 설명으로 대신했다.
 - 2026-11-21: BIO-6 반복측정의 확률 기울기 모형은 lme4 대신 이미 설치된 nlme(`lme`)로 했다. lme4는 설치하지 않았다.
@@ -213,7 +215,7 @@ docs/blog-replan/00-README.md, 01-common-frame.md, <시리즈 파일>을 읽고
 - 2026-11-14: MI-4의 곡선 그림은 이미 있어 새로 그리지 않았다. 비교표와 시트 C09, C10에서 빠진 개념을 더했다.
 - 2026-11-21: 데이터 분석 환경 시리즈에서 입문 글인 리눅스와 WSL2를 1, 2번으로 당기고 나머지를 한 칸씩 뒤로 미뤘다. 글끼리는 제목으로 링크하므로 본문 문구는 바꾸지 않았다. About의 시리즈 설명 순서도 맞췄다.
 - 2026-11-21: 단독 글 그림(`posts/*/figures/fig-*.svg`)은 글자가 path로 들어 있어 용량이 크다. `scripts/optimize-figures.py`로 좌표를 소수 한 자리로 줄이고 상대 좌표로 바꿔 20장 4.49MB를 2.37MB로(gzip 1.49MB → 0.61MB) 줄였다. 새 그림을 넣으면 이 스크립트를 한 번 돌린다.
-- **마무리 때 처리할 시리즈 간 항목:** (1) `r4ds-modeling`의 "`lm()`은 정규방정식으로 바로 푼다"는 틀렸다(`lm()`은 QR). R4-3 때 고친다. (2) `la-orthonormal` 7절이 `dm-linear-regression`을 지렛값 진단 글로 링크하는데 그 글에 `hatvalues` 설명이 없다. 지렛값을 짧게 넣거나 링크 문장을 바꾼다.
+- **마무리 때 처리할 시리즈 간 항목 (2026-11-22 둘 다 처리):** (1) `r4ds-modeling`의 "`lm()`은 정규방정식으로 바로 푼다"는 틀렸다(`lm()`은 QR). R4-3 때 고친다. (2) `la-orthonormal` 7절이 `dm-linear-regression`을 지렛값 진단 글로 링크하는데 그 글에 `hatvalues` 설명이 없다. 지렛값을 짧게 넣거나 링크 문장을 바꾼다.
   (3) 완료: `la-svd` 8절의 PCR·PLS 언급을 `dm-regularization` 링크로 바꿨다. (4) 생명과학통계 시리즈 순서를 `published`로 맞춘 것을 `seriesOrder`로 바꿀지 결정한다.
 - 2026-11-09: `02-data-mining.md`의 12번 `dm-neural-network` 계획을 ISLR 10.1, 10.2, 10.7, 10.8 원문과 대조해 다시 썼다. 예시를 소주제마다 붙이는 B형 구조로 바꾸고, 역전파, 모수 수, 드롭아웃, 이중 하강 재현 설정을 구체화했다. 이중 하강은 시드 평균 대신 중앙값과 대표 시드를 쓰고, Hitters는 `nnet`이 ISLR 모형과 다르다는 점과 `MaxNWts`를 명시했다. `01-common-frame.md`에 torchvision과 큰 내려받기 허락 규칙을 추가했다.
 - 2026-11-09: 사용자 요청으로 데이터 마이닝부터 시작했다. WP-0은 `seriesOrder`만, WP-1은 데이터 마이닝 항목만 먼저 처리했다. `seriesOrder`는 `src/utils.ts`의 `SeriesGroup.build`에서 시리즈 안 정렬을 하고(번호가 있는 글 우선, 나머지는 `published`), `sortCollationsMostRecent`는 마지막 항목이 아니라 가장 최근 날짜를 쓰도록 바꿨다. 데이터 마이닝 14편에 번호를 넣었고 신규 4편(7, 12, 13, 14번)은 비어 있다.
