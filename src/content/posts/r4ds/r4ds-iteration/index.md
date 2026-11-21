@@ -242,4 +242,4 @@ all_mpg |> count(file)
 - *R for Data Science* (2nd ed.): [26 Iteration](https://r4ds.hadley.nz/iteration.html), [27 A field guide to base R](https://r4ds.hadley.nz/base-R.html)
 - [purrr 공식 문서](https://purrr.tidyverse.org/)
 
-다음 글: [R4DS - 모델링 기초: lm과 broom](/posts/r4ds-modeling)
+다음 글: [R4DS - base R 핵심: 인덱싱, apply, for](/posts/r4ds-base-r)

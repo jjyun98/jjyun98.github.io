@@ -185,4 +185,4 @@ setdiff(df1, df2)     # df1에만 있는 행
 - *R for Data Science* (2nd ed.): [19 Joins](https://r4ds.hadley.nz/joins.html)
 - [dplyr: Mutating joins](https://dplyr.tidyverse.org/reference/mutate-joins.html)
 
-다음 글: [R4DS - 함수 작성하기](/posts/r4ds-functions)
+다음 글: [R4DS - 외부 데이터: Excel, 데이터베이스, Parquet](/posts/r4ds-external-data)
