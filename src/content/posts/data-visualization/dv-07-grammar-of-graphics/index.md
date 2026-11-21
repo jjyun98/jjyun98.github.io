@@ -21,7 +21,7 @@ from plotnine import *
 ggplot2에 들어 있는 `mpg` 자료(자동차 234대의 연비)를 쓴다. 강의에서는 rpy2로 R의 자료를 파이썬으로 넘겨 csv로 저장했다. 여기서는 그 파일을 바로 읽는다.
 
 ```python
-mpg = pd.read_csv('https://raw.githubusercontent.com/guebin/2021DV/master/_notebooks/mpg.csv')
+mpg = pd.read_csv('https://raw.githubusercontent.com/guebin/2021DV/571a4ed82e7106d4ab6979865cc3ea89759784c1/_notebooks/mpg.csv')
 ```
 
 | 변수 | 뜻 |

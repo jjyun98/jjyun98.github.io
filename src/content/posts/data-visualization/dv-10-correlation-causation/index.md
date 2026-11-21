@@ -32,7 +32,7 @@ from plotnine import *
 전주의 2020년 1월 1일부터 2021년 10월 17일까지 656일의 일평균기온을 쓰고, 아이스크림 판매량과 소아마비 발생은 온도에서 만들어 낸다. 두 변수 모두 온도에만 의존하고 **서로는 아무 관계가 없도록** 만들었다.
 
 ```python
-df = pd.read_csv('https://raw.githubusercontent.com/guebin/2021DV/master/_notebooks/extremum.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/guebin/2021DV/571a4ed82e7106d4ab6979865cc3ea89759784c1/_notebooks/extremum.csv')
 temp = np.array(df.iloc[:, 3])          # 평균기온(℃), -12.4 ~ 30.0
 
 np.random.seed(1)

@@ -35,7 +35,7 @@ $\mathbf X$의 첫 열이 모두 1인 것은 절편 $w_0$를 곱하기 위해서
 
 ```python
 import torch, pandas as pd
-df = pd.read_csv("https://raw.githubusercontent.com/guebin/DL2022/main/posts/II.%20DNN/2022-09-22-regression.csv")
+df = pd.read_csv("https://raw.githubusercontent.com/guebin/DL2022/2860d6885d9ade8b8ba8729db3895a9b0175a884/posts/II.%20DNN/2022-09-22-regression.csv")
 x = torch.tensor(df.x).float().reshape(100, 1)      # (100, 1) 열벡터
 y = torch.tensor(df.y).float().reshape(100, 1)
 X = torch.concat([torch.ones(100, 1), x], dim=1)   # (100, 2): [1, x_i]

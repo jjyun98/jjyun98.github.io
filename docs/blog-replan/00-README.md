@@ -140,7 +140,7 @@ docs/blog-replan/00-README.md, 01-common-frame.md, <시리즈 파일>을 읽고
 
 | 작업 묶음 | 글 | 상태 | 비고 |
 |---|---|---|---|
-| WP-0 | 사이트 공통 | 진행 | `seriesOrder` 완료(스키마, 정렬, 데이터 마이닝 14편 번호). 생명과학통계, 실험계획법, 선형대수학, 미시경제학, 시계열 분석 59편에도 발행일 순서대로 번호를 붙였다(2026-11-21). 모바일 표, 자료 URL 고정, About·README 갱신은 대기 |
+| WP-0 | 사이트 공통 | 진행 | `seriesOrder` 완료(스키마, 정렬, 데이터 마이닝 14편 번호). 생명과학통계, 실험계획법, 선형대수학, 미시경제학, 시계열 분석 59편에도 발행일 순서대로 번호를 붙였다(2026-11-21). 모바일 표(rehype 래퍼)와 시계열 자료 URL은 이전에 처리되어 있었다. 데이터 시각화·딥러닝 글의 raw URL 13곳을 커밋 SHA로 고정했다. README는 갱신됨. About의 D5(교재명)·D9(Airflow·Lambda)는 사용자 결정 대기 |
 | WP-1 | 확정 오류 | 완료 | 16건 중 15건 처리(2026-11-11). `doe-04`는 비제약(교재)과 제약(강의) EMS를 나란히 비교하는 표로 고쳤다. 7, 13번은 해당 문장이 GitHub 기준 정리에서 빠져 해소됐다. 칼슘 자료(D7)만 보류. 사용자 검토 완료(2026-11-14) |
 | WP-2 | 파일럿 3편 | 중단 | 번호 구조 파일럿은 폐기했다. `dm-resampling`은 GitHub 글 기준으로 되돌렸다 |
 | DM 기존 14편 | GitHub 기준 정리 | 완료 | 8편은 GitHub 글로 되돌린 뒤 빠진 내용만 더했고, 6편은 덧붙인 절을 줄였다. 사용자 검토 완료(2026-11-14) |
@@ -149,18 +149,18 @@ docs/blog-replan/00-README.md, 01-common-frame.md, <시리즈 파일>을 읽고
 | DOE-2 | 03, 04 | 검토 | doe-03 풀링 기준을 교재대로(Montgomery p≥0.25), 수준별 구간·교락 식·교호작용 패턴 SVG·비교 절. doe-04 법칙 5~7과 부록 4A, 제약·비제약 SVG, 4원배치 풀링 재현, 교재 표 4.16 분산성분 14.488 → 13.63 정정, 한글 행 이름 때문에 근사 F가 실행되지 않던 코드 버그 수정(2026-11-14) |
 | DOE-3 | 05, 06 | 검토 | 05는 그래코·Youden 식·자유도·예제, 교재 예제 5.2, 5.3, 5.8 R 재현, 라틴방격 최적조건 80.64로, 그래코 존재 조건 p≥4로 수정. 06은 2³ 예제, Yates, 단계적 풀링, 비교 절. 교재 오류 3건(표 5.18 EMS 계수, 예제 5.6 점추정, 표 5.17 인쇄) 주의 표시(2026-11-14) |
 | DOE-4 | 07, 08 | 검토 | 07은 블록·반실시 입방체 SVG, L8 선점도 SVG, 표 6.7에서 정의대비 복원, 예제 6.3, 6.5 재현, 2⁵⁻² 별칭. 08은 3² 단일·3³ 이중 교락, 3³⁻¹ 별칭, L9·L27·가수준·L18, 성분 곱 mod 3 함수로 별칭 검증. 교재 오류 4건 주의 표시(6.1 블록 제곱합, 6.3 최적조건 45.03 → 42.03, 7.1 MSE, 7.2 배치 불가)(2026-11-14) |
-| DOE-5 | 09, 10 | 대기 | |
+| DOE-5 | 09, 10 | 완료 | 09: 교재 예제 8.3(1차 단위 인자 둘), 8.4(분할되지 않는 인자), 8.5(2단분할, L16) 추가, 2단분할 그림. 10: α를 F^{1/4}로, Box-Behnken 예제(정상점이 영역 밖) 추가 (2026-11-21) |
 | BIO-1 | sas-basics, study-design | 검토 | PDV 그림과 비교 절 추가. 출력은 `mower`·`bweight`의 R 확인값, `sashelp` 예제는 출력 표 안내만. study-design은 비교·요약 표 통합과 이항분포 계산 1개. `Visit` 설명 오류 수정. SAS 실제 출력 반영은 대기(2026-11-14) |
 | BIO-2 | hypothesis, mean-comparison | 검토 | hypothesis는 세 검정 비교를 9절로 합치고 자료형을 뒤로, 소표본 예시(n=10, x=1). mean-comparison은 Welch 식과 R 확인값, 짝지은·독립 대비, Tukey. D7 보류, SAS 실제 출력 대기(2026-11-14) |
 | BIO-3 | contingency, diagnostic-test | 검토 | 진단 평가를 새 글 `biostat-diagnostic-test`로 분리(PPV 곡선, 이론 ROC 그림, 카파). contingency는 R 확인값 추가, 빠진 `library(tidyverse)` 보충. `sashelp.heart` ROC 수치와 SAS 실제 출력 대기(2026-11-14) |
 | BIO-4 | correlation-regression, ancova | 검토 | correlation-regression은 비교 절 하나로, 식 보강, `women`·`mtcars` 예시(공선성·영향점), 사영·진단은 링크. ancova는 `published`를 `2026-05-25T18:00:00`으로 바꿔 순서 변경, 예제 5.1~5.3 R 확인값, 5.2 줄 수 설명 오류 수정(2026-11-14) |
-| BIO-5 | logistic, poisson | 대기 | |
-| BIO-6 | repeated, survival, sample-size | 대기 | |
+| BIO-5 | logistic, poisson | 완료 | SAS 결과 자리에 R로 확인한 값 표, 로짓·비례오즈·포아송 그림, 편차·Pearson 식 (2026-11-21) |
+| BIO-6 | repeated, survival, sample-size | 완료 | 반복측정: EMS, 구형성, LMM 공분산 구조 비교, GEE. 생존: 가중 검정 표, Cox 표, cox.zph. 표본크기: 일반 Schoenfeld 식, 비열등성 식, R 확인값 (2026-11-21) |
 | TS-1 | ts-01, ts-02 | 검토 | ts-01 가법·승법, RMSE와 척도 비교. ts-02 예측오차 분산·구간, 진폭·위상, 지시함수 대 삼각함수 비교 절. 자료 URL을 SHA `172803ef`로 고정. 책 제목 D5 미결(2026-11-14) |
 | TS-2 | ts-03, ts-04 | 검토 | URL SHA 고정. ts-03 Brown과 Holt를 나누고 변환 관계를 수치로 확인(둘 다 ARIMA(0,2,2)로 묶은 표기 수정). ts-04 계절지수 정규화 조건, 계절 성분 차이를 숫자로, X-11 소개(2026-11-14) |
 | TS-3 | ts-05, ts-06 | 검토 | ts-05에 Bartlett 표준오차, Ljung-Box 식과 네 자료 검정 예시, ACF·PACF 비교표, URL SHA 고정. ts-06은 4회 반복된 ACF/PACF 표를 하나로, AR(p)·MA(q)·ARMA(p,q) 일반식과 수치 예, 비교표의 ARMA 문구 수정(2026-11-14) |
 | TS-4 | ts-07, ts-08 | 검토 | ts-07에 ADF 회귀식, KPSS와 ADF·KPSS 조합 표. ts-08은 추정 방법 표를 하나로, ts-05·ts-06으로 링크, `auto.arima` 기본값 명시. URL SHA 고정(2026-11-14) |
-| TS-5 | ts-09, ts-10 | 대기 | |
+| TS-5 | ts-09, ts-10 | 완료 | ts-09: 추세정상 열, 네 모형 예측 그림. ts-10: 승법 모형의 다른 패턴과 비승법 모형, `fixed=`, 다루지 않는 주제 (2026-11-21) |
 | LA-1 | la-vector-matrix, la-gauss-lu | 검토 | 노름·코시-슈바르츠·대각합·콜레스키·정규방정식 예시 추가, 코드를 소절 옆으로, 비교 절 정리, `PA=LU`와 `A=PLU` 구분(2026-11-14) |
 | LA-2 | la-determinant, la-vector-space | 검토 | 코드를 소절 옆으로, 비교 절 1회, 통계 쓰임(공선성, 일반화 분산, 야코비안, QDA, 자유도, 추정 가능 대비). Python 블록은 미실행(2026-11-14) |
 | LA-3 | la-orthonormal, la-linear-map | 검토 | orthonormal은 수치 안정성(조건수 제곱), 7절 회귀의 사영 해석(hat 행렬, 지렛값, `lm`의 QR, 직교다항식), 비교표. linear-map은 공분산 변환, PCA 점수 = 등장 좌표변환, 불변량. R·Python 모두 실행(2026-11-14) |
@@ -169,10 +169,10 @@ docs/blog-replan/00-README.md, 01-common-frame.md, <시리즈 파일>을 읽고
 | MI-2 | consumer-behavior, individual-market-demand, uncertainty | 검토 | 내부해·구석해, 힉스·슬러츠키, 마셜·힉스 수요, 밴드왜건·스놉·과시, 분산투자·보험·정보, 기대효용·전망이론 비교표. 생계비 지수 수치 예, 정보 가치 예제 설정(C05 대조), 과시효과 추가. `fig-mi-network.svg` 숫자 미확인(2026-11-14) |
 | MI-3 | production, cost, perfect-competition | 검토 | 세 글에 비교 절. cost에 비용함수 형태와 규모·범위·학습 비교표, 범위의 경제 해석 문구 수정. perfect-competition에 공급탄력성과 단기·장기 비교. LAC 포락선 그림 수치 미확인(2026-11-14) |
 | MI-4 | competitive-market-analysis, monopoly, pricing | 검토 | 정책 8개, 완전경쟁·독점·수요독점, 가격전략 8개 비교표. C09, C10 대조로 큰 나라 관세, 신장 시장 수치, 수요독점력 지수, 수익률 규제식 추가. 이부가격제 "둘 다 참여" 전제 명시(소비자 1만 상대하면 이윤 3,200). C11, 그림 내부 수치 미확인(2026-11-14) |
-| MI-5~7 | 7편 | 대기 | |
+| MI-5~7 | 7편 | 완료 | 그림은 이미 들어가 있었다. game-theory에 Wal-Mart 선점과 협상 연계(강의 자료), asymmetric-information에 비교 절(역선택·도덕적 해이, 신호·선별) 추가 (2026-11-21) |
 | R4-1 | `seriesOrder`, 기존 10편 | 검토 | `seriesOrder` 1, 2, 3, 4, 5, 7, 8, 10, 14, 17과 다음 글 링크. dplyr, tibble, eda, string, factor, joins에 비교와 빠진 내용 보강(2026-11-14) |
 | R4-2 | logical-numbers, datetime, functions | 검토 | 신규 3편(seriesOrder 6, 9, 13), 앞뒤 링크 3곳 수정. `published`는 기존 글 날짜 사이 임의 값(2026-11-14) |
-| R4-3 | external-data, hierarchical-web, base-r, quarto | 대기 | |
+| R4-3 | external-data, hierarchical-web, base-r, quarto | 완료 | 4편 신규. 다음 글 링크를 joins → external-data, iteration → base-r로 바꿨다 (2026-11-21) |
 | 딥러닝 | 12편 | 완료 | `10-deep-learning.md`. 1~9편을 개념 중심으로 다시 쓰고 폴더와 번호를 바꿨으며 10~12편을 새로 썼다. 편끼리 교차 링크 추가(2026-11-14). 사용자 검토 완료(2026-11-14) |
 | 데이터 시각화 | 12편 | 완료 | `11-data-visualization.md`. 신규, 사용자 검토 완료(2026-11-14) |
 | 기계학습 활용 | 11편 | 완료 | `12-machine-learning.md`. 신규, 사용자 검토 완료(2026-11-14) |
@@ -180,6 +180,11 @@ docs/blog-replan/00-README.md, 01-common-frame.md, <시리즈 파일>을 읽고
 | 마무리 | 단독 글, About, 링크 | 대기 | |
 
 ## 8. 계획과 달라진 점
+
+- 2026-11-21: BIO-5의 포아송 신뢰구간 포함률 모의실험은 "반복 모의실험으로 방법 비교 금지" 원칙에 따라 넣지 않았다. 예제에 과대산포가 없어(편차 0.022) 음이항 적합은 수렴하지 않는다는 설명으로 대신했다.
+- 2026-11-21: BIO-6 반복측정의 확률 기울기 모형은 lme4 대신 이미 설치된 nlme(`lme`)로 했다. lme4는 설치하지 않았다.
+- 2026-11-21: DOE-5에서 doe-09는 oats 예제에 교재 예제 8.3~8.5를 함께 썼다. 2단분할 그림은 Excalidraw 대신 `<text>`가 있는 손으로 쓴 SVG다. 예제 8.4는 B3·70°C 첫 값이 63.2여야 교재 표 8.15가 재현되어 본문에 적었다.
+- 2026-11-21: R4-3에서 arrow는 이 환경(Homebrew R, 소스 설치만 가능)에서 빌드가 무거워 설치하지 않았다. Parquet 왕복은 duckdb로 실행하고, arrow 코드는 `norun`으로 두었다. readxl 예시는 패키지에 들어 있는 `deaths.xlsx`를 썼다. quarto는 설치되어 있지 않아 렌더 결과 없이 소스만 넣었다.
 
 작업 중 계획을 바꾸면 날짜, 파일, 이유를 여기에 적는다.
 

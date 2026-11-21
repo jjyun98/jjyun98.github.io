@@ -57,7 +57,7 @@ df.iloc[:, 0:3]          # 위치로 슬라이싱
 열이 28개인 영화 자료에서 이름에 `actor`가 들어간 열만 고르고 싶다.
 
 ```python
-movie = pd.read_csv('https://raw.githubusercontent.com/PacktPublishing/Pandas-Cookbook/master/data/movie.csv')
+movie = pd.read_csv('https://raw.githubusercontent.com/PacktPublishing/Pandas-Cookbook/e3bfd0750df01b30eb778b86f5314f2a1f2eacb0/data/movie.csv')
 ```
 
 열 이름마다 참/거짓을 계산해 불 리스트를 만들면 된다. 여기에 파이썬의 `lambda`와 `map`이 쓰인다.
@@ -173,7 +173,7 @@ ts.query('"2020-12-27" <= index <= "2021-01-03" and A + B < C')   # 날짜 + 열
 축구 게임 FIFA22에는 실제 선수들의 능력치가 세밀하게 들어 있다. 16,710명, 65개 변수다.
 
 ```python
-fifa22 = pd.read_csv('https://raw.githubusercontent.com/guebin/2021DV/master/_notebooks/2021-10-25-FIFA22_official_data.csv')
+fifa22 = pd.read_csv('https://raw.githubusercontent.com/guebin/2021DV/571a4ed82e7106d4ab6979865cc3ea89759784c1/_notebooks/2021-10-25-FIFA22_official_data.csv')
 fifa22 = fifa22.sort_values(by='Overall', ascending=False).reset_index(drop=True)
 ```
 

@@ -20,7 +20,7 @@ import pandas as pd
 2015년 미국 항공편 58,492건의 자료를 쓴다. 항공사(`AIRLINE`), 요일(`WEEKDAY`), 거리(`DIST`), 도착 지연 시간(`ARR_DELAY`, 분), 우회 여부(`DIVERTED`), 결항 여부(`CANCELLED`) 등 14개 변수가 있다.
 
 ```python
-df = pd.read_csv('https://raw.githubusercontent.com/PacktPublishing/Pandas-Cookbook/master/data/flights.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/PacktPublishing/Pandas-Cookbook/e3bfd0750df01b30eb778b86f5314f2a1f2eacb0/data/flights.csv')
 ```
 
 `groupby`는 데이터프레임을 그룹별 작은 데이터프레임으로 나눈다. 나누기만 해서는 쓸 일이 별로 없고, 나눈 뒤 **각 그룹에 계산을 적용**하기 위해 쓴다.
@@ -111,7 +111,7 @@ AA항공(26편)과 DL항공(24편)은 전체 우회 편수가 비슷하지만, A
 이 조건을 만족하는 표를 **tidy data**라고 한다. 느낌으로 말하면 plotnine으로 그리기 좋고, `query`나 `groupby`를 쓰기 좋은 표다. 다음 표는 주별 과일 값이다.
 
 ```python
-url = 'https://raw.githubusercontent.com/PacktPublishing/Pandas-Cookbook/master/data/state_fruit.csv'
+url = 'https://raw.githubusercontent.com/PacktPublishing/Pandas-Cookbook/e3bfd0750df01b30eb778b86f5314f2a1f2eacb0/data/state_fruit.csv'
 df = pd.read_csv(url, index_col=0)    # 왼쪽 위 칸이 비어 있어 첫 열을 인덱스로
 ```
 
@@ -171,7 +171,7 @@ ggplot(td) + geom_col(aes(x='state', y='value', fill='fruit'), position='dodge')
 연도별로 나뉜 주식 표 세 개가 있다. 2016년 표는 다음과 같고, 2017년(6종목), 2018년(3종목)도 같은 열을 갖는다.
 
 ```python
-base = 'https://raw.githubusercontent.com/PacktPublishing/Pandas-Cookbook/master/data/'
+base = 'https://raw.githubusercontent.com/PacktPublishing/Pandas-Cookbook/e3bfd0750df01b30eb778b86f5314f2a1f2eacb0/data/'
 df2016 = pd.read_csv(base + 'stocks_2016.csv')
 df2017 = pd.read_csv(base + 'stocks_2017.csv')
 df2018 = pd.read_csv(base + 'stocks_2018.csv')

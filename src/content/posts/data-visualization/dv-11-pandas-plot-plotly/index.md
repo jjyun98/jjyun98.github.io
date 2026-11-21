@@ -19,7 +19,7 @@ import plotly.express as px
 예제 자료는 2019년 10월부터 2020년 10월까지 13개월 동안 제조사 16곳(기타 포함)의 휴대폰 시장점유율(%)이다.
 
 ```python
-df = pd.read_csv('https://raw.githubusercontent.com/kalilurrahman/datasets/main/mobilephonemktshare2020.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/kalilurrahman/datasets/ad7de70470f22a68308a91d05759eb3b2c312d4a/mobilephonemktshare2020.csv')
 df.iloc[:3, :6]
 ```
 

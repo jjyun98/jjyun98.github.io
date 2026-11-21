@@ -99,7 +99,7 @@ plugins.HeatMapWithTime(data, radius=5, auto_play=True).add_to(m)
 plotly 저장소의 지진 자료는 규모 5.5 이상의 지진 23,412건의 날짜, 위도, 경도, 규모다. 연도별로 나눠 프레임을 만든다.
 
 ```python
-eq = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/master/earthquakes-23k.csv')
+eq = pd.read_csv('https://raw.githubusercontent.com/plotly/datasets/0c447c47b757ad74edecab31f0d72f849d2e67c2/earthquakes-23k.csv')
 eq['Year'] = pd.to_datetime(eq.Date, format='mixed', utc=True).dt.year
 lst = [g[['Latitude', 'Longitude', 'Magnitude']].to_numpy().tolist() for _, g in eq.groupby('Year')]
 
@@ -125,7 +125,7 @@ plugins.HeatMapWithTime(lst, radius=5, index=sorted(eq.Year.unique().tolist())).
 [southkorea-maps](https://github.com/southkorea/southkorea-maps)에서 2018년 시도와 시군구 경계를 받는다. JSON은 파이썬의 딕셔너리, 리스트와 같은 구조라 `json.load`로 읽으면 바로 다룰 수 있다.
 
 ```python
-base = 'https://raw.githubusercontent.com/southkorea/southkorea-maps/master/kostat/2018/json/'
+base = 'https://raw.githubusercontent.com/southkorea/southkorea-maps/fe65e05e549d04083e52f380a7e9166a8ea0a01e/kostat/2018/json/'
 prov = json.loads(requests.get(base + 'skorea-provinces-2018-geo.json').text)
 muni = json.loads(requests.get(base + 'skorea-municipalities-2018-geo.json').text)
 
@@ -171,7 +171,7 @@ folium.Choropleth(
 강의에서 제공한 시도별 총인구수 표는 시도 이름이 GeoJSON과 정확히 같다.
 
 ```python
-pp = pd.read_csv('https://raw.githubusercontent.com/guebin/2021DV/master/_notebooks/2021-11-22-prov.csv')
+pp = pd.read_csv('https://raw.githubusercontent.com/guebin/2021DV/571a4ed82e7106d4ab6979865cc3ea89759784c1/_notebooks/2021-11-22-prov.csv')
 pp.columns = ['name', 'pop']
 
 m = folium.Map([36, 127.8], zoom_start=6)
@@ -188,7 +188,7 @@ folium.Choropleth(geo_data=prov, data=pp, columns=['name', 'pop'],
 시군구 인구 표는 그대로 연결되지 않는다.
 
 ```python
-mp = pd.read_csv('https://raw.githubusercontent.com/guebin/2021DV/master/_notebooks/2021-11-22-muni.csv')
+mp = pd.read_csv('https://raw.githubusercontent.com/guebin/2021DV/571a4ed82e7106d4ab6979865cc3ea89759784c1/_notebooks/2021-11-22-muni.csv')
 mp.columns = ['name', 'pop']
 names = [f['properties']['name'] for f in muni['features']]
 
