@@ -150,11 +150,33 @@ autoplot(forecast(fit2, h = 50)) + labs(x = "t", y = NULL, title = "ARIMA(0,1,1)
 
 R의 `ma1` $\approx 0.76$이므로 교재 표기로는 $\hat\theta \approx -0.76$이다. 대응하는 평활상수 $\omega = 1 - \hat\theta \approx 1.76$이 1보다 커서, 이 자료는 단순지수평활의 범위(0~1)로는 표현되지 않는다. ARIMA 표현이 평활법보다 넓은 경우를 포함한다는 예다.
 
-| | 정상 ARMA | 비정상 ARIMA ($d \ge 1$) |
-|---|---|---|
-| 장기 예측값 | 평균 $\mu$로 수렴 | 마지막 수준(또는 추세선)을 유지 |
-| 예측오차 분산 | $Var(Z_t)$로 수렴 | 선행시차에 따라 계속 증가 |
-| $\psi_j$ | 0으로 수렴 | 0으로 가지 않음 |
+| | 정상 ARMA | 추세 정상 ($a + bt$ + ARMA) | 비정상 ARIMA ($d \ge 1$) |
+|---|---|---|---|
+| 장기 예측값 | 평균 $\mu$로 수렴 | 추정한 추세선으로 수렴 | 마지막 수준(표류항이 있으면 그 기울기의 직선)을 유지 |
+| 예측오차 분산 | $Var(Z_t)$로 수렴 | 오차 ARMA의 분산으로 수렴 | 선행시차에 따라 계속 증가 |
+| $\psi_j$ | 0으로 수렴 | 0으로 수렴 (오차 부분) | 0으로 가지 않음 |
+
+추세 정상과 확률보행은 표본 구간에서는 비슷해 보여도 예측구간이 전혀 다르다. 7편의 단위근 검정이 예측에서 중요한 이유다. 같은 길이의 모의 자료 네 개로 확인한다.
+
+```r w=10 h=6
+set.seed(9)
+n <- 100
+sims <- list(
+  `AR(1), phi = 0.7`     = list(z = arima.sim(list(ar = 0.7), n), order = c(1, 0, 0), drift = FALSE),
+  `MA(1), theta = 0.6`   = list(z = arima.sim(list(ma = -0.6), n), order = c(0, 0, 1), drift = FALSE),
+  `추세 정상: 0.1t + AR(1)` = list(z = ts(0.1 * (1:n) + arima.sim(list(ar = 0.7), n)), order = c(1, 0, 0), drift = TRUE),
+  `ARIMA(0,1,1) + 표류`   = list(z = ts(cumsum(0.1 + arima.sim(list(ma = -0.3), n))), order = c(0, 1, 1), drift = TRUE)
+)
+plots <- imap(sims, \(s, nm) {
+  fit <- Arima(s$z, order = s$order, include.drift = s$drift)
+  autoplot(forecast(fit, h = 40)) + labs(title = nm, x = NULL, y = NULL)
+})
+wrap_plots(plots, ncol = 2)
+```
+
+![AR(1), MA(1), 추세 정상, ARIMA(0,1,1) 모형의 40시차 예측과 예측구간 비교](./images/ts09-03.png)
+
+AR(1)은 평균으로, MA(1)은 2시차부터 바로 평균으로 돌아가고 구간 폭도 곧 일정해진다. 추세 정상 모형은 예측값이 추세선을 따라 올라가지만 구간 폭은 일정하다. ARIMA(0,1,1)은 예측값이 표류항의 기울기로 올라가고 구간이 시차에 따라 계속 넓어진다.
 
 ## 7. 예측의 갱신
 

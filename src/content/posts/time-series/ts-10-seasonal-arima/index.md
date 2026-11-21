@@ -108,6 +108,29 @@ theory_plot(ma = ma_mult, title = "W(t) of the airline model: theta = 0.4, Theta
 
 시차 11과 13에 작은 "곁가지" 막대가 보이는 것이 승법 모형의 특징이다. 표본 SACF에서 이 모양이 보이면 승법 계절 MA를 의심한다.
 
+### 승법 모형의 다른 패턴과 비승법 모형
+
+계절 부분이 AR이면 모양이 달라진다. ARIMA$(0,0,1)(1,0,0)_{12}$, 즉 $(1 - \Phi B^{12})Z_t = (1 - \theta B)\epsilon_t$의 ACF는 시차 12, 24, 36에서 $\Phi^k$로 감소하는 막대마다 양옆(시차 $12k \pm 1$)에 곁가지가 붙는다.
+
+승법 구조를 강제하지 않는 모형이 **비승법 계절 모형**이다.
+
+$$
+\phi^*(B)(1 - B^s)^D(1 - B)^d Z_t = \delta + \theta^*(B)\epsilon_t
+$$
+
+$\phi^*(B)$, $\theta^*(B)$는 계절 시차까지 포함한 하나의 다항식이다. 예를 들어 $Z_t = (1 - \theta_1 B - \theta_{12}B^{12})\epsilon_t$는 시차 13 항이 없다. 승법 모형은 시차 13의 계수를 $\theta\Theta$로 정해 버리지만, 비승법 모형은 필요한 시차만 따로 넣는다. 그 결과 ACF가 시차 1, 11, 12에서만 0이 아니고 시차 13은 0이다. 표본 SACF에서 곁가지가 한쪽에만 있으면 비승법 모형을 검토한다.
+
+```r w=9 h=5.5
+sar_ma <- c(rep(0, 11), 0.6)                      # 교재 theta = 0.4, Phi = 0.6
+ma_add <- numeric(12); ma_add[1] <- -0.4; ma_add[12] <- -0.6   # 시차 13 항 없음
+theory_plot(ar = sar_ma, ma = -0.4, title = "ARIMA(0,0,1)(1,0,0)_12: theta = 0.4, Phi = 0.6") /
+  theory_plot(ma = ma_add, title = "Non-multiplicative MA: theta1 = 0.4, theta12 = 0.6")
+```
+
+![승법 ARIMA(0,0,1)(1,0,0)₁₂과 비승법 계절 MA의 이론적 ACF·PACF](./images/ts10-07.png)
+
+R에서 비승법 모형은 `Arima(z, order = c(0, 0, 12), fixed = c(NA, rep(0, 10), NA, NA))`처럼 쓰지 않는 계수를 0으로 고정해 적합한다(마지막 `NA`는 평균).
+
 ## 4. 예제: 월별 관광객 수
 
 교재 예제 10.5의 월별 관광객 자료 132개월이다. 시작 시점은 교재 예제 코드 저장소와 같이 1980년 12월로 둔다.
@@ -218,3 +241,5 @@ c(airline_AICc = fit_air$aicc, regression_AR1_AICc = fit_reg$aicc)
 | 8 | 식별·추정·진단 | 잔차가 백색잡음 | `Arima()`, `checkresiduals()` |
 | 9 | 예측 | 조건부 기대값 | `forecast()` |
 | 10 | SARIMA | 확률적 계절성 | `Arima(seasonal = )` |
+
+이 시리즈는 강의 범위인 교재 10장까지 다뤘다. 교재 11장 이후의 개입분석, 전이함수 모형, 다변량 시계열(VAR), 조건부 이분산(ARCH·GARCH) 모형은 다루지 않았다.
