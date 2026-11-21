@@ -52,7 +52,7 @@ $$
 Z_t - \mu = \phi_1 (Z_{t-1} - \mu) + \cdots + \phi_p (Z_{t-p} - \mu) + \epsilon_t, \qquad \epsilon_t \sim WN(0, \sigma^2)
 $$
 
-후진연산자로 쓰면 $\Phi(B)(Z_t - \mu) = \epsilon_t$, $\Phi(B) = 1 - \phi_1 B - \cdots - \phi_p B^p$이다. 상수항으로 쓰면 $Z_t = \delta + \phi_1 Z_{t-1} + \cdots + \epsilon_t$이고 $\delta = (1 - \phi_1 - \cdots - \phi_p)\mu$다.
+후진연산자로 쓰면 $\phi(B)(Z_t - \mu) = \epsilon_t$, $\phi(B) = 1 - \phi_1 B - \cdots - \phi_p B^p$이다. 상수항으로 쓰면 $Z_t = \delta + \phi_1 Z_{t-1} + \cdots + \epsilon_t$이고 $\delta = (1 - \phi_1 - \cdots - \phi_p)\mu$다.
 
 ### AR(1)
 
@@ -118,7 +118,7 @@ theory_plot(ar = c(0.8, -0.7), title = "AR(2): phi1 = 0.8, phi2 = -0.7 (complex 
 
 ### AR(p)
 
-정상성 조건은 $\Phi(B) = 0$의 모든 근이 단위원 밖에 있는 것이다. 자기공분산은 $k \ge 1$에서 Yule-Walker 방정식을 만족한다.
+정상성 조건은 $\phi(B) = 0$의 모든 근이 단위원 밖에 있는 것이다. 자기공분산은 $k \ge 1$에서 Yule-Walker 방정식을 만족한다.
 
 $$
 \rho_k = \phi_1 \rho_{k-1} + \phi_2 \rho_{k-2} + \cdots + \phi_p \rho_{k-p}
@@ -129,7 +129,7 @@ ACF는 지수적 감소나 감쇠 사인 곡선이 섞인 모양으로 서서히
 ## 2. 이동평균모형 MA(q)
 
 $$
-Z_t - \mu = \epsilon_t - \theta_1 \epsilon_{t-1} - \cdots - \theta_q \epsilon_{t-q} = \Theta(B) \epsilon_t
+Z_t - \mu = \epsilon_t - \theta_1 \epsilon_{t-1} - \cdots - \theta_q \epsilon_{t-q} = \theta(B) \epsilon_t
 $$
 
 유한한 선형과정이므로 모수 값과 상관없이 **항상 정상**이다.
@@ -159,7 +159,7 @@ $$
 \epsilon_t = Z_t + \theta Z_{t-1} + \theta^2 Z_{t-2} + \cdots \quad (\mu = 0)
 $$
 
-이것을 **가역성**이라 한다. 관측할 수 없는 오차 $\epsilon_t$를 관측값으로 복원할 수 있어야 잔차를 계산하고 예측할 수 있으므로, MA 모형은 가역 조건 $\Theta(B) = 0$의 근이 단위원 밖에 있도록 한다.
+이것을 **가역성**이라 한다. 관측할 수 없는 오차 $\epsilon_t$를 관측값으로 복원할 수 있어야 잔차를 계산하고 예측할 수 있으므로, MA 모형은 가역 조건 $\theta(B) = 0$의 근이 단위원 밖에 있도록 한다.
 
 ```r w=9 h=5.5
 # 교재의 theta = 0.6, -0.6 → R에서는 ma = -0.6, 0.6
@@ -191,11 +191,11 @@ AR과 MA는 서로 거울이다. 정상인 AR($p$)는 MA($\infty$)로, 가역인
 AR과 MA를 함께 쓰면 적은 모수로 더 다양한 ACF를 만들 수 있다.
 
 $$
-\Phi(B)(Z_t - \mu) = \Theta(B)\epsilon_t
+\phi(B)(Z_t - \mu) = \theta(B)\epsilon_t
 $$
 
-- 정상성: $\Phi(B) = 0$의 근이 단위원 밖, 가역성: $\Theta(B) = 0$의 근이 단위원 밖
-- $\Phi(B)$와 $\Theta(B)$가 공통 인수를 가지면 약분되어 더 작은 모형이 된다. 공통 인수가 없어야 한다.
+- 정상성: $\phi(B) = 0$의 근이 단위원 밖, 가역성: $\theta(B) = 0$의 근이 단위원 밖
+- $\phi(B)$와 $\theta(B)$가 공통 인수를 가지면 약분되어 더 작은 모형이 된다. 공통 인수가 없어야 한다.
 - 평균: $\mu = \dfrac{\delta}{1 - \phi_1 - \cdots - \phi_p}$
 
 ARMA($p, q$)의 ACF는 시차 $k > q$에서 AR 부분과 같은 차분방정식을 따른다.
@@ -216,7 +216,7 @@ $$
 \rho_k = \phi \rho_{k-1} \;\; (k \ge 2)
 $$
 
-시차 1의 값은 $\phi$와 $\theta$가 함께 정하고, 그 뒤로는 AR(1)처럼 $\phi$배씩 줄어든다. 예를 들어 $\phi = 0.8$, $\theta = -0.7$(R에서 `ma = 0.7`)이면 $\rho_1 = 0.897$, $\rho_2 = 0.8\rho_1 = 0.717$이고 `ARMAacf()`의 값과 같다. 같은 $\phi$라도 $\theta = 0.7$이면 $\rho_1 = 0.119$로 크게 달라지므로 두 모수가 시차 1을 함께 정한다. $\phi = \theta$이면 $\Phi(B)$와 $\Theta(B)$가 같은 인수를 가져 약분되고 $Z_t - \mu = \epsilon_t$, 곧 백색잡음이 된다. ACF와 PACF 모두 절단되지 않으므로 표본 그림만으로 ARMA(1,1)을 AR(2)나 MA(2)와 구별하기 어렵다. 이때는 8편의 AIC·BIC로 비교한다.
+시차 1의 값은 $\phi$와 $\theta$가 함께 정하고, 그 뒤로는 AR(1)처럼 $\phi$배씩 줄어든다. 예를 들어 $\phi = 0.8$, $\theta = -0.7$(R에서 `ma = 0.7`)이면 $\rho_1 = 0.897$, $\rho_2 = 0.8\rho_1 = 0.717$이고 `ARMAacf()`의 값과 같다. 같은 $\phi$라도 $\theta = 0.7$이면 $\rho_1 = 0.119$로 크게 달라지므로 두 모수가 시차 1을 함께 정한다. $\phi = \theta$이면 $\phi(B)$와 $\theta(B)$가 같은 인수를 가져 약분되고 $Z_t - \mu = \epsilon_t$, 곧 백색잡음이 된다. ACF와 PACF 모두 절단되지 않으므로 표본 그림만으로 ARMA(1,1)을 AR(2)나 MA(2)와 구별하기 어렵다. 이때는 8편의 AIC·BIC로 비교한다.
 
 ```r w=9 h=5.5
 # 교재 표기 (phi, theta) = (-0.5, 0.3)과 (0.8, -0.7) → R의 ma는 부호 반대
@@ -249,8 +249,8 @@ ARMA(1,1)은 SACF와 SPACF 모두 절단되지 않고 줄어든다. 표본에서
 | 구분 | AR($p$) | MA($q$) | ARMA($p$, $q$) |
 |---|---|---|---|
 | 현재 값을 설명하는 것 | 과거 관측값 | 과거 오차(충격) | 둘 다 |
-| 정상성 조건 | $\Phi(B) = 0$의 근이 단위원 밖 | 항상 정상 | AR 부분의 조건 |
-| 가역성 조건 | 항상 가역 | $\Theta(B) = 0$의 근이 단위원 밖 | MA 부분의 조건 |
+| 정상성 조건 | $\phi(B) = 0$의 근이 단위원 밖 | 항상 정상 | AR 부분의 조건 |
+| 가역성 조건 | 항상 가역 | $\theta(B) = 0$의 근이 단위원 밖 | MA 부분의 조건 |
 | ACF | 지수적·사인 곡선형으로 감소 | 시차 $q$ 이후 0 (절단) | 절단 없이 감소, $k > q$에서 AR 차분방정식을 따름 |
 | PACF | 시차 $p$ 이후 0 (절단) | 지수적·사인 곡선형으로 감소 | 절단 없이 감소 |
 | 충격의 지속 | 무한히 (점점 약해짐) | $q$시점 뒤 사라짐 | 무한히 |
@@ -261,7 +261,7 @@ AR과 MA는 ACF와 PACF의 역할이 서로 뒤바뀐 쌍대 관계다. 순수 A
 
 ## 요약
 
-- AR($p$): $\Phi(B)(Z_t-\mu)=\epsilon_t$, 정상 조건은 근이 단위원 밖, AR(1)은 $\rho_k=\phi^k$이고 PACF는 시차 $p$ 이후 0이다.
-- MA($q$): $Z_t-\mu=\Theta(B)\epsilon_t$, 항상 정상이고 가역 조건이 필요하다. MA(1)은 $\rho_1=-\theta/(1+\theta^2)$이고 ACF는 시차 $q$ 이후 0이다.
+- AR($p$): $\phi(B)(Z_t-\mu)=\epsilon_t$, 정상 조건은 근이 단위원 밖, AR(1)은 $\rho_k=\phi^k$이고 PACF는 시차 $p$ 이후 0이다.
+- MA($q$): $Z_t-\mu=\theta(B)\epsilon_t$, 항상 정상이고 가역 조건이 필요하다. MA(1)은 $\rho_1=-\theta/(1+\theta^2)$이고 ACF는 시차 $q$ 이후 0이다.
 - ARMA(1,1): $\rho_1=(\phi-\theta)(1-\phi\theta)/(1+\theta^2-2\phi\theta)$, $\rho_k=\phi\rho_{k-1}$ $(k\ge2)$. ACF와 PACF 모두 절단되지 않아 차수는 정보 기준으로 정한다.
 - 혼동 주의: 교재의 $\theta$는 빼는 형태라 R에서 `ma = -theta`. $\theta$와 $1/\theta$는 같은 $\rho_1$을 주므로 $|\theta|<1$인 가역해를 고른다.

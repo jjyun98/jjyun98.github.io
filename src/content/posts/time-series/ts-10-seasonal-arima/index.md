@@ -80,7 +80,7 @@ $$
 
 이것을 ARIMA$(p, d, q)(P, D, Q)_s$라 쓴다.
 
-- $\phi_p(B) = 1 - \phi_1 B - \cdots - \phi_p B^p$, $\theta_q(B) = 1 - \theta_1 B - \cdots - \theta_q B^q$: 인접한 달 사이의 관계 (6~7편에서는 비계절 연산자를 대문자 $\Phi(B), \Theta(B)$로 썼지만, 이 글에서는 계절 연산자와 구분하려고 비계절을 소문자 $\phi_p(B), \theta_q(B)$로, 계절을 대문자 $\Phi_P(B^s), \Theta_Q(B^s)$로 쓴다)
+- $\phi_p(B) = 1 - \phi_1 B - \cdots - \phi_p B^p$, $\theta_q(B) = 1 - \theta_1 B - \cdots - \theta_q B^q$: 인접한 달 사이의 관계 (6~7편과 같이 비계절 연산자는 소문자로, 아래 계절 연산자는 대문자로 쓴다)
 - $\Phi_P(B^s) = 1 - \Phi_1 B^s - \cdots - \Phi_P B^{Ps}$, $\Theta_Q(B^s) = 1 - \Theta_1 B^s - \cdots$: 같은 달끼리의 관계
 - $D$: 계절 차분 횟수. 보통 0 또는 1이다.
 

@@ -505,7 +505,7 @@ $$
 
 $\mathbf{x} \sim N_p(\boldsymbol\mu, \boldsymbol\Sigma)$이면 $\mathbf{v}_j^T(\mathbf{x} - \boldsymbol\mu)/\sqrt{\lambda_j}$가 서로 독립인 표준정규이므로 $d^2 \sim \chi^2_p$이다. 고유값이 작은 방향의 편차가 크게 반영되어 이상치 탐지와 판별분석(QDA의 $\log\lvert\boldsymbol\Sigma_k\rvert = \sum\log\lambda_j$)에 쓰인다.
 
-**AR 정상성 조건.** AR($p$)의 동반행렬 $\mathbf{C}$는 첫 행이 $(\phi_1, \dots, \phi_p)$이고 아래는 단위행렬이 밀려 내려간 행렬이다. $\mathbf{C}$의 고유값은 $\Phi(B) = 1 - \phi_1B - \cdots - \phi_pB^p = 0$의 근의 **역수**이므로, "특성근이 단위원 밖"([시계열 - ARMA](/posts/ts-06-arma))은 "$\mathbf{C}$의 고유값이 모두 단위원 안"과 같다.
+**AR 정상성 조건.** AR($p$)의 동반행렬 $\mathbf{C}$는 첫 행이 $(\phi_1, \dots, \phi_p)$이고 아래는 단위행렬이 밀려 내려간 행렬이다. $\mathbf{C}$의 고유값은 $\phi(B) = 1 - \phi_1B - \cdots - \phi_pB^p = 0$의 근의 **역수**이므로, "특성근이 단위원 밖"([시계열 - ARMA](/posts/ts-06-arma))은 "$\mathbf{C}$의 고유값이 모두 단위원 안"과 같다.
 
 **마르코프 연쇄.** 전이행렬 $\mathbf{P}$의 $k$단계 전이는 $\mathbf{P}^k = \mathbf{V}\mathbf{D}^k\mathbf{V}^{-1}$이다. 고유값 1에 대응하는 왼쪽 고유벡터가 정상분포이고, 나머지 고유값의 절댓값이 1보다 작으면 그 크기($\lvert\lambda_2\rvert^k$)대로 정상분포에 수렴한다([확률과정론 - 마코프체인과 정상분포](/posts/sp-04-markov-chain-stationary)).
 

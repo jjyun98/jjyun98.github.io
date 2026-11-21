@@ -149,7 +149,7 @@ acf_pair(diff(diff(log(depart)), 12), "log(sales), lag-1 and lag-12 differenced"
 $d$번 차분한 $\nabla^d Z_t$가 정상 ARMA($p$, $q$)를 따르면 $Z_t$를 ARIMA($p$, $d$, $q$)라 한다.
 
 $$
-\Phi(B)(1 - B)^d Z_t = \delta + \Theta(B)\epsilon_t
+\phi(B)(1 - B)^d Z_t = \delta + \theta(B)\epsilon_t
 $$
 
 | 모형 | 다른 이름 |
@@ -159,7 +159,7 @@ $$
 | ARIMA(0, 2, 2) | Holt 이중지수평활과 같은 예측 |
 | ARIMA($p$, 0, $q$) | 정상 ARMA($p$, $q$) |
 
-$d \ge 1$이면 $\Phi(B)(1 - B)^d$는 단위근 $B = 1$을 가지므로 비정상이다. $d$번 차분하면 다항식 추세가 제거되고, $\delta \ne 0$이면 $d$차 다항 추세가 남는다.
+$d \ge 1$이면 $\phi(B)(1 - B)^d$는 단위근 $B = 1$을 가지므로 비정상이다. $d$번 차분하면 다항식 추세가 제거되고, $\delta \ne 0$이면 $d$차 다항 추세가 남는다.
 
 ```r w=9 h=5.5
 set.seed(11)
